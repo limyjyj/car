@@ -13,12 +13,16 @@
 		<property name="password" value="snake" />
 	</properties>
 	
-	<!-- <typeAliases>
+	<typeAliases>
+		<!-- 
 		<typeAlias type="com.multiplanner.model.dto.Member" alias="Member"/>
 		<typeAlias type="com.multiplanner.model.dto.Schedule" alias="Schedule"/>
 		<typeAlias type="com.multiplanner.model.dto.Diary" alias="Diary"/>
 		<typeAlias type="com.multiplanner.model.dto.AccountBook" alias="AccountBook"/>
-	</typeAliases> -->
+		 -->
+		 
+		<typeAlias type="com.car.model.dto.Reservation" alias="Reservation"/>
+	</typeAliases>
 	
 	<environments default="development">
 		<environment id="development">			
@@ -48,6 +52,9 @@
 		<mapper resource="com/multiplanner/model/mapper/ScheduleMapper.xml" />
 		<mapper resource="com/multiplanner/model/mapper/DiaryMapper.xml" />
 		<mapper resource="com/multiplanner/model/mapper/AccountBookMapper.xml" /> -->
+		
+		<mapper resource="mapper/ReservationMapper.xml" />
+		
 	</mappers>
 
 </configuration>
