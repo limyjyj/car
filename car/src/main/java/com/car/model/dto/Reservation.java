@@ -8,15 +8,15 @@ public class Reservation {
 
 	private int reservationNo;
 	private int memberNo;
-	private String type;
-	private String purpose;
-	private String departure;
-	private String arrival;
-	private String frequency;
-	private Date regDate;
-	private Date date;
-	private String totalMemeber;
-	private String content;
+	private String type; // 장기 단기
+	private String purpose; // 출퇴근 및 목적
+	private String departure; // 출발지
+	private String arrival; // 도착지
+	private String frequency; // 단기 장기
+	private Date regDate; // 실시간
+	private Date date; //경주꺼
+	private String totalMemeber; // 인원
+	private String content; //기타내용
 
 	
 	public int getReservationNo() {
