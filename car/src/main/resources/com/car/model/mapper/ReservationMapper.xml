@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.car.model.mapper.ReservationMapper">
+
+	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
+		keyProperty="reservationNo" keyColumn="reservationNo">
+		INSERT INTO reservation
+		(reservationno, memberno, type, purpose,departure, arrival, frequency, regdate, date, totalmemeber, content)
+		VALUES
+		(reservationno_sequence.nextVal, #{memberno}, #{type}, #{purpose}, #{departure}, #{arrival}, #{frequency},
+		#{regdate},#{date},#{totalmemeber},#{content})
+	</insert>
+	
+	
+	
+</mapper>
