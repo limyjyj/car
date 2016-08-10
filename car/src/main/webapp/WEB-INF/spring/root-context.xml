@@ -47,10 +47,6 @@
 		<property name="transactionManager" ref="txManager" />
 	</bean>
 
-	<bean id="reservationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.car.model.mapper.ReservationMapper" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
 	
 
 
