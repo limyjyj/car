@@ -45,9 +45,9 @@
         <beans:property name="maxInMemorySize" value="100000000" />
     </beans:bean>
 		
-	<context:component-scan base-package="com.project.controller" />
-	<context:component-scan base-package="com.project.aop" />
-	<context:component-scan base-package="com.project.model.service" />
+	<context:component-scan base-package="com.car.controller" />
+	<context:component-scan base-package="com.car.aop" />
+	<context:component-scan base-package="com.car.model.service" />
 			
 	
 	<!-- 미리 만든 Advice(언제 공통 관심 기능을 핵심 로직에 적용할지를 정의) -->

@@ -8,8 +8,8 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	<context:component-scan base-package="com.project.model.dao" />
-	<context:component-scan base-package="com.project.model.service" />
+	<context:component-scan base-package="com.car.model.dao" />
+	<context:component-scan base-package="com.car.model.service" />
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" 

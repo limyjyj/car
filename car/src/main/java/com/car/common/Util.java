@@ -1,4 +1,4 @@
-package com.project.common;
+package com.car.common;
 
 import java.io.File;
 import java.security.MessageDigest;
