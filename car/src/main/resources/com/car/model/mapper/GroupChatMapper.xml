@@ -9,41 +9,46 @@
 <mapper namespace="com.car.model.mapper.GroupChatMapper">
 
 	<sql id="selectDefault">
-		SELECT memberid, outcome, income, balance, bankaccountno
-		FROM bankaccount
+		SELECT chatno, totalnumber, deleted
+		FROM GroupChat
 	</sql>
 	
 	<!-- 논리적 메서드 만들기 -->
 	<!-- make physical method -->
-	<insert id="insertBankAccount" parameterType="BankAccount">
-		INSERT INTO bankaccount
-		(memberid, outcome, income, balance, bankaccountno)
+	<insert id="createGroupChat">
+		INSERT INTO GroupChat
+		(totalnumber, deleted)
 		VALUES
-		(#{memberId}, 0, 0, 0, bankaccount_sequence.nextVal)
+		(1, 0);
 	</insert>
 	
-	<select id="selectAllBankAccount" resultType="BankAccount">
+	<select id="selectAllGroupChat" resultType="GroupChat">
 		SELECT *
-		FROM bankaccount
+		FROM GroupChat
 	</select>
 	
-	<select id="selectBankAccountByMemberId" 
-		parameterType="string" resultType="BankAccount">			
+	<select id="selectGroupChatByMemberId" 
+		parameterType="string" resultType="GroupChat">			
 		<include refid="selectDefault" />
-		WHERE memberId = #{memberId}
+		WHERE memberid = #{memberId}
 	</select>
 	
-	<select id="selectBankAccountByBankAccountNo" 
-		parameterType="int" resultType="BankAccount">			
+	<select id="selectGroupChatByGroupChatNo" 
+		parameterType="int" resultType="GroupChat">			
 		<include refid="selectDefault" />
-		WHERE bankaccountno = #{bankAccountNo}
+		WHERE chatno = #{chatNo}
 	</select>
 	
-	<select id="updateBankAccount" parameterType="int">	
-		UPDATE bankaccount
-		SET outcome = #{outcome}, income = #{income}, 
-		    balance = #{balance}, bankaccountno = #{bankAccountNo} 
-		WHERE bankAccountNo = #{bankAccountNo}
+	<select id="updateGroupChat" parameterType="GroupChat">	
+		UPDATE GroupChat
+		SET totalnumber = #{totalNumber} 
+		WHERE chatno = #{chatNo}
+	</select>
+	
+	<select id="deleteGroupChat" parameterType="int">
+		DELETE 
+		FROM GroupChat
+		WHERE chatno = #{chatNo}
 	</select>
 	
 </mapper>
