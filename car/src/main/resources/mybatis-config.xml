@@ -14,14 +14,14 @@
 	</properties>
 	
 	<typeAliases>
-		<!-- 
-		<typeAlias type="com.multiplanner.model.dto.Member" alias="Member"/>
-		<typeAlias type="com.multiplanner.model.dto.Schedule" alias="Schedule"/>
-		<typeAlias type="com.multiplanner.model.dto.Diary" alias="Diary"/>
-		<typeAlias type="com.multiplanner.model.dto.AccountBook" alias="AccountBook"/>
-		 -->
 		 
+		<typeAlias type="com.car.model.dto.Member" alias="Member"/>
+		<typeAlias type="com.car.model.dto.Car" alias="Car"/>
 		<typeAlias type="com.car.model.dto.Reservation" alias="Reservation"/>
+		<typeAlias type="com.car.model.dto.GroupChat" alias="GroupChat"/>
+		<typeAlias type="com.car.model.dto.Carhistory" alias="Carhistory"/>
+		 <typeAlias type="com.car.model.dto.GroupChat" alias="GroupChat"/>
+		<typeAlias type="com.car.model.dto.GroupSchedule" alias="GroupSchedule"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -48,12 +48,11 @@
 			Code에서 분리된 SQL문이 작성되고 객체와의 매핑 정보가 정의되는 파일들
 			경로는 패키지 경로를 사용 : com.demoweb -> com/demoweb 경로 
 		-->		 
-		<!-- <mapper resource="com/multiplanner/model/mapper/MemberMapper.xml" />
-		<mapper resource="com/multiplanner/model/mapper/ScheduleMapper.xml" />
-		<mapper resource="com/multiplanner/model/mapper/DiaryMapper.xml" />
-		<mapper resource="com/multiplanner/model/mapper/AccountBookMapper.xml" /> -->
-		
-		<mapper resource="mapper/ReservationMapper.xml" />
+		 <mapper resource="com/car/model/mapper/MemberMapper.xml" />
+		<mapper resource="com/car/model/mapper/Reservation.xml" />
+		<mapper resource="com/car/model/mapper/Car.xml" />
+		<mapper resource="com/car/model/mapper/Carhistory.xml" />
+		<mapper resource="com/car/model/mapper/GroupChat.xml" />
 		
 	</mappers>
 
