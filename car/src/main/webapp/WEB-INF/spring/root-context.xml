@@ -14,10 +14,10 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" 
-			value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@210.16.214.202:1521:xe" />
-		<property name="username" value="snake" />
-		<property name="password" value="snake" />			
+			value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql:210.16.214.194/car" />
+		<property name="username" value="car" />
+		<property name="password" value="Carcar1!" />			
 	</bean>
 	
 	

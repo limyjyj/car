@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 논리적 클래스 만들기 -->
+<mapper namespace="com.car.model.mapper.MemberMapper">
+
+	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo"
+	keyColumn="memberno">
+		INSERT INTO member 
+		(memberid, passwd, name, phone, gender)
+		VALUES 
+		(#{memberId}, #{passwd}, #{name}, #{phone}, #(gender))
+	</insert>
+	
+	<select id="selectMemberByIdAndPasswd"
+		parameterType="hashMap" resultType="Member">
+		SELET *
+		WHERE memberId = #{memberId} 
+		AND passWd = #{passWd} 
+		AND deleted = '0'
+	</select>
+</mapper>

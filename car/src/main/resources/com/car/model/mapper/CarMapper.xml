@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.car.model.mapper.CarMapper">
+
+	<sql id="selectDefault">
+		SELECT model, regdate, carno, totaldistance
+		FROM Car
+	</sql>
+
+	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
+		keyProperty="carindex" keyColumn="carindex">
+		INSERT INTO car
+		(historyno, model, regdate, carno, totaldistance)
+		VALUES
+		(#{historyno}, #{model}, #{regdate}, #{carno}, #{totaldistance})
+	</insert>
+	<select id="selectCarByCarindex" 
+		parameterType="string" resultType="Car">			
+		<include refid="selectDefault" />
+		WHERE carindex = #{carindex}
+	</select>
+	
+	
+	
+</mapper>
