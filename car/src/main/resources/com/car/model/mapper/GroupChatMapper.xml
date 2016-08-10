@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 논리적 클래스 만들기 -->
+<!-- make physical class -->
+<mapper namespace="com.car.model.mapper.GroupChatMapper">
+
+	<sql id="selectDefault">
+		SELECT memberid, outcome, income, balance, bankaccountno
+		FROM bankaccount
+	</sql>
+	
+	<!-- 논리적 메서드 만들기 -->
+	<!-- make physical method -->
+	<insert id="insertBankAccount" parameterType="BankAccount">
+		INSERT INTO bankaccount
+		(memberid, outcome, income, balance, bankaccountno)
+		VALUES
+		(#{memberId}, 0, 0, 0, bankaccount_sequence.nextVal)
+	</insert>
+	
+	<select id="selectAllBankAccount" resultType="BankAccount">
+		SELECT *
+		FROM bankaccount
+	</select>
+	
+	<select id="selectBankAccountByMemberId" 
+		parameterType="string" resultType="BankAccount">			
+		<include refid="selectDefault" />
+		WHERE memberId = #{memberId}
+	</select>
+	
+	<select id="selectBankAccountByBankAccountNo" 
+		parameterType="int" resultType="BankAccount">			
+		<include refid="selectDefault" />
+		WHERE bankaccountno = #{bankAccountNo}
+	</select>
+	
+	<select id="updateBankAccount" parameterType="int">	
+		UPDATE bankaccount
+		SET outcome = #{outcome}, income = #{income}, 
+		    balance = #{balance}, bankaccountno = #{bankAccountNo} 
+		WHERE bankAccountNo = #{bankAccountNo}
+	</select>
+	
+</mapper>
