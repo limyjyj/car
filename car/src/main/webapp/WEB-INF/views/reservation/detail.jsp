@@ -17,9 +17,7 @@
 
 	<div id="pageContainer">
 
-		<%
-			pageContext.include("/WEB-INF/views/include/header.jsp");
-		%>
+		
 
 		<div style="padding-top: 25px; text-align: center">
 			<div id="inputcontent">

@@ -59,14 +59,14 @@ $(document).ready(function (){
 				</tr>
 			</thead>	
 				
-				<c:forEach var="b" items="${ boards }">		
+				<c:forEach var="b" items="${ reservation }">		
 					<tr>
-						<td>${ b.boardNo }</td>
+						<td>${ b.reservation }</td>
 						<td>${ b.boardKind }</td>
 						<td>
 							<c:forEach var="i" begin="0" end="${ b.depth }" step="1"/> 
 							<c:if test="${ b.depth > 0 }">
-								<img src="/weeklyfarm/resources/image/re.gif" />
+								<img src="/weeklyfarm/resources/image/re.gif" /> 
 							</c:if> 
 							
 							<c:choose>

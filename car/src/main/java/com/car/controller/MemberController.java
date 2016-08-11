@@ -73,7 +73,7 @@ public class MemberController {
 		
 		memberService.insertMember(member);
 		
-		return "member/list";
+		return "redirect:../home.action";
 		
 	}
 //	@RequestMapping(value= "editform2.action", method = RequestMethod.GET)
