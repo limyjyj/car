@@ -14,10 +14,10 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" 
-			value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@210.16.214.202:1521:xe" />
-		<property name="username" value="snake" />
-		<property name="password" value="snake" />			
+			value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql:210.16.214.194/car" />
+		<property name="username" value="car" />
+		<property name="password" value="Carcar1!" />			
 	</bean>
 	
 	
@@ -52,14 +52,13 @@
 		<property name="mapperInterface" value="com.car.model.mapper.ReservationMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	
-	<bean id="outcomeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.car.model.mapper.OutcomeMapper" />
+
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.MemberMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	
-	<bean id="fuelMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.car.model.mapper.FuelMapper" />
+	<bean id="carMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.CarMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
