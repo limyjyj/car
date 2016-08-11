@@ -7,7 +7,7 @@ import com.car.model.dto.Car;
 public interface CarDao {
 
 	void insertCar(Car car);
-	public List<Car> selectCars();
+	List<Car> selectCars();
 	
 	Car selectCarByCarno(int carno);
 }

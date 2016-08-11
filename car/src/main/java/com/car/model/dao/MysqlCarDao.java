@@ -8,11 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.car.model.dto.Car;
-import com.car.model.dto.GroupChat;
 import com.car.model.mapper.CarMapper;
 
 @Repository("mysqlCarDao")
-public class MysqlCarDao {
+public class MysqlCarDao implements CarDao {
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
