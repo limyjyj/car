@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<c:import url="/WEB-INF/views/include/header.jsp" />
+	<%-- <c:import url="/WEB-INF/views/include/header.jsp" /> --%>
 
 	<div class="container">
 
