@@ -37,7 +37,7 @@ public class AccountController {
 		
 		passWd = Util.getHashedString(passWd, "SHA-256");
 		
-		Member member = memberService.selectMemberByIdAndPassWd(memberId, passWd);
+		Member member = memberService.selectMemberByIdAndPasswd(memberId, passWd);
 		
 		if (member != null) {
 			// 세션에 로그인 정보 저장

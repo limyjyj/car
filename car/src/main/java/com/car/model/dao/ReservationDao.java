@@ -17,7 +17,7 @@ public interface ReservationDao {
 
 	List<Reservation> selectReservationList2(int start, int last);
 	
-	int selectReservationCount();
+
 	
 	Reservation selectReservationByReservationNo(int number);
 	

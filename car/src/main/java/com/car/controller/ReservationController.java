@@ -36,12 +36,6 @@ public class ReservationController {
 
 		ModelAndView mav = new ModelAndView();
 
-		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
-		if (request.getSession().getAttribute("loginuser") == null) {
-			mav.setViewName("redirect:/account/login.action?" + "returnuri=" + request.getRequestURI());
-			return mav;
-		}
-
 		int currentPage = 1;
 		int pageSize = 10;
 		int dataCount = 0;
@@ -57,14 +51,14 @@ public class ReservationController {
 		int startRow = (currentPage - 1) * pageSize + 1;
 		
 		// 데이터베이스에서 데이터 조회
-		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
-		dataCount = reservationService.selectReservationCount();
+//		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+//		dataCount = reservationService.selectReservationCount();
 
 //		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		
 		
 		mav.setViewName("reservation/list");
-		mav.addObject("reservations", reservations);
+	//	mav.addObject("reservations", reservations);
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
 			
