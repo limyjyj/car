@@ -10,6 +10,7 @@ import com.car.model.dao.ReservationDao;
 import com.car.model.dto.Reservation;
 
 
+
 @Service("reservationService")
 public class ReservationServiceImpl implements ReservationService {
 
@@ -26,7 +27,11 @@ public class ReservationServiceImpl implements ReservationService {
 
 	}
 	
-
+	@Override
+	public List<Reservation> selectReservationList() {
+		List<Reservation> rs = reservationDao.selectReservationList();
+		return rs;
+	}
 
 
 

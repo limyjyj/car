@@ -1,5 +1,7 @@
 package com.car.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -15,5 +17,16 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public void insertCar(Car car) {
 		carDao.insertCar(car);
+	}
+	@Override
+	public List<Car> selectCars() {
+		
+		return carDao.selectCars();
+	}
+
+	@Override
+	public Car selectCarByCarno(int carno) {
+		
+		return carDao.selectCarByCarno(carno);
 	}
 }
