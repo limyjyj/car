@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.car.model.mapper.FuelMapper">
+
+	<sql id="selectDefault">
+		SELECT model, regdate, carno, totaldistance, delet	ed
+		FROM Car
+	</sql>
+
+	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
+		keyProperty="carindex" keyColumn="carindex">
+		INSERT INTO car
+		(historyno, model, regdate, carno, totaldistance, deleted)
+		VALUES
+		(#{historyno}, #{model}, #{regdate}, #{carno}, #{totaldistance}, 1, 0)
+	</insert>
+	<select id="selectCars" resultType="Car">
+		SELECT *
+		FROM Car
+	</select>
+	<select id="selectCarByCarno" 
+		parameterType="int" resultType="Car">			
+		<include refid="selectDefault" />
+		WHERE carno = #{carno}
+	</select>
+	
+	
+	
+</mapper>
