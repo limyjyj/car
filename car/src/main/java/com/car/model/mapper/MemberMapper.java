@@ -7,7 +7,7 @@ public interface MemberMapper {
 
 	void insertMember(Member member);
 	
-	Member selectMemberByEmailAndPassWd(String memberId, String passWd);
+	Member selectMemberByIdAndPassWd(String memberId, String passWd);
 	
 }
 
