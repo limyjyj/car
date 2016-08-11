@@ -53,6 +53,7 @@
 		<mapper resource="com/car/model/mapper/CarMapper.xml" />
 		<mapper resource="com/car/model/mapper/CarhistoryMapper.xml" />
 		<mapper resource="com/car/model/mapper/GroupChatMapper.xml" />
+
 		
 	</mappers>
 
