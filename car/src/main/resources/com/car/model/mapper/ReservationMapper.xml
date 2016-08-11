@@ -8,7 +8,7 @@
 
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
 		keyProperty="reservationNo" keyColumn="reservationNo">
-		INSERT INTO reservation
+		INSERT INTO Reservation
 		(reservationno, memberno, type, purpose,departure, arrival, frequency, regdate, date, totalmemeber, content)
 		VALUES
 		(reservationno_sequence.nextVal, #{memberno}, #{type}, #{purpose}, #{departure}, #{arrival}, #{frequency},
@@ -19,7 +19,7 @@
 		
 		SELECT *
 		FROM
-		reservation
+		Reservation
 		
 </select>
 	
