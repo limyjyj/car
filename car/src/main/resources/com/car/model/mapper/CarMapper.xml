@@ -7,7 +7,7 @@
 <mapper namespace="com.car.model.mapper.CarMapper">
 
 	<sql id="selectDefault">
-		SELECT model, regdate, carno, totaldistance, delet ed
+		SELECT model, regdate, carno, totaldistance, deleted
 		FROM
 		Car
 	</sql>
@@ -19,7 +19,7 @@
 		regdate, carno, totaldistance, deleted)
 		VALUES
 		(#{historyno}, #{model},
-		#{regdate}, #{carno}, #{totaldistance}, 1, 0)
+		#{regdate}, #{carno}, #{totaldistance}, 0)
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *
@@ -29,7 +29,16 @@
 		<include refid="selectDefault" />
 		WHERE carno = #{carno}
 	</select>
-
+	
+	<update id="updateCar" parameterType="Car">
+		UPDATE Car
+		SET  (model = #{model}, regdate = #{regdate}, carno = #{carno}, totaldistance = #{totaldistance})
+		WHERE carindex = #{carindex}
+		
+	</update>
+	<update id="deleteCar" parameterType="int">
+		UPDATE Car SET deleted = '1' WHERE carindex = #{carindex}
+	</update>
 
 
 </mapper>

@@ -13,58 +13,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.car.model.dto.Car;
-import com.car.model.service.CarService;
+import com.car.model.dto.Carhistory;
+import com.car.model.service.CarhistoryService;
 
 @Controller
-@RequestMapping(value = "/car/")
-public class CarController {
+@RequestMapping(value = "/carhistory/")
+public class CarhistoryController {
 	
 	@Autowired
-	@Qualifier("carService")
-	private CarService carService;
+	@Qualifier("carhistoryService")
+	private CarhistoryService carhistoryService;
 
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String registerForm(
 			@ModelAttribute Car car) {
-		return "car/registerform";
+		return "carhistory/registerform";
 
 	}
 
 	@RequestMapping(value = "register.action", method = RequestMethod.POST)
 	public String registerForm(
-			@ModelAttribute Car car, HttpSession session) {
+			@ModelAttribute Carhistory history, HttpSession session) {
 
-		carService.insertCar(car);
+		carhistoryService.insertCarhistory(history);
 
-		return "redirect:/car/list.action";
+		return "redirect:/carhistory/list.action";
 
 	}
 	
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public String carList(
+	public String carhistoryList(
 			// 스프링 태그 라이브러리를 사용하기 위해 구성한 전달인자
-			@ModelAttribute Car car, Model model) {
+			@ModelAttribute Carhistory history, Model model) {
 		
-		List<Car> cars = carService.selectCars();
-		for(Car r : cars){
+		List<Carhistory> historys = carhistoryService.selectAllCarhistory();
+		for(Carhistory h : historys){
 			
 		}
 			
 		
 		
-		model.addAttribute("cars", cars);
+		model.addAttribute("carhistorys", historys);
 		
-		return "car/list";
+		return "carhistory/list";
 
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
 	public String matching(
 			// 스프링 태그 라이브러리를 사용하기 위해 구성한 전달인자
-			@ModelAttribute Car car) {
+			@ModelAttribute Carhistory history) {
 
-		carService.updateCar(car);
-		return "redirect:/car/list.action";
+		carhistoryService.updateCarhistory(history);
+		return "redirect:/carhistory/list.action";
 
 	}
 	

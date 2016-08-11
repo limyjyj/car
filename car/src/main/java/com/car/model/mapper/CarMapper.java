@@ -10,4 +10,5 @@ public interface CarMapper {
 	List<Car> selectCars();
 	
 	Car selectCarByCarno(int carno);
+	void updateCar(Car car);
 }

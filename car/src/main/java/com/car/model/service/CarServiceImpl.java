@@ -31,4 +31,8 @@ public class CarServiceImpl implements CarService {
 
 		return carDao.selectCarByCarno(carno);
 	}
+	@Override
+	public void updateCar(Car car) {
+		carDao.updateCar(car);
+	}
 }

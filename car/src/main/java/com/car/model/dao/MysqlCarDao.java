@@ -33,5 +33,8 @@ public class MysqlCarDao implements CarDao {
 		
 		return carMapper.selectCarByCarno(carno);
 	}
+	public void updateCar(Car car) {
+		carMapper.updateCar(car);
+	}
 
 }

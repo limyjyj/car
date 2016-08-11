@@ -1,10 +1,11 @@
-package com.car.model.dao;
+package com.car.model.mapper;
 
 import java.util.List;
 
+import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
 
-public interface CarhistoryDao {
+public interface CarhistoryMapper {
 
 	void insertCarhistory(Carhistory history);
 	List<Carhistory> selectAllCarhistory();
