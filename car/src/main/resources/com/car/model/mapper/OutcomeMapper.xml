@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.car.model.mapper.OutcomeMapper">
+
+	<sql id="selectDefault">
+		SELECT outcomeNo, cartegory, payment, regDate, location, content
+		FROM Outcome
+	</sql>
+
+	<insert id="insertOutcome" parameterType="Outcome">
+		INSERT INTO Outcome
+		(cartegory, payment, location, content, historyNo)
+		VALUES
+        (#{cartegory}, #{payment}, #{location}, #{content}, #{historyNo});
+	</insert>
+
+	<select id="selectOutcomeList" resultType="Outcome">
+		SELECT *
+		FROM Outcome
+	</select>
+
+	<select id="selectOutcomeByOutcomeNo" parameterType="int" resultType="Outcome">
+		<include refid="selectDefault" />
+		WHERE outcomeNo = #{outcomeNo}
+	</select>
+
+	<select id="updateOutcome" parameterType="Outcome">
+		UPDATE Outcome
+		SET cartegory = #{cartegory}, payment = #{payment}, location = #{location}, content = #{content}, historyNo = #{historyNo} 
+		WHERE outcomeNo = #{outcomeNo}
+	</select>
+
+</mapper>

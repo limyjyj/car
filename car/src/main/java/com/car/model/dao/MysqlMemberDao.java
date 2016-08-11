@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.car.model.dto.Member;
 import com.car.model.mapper.MemberMapper;
 
-@Repository("oracleMemberDao")
+@Repository("mysqlMemberDao")
 public class MysqlMemberDao implements MemberDao {
 
 	@Autowired

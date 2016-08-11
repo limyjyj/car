@@ -10,7 +10,7 @@ import com.car.model.dto.GroupChat;
 import com.car.model.mapper.GroupChatMapper;
 
 
-@Repository(value = "mysqlDonationDao")
+@Repository(value = "mysqlGroupChatDao")
 public class MysqlGroupChatDao implements GroupChatDao {
 	
 	@Autowired

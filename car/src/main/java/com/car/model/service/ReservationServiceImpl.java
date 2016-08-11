@@ -23,6 +23,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void insertReservation(Reservation reservation) {
 
+
 		reservationDao.insertReservation(reservation);
 
 	}
@@ -32,7 +33,6 @@ public class ReservationServiceImpl implements ReservationService {
 		List<Reservation> rs = reservationDao.selectReservationList();
 		return rs;
 	}
-
 	@Override
 	public List<Reservation> selectReservationList2(int start, int last) {
 		return reservationDao.selectReservationList2(start, last);
@@ -44,7 +44,6 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		return reservationDao.selectReservationCount();
 	}
-
 
 
 
