@@ -55,9 +55,9 @@
 		<mapper resource="com/multiplanner/model/mapper/DiaryMapper.xml" />
 		<mapper resource="com/multiplanner/model/mapper/AccountBookMapper.xml" /> -->
 		
-		<mapper resource="mapper/ReservationMapper.xml" />
-		<mapper resource="mapper/OutcomeMapper.xml" />
-		<mapper resource="mapper/FuelMapper.xml" />
+		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
+		<mapper resource="com/car/model/mapper/OutcomeMapper.xml" />
+		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
 		
 	</mappers>
 
