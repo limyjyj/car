@@ -12,7 +12,7 @@ import com.car.model.dto.Member;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	@Qualifier("oracleMemberDao")
+	@Qualifier("mysqlMemberDao")
 	private MemberDao memberDao;
 	
 	@Override
