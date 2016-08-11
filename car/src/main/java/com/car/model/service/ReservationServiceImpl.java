@@ -1,7 +1,5 @@
 package com.car.model.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,18 +15,12 @@ public class ReservationServiceImpl implements ReservationService {
 	@Qualifier("oracleReservationDao")
 	private ReservationDao reservationDao;
 
-	
-
 	@Override
 	public void insertReservation(Reservation reservation) {
-
-		reservationDao.insertReservation(reservation);
-
+		
+		
 	}
+
 	
-
-
-
-
-
+	
 }
