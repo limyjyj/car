@@ -33,16 +33,15 @@ public class AccountController {
 
 	@RequestMapping(value = "/login.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String login( String memberId, String passwd, HttpSession session ) {
+	public String login( String memberId, String passWd, HttpSession session ) {
 		
-		passwd = Util.getHashedString(passwd, "SHA-256");
+		passWd = Util.getHashedString(passWd, "SHA-256");
 		
-		Member member = memberService.selectMemberByIdAndPassWd(memberId, passwd);
+		Member member = memberService.selectMemberByIdAndPassWd(memberId, passWd);
 		
 		if (member != null) {
 			// 세션에 로그인 정보 저장
 			session.setAttribute("loginuser", member);
-			session.setAttribute("logintype", "member");
 
 			return "fail";
 		} else {

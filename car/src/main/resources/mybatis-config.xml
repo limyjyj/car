@@ -8,7 +8,7 @@
 
 	<properties>
 		<property name="driver" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql:210.16.214.194/car" />
+		<property name="url" value="jdbc:mysql://210.16.214.194:car" />
 		<property name="username" value="car" />
 		<property name="password" value="Carcar1!" />
 	</properties>
