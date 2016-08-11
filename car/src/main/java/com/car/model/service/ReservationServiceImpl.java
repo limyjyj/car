@@ -18,19 +18,22 @@ public class ReservationServiceImpl implements ReservationService {
 	@Qualifier("mysqlReservationDao")
 	private ReservationDao reservationDao;
 
-	@Override
-	public void insertReservation(Reservation reservation) {
-		
-		
-	}
-
 	
 
+	@Override
+	public void insertReservation(Reservation reservation) {
+
+		reservationDao.insertReservation(reservation);
+
+	}
+	
 	@Override
 	public List<Reservation> selectReservationList() {
 		List<Reservation> rs = reservationDao.selectReservationList();
 		return rs;
 	}
+
+
 
 
 }

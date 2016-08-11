@@ -1,6 +1,5 @@
 package com.car.model.dto;
 
-
 import java.util.Date;
 
 public class Outcome {
