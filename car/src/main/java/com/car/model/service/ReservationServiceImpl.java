@@ -1,7 +1,5 @@
 package com.car.model.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,15 +16,14 @@ public class ReservationServiceImpl implements ReservationService {
 	@Qualifier("mysqlReservationDao")
 	private ReservationDao reservationDao;
 
-	
-
 	@Override
 	public void insertReservation(Reservation reservation) {
-
-		reservationDao.insertReservation(reservation);
-
+		
+		
 	}
+
 	
+<<<<<<< HEAD
 	@Override
 	public List<Reservation> selectReservationList() {
 		List<Reservation> rs = reservationDao.selectReservationList();
@@ -36,4 +33,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 }
