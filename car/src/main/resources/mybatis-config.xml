@@ -49,10 +49,10 @@
 			경로는 패키지 경로를 사용 : com.demoweb -> com/demoweb 경로 
 		-->		 
 		 <mapper resource="com/car/model/mapper/MemberMapper.xml" />
-		<mapper resource="com/car/model/mapper/Reservation.xml" />
-		<mapper resource="com/car/model/mapper/Car.xml" />
-		<mapper resource="com/car/model/mapper/Carhistory.xml" />
-		<mapper resource="com/car/model/mapper/GroupChat.xml" />
+		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
+		<mapper resource="com/car/model/mapper/CarMapper.xml" />
+		<mapper resource="com/car/model/mapper/CarhistoryMapper.xml" />
+		<mapper resource="com/car/model/mapper/GroupChatMapper.xml" />
 		
 	</mappers>
 
