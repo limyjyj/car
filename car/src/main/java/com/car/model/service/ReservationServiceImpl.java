@@ -33,6 +33,18 @@ public class ReservationServiceImpl implements ReservationService {
 		return rs;
 	}
 
+	@Override
+	public List<Reservation> selectReservationList2(int start, int last) {
+		return reservationDao.selectReservationList2(start, last);
+		
+	}
+
+	@Override
+	public int selectReservationCount() {
+		
+		return reservationDao.selectReservationCount();
+	}
+
 
 
 
