@@ -15,6 +15,13 @@
 		#{regdate},#{date},#{totalmemeber},#{content})
 	</insert>
 	
+	<select id="selectReservationList" resultType="Reservation">
+		
+		SELECT *
+		FROM
+		reservation
+		
+</select>
 	
 	
 </mapper>
