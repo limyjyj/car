@@ -14,7 +14,7 @@ import com.car.model.dto.Reservation;
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
-	@Qualifier("oracleReservationDao")
+	@Qualifier("mysqlReservationDao")
 	private ReservationDao reservationDao;
 
 	

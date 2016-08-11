@@ -9,7 +9,7 @@ import com.car.model.dto.Car;
 public class CarServiceImpl implements CarService {
 
 	@Autowired
-	@Qualifier("oracleReservationDao")
+	@Qualifier("mysqlReservationDao")
 	private CarDao carDao;
 
 	@Override
