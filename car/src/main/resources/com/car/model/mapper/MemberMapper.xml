@@ -9,15 +9,16 @@
 
 	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo"
 	keyColumn="memberno">
-		INSERT INTO member 
-		(memberid, passwd, name, phone, gender)
+		INSERT INTO Member 
+		(memberid, passWd, name, phone, gender)
 		VALUES 
-		(#{memberId}, #{passwd}, #{name}, #{phone}, #(gender))
+		(#{memberId}, #{passWd}, #{name}, #{phone}, #{gender})
 	</insert>
 	
 	<select id="selectMemberByIdAndPasswd"
 		parameterType="hashMap" resultType="Member">
 		SELET *
+		From Member
 		WHERE memberId = #{memberId} 
 		AND passWd = #{passWd} 
 		AND deleted = '0'
