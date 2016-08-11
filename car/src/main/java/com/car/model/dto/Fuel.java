@@ -1,23 +1,7 @@
 package com.car.model.dto;
 
-<<<<<<< HEAD
+
 import java.util.Date;
-
-public class Fuel {
-
-	private int fuelno;
-	private int historyno;
-	private String type;
-	private int perliter;
-	private int payment;
-	private int liter;
-	private Date regdate;
-	private String location;
-	private String content;
-	
-}
-=======
-import java.sql.Date;
 
 public class Fuel {
 
@@ -88,4 +72,4 @@ public class Fuel {
 	
 	
 }
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+

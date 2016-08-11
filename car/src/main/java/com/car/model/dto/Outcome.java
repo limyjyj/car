@@ -1,19 +1,6 @@
 package com.car.model.dto;
 
-<<<<<<< HEAD
 import java.util.Date;
-
-public class Outcome {
-
-	private int historyno;
-	private String category;
-	private int payment;
-	private Date regdate;
-	private String location;
-	private String content;
-}
-=======
-import java.sql.Date;
 
 public class Outcome {
 
@@ -70,4 +57,3 @@ public class Outcome {
 	
 	
 }
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
