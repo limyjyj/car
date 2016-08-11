@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans 
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/p http://www.springframework.org/schema/p/spring-p-3.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<context:component-scan base-package="com.car.model.dao" />
+	<context:component-scan base-package="com.car.model.dto" />
 	<context:component-scan base-package="com.car.model.service" />
 
 	<bean id="dataSource"
@@ -20,7 +22,9 @@
 		<property name="password" value="Carcar1!" />			
 	</bean>
 	
-	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	
 	<bean id="sqlSessionFactory" 
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -32,12 +36,6 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />	
 	</bean>	
-	
-	
-	<!-- <bean id="accountBookMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.project.model.mapper.AccountBookMapper" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean> -->
 	
 	<!-- 원래는 platformTransactionManager을 사용하는 jdbc를 사용하면 DataSourceTransactionManager를 사용할수 있다  -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -67,7 +65,7 @@
 		<property name="mapperInterface" value="com.car.model.mapper.CarMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-
+	
 </beans>
 
 

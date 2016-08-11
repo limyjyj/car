@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.car.model.dao.MysqlGroupChatDao;
 import com.car.model.dto.GroupChat;
 
-
+@Service("groupChatService")
 public class GroupChatServiceImpl implements GroupChatService {
 	
 	@Autowired
