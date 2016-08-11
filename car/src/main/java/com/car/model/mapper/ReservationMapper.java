@@ -6,6 +6,7 @@ import java.util.List;
 import com.car.model.dto.Reservation;
 
 
+
 public interface ReservationMapper {
 	
 	void insertReservation(Reservation reservation);
@@ -15,5 +16,6 @@ public interface ReservationMapper {
 	
 	int selectReservationCount();
 	
+	Reservation selectReservationByReservationNo(int reservationNo);
 
 }

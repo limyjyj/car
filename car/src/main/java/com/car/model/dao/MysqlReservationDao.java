@@ -59,6 +59,11 @@ public class MysqlReservationDao implements ReservationDao {
 		return count;
 	}
 
+	@Override
+	public Reservation selectReservationByReservationNo(int number) {
+		return reservationMapper.selectReservationByReservationNo(number);
+	}
+
 
 
 	

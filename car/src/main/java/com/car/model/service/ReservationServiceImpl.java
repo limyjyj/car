@@ -45,6 +45,14 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.selectReservationCount();
 	}
 
+	@Override
+	public Reservation selectReservationByReservationNo(int reservationNo) {
+		
+		return reservationDao.selectReservationByReservationNo(reservationNo);
+
+	  }
+	}
 
 
-}
+
+
