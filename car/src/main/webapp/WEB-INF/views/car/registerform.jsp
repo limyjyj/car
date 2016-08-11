@@ -27,7 +27,7 @@ $(function(){
 		event.stopPropagation();
 		event.preventDefault();
 		
-		var info = $("#reservateDate2, #order2, #phoneNo")
+		var info = $("#model, #carno, #regdate, #totaldistance")
 		valid = true;
 		$.each(info, function(index, element) {
 			if (element.value == null || element.value.length == 0) {
@@ -38,7 +38,7 @@ $(function(){
 		if (valid) {
 			$('form').submit();
 		} else {
-			alert('예약일자와 주문내용, 연락처를 빠짐없이 입력해주세요')
+			alert('차량정보를 빠짐없이 입력해주세요')
 		}
 })	
 });    
@@ -69,15 +69,15 @@ $(function(){
 			       </div>
 		       		<div class="form-group">
      		     	  <label for="inputCarno">차량번호</label>
-		              <form:input type="text" path="carno" class="form-control" id="reservateDate2" placeholder="" />
+		              <form:input type="text" path="carno" class="form-control" id="carno" placeholder="" />
 			       </div>
 		          <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:textarea id="order2" path="regdate" class="form-control" placeholder=""/>
+		              <form:input type="text" path="regdate" class="form-control" id="regdate" placeholder="" />
 			       </div>
 			       <div class="form-group">
      		     	  <label for="inputTotaldistance">총 주행거리</label>
-						<form:textarea id="order2" path="regdate" class="form-control" placeholder=""/>
+					<form:input type="text" path="totaldistance" class="form-control" id="totaldistance" placeholder="" />
 		                
 		           </div>
 
