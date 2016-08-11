@@ -12,6 +12,7 @@ import com.car.model.dto.Reservation;
 import com.car.model.mapper.ReservationMapper;
 
 
+
 @Repository("mysqlReservationDao")
 public class MysqlReservationDao implements ReservationDao {
 
@@ -26,7 +27,15 @@ public class MysqlReservationDao implements ReservationDao {
 		
 	}
 
-
+	@Override
+	public List<Reservation> selectReservationList() {
+		
+		
+		List<Reservation> reservationlist =reservationMapper.selectReservationList();
+		reservationMapper.selectReservationList();
+		
+		return reservationlist;
+	}
 
 	
 
