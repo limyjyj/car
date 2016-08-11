@@ -50,15 +50,12 @@
 		<!-- Code에서 분리된 SQL문이 작성되고 객체와의 매핑 정보가 정의되는 파일들 경로는 패키지 경로를 사용 : com.demoweb 
 			-> com/demoweb 경로 -->
 		<mapper resource="com/car/model/mapper/MemberMapper.xml" />
-		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
 		<mapper resource="com/car/model/mapper/CarMapper.xml" />
 		<mapper resource="com/car/model/mapper/CarhistoryMapper.xml" />
 		<mapper resource="com/car/model/mapper/GroupChatMapper.xml" />
 		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
 		<mapper resource="com/car/model/mapper/OutcomeMapper.xml" />
 		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
-		
-
 	</mappers>
 
 </configuration>
