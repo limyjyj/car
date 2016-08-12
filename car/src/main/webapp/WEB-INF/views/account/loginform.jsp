@@ -159,8 +159,6 @@
 		<div id="inputcontent">
 			<br /><br />
 		   <div style="height:80px">
-		   	<input type="button" id="member" style="width:260px; height:79px; text-align:center" value="회원 로그인">
-		    <input type="button" id="staff" style="width:260px; height:79px; text-align:center" value="직원 로그인">
 		   </div>
 		    
 		    
@@ -192,9 +190,7 @@
 		        </div>
 		        </form>
 		       <div style='text-align:center'>
-					<!-- <fb:login-button scope="public_profile,email" 
-						onlogin="checkLoginState();" autologoutlink="true">
-					</fb:login-button> -->
+			
 				
 				</div> 
 		    </div>
