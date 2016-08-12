@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>글쓰기</title>
+<title>예약하기</title>
 
 <style> 
 .swell th{
@@ -23,20 +23,20 @@
 	
 
 		<br/><br/>
-			<div class="bdiv"> 게시판 글 쓰기</div>
+			<div class="bdiv">예약 설정</div>
 		<br/><br/>
 					<form action="write.action" method="post" enctype="multipart/form-data">
 						<table class="swell" style="width: 70%; border: 2px solid white;">
 							<tr class="bfile">
 								<th style="width: 200px">종류</th>
 								<td style="width: 900px">
-									<select class="form-control" id="boardkind" name="boardKind" 
-										style="height: 40px; width:230px; font-size: medium;">
-									<c:if test="${loginuser.memberType=='admin'}">
-										<option value="공지">공지사항</option>
-									</c:if>
-										<option value="질문">질문있어요</option>
-										<option value="후기">후기게시판</option>
+									<select class="form-control" id="reservationsearch" name="reservationsearch" 
+										style="height: 30px; width:220px; font-size: medium;">
+									
+										<option value="실시간">실시간 카풀</option>
+						
+										<option value="정기">정기 카풀</option>
+										
 									</select>
 								</td>
 							</tr>
@@ -55,12 +55,7 @@
 									${ loginuser.memberId }
 								</font></td>
 							</tr>
-							<tr>
-								<th>첨부자료</th>
-								<td>
-									<input class="form-control" type="file" name="attach" style="width: 200px; height: 15px; font-size: small;" />
-								</td>
-							</tr>
+							
 							<tr>
 								<th>내용</th>
 								<td>

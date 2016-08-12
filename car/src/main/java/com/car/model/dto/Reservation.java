@@ -17,8 +17,15 @@ public class Reservation {
 	private Date date; //경주꺼
 	private String totalMemeber; // 인원
 	private String content; //기타내용
+	private int reservationCount;
 
 	
+	public int getReservationCount() {
+		return reservationCount;
+	}
+	public void setReservationCount(int reservationCount) {
+		this.reservationCount = reservationCount;
+	}
 	public int getReservationNo() {
 		return reservationNo;
 	}
