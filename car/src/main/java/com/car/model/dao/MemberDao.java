@@ -8,6 +8,9 @@ public interface MemberDao {
 
 	void insertMember(Member member);
 	Member selectMemberByIdAndPasswd(String memberId, String passWd);
+	void updateMember(Member member);
+	void deleteMember(String memberId);
+	Member selectMemberByMemberId(String memberId);
 	
 
 }

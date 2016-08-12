@@ -6,13 +6,30 @@
 
 <mapper namespace="com.car.model.mapper.ReservationMapper">
 
+
+<resultMap type="Reservation" id="reservationMap">
+		<id property="reservationNo" column="reservationno" />
+		<result property="type" column="tpye" />
+		<result property="purpose" column="purpose" />
+		<result property="departure" column="departure" />
+		<result property="arrival" column="arrival" />
+		<result property="frequency" column="frequency" />
+		<result property="startDate" column="startdate" />
+		<result property="endDate" column="enddate" />
+		<result property="totalMemeber" column="totalmemeber" />
+		<result property="endDate" column="enddate" />
+		<result property="content" column="content" />
+	
+	</resultMap>
+
+
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
 		keyProperty="reservationNo" keyColumn="reservationNo">
 		INSERT INTO Reservation
-		( memberno, type, purpose,departure, arrival, frequency, regdate, date, totalmemeber, content)
+		( memberno, type, purpose,departure, arrival, frequency, startdate,enddate, totalmemeber, content)
 		VALUES
-		( #{memberno}, #{type}, #{purpose}, #{departure}, #{arrival}, #{frequency},
-		#{regdate},#{date},#{totalmemeber},#{content})
+		( #{memberno}, #{type}, #{purpose}, #{departure}, #{arrival}, #{frequency}
+		,#{startdate},#{enddate},#{totalmemeber},#{content})
 	</insert>
 	
 	<select id="selectReservationList" resultType="Reservation">
@@ -22,6 +39,26 @@
 		Reservation
 		
 </select>
+	
+	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
+		SELECT
+		reservationno, memberno, type, purpose,departure, arrival, frequency, startdate,enddate, totalmemeber, content
+		FROM reservation
+		WHERE reservationno =
+		#{reservationno} AND deleted
+		= '0'
+	</select>
+
+	<select id="selectReservationCount" resultType="int">
+		SELECT COUNT(*) FROM
+		reservation
+	</select>
+	
+	<update id="ReservationReadCount" parameterType="int">
+	UPDATE reservation
+	SET resersvationcount = resersvationcount + 1
+	WHERE reservationno = #{reservationno}
+	</update>
 	
 	
 </mapper>

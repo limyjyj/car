@@ -89,15 +89,59 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 	//작성
 		@RequestMapping(value = "writeform.action", method = RequestMethod.GET)
-		public String getBoardWriteForm() {
-			return "board/writeform";
+		public String getReservationWriteForm() {
+			return "reservation/writeform";
 		}
 
 		@RequestMapping(value = "write.action", method = RequestMethod.POST)
 		public String writeReservation(MultipartHttpServletRequest req, Reservation reservation) {
+
 			
-		
+			reservationService.insertReservation(reservation);
+			
 			return "redirect:/reservation/list.action";
+		}
+
+
+		//디테일
+		@RequestMapping(value = "detail.action", method = RequestMethod.GET)
+		public ModelAndView showReservationByReservationNo(HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView();
+
+			// 요청 정보에서 내용을 표시할 글번호를 읽고 변수에 저장
+			// (없으면 목록으로 이동)	
+			String boardNo = request.getParameter("reservationo");
+			if (boardNo == null || boardNo.length() == 0) {
+				mav.setViewName("redirect:/reservation/list.action");
+				return mav;
+			}
+			int no = Integer.parseInt(boardNo);
+			// 데이터베이스에서 데이터 조회
+			Reservation reservation = reservationService.selectReservationByReservationNo(no);
+			
+			
+			
+			// 조회 실패하면 목록으로 이동
+			if (reservation == null) {
+				mav.setViewName("redirect:/reservation/list.action");
+				return mav;
+			}
+
+			reservationService.updateReservationReadCount(reservation.getReservationNo());
+			reservation.setReservationCount(reservation.getReservationCount() + 1);
+
+			String pageNo = "1";
+			if (request.getParameter("pageno") != null) {
+				pageNo = request.getParameter("pageno");
+			}
+			
+			// 조회된 데이터를 jsp 처리할 수 있도록 request 객체에 저장
+			mav.setViewName("reservation/detail");
+			mav.addObject("reservation", reservation);
+			mav.addObject("pageno", pageNo);
+
+			return mav;
+
 		}
 
 	

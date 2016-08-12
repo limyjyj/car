@@ -1,167 +1,117 @@
+
+<%@page import="com.car.model.dto.Member"%>
 <%@page import="com.car.model.dto.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="utf-8" session="true"%>
 
+<%	//치환변수선언
+    pageContext.setAttribute("cr", "\r"); //Space
+    pageContext.setAttribute("cn", "\n"); //Enter
+    pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+    pageContext.setAttribute("br", "<br/>"); //br 태그 %> 
 <!DOCTYPE html>
-
 <html>
 <head>
 
 <meta charset="utf-8" />
-<title>글쓰기</title>
+<title>자유게시판</title>
 
+<jsp:include page="/WEB-INF/views/include/head.jsp" />
+<link rel="Stylesheet" href="/weeklyfarm/resources/css/bootstrap.css" />
+<link rel="Stylesheet" href="/weeklyfarm/resources/css/bootstrap-responsive.css" />
+<script type="text/javascript">
+	function doDelete(boardNo, pageNo) {
+		yes = confirm(boardNo + '번 글을 삭제할까요?');
+		if (yes) { location.href = 'delete.action?boardno=' + boardNo + '&pageno='+ pageNo;
+		}
+	}
+	
+    //편집 메서드
+    var v = null, e = null;
+      	function toggleCommentStatus(commentNo, edit) {
+    if (v != null) {        	
+        v.style.display = edit ? 'block' : 'none';
+        e.style.display = edit ? 'none' : 'block';      
+    } 
+        v = document.getElementById("commentview" + commentNo);
+        e = document.getElementById("commentedit" + commentNo);
 
+        v.style.display = edit ? 'none' : 'block';  
+        e.style.display = edit ? 'block' : 'none';
+    }
+      
+    //삭제 메서드
+    function deleteComment(commentNo, boardNo, pageNo) {
+    var yes = confirm(commentNo + '번 댓글을 삭제할까요?');
+    if (yes) {
+        location.href = 'deletecomment.action?commentno=' + commentNo + "&boardno=" + boardNo + "&pageno=" + pageNo;
+        }
+    }
+    
+</script>
 </head>
 <body>
-
-	<div id="pageContainer">
+	
+		<br/><br/>
+		<div>
+		<div class="bdiv">자유게시판</div>
+		<br/><br/>
+			
+			<table class="dtable">
+				<tr>
+					<th>제&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+					<td>${ board.boardTitle }</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${ board.memberId }</td>
+					</tr>
+				<tr>
+					<th>작성일</th>
+					<td>${ board.boardRegDate }</td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>${ board.boardCount }</td>
+				</tr>
+				<tr>	
+					<th style="color: #a2642d;">첨부자료</th>
+					<td>
+						<c:forEach var="file" items="${ board.files }">
+							<c:if test="${ not empty file.userFileName }">
+								<a href='download.action?uploadfileno=${ file.uploadFileNo }'>${ file.userFileName } </a>&nbsp;		             
+		                	</c:if>
+						</c:forEach>
+					</td>
+				</tr>
+				<tr>
+					<th valign="middle">추&nbsp;가&nbsp;내&nbsp;용</th>
+					<td style="height:150px; vertical-align: top; text-align:left; padding-left: 30px;">
+						
+					</td>
+				</tr>
+			</table>
+			
+			<br/><br/>
+					
+			<div class="bbtn">
+				<c:choose>
+					<c:when test="${ loginuser.memberId eq board.memberId }">						
+						<a href='javascript:doDelete(${ board.boardNo }, ${ pageno })'>삭제</a>&nbsp;&nbsp;
+						<a href='edit.action?boardno=${ board.boardNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
+					</c:when>
+					<c:otherwise>
+						<%-- 작성자가 자기 글에 댓글을 쓸 수 없다면 여기에 댓글 링크 만들기 --%>
+					</c:otherwise>
+				</c:choose>
+					
+					<a href='list.action?pageno=${ pageno }'>목록보기</a>
+			</div>
+		</div>
+		
+		<br /> <br />
 
 		
 
-		<div style="padding-top: 25px; text-align: center">
-			<div id="inputcontent">
-				<div id="inputmain">
-					<div class="inputsubtitle">내농작물 주문</div>
-					<form action="write.action" method="post">
-
-						<table>
-							<tr>
-								<th>작성자</th>
-								<td><input type="hidden" name="memberId"
-									value="${ loginuser.memberId }" />
-									${ loginuser.memberId }
-								</td>
-							</tr>
-							
-							<tr>
-								<th>주문방법</th>
-								<td><select style="height: 30px" id="deliverywayNo"
-									name="deliverywayNo">
-										<option value="1">택배</option>
-										<option value="2">직접수령</option>
-									</select></td>
-										
-							</tr>
-							
-							<tr>
-								<th>수량</th>
-								<td><select style="height: 30px" id="quantity"
-									name="quantity">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-								</select></td>
-								
-							</tr>
-							
-							 <input type="hidden" value="${ product.productNo }" name="productno"/> 
-						</table>
-						<div class="buttons">
-							<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->
-
-
-							<a href="javascript:document.forms[0].submit();">확인</a>
-							&nbsp;&nbsp; 
-						</div>
-					</form>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-
-	<hr>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	
-
-	<link href="/weeklyfarm/resources/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="/weeklyfarm/resources/js/fileinput.js" type="text/javascript"></script>
-	<script src="/weeklyfarm/resources/js/fileinput_locale_fr.js" type="text/javascript"></script>
-	<script src="/weeklyfarm/resources/js/fileinput_locale_es.js" type="text/javascript"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
-
 </body>
-<script>
-	$('#file-fr').fileinput({
-		language : 'fr',
-		uploadUrl : '#',
-		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-	});
-	$('#file-es').fileinput({
-		language : 'es',
-		uploadUrl : '#',
-		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-	});
-	$("#file-0").fileinput({
-		'allowedFileExtensions' : [ 'jpg', 'png', 'gif' ],
-	});
-	$("#file-1").fileinput({
-		uploadUrl : '#', // you must set a valid URL here else you will get an error
-		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-		overwriteInitial : false,
-		maxFileSize : 1000,
-		maxFilesNum : 10,
-		//allowedFileTypes: ['image', 'video', 'flash'],
-		slugCallback : function(filename) {
-			return filename.replace('(', '_').replace(']', '_');
-		}
-	});
-	/*
-	$(".file").on('fileselect', function(event, n, l) {
-	    alert('File Selected. Name: ' + l + ', Num: ' + n);
-	});
-	 */
-	$("#file-3").fileinput({
-		showUpload : false,
-		showCaption : false,
-		browseClass : "btn btn-primary btn-lg",
-		fileType : "any",
-		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>"
-	});
-	$("#file-4").fileinput({
-		uploadExtraData : {
-			kvId : '10'
-		}
-	});
- 	$(".btn-warning").on('click', function() {
-		if ($('#file-4').attr('disabled')) {
-			$('#file-4').fileinput('enable');
-		} else {
-			$('#file-4').fileinput('disable');
-		}
-	}); 
-	$(".btn-info").on('click', function() {
-		$('#file-4').fileinput('refresh', {
-			previewClass : 'bg-info'
-		});
-	});
-	/*
-	$('#file-4').on('fileselectnone', function() {
-	    alert('Huh! You selected no files.');
-	});
-	$('#file-4').on('filebrowse', function() {
-	    alert('File browse clicked for #file-4');
-	});
-	 */
-	 $(document).ready(function() {
-		$("#test-upload").fileinput({
-			'showPreview' : false,
-			'allowedFileExtensions' : [ 'jpg', 'png', 'gif' ],
-			'elErrorContainer' : '#errorBlock'
-		}); 
-		/*
-		$("#test-upload").on('fileloaded', function(event, file, previewId, index) {
-		    alert('i = ' + index + ', id = ' + previewId + ', file = ' + file.name);
-		});
-		 */
-	});
-</script>
 </html>
