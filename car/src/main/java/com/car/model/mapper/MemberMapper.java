@@ -9,7 +9,13 @@ public interface MemberMapper {
 
 	void insertMember(Member member);
 	
-	Member selectMemberByIdAndPassWd(HashMap<String, Object> params);
+	Member selectMemberByIdAndPasswd(HashMap<String, Object> params);
+	
+	void updateMember(Member member);
+	
+	void deleteMember(String memberId);
+	
+	Member selectMemberByMemberId(String memberId);
 	
 }
 

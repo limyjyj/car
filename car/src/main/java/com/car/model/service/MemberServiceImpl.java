@@ -28,6 +28,25 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectMemberByIdAndPasswd(memberId, passWd);
 	}
 
+	@Override
+	public void updateMember(Member member) {
+		
+		memberDao.updateMember(member);
+		
+	}
+
+	@Override
+	public void deleteMember(String memberId) {
+
+		memberDao.deleteMember(memberId);
+	}
+
+	@Override
+	public Member selectMemberByMemberId(String memberId) {
+		
+		return memberDao.selectMemberByMemberId(memberId);
+	}
+
 	
 
 
