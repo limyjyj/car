@@ -64,7 +64,7 @@
                                         </ul>
                                     </li>
 
-                                    <li><a href="#" >계시판</a>
+                                    <li><a href="/car/board/list.action" >게시판</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="services.html">공지사항</a></li>
                                             <li><a href="faq.html">후기</a></li>
@@ -104,7 +104,7 @@
                                     <li><a href="#"></a>
                                     </li>
                                     
-                                    <li><a href="#">로그인</a>                                        
+                                    <li><a href="/car/account/login.action">로그인</a>                                        
                                     </li>
                                     
                                     
