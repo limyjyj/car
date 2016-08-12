@@ -53,7 +53,7 @@ $(document).ready(function (){
 					<th style="width: 150px">도착지</th>
 					<th style="width: 120px">시작날짜</th>
 					<th style="width: 120px">끝날짜</th>
-				
+					<th style="width: 120px">인원수</th>
 				</tr>
 			</thead>	
 				
@@ -63,31 +63,22 @@ $(document).ready(function (){
 						
 						<td>${ b.type }</td>
 						<td>
-							
-							
-							<c:choose>
-								<c:when test="${ b.deleted }">
-									<span style='color: gray' onclick="alert('삭제된 글입니다.');">
-										${ b.boardTitle } &nbsp;(삭제된 글) 
-									</span>
-								</c:when>
-								<c:otherwise>
-									<a href='detail.action?boardno=${ b.boardNo }&pageno=${ pageno }'>
-										${ b.boardTitle }
-									</a>									
-								</c:otherwise>
-							</c:choose>
+						${b.departure }
 						</td>	
 						
 						<td>
 							${ b.arrival }
 						</td>
 						<td>
-							${ b.startdate }
+							${ b.startDate }
 						</td>
 					
 							<td>
-							${ b.enddate }
+							${ b.endDate }
+						</td>
+						
+						<td>
+							${ b.totalMember}
 						</td>
 					
 					</tr>

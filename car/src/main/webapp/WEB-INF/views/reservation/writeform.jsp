@@ -25,7 +25,7 @@
 		<br/><br/>
 			<div class="bdiv">예약 설정</div>
 		<br/><br/>
-					<form action="write.action" method="post">
+					<form id="write" action="write.action" method="post">
 						<table class="swell" style="width: 70%; border: 2px solid white;">
 							<tr class="bfile">
 								<th style="width: 200px">종류</th>
@@ -67,12 +67,18 @@
 							
 							 <tr>
 								<th>시작날짜</th>
-								<td><input type="date" name="startdate"
+								<td><input type="date" name="startDate"
 										style="width: 100px" /></td>
 							</tr>
 							 <tr>
 								<th>끝날짜</th>
-								<td><input type="date" name="enddate"
+								<td><input type="date" name="endDate"
+										style="width: 100px" /></td>
+							</tr>
+							
+							 <tr>
+								<th>인원수</th>
+								<td><input class="form-control" type="text" name="totalMember"
 										style="width: 100px" /></td>
 							</tr>
 							<tr>
@@ -88,9 +94,15 @@
 			
 						<div class="bbtn">
 							<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->
-							<a href="javascript:document.forms[0].submit();">글쓰기</a> 
+					<!-- 	<!-- <!-- 	<a href="javascript:document.forms[0].submit();">글쓰기</a> 
 								&nbsp;&nbsp; 
-							<a href="/car/reservation/list.action">목록보기</a>
+							<a href="/car/reservation/list.action">목록보기</a>  --> --> -->
+							
+							<input id='submitbutton' type="submit" value="등록"
+						style="height: 25px" /> <input type="button" value="취소"
+						style="height: 25px" onclick="location.href='../home.action';" />
+							
+							
 						</div>
 					</form>
 				
