@@ -24,9 +24,9 @@
 		SELECT *
 		FROM Car
 	</select>
-	<select id="selectCarByCarno" parameterType="int" resultType="Car">
+	<select id="selectAllCarByCarno" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE carno = #{carno}
+		WHERE memberNo = #{memberNo}
 	</select>
 	<select id="selectCarnoByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />

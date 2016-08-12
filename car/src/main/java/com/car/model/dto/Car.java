@@ -3,6 +3,7 @@ package com.car.model.dto;
 import java.util.Date;
 
 public class Car {
+	private int memberNo;
 	private int carindex;
 	private int historyno;
 	private String model;
@@ -10,8 +11,6 @@ public class Car {
 	private int carno;
 	private int totaldistance;
 	private int totaloutcome;
-	
-	private Car car;
 	
 	
 	public int getCarindex() {
@@ -56,11 +55,12 @@ public class Car {
 	public void setTotaloutcome(int totaloutcome) {
 		this.totaloutcome = totaloutcome;
 	}
-	public Car getCar() {
-		return car;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setCar(Car car) {
-		this.car = car;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
+
 	
 }

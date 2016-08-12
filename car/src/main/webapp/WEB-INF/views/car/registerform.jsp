@@ -27,7 +27,7 @@ $(function(){
 		event.stopPropagation();
 		event.preventDefault();
 		
-		var info = $("#model, #carno, #regdate, #totaldistance")
+		var info = $("#model, #carno, #regdate")
 		valid = true;
 		$.each(info, function(index, element) {
 			if (element.value == null || element.value.length == 0) {
@@ -61,32 +61,32 @@ $(function(){
 			    <div class="col-md-6 col-md-offset-3">
 			    
 		        <form:form action="register.action" method="post" modelAttribute="car"><!-- 상대경로표시 -->
-		       		
+		       	
+		       		<div class="form-group">
+     		     	  <label for="inputUplaod">사진등록</label>
+		              <input type="file" name="attach" class="form-control" placeholder="차 전경사진을 등록하세요"/>
+			        </div>
      		       <div class="form-group">
      		     	  <label for="inputModel">차종</label>
-     		     	  <form:input type="text" path="model" class="form-control" placeholder="연락처"/>
+     		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>
      		     	  <font size="1" style="color: red">*제조사와 모델명을 적어주세요</font>
 			       </div>
 		       		<div class="form-group">
      		     	  <label for="inputCarno">차량번호</label>
-		              <form:input type="text" path="carno" class="form-control" placeholder="" />
+		              <form:input type="text" path="carno" class="form-control" placeholder="차번호" />
 			       </div>
 		          <div class="form-group">
-     		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="text" path="regdate" class="form-control"  placeholder="" />
+     		     	  <label for="inputRegdate">기록시작일</label> 
+		              <form:input type="date" path="regdate" class="form-control"  placeholder="기록시작일" />
 			       </div>
-			       <div class="form-group">
-     		     	  <label for="inputTotaldistance">총 주행거리</label>
-					<form:input type="text" path="totaldistance" class="form-control"  placeholder="" />
-		                
-		           </div>
+			      
 
 		       <br><br>
 		        <div class="buttons" align="center">
 						<input class="btn btn-primary" type="submit" id="btnNext" 
 							value="등록 " style="height: 30px" />
 						<input class="btn btn-danger" type="button" id="btnCancel"
-							value="취소" style="height: 30px" onclick="location.href='/car/home.action';"/>
+							value="취소" style="height: 30px" onclick="location.href='/car/car/list.action';"/>
 				</div>
 				
 		        </form:form>

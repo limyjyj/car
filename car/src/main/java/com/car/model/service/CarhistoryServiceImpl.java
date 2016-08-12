@@ -32,13 +32,26 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 		return carhistoryDao.selectCarhistoryByCarno(carno);
 	}
 
-	@Override
-	public Carhistory selectCarhistoryByHistoryno(int historyno) {
-
-		return carhistoryDao.selectCarhistoryByHistoryno(historyno);
-	}
+	
+	
 	@Override
 	public void updateCarhistory(Carhistory history) {
 		carhistoryDao.updateCarhistory(history);
 	}
+
+	@Override
+	public Carhistory selectCarhistoryByHistoryno(int historyno) {
+		
+		return carhistoryDao.selectCarhistoryByHistoryno(historyno);
+	}
+
+
+
+	@Override
+	public List<Carhistory> selectCarByCarindex(int memberNo) {
+		
+		return carhistoryDao.selectCarByCarindex(memberNo);
+	}
+
+
 }

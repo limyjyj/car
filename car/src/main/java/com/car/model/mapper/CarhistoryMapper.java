@@ -13,5 +13,6 @@ public interface CarhistoryMapper {
 	Carhistory selectCarhistoryByCarno(int carno);
 	Carhistory selectCarhistoryByHistoryno(int historyno);
 	
+	List<Carhistory> selectCarByCarindex(int memberNo);
 	void updateCarhistory(Carhistory history);
 }

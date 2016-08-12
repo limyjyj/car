@@ -22,19 +22,7 @@
         	<br /><br />
         	
         	<table class="table table-striped"  align="center" width="700px">
-        		<tr>
-	            	<th style="text-align:center"> </th>
-	            	<td>
-	            	${ reservation.staff.name }
-	            	<select name="carno">
-	                	<optgroup label="담당자이름">
-	                	<option value="5">김정훈</option>
-	                	<option value="6">이상묵</option>
-	                	<option value="7">유승훈</option>
-	                	</optgroup>
-	                </select>
-                	</td>
-	            </tr>
+        		
         		<tr style="height:30px" align="center">
         			<td>차량정보번호</td>
         			<td>차종</td>

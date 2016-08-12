@@ -39,11 +39,16 @@
 		VALUES
 		(#{category}, #{regdate}, #{fee}, #{liter})
 	</insert>
+	
 	<select id="selectCarhistoryByCarno" 
 		parameterType="string" resultType="Carhistory">			
 		<include refid="selectDefault" />
 		
 		WHERE carno = #{carno}
+	</select>
+	<select id="selectAllCarhistory" resultType="Carhistory">
+		SELECT *
+		FROM Carhistory
 	</select>
 	<select id="selectCarhistoryByHistoryno" 
 		parameterType="string" resultType="Carhistory">			
@@ -51,11 +56,14 @@
 		
 		WHERE historyno = #{historyno}
 	</select>
-	<select id="selectCarByCarindex"
+	<select id="selectCarByCarindex" resultType="Carhistory"
 		parameterType="int" resultMap="carMap">
-		SELECT category, regdate, fee, liter
-		FROM Carhistory
-		WHERE carno = #{carno} AND deleted = '0'
+		select Car.carindex, Carhistory.*
+		from Car
+		join Member
+		on Car.memberNo = #{memberNo}
+		join Carhistory
+		on Car.carindex = Carhistory.carindex;
 	</select>
 	
 	

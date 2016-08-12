@@ -40,6 +40,11 @@ public class MysqlCarhistoryDao implements CarhistoryDao {
 		
 		return historyMapper.selectCarhistoryByHistoryno(Historyno);
 	}
+	public List<Carhistory> selectCarByCarindex(int memberNo) {
+		
+		return historyMapper.selectCarByCarindex(memberNo);
+	}
+	
 	
 	public void updateCarhistory(Carhistory history) {
 		historyMapper.updateCarhistory(history);

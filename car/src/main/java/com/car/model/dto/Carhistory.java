@@ -12,7 +12,7 @@ public class Carhistory {
 	private String fee;
 	private String liter;
 	
-	private Car car;
+
 	
 	private List<Car> selectCars;
 	
@@ -53,17 +53,12 @@ public class Carhistory {
 	public void setLiter(String liter) {
 		this.liter = liter;
 	}
-	public Car getCar() {
-		return car;
-	}
-	public void setCar(Car car) {
-		this.car = car;
-	}
 	public List<Car> getSelectCars() {
 		return selectCars;
 	}
 	public void setSelectCars(List<Car> selectCars) {
 		this.selectCars = selectCars;
 	}
+
 	
 }
