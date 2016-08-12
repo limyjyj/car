@@ -16,7 +16,7 @@
 	</insert>
 	
 	<select id="selectMemberByIdAndPasswd"
-		parameterType="hashMap" resultType="Member">
+		 resultType="Member">
 		SELET *
 		From Member
 		WHERE memberId = #{memberId} 

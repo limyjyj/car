@@ -154,7 +154,7 @@
 <body>	
 	<div id="pageContainer">
 	
-		<c:import url="/WEB-INF/views/include/header.jsp" />
+		
 		
 		<div id="inputcontent">
 			<br /><br />
