@@ -9,7 +9,7 @@
 <mapper namespace="com.car.model.mapper.GroupChatMapper">
 
 	<sql id="selectDefault">
-		SELECT chatno, totalnumber, deleted
+		SELECT chatno, totalnumber, deleted, title
 		FROM GroupChat
 	</sql>
 	
@@ -17,9 +17,9 @@
 	<!-- make physical method -->
 	<insert id="createGroupChat">
 		INSERT INTO GroupChat
-		(totalnumber, deleted)
+		(totalnumber, deleted, title)
 		VALUES
-		(1, 0);
+		(1, 0, #{title});
 	</insert>
 	
 	<select id="selectAllGroupChat" resultType="GroupChat">

@@ -13,12 +13,25 @@ public class Reservation {
 	private String departure; // 출발지
 	private String arrival; // 도착지
 	private String frequency; // 단기 장기
-	private Date regDate; // 실시간
-	private Date date; //경주꺼
-	private String totalMemeber; // 인원
+	private Date startDate; 
+	private Date endDate; 
+	private String totalMember; // 인원
 	private String content; //기타내용
-
+	private int reservationCount;
+	public List<Member> getMember() {
+		return member;
+	}
+	public void setMember(List<Member> member) {
+		this.member = member;
+	}
+	private List<Member> member;
 	
+	public int getReservationCount() {
+		return reservationCount;
+	}
+	public void setReservationCount(int reservationCount) {
+		this.reservationCount = reservationCount;
+	}
 	public int getReservationNo() {
 		return reservationNo;
 	}
@@ -61,23 +74,24 @@ public class Reservation {
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
-	public Date getRegDate() {
-		return regDate;
+	
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getDate() {
-		return date;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	public String getTotalMemeber() {
-		return totalMemeber;
+	public String getTotalMember() {
+		return totalMember;
 	}
-	public void setTotalMemeber(String totalMemeber) {
-		this.totalMemeber = totalMemeber;
+	public void setTotalMember(String totalMember) {
+		this.totalMember = totalMember;
 	}
 	public String getContent() {
 		return content;

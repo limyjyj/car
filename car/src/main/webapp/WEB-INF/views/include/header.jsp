@@ -29,7 +29,7 @@
                     <!-- Logo / Mobile Menu -->
                     <div  class="col-lg-3 col-sm-3 ">
                         <div id="logo">
-                            <h1><a href="index.html"><img alt="logo" src="/car/resources/images/logo.png"/></a></h1>
+                            <h1><a href="/car/home.action"><img alt="logo" src="/car/resources/images/logo.png"/></a></h1>
                         </div>
                     </div>
                     <!-- Navigation
@@ -49,14 +49,10 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#">예약</a>
                                         <ul class="dropdown-menu">
-                                            <li class="active"><a href="index.html">실시간</a></li>
-                                            <li>
-                                                <a href="about.html">정기</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="about.html">예약</a></li>
-                                                    <li><a href="about-2.html">그룹방</a></li>
-                                                </ul>
-                                            </li>                                            
+                                            <li ><a href="/car/reservation/list.action#targetb">카풀신청</a></li>
+                                                                                    
+                                           
+                                                                                    
                                         </ul>
                                     </li>
 
@@ -68,20 +64,10 @@
                                         </ul>
                                     </li>
 
-                                    <li><a href="#" >계시판</a>
+                                    <li><a href="/car/board/list.action" >게시판</a>
                                         <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="about.html">About</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="about.html">About Us 1</a></li>
-                                                    <li><a href="about-2.html">About Us 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="faq.html">FAQ</a></li>
-                                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                                            <li><a href="sidebar-left.html">Left Sidebar</a></li>
-                                            <li><a href="404-page.html">404 Page</a></li>
+                                            <li><a href="services.html">공지사항</a></li>
+                                            <li><a href="faq.html">후기</a></li>
                                         </ul>
                                     </li>
 
@@ -114,6 +100,14 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    
+                                    <li><a href="#"></a>
+                                    </li>
+                                    
+                                    <li><a href="/car/account/login.action">로그인</a>                                        
+                                    </li>
+                                    
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -122,3 +116,5 @@
             </div>
         </div>
     </header>
+    
+    
