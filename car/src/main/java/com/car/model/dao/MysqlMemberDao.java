@@ -24,9 +24,9 @@ public class MysqlMemberDao implements MemberDao {
 	}
 
 	@Override
-	public Member selectMemberByIdAndPassword(String memberId, String passWd) {
+	public Member selectMemberByIdAndPasswd(String memberId, String passWd) {
 		
-		Member member = memberMapper.selectMemberByEmailAndPassWd(memberId, passWd);
+		Member member = memberMapper.selectMemberByIdAndPasswd(memberId, passWd);
 		return member;
 		
 	}

@@ -23,9 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member selectMemberByIdAndPassWd(String memberId, String passWd) {
+	public Member selectMemberByIdAndPasswd(String memberId, String passWd) {
 	
-		return memberDao.selectMemberByIdAndPassword(memberId, passWd);
+		return memberDao.selectMemberByIdAndPasswd(memberId, passWd);
 	}
 
 	

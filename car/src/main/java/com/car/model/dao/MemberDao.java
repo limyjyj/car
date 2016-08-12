@@ -7,7 +7,7 @@ import com.car.model.dto.Member;
 public interface MemberDao {
 
 	void insertMember(Member member);
-	Member selectMemberByIdAndPassword(String memberId, String passWd);
+	Member selectMemberByIdAndPasswd(String memberId, String passWd);
 	
 
 }

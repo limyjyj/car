@@ -11,33 +11,94 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.car.model.dto.Reservation;
 import com.car.model.service.ReservationService;
+import com.car.ui.ThePager3;
+import com.car.controller.ReservationController;
+
 
 @Controller
 @RequestMapping("/reservation")
-public class ReservationController {
+public class ReservationController implements ApplicationContextAware, BeanNameAware{
 
+	private ApplicationContext context;
+	private String beanName;
+	
+	@Override
+	public void setBeanName(String arg0) {
+		this.beanName = arg0;
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
+		this.context = arg0;
+	}
+	
+	
 	@Autowired
 	@Qualifier("reservationService")
 	private ReservationService reservationService;
 
 	// 리스트
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public String edit(HttpServletRequest request, HttpSession session) {
-		
-		return "";
-		
+	public ModelAndView showBoardList(HttpServletRequest request) {
 
-	} 
+		ModelAndView mav = new ModelAndView();
 
+		int currentPage = 1;
+		int pageSize = 10;
+		int dataCount = 0;
+		int pagerSize = 5;
+		String url = "list.action";
+
+		String queryString = request.getQueryString();
+
+		String page = request.getParameter("pageno");
+		if (page != null && page.length() > 0) {
+			currentPage = Integer.parseInt(page);
+		}
+		int startRow = (currentPage - 1) * pageSize + 1;
+		
+		// 데이터베이스에서 데이터 조회
+//		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+//		dataCount = reservationService.selectReservationCount();
+
+//		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
+		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		
+		
+		mav.setViewName("reservation/list");
+	//	mav.addObject("reservations", reservations);
+		mav.addObject("pageno", currentPage);
+		mav.addObject("pager", pager3);
+			
+		return mav;
+	}
 	
+
+	//작성
+		@RequestMapping(value = "writeform.action", method = RequestMethod.GET)
+		public String getBoardWriteForm() {
+			return "board/writeform";
+		}
+
+		@RequestMapping(value = "write.action", method = RequestMethod.POST)
+		public String writeReservation(MultipartHttpServletRequest req, Reservation reservation) {
+			
+		
+			return "redirect:/reservation/list.action";
+		}
+
 	
 }

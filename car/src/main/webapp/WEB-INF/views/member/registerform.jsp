@@ -65,18 +65,21 @@
 				<div class="buttons">
 
 
-					<div id="using" style="display: none">
 
-						<input id='submitbutton' type="button" value="등록"
-							style="height: 25px" /> <input type="button" value="취소"
-							style="height: 25px" onclick="location.href='../home.action';" />
-					</div>
+
+					<input id='submitbutton' type="submit" value="등록"
+						style="height: 25px" /> <input type="button" value="취소"
+						style="height: 25px" onclick="location.href='../home.action';" />
 
 				</div>
 			</form>
 		</div>
-		<br /> <br /> <br />
+
 	</div>
+	<br />
+	<br />
+	<br />
+
 
 
 </body>
