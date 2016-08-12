@@ -12,11 +12,12 @@ public interface ReservationService {
 
 	List<Reservation> selectReservationList();
 	
-	List<Reservation> selectReservationList2(int start, int last);
 	
 	Reservation selectReservationByReservationNo(int reservationNo);
 	
-    int getReservationCount();
+    int selectReservationCount();
 	
 	void updateReservationReadCount(int number);
+	
+	
 }

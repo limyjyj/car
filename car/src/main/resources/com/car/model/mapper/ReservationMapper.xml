@@ -60,5 +60,11 @@
 	WHERE reservationNo = #{reservationNo}
 	</update>
 	
+	<select id="selectReservationSearchType" parameterType="hashMap" resultMap="reservationMap2">
+		select *
+		From (select rownum idx, s.*
+		From (select * from board
+		where boardkind = #{boardSearch}) s ) where idx >= #{start} AND idx <![CDATA[<]]> #{last}
+	</select>
 	
 </mapper>

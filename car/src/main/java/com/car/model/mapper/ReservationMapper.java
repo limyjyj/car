@@ -14,9 +14,10 @@ public interface ReservationMapper {
 
 	List<Reservation> selectReservationList(HashMap<String, Object> map);
 	
-	Reservation selectReservationByReservationNo(int reservationNo);
 	
-	int getReservationCount();
+	Reservation selectReservationByReservationNo(int reservationNo);
+	    
+	int selectReservationCount();
 		
 	void updateReservationReadCount(int number);
 
