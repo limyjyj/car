@@ -10,17 +10,35 @@
 	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo"
 	keyColumn="memberno">
 		INSERT INTO Member 
-		(memberid, passWd, name, phone, gender)
+		(memberId, passWd, name, phone, gender)
 		VALUES 
 		(#{memberId}, #{passWd}, #{name}, #{phone}, #{gender})
 	</insert>
 	
-	<select id="selectMemberByIdAndPasswd"
-		 resultType="Member">
-		SELET *
+	<select id="selectMemberByIdAndPasswd" parameterType="hashMap" resultType="Member">
+		SELECT *
 		From Member
 		WHERE memberId = #{memberId} 
 		AND passWd = #{passWd} 
 		AND deleted = '0'
 	</select>
+	
+	<update id="updateMember" parameterType="Member">
+	UPDATE Member
+	SET passWd = #{passWd}, phone = #{phone}
+	WHERE memberId = #{memberId}
+	</update>
+	
+	<update id="deleteMember" parameterType="string">
+	UPDATE Member
+	SET deleted = '1'
+	WHERE memberId = #{memberId}
+	</update>
+	
+	<select id="selectMemberByMemberId" parameterType="string" resultType="Member">
+	SELECT *
+	FROM Member
+	WHERE memberId= #{memberId}
+	</select>
+	
 </mapper>
