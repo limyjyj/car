@@ -32,6 +32,11 @@ public class CarServiceImpl implements CarService {
 		return carDao.selectCarByCarno(carno);
 	}
 	@Override
+	public Car selectCarnoByCarindex(int carindex) {
+
+		return carDao.selectCarnoByCarindex(carindex);
+	}
+	@Override
 	public void updateCar(Car car) {
 		carDao.updateCar(car);
 	}

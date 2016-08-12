@@ -47,6 +47,7 @@ public class CarController {
 		
 		List<Car> cars = carService.selectCars();
 		for(Car r : cars){
+			r.setCar(carService.selectCarByCarno(r.getCarno()));
 			
 		}
 			

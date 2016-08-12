@@ -33,6 +33,11 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 	}
 
 	@Override
+	public Carhistory selectCarhistoryByHistoryno(int historyno) {
+
+		return carhistoryDao.selectCarhistoryByHistoryno(historyno);
+	}
+	@Override
 	public void updateCarhistory(Carhistory history) {
 		carhistoryDao.updateCarhistory(history);
 	}

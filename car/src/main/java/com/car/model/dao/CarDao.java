@@ -10,5 +10,7 @@ public interface CarDao {
 	List<Car> selectCars();
 	
 	Car selectCarByCarno(int carno);
+	Car selectCarnoByCarindex(int carindex);
+
 	void updateCar(Car car);
 }

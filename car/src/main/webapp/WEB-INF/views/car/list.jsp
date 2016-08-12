@@ -16,17 +16,11 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/views/include/header.jsp" />
     <div id="pageContainer" class="panel panel-heading" style="padding-top:25px;text-align:center;margin:auto;width:1000px">
 
         <div id="content">
         	<br /><br />
-        	<div>
-              	<input class="btn btn-danger" type="button" id="inputOutcome"
-							value="지출입력" style="height: 30px" onclick="location.href='/car/.action';"/>
-				<input class="btn btn-danger" type="button" id="inputFuel"
-							value="주유입력" style="height: 30px" onclick="location.href='/car/.action';"/>
-			</div>
+        	
         	<table class="table table-striped"  align="center" width="700px">
         		<tr>
 	            	<th style="text-align:center"> </th>

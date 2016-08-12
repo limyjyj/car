@@ -52,9 +52,9 @@ $(function(){
 
 	<div id="pageContainer" >
 	
-		<c:import url="/WEB-INF/views/include/header.jsp" />
+		<%-- <c:import url="/WEB-INF/views/include/header.jsp" /> --%>
 		
-		    <div id="inputmain">
+		   		<div id="inputmain">
 		        <div class="inputsubtitle"><h2 align="center">차량 등록</h2></div>
 		        <br>
 		        
@@ -64,20 +64,20 @@ $(function(){
 		       		
      		       <div class="form-group">
      		     	  <label for="inputModel">차종</label>
-     		     	  <form:input type="text" path="model" id="model" class="form-control" placeholder="연락처"/>
+     		     	  <form:input type="text" path="model" class="form-control" placeholder="연락처"/>
      		     	  <font size="1" style="color: red">*제조사와 모델명을 적어주세요</font>
 			       </div>
 		       		<div class="form-group">
      		     	  <label for="inputCarno">차량번호</label>
-		              <form:input type="text" path="carno" class="form-control" id="carno" placeholder="" />
+		              <form:input type="text" path="carno" class="form-control" placeholder="" />
 			       </div>
 		          <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="text" path="regdate" class="form-control" id="regdate" placeholder="" />
+		              <form:input type="text" path="regdate" class="form-control"  placeholder="" />
 			       </div>
 			       <div class="form-group">
      		     	  <label for="inputTotaldistance">총 주행거리</label>
-					<form:input type="text" path="totaldistance" class="form-control" id="totaldistance" placeholder="" />
+					<form:input type="text" path="totaldistance" class="form-control"  placeholder="" />
 		                
 		           </div>
 

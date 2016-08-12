@@ -10,5 +10,6 @@ public interface CarhistoryDao {
 	List<Carhistory> selectAllCarhistory();
 	
 	Carhistory selectCarhistoryByCarno(int carno);
+	Carhistory selectCarhistoryByHistoryno(int historyno);
 	void updateCarhistory(Carhistory history);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
+import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
 
 @Controller
@@ -23,23 +24,10 @@ public class CarhistoryController {
 	@Autowired
 	@Qualifier("carhistoryService")
 	private CarhistoryService carhistoryService;
+	@Autowired
+	@Qualifier("carService")
+	private CarService carService;
 
-	@RequestMapping(value = "register.action", method = RequestMethod.GET)
-	public String registerForm(
-			@ModelAttribute Car car) {
-		return "carhistory/registerform";
-
-	}
-
-	@RequestMapping(value = "register.action", method = RequestMethod.POST)
-	public String registerForm(
-			@ModelAttribute Carhistory history, HttpSession session) {
-
-		carhistoryService.insertCarhistory(history);
-
-		return "redirect:/carhistory/list.action";
-
-	}
 	
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
 	public String carhistoryList(
@@ -48,11 +36,8 @@ public class CarhistoryController {
 		
 		List<Carhistory> historys = carhistoryService.selectAllCarhistory();
 		for(Carhistory h : historys){
-			
+			//h.setCarhistory(carhistoryService.selectCarhistoryByHistoryno(h.getHistoryno()));
 		}
-			
-		
-		
 		model.addAttribute("carhistorys", historys);
 		
 		return "carhistory/list";

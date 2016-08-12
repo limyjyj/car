@@ -36,6 +36,11 @@ public class MysqlCarhistoryDao implements CarhistoryDao {
 		
 		return historyMapper.selectCarhistoryByCarno(carno);
 	}
+	public Carhistory selectCarhistoryByHistoryno(int Historyno) {
+		
+		return historyMapper.selectCarhistoryByHistoryno(Historyno);
+	}
+	
 	public void updateCarhistory(Carhistory history) {
 		historyMapper.updateCarhistory(history);
 	}

@@ -9,5 +9,58 @@ public class Car {
 	private Date regdate;
 	private int carno;
 	private int totaldistance;
+	private int totaloutcome;
+	
+	private Car car;
+	
+	
+	public int getCarindex() {
+		return carindex;
+	}
+	public void setCarindex(int carindex) {
+		this.carindex = carindex;
+	}
+	public int getHistoryno() {
+		return historyno;
+	}
+	public void setHistoryno(int historyno) {
+		this.historyno = historyno;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public int getCarno() {
+		return carno;
+	}
+	public void setCarno(int carno) {
+		this.carno = carno;
+	}
+	public int getTotaldistance() {
+		return totaldistance;
+	}
+	public void setTotaldistance(int totaldistance) {
+		this.totaldistance = totaldistance;
+	}
+	public int getTotaloutcome() {
+		return totaloutcome;
+	}
+	public void setTotaloutcome(int totaloutcome) {
+		this.totaloutcome = totaloutcome;
+	}
+	public Car getCar() {
+		return car;
+	}
+	public void setCar(Car car) {
+		this.car = car;
+	}
 	
 }

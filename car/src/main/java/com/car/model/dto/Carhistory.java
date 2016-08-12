@@ -1,6 +1,7 @@
 package com.car.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Carhistory {
 	
@@ -10,6 +11,59 @@ public class Carhistory {
 	private Date regdate;
 	private String fee;
 	private String liter;
-	private String totaloutcome;
+	
+	private Car car;
+	
+	private List<Car> selectCars;
+	
+	
+	public int getHistoryno() {
+		return historyno;
+	}
+	public void setHistoryno(int historyno) {
+		this.historyno = historyno;
+	}
+	public int getMemberno() {
+		return memberno;
+	}
+	public void setMemberno(int memberno) {
+		this.memberno = memberno;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public String getFee() {
+		return fee;
+	}
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+	public String getLiter() {
+		return liter;
+	}
+	public void setLiter(String liter) {
+		this.liter = liter;
+	}
+	public Car getCar() {
+		return car;
+	}
+	public void setCar(Car car) {
+		this.car = car;
+	}
+	public List<Car> getSelectCars() {
+		return selectCars;
+	}
+	public void setSelectCars(List<Car> selectCars) {
+		this.selectCars = selectCars;
+	}
 	
 }
