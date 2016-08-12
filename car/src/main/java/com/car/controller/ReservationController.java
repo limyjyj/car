@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 import com.car.model.service.ReservationService;
 import com.car.ui.ThePager3;
@@ -53,7 +54,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 	// 리스트
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public ModelAndView showBoardList(HttpServletRequest request) {
+	public ModelAndView showReservationList(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -94,8 +95,10 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		}
 
 		@RequestMapping(value = "write.action", method = RequestMethod.POST)
-		public String writeReservation(MultipartHttpServletRequest req, Reservation reservation) {
-
+		public String writeReservation( Reservation reservation, HttpSession session) {
+			System.out.println("ddddd");
+			Member member = (Member)session.getAttribute("loginuser");
+			reservation.setMemberNo(member.getMemberNo());
 			
 			reservationService.insertReservation(reservation);
 			

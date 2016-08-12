@@ -26,10 +26,10 @@
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
 		keyProperty="reservationNo" keyColumn="reservationNo">
 		INSERT INTO Reservation
-		( memberno, type, purpose,departure, arrival, frequency, startdate,enddate, totalmemeber, content)
+		( memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content)
 		VALUES
-		( #{memberno}, #{type}, #{purpose}, #{departure}, #{arrival}, #{frequency}
-		,#{startdate},#{enddate},#{totalmemeber},#{content})
+		( #{memberNo}, #{type}, #{purpose}, #{departure}, #{arrival}, #{frequency}
+		,#{startDate},#{endDate},#{totalMember},#{content})
 	</insert>
 	
 	<select id="selectReservationList" resultType="Reservation">
@@ -42,22 +42,22 @@
 	
 	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
 		SELECT
-		reservationno, memberno, type, purpose,departure, arrival, frequency, startdate,enddate, totalmemeber, content
-		FROM reservation
-		WHERE reservationno =
-		#{reservationno} AND deleted
+		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMemeber, content
+		FROM Reservation
+		WHERE reservationNo =
+		#{reservationNo} AND deleted
 		= '0'
 	</select>
 
 	<select id="selectReservationCount" resultType="int">
 		SELECT COUNT(*) FROM
-		reservation
+		Reservation
 	</select>
 	
 	<update id="ReservationReadCount" parameterType="int">
-	UPDATE reservation
-	SET resersvationcount = resersvationcount + 1
-	WHERE reservationno = #{reservationno}
+	UPDATE Reservation
+	SET resersvationCount = resersvationCount + 1
+	WHERE reservationNo = #{reservationNo}
 	</update>
 	
 	

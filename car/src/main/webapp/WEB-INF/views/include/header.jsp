@@ -49,9 +49,9 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#">예약</a>
                                         <ul class="dropdown-menu">
-                                            <li class="active"><a href="/car/reservation/list.action#targetb">카풀신청</a></li>
+                                            <li ><a href="/car/reservation/list.action#targetb">카풀신청</a></li>
                                                                                     
-                                            <li class="active"><a href="index.html">실시간</a></li>
+                                           
                                                                                     
                                         </ul>
                                     </li>
