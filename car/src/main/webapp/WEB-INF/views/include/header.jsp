@@ -52,13 +52,7 @@
                                             <li class="active"><a href="/car/reservation/list.action#targetb">카풀신청</a></li>
                                                                                     
                                             <li class="active"><a href="index.html">실시간</a></li>
-                                            <li>
-                                                <a href="about.html">정기</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="about.html">예약</a></li>
-                                                    <li><a href="/car/groupchat/list.action">그룹방</a></li>
-                                                </ul>
-                                            </li>                                            
+                                                                                    
                                         </ul>
                                     </li>
 
