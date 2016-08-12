@@ -21,7 +21,7 @@ $(document).ready(function (){
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/head.jsp" /><br/>
+	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br/>
 	
 		<div class="bdiv">
 		실시간.정기 예약판
@@ -46,26 +46,24 @@ $(document).ready(function (){
 		<table class="btable">
 			<thead>
 				<tr>
-					<th style="width: 100px">회원번호</th>
+					<th style="width: 100px">회원</th>
 					
 					<th style="width: 100px">타태워</th>
-					<th style="width: 300px">출발지</th>
+					<th style="width: 150px">출발지</th>
 					<th style="width: 150px">도착지</th>
-					<th style="width: 120px">날짜</th>
+					<th style="width: 120px">시작날짜</th>
+					<th style="width: 120px">끝날짜</th>
 				
 				</tr>
 			</thead>	
 				
 				<c:forEach var="b" items="${ reservation }">		
 					<tr>
-						<td>${ b.memberno }</td>
+						<td>${ sessionScope.loginuser.memeberId }</td>
 						
-						<td>${ b.purpose }</td>
+						<td>${ b.type }</td>
 						<td>
-							<c:forEach var="i" begin="0" end="${ b.depth }" step="1"/> 
-							<c:if test="${ b.depth > 0 }">
-								<img src="/weeklyfarm/resources/image/re.gif" /> 
-							</c:if> 
+							
 							
 							<c:choose>
 								<c:when test="${ b.deleted }">
@@ -85,17 +83,20 @@ $(document).ready(function (){
 							${ b.arrival }
 						</td>
 						<td>
-							${ b.date }
+							${ b.startdate }
+						</td>
+					
+							<td>
+							${ b.enddate }
 						</td>
 					
 					</tr>
 				</c:forEach>				
 		</table>
 		
-		<br/>		
-			
+		<br/>
 		</form>
-		
+		<br/><br/><br/><br/><br/><br/><br/>
 		<div class="bbtn">
 			<a href='writeform.action'>글쓰기</a> <br /> <br />
 			${ pager } 

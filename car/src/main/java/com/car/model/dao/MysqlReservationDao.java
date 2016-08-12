@@ -67,6 +67,8 @@ public class MysqlReservationDao implements ReservationDao {
 		reservationMapper.updateReservationReadCount(number);
 	}
 
+	
+
 
 
 	

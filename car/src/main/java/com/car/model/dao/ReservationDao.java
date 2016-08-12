@@ -22,4 +22,6 @@ public interface ReservationDao {
 	 int getReservationCount();
 		
 	 void updateReservationReadCount(int number);
+	 
+	 
 }

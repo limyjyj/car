@@ -95,7 +95,9 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		@RequestMapping(value = "write.action", method = RequestMethod.POST)
 		public String writeReservation(MultipartHttpServletRequest req, Reservation reservation) {
+
 			
+			reservationService.insertReservation(reservation);
 			
 			return "redirect:/reservation/list.action";
 		}

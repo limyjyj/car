@@ -6,6 +6,23 @@
 
 <mapper namespace="com.car.model.mapper.ReservationMapper">
 
+
+<resultMap type="Reservation" id="reservationMap">
+		<id property="reservationNo" column="reservationno" />
+		<result property="type" column="tpye" />
+		<result property="purpose" column="purpose" />
+		<result property="departure" column="departure" />
+		<result property="arrival" column="arrival" />
+		<result property="frequency" column="frequency" />
+		<result property="startDate" column="startdate" />
+		<result property="endDate" column="enddate" />
+		<result property="totalMemeber" column="totalmemeber" />
+		<result property="endDate" column="enddate" />
+		<result property="content" column="content" />
+	
+	</resultMap>
+
+
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
 		keyProperty="reservationNo" keyColumn="reservationNo">
 		INSERT INTO Reservation
