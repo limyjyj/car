@@ -18,16 +18,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.car.model.dto.Outcome;
-import com.car.model.service.OutcomeService;
+import com.car.model.dto.Fuel;
+import com.car.model.service.FuelService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @Controller
-@RequestMapping(value = "/outcome/")
-public class OutcomeController {
+@RequestMapping(value = "/fuel/")
+public class FuelController {
 
-	//날짜개꿀
 	@InitBinder
 	public void binder(WebDataBinder binder) {
 	    binder.registerCustomEditor(Date.class, 
@@ -35,60 +34,49 @@ public class OutcomeController {
 	}
 	
 	@Autowired
-	@Qualifier("outcomeService")
-	private OutcomeService outcomeService;
+	@Qualifier("fuelService")
+	private FuelService fuelService;
 
-	
-	
-	// 입력
 	@RequestMapping(value = "write.action", method = RequestMethod.POST)
-	public void writePost(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
+	public void writePost(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
 
 		System.out.println("in write, post");
 
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		Gson gson = new Gson();
 
 		PrintWriter writer;
-		if (outcome != null) {
+		if (fuel != null) {
 			try {
 				writer = resp.getWriter();
 				req.setCharacterEncoding("utf-8");
 				resp.setContentType("text/plain;charset=utf-8");
-				/*
-				 * outcome.setCartegory(outcome.getCartegory());
-				 * outcome.setPayment(outcome.getPayment());
-				 * outcome.setRegDate(outcome.getRegDate());
-				 * outcome.setLocation(outcome.getLocation());
-				 * outcome.setContent(outcome.getContent());
-				 * outcome.setHistoryNo(outcome.getHistoryNo());
-				 */
-				String json = gson.toJson(outcome);
+
+				String json = gson.toJson(fuel);
 				writer.println(json);
-				outcomeService.insertOutcome(outcome);
-				
-				
+				fuelService.insertFuel(fuel);
 				System.out.println(json);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	@RequestMapping(value = "write.action", method = RequestMethod.GET)
-	public void writeGet(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
+	public void writeGet(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
 				
 		System.out.println("in register, get");
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 				
 		PrintWriter writer;
-		if (outcome != null) {
+		if (fuel != null) {
 			try {
 				writer = resp.getWriter();
 				resp.setContentType("text/plain;charset=utf-8");
-				String json = gson.toJson(outcome);
-								
-				outcomeService.insertOutcome(outcome);
+				String json = gson.toJson(fuel);
+				
+				fuelService.insertFuel(fuel);
 				
 				writer.println(json);
 			} catch (Exception e) {
@@ -100,15 +88,15 @@ public class OutcomeController {
 	// 출력
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
 	public void listGet(HttpServletRequest req, HttpServletResponse resp) {
-		
+
 		System.out.println("in register, post");
 
-			ArrayList<Outcome> outcome = (ArrayList) outcomeService.selectOutcomeList();
-		
-			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		ArrayList<Fuel> fuel = (ArrayList) fuelService.selectFuelList();
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 		PrintWriter writer;
-		if (outcome.size() > 0) {
+		if (fuel.size() > 0) {
 			try {
 				writer = resp.getWriter();
 				req.setCharacterEncoding("utf-8");
@@ -116,7 +104,7 @@ public class OutcomeController {
 
 				String json = null;
 
-				json = gson.toJson(outcome);
+				json = gson.toJson(fuel);
 
 				writer.println(json);
 				System.out.println(json);
@@ -131,11 +119,11 @@ public class OutcomeController {
 
 		System.out.println("in register, post");
 
-		ArrayList<Outcome> outcome = (ArrayList) outcomeService.selectOutcomeList();
+		ArrayList<Fuel> fuel = (ArrayList) fuelService.selectFuelList();
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		PrintWriter writer;
-		if (outcome.size() > 0) {
+		if (fuel.size() > 0) {
 			try {
 				writer = resp.getWriter();
 				req.setCharacterEncoding("utf-8");
@@ -143,7 +131,7 @@ public class OutcomeController {
 
 				String json = null;
 
-				json = gson.toJson(outcome);
+				json = gson.toJson(fuel);
 
 				writer.println(json);
 				System.out.println(json);
@@ -153,23 +141,23 @@ public class OutcomeController {
 		}
 	}
 
-	//outcomeNo로 불러오기
-	@RequestMapping(value = "listbyoutcomeno.action", method = RequestMethod.GET)
-	public void selectOutcomeByOutcomeNoGet(HttpServletRequest req, HttpServletResponse resp, int outcomeNo) {
+	// outcomeNo로 불러오기
+	@RequestMapping(value = "listbyfuelno.action", method = RequestMethod.GET)
+	public void selectOutcomeByOutcomeNoGet(HttpServletRequest req, HttpServletResponse resp, int fuelNo) {
 
 		System.out.println("in register, get");
-		Outcome outcome = outcomeService.selectOutcomeByOutcomeNo(outcomeNo);
+		Fuel fuel = fuelService.selectFuelByFuelNo(fuelNo);
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 		PrintWriter writer;
-		if (outcome != null) {
+		if (fuel != null) {
 			try {
 				writer = resp.getWriter();
 				req.setCharacterEncoding("utf-8");
 				resp.setContentType("text/plain;charset=utf-8");
 
-				String json = gson.toJson(outcome);
+				String json = gson.toJson(fuel);
 
 				writer.println(json);
 				System.out.println(json);
@@ -179,22 +167,22 @@ public class OutcomeController {
 		}
 	}
 
-	@RequestMapping(value = "listbyoutcomeno.action", method = RequestMethod.POST)
-	public void selectOutcomeByOutcomeNoPOST(HttpServletRequest req, HttpServletResponse resp, int outcomeNo) {
+	@RequestMapping(value = "listbyfuelno.action", method = RequestMethod.POST)
+	public void selectOutcomeByOutcomeNoPOST(HttpServletRequest req, HttpServletResponse resp, int fuelNo) {
 
 		System.out.println("in register, get");
-		Outcome outcome = outcomeService.selectOutcomeByOutcomeNo(outcomeNo);
+		Fuel fuel = fuelService.selectFuelByFuelNo(fuelNo);
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 		PrintWriter writer;
-		if (outcome != null) {
+		if (fuel != null) {
 			try {
 				writer = resp.getWriter();
 				req.setCharacterEncoding("utf-8");
 				resp.setContentType("text/plain;charset=utf-8");
 
-				String json = gson.toJson(outcome);
+				String json = gson.toJson(fuel);
 
 				writer.println(json);
 				System.out.println(json);
@@ -203,59 +191,54 @@ public class OutcomeController {
 			}
 		}
 	}
-	
-	
-	//수정
+
+	// 수정
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
-	public void updateGet(HttpServletRequest req, HttpServletResponse resp, Outcome outcome, int outcomeNo) {
+	public void updateGet(HttpServletRequest req, HttpServletResponse resp, Fuel fuel, int fuelNo) {
 
 		System.out.println("in register, update get");
-		
-		//outcome = outcomeService.selectOutcomeByOutcomeNo(outcomeNo);
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 		PrintWriter writer;
-		if (outcome != null) {
+		if (fuel != null) {
 			try {
 				writer = resp.getWriter();
 				req.setCharacterEncoding("utf-8");
 				resp.setContentType("text/plain;charset=utf-8");
-								
-				outcomeService.updateOutcome(outcome);
-				
-				Outcome updateOutcome = outcomeService.selectOutcomeByOutcomeNo(outcomeNo);
+				fuelService.updateFuel(fuel);
 
-				String json = gson.toJson(updateOutcome);
+				Fuel updateFuel = fuelService.selectFuelByFuelNo(fuelNo);
+
+				String json = gson.toJson(updateFuel);
 
 				writer.println(json);
 				System.out.println(json);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public void update(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
-		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-		PrintWriter writer;
-		if (outcome != null) {
-			try {
-				writer = resp.getWriter();
-				resp.setContentType("text/plain;charset=utf-8");
-				
-				String json = gson.toJson(outcome);
-				outcomeService.updateOutcome(outcome);
-				writer.println(json);
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
+	@RequestMapping(value = "update.action", method = RequestMethod.POST)
+	public void update(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		PrintWriter writer;
+		if (fuel != null) {
+			try {
+				writer = resp.getWriter();
+				resp.setContentType("text/plain;charset=utf-8");
+
+				String json = gson.toJson(fuel);
+				fuelService.updateFuel(fuel);
+				writer.println(json);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
-
-

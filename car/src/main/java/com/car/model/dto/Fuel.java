@@ -10,9 +10,10 @@ public class Fuel {
 	private int perLiter;	//리터당금액
 	private int payment;	//주유금액
 	private int liter;		//주유리터
-	private Date regdate;	//주유날짜
+	private Date regDate;	//주유날짜 Date형식으로받기
 	private String location;//주유장소
 	private String content;	//메모
+	
 	
 	public int getFuelNo() {
 		return fuelNo;
@@ -50,11 +51,11 @@ public class Fuel {
 	public void setLiter(int liter) {
 		this.liter = liter;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getLocation() {
 		return location;
@@ -68,6 +69,8 @@ public class Fuel {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	
 	
 	
 }
