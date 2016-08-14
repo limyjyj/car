@@ -19,6 +19,8 @@ import com.car.model.dto.Carhistory;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/carhistory/")
@@ -42,9 +44,10 @@ public class CarhistoryController {
 		Member member = (Member)session.getAttribute("loginuser");
 		
 		
+		
 		//데이터베이스에서 데이터 조회
 		List<Carhistory> historys = carhistoryService.selectCarByCarindex(member.getMemberNo());
-		System.out.println(historys.size());
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
 		mav.setViewName("carhistory/list");
 		mav.addObject("historys", historys);
