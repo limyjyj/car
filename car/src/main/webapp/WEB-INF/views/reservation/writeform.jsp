@@ -56,6 +56,7 @@
 									style="height: 20px; width: 220px;" />
 								</td>
 							</tr>
+							
 							<tr>
 								<th>타태워</th>
 								<td>
@@ -64,7 +65,17 @@
 								</td>
 							</tr>
 							
+							 <tr>
+								<th>출발지</th>
+								<td><input class="form-control" type="text" name="departure"
+										style="width: 100px" /></td>
+							</tr>
 							
+							 <tr>
+								<th>목적지</th>
+								<td><input class="form-control" type="text" name="arrival"
+										style="width: 100px" /></td>
+							</tr>
 							 <tr>
 								<th>시작날짜</th>
 								<td><input type="date" name="startDate"

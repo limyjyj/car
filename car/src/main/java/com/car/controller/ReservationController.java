@@ -173,7 +173,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		
 		 mav.addObject("reservation",reservation);
 		 mav.addObject("pageno", pageNo);
-		 mav.setViewName("board/editform");
+		 mav.setViewName("reservation/editform");
 		 return mav;
 		 }
 		 
@@ -185,7 +185,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		 reservationService.updateReservation(reservation);
 		
 		 // 3. 목록 페이지로 이동
-		 return "redirect:/reservation/detail.action" + "?reservationNo=" + reservation.getReservationNo()
+		 return "redirect:/reservation/detail.action" + "?reservationno=" + reservation.getReservationNo()
 		 + "&pageno="
 		 + req.getParameter("pageno");
 		 }

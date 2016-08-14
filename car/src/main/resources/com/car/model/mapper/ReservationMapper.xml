@@ -68,7 +68,8 @@
 
 	<update id="updateReservation" parameterType="Reservation">
 	UPDATE Reservation
-	*
+	SET departure = #{departure}, arrival = #{arrival}, content = #{content},
+	startDate=#{startDate}, endDate=#{endDate}
 	WHERE reservationno = #{reservationNo}
 	</update>
 	

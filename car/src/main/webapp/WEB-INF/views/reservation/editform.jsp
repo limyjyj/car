@@ -15,7 +15,7 @@
 
 	<div id="pageContainer">
 
-		<jsp:include page="/WEB-INF/views/include/header.jsp" />
+	
 		
 		<div style="padding-top: 25px; text-align: center">
 			<div id="inputcontent">
@@ -36,38 +36,46 @@
 							
 							<tr>
 								<th>출발지</th>
-								<td>	${ reservation.departure}
+								<td>	<input class="form-control" type="text" name="departure"
+										style="width: 100px" />
 								</td>
 							</tr>
 							
 							<tr>
 								<th>도착지</th>
-								<td>	${reservation.arrival}
+								<td>	<input class="form-control" type="text" name="arrival"
+										style="width: 100px" />
 								</td>
 							</tr>
 							
 							<tr>
 					<th>시작날짜</th>
-					<td>${ reservation.startDate }</td>
+					<td><input type="date" name="startDate"
+										style="width: 100px" /></td>
 				</tr>
 					
 				<tr>
 					<th>끝날짜</th>
-					<td>${ reservation.endDate }</td>
+					<td><input type="date" name="endDate"
+										style="width: 100px" /></td>
 				</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="reservationContent" cols="76" rows="15">
+								<td><textarea name="content" >
 								${resrvation.content }</textarea>
 								</td>
 							</tr>
 						</table>
 						<div class="buttons">
 							<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->
-							<a href="javascript:document.forms[0].submit();">글쓰기</a>
+							<%-- <a href="javascript:document.forms[0].submit();">수정완료</a>
 							&nbsp;&nbsp; 
 							<a
-								href='detail.action?reservationno=${reservation.reservationNo }&pageno=${pageno}'>취소</a>
+								href='detail.action?reservationno=${reservation.reservationNo }&pageno=${pageno}'>취소</a> --%>
+								
+					<input id='submitbutton' type="submit" value="수정완료"
+						style="height: 25px" /> <input type="button" value="취소"
+						style="height: 25px" onclick="location.href='detail.action?reservationno=${reservation.reservationNo }&pageno=${pageno}';" />			
 						</div>
 					</form>
 				</div>
