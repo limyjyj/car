@@ -28,7 +28,7 @@
 	</resultMap>
 	
 	<sql id="selectDefault">
-		SELECT category, regdate, fee, liter
+		SELECT historyno, category, regdate, fee, liter, deleted
 		FROM Carhistory
 	</sql>
 
@@ -56,9 +56,9 @@
 		
 		WHERE historyno = #{historyno}
 	</select>
-	<select id="selectCarByCarindex" resultType="Carhistory"
-		parameterType="int" resultMap="carMap">
-		select Car.carindex, Carhistory.*
+	<select id="selectCarByCarindex"
+		parameterType="int" resultMap="carhistoryMap">
+		select DISTINCT Carhistory.*
 		from Car
 		join Member
 		on Car.memberNo = #{memberNo}

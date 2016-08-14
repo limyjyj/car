@@ -1,4 +1,5 @@
 <%@ page import="com.car.model.dto.Car" %>
+<%@ page import="com.car.model.dto.Caruploadfile" %>
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
@@ -43,6 +44,28 @@ $(function(){
 })	
 });    
 
+$(function(){
+	
+	$('#btnNext2').on('click', function(event) {
+		
+		event.stopPropagation();
+		event.preventDefault();
+		
+		var info = $("#fileno")
+		valid = true;
+		$.each(info, function(index, element) {
+			if (element.value == null || element.value.length == 0) {
+				valid = false;	
+			}
+		});
+		
+		if (valid) {
+			$('form').submit();
+		} else {
+			alert('')
+		}
+})	
+});
 
 
 </script>
@@ -60,12 +83,20 @@ $(function(){
 		        
 			    <div class="col-md-6 col-md-offset-3">
 			    
-		        <form:form action="register.action" method="post" modelAttribute="car"><!-- 상대경로표시 -->
+			     <form:form action="fileregister.action" method="post" modelAttribute="caruploadfile"><!-- 상대경로표시 -->
 		       	
 		       		<div class="form-group">
      		     	  <label for="inputUplaod">사진등록</label>
-		              <input type="file" name="attach" class="form-control" placeholder="차 전경사진을 등록하세요"/>
-			        </div>
+		              <input type="file" name="attach" class="form-control" >
+		              <font size="1" style="color: red">*차 전경 사진을 올려주세요</font>
+			       
+			        <input class="btn btn-primary" type="submit" id="btnNext2" 
+							value="등록 " style="height: 30px" />
+					</div>
+			    </form:form>
+		        <form:form action="register.action" method="post" modelAttribute="car"><!-- 상대경로표시 -->
+		       	
+		       		
      		       <div class="form-group">
      		     	  <label for="inputModel">차종</label>
      		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>

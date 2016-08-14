@@ -1,5 +1,5 @@
-<%@page import="com.car.model.dto.Car"%>
-<%@page import="com.car.model.dao.CarDao"%>
+<%@page import="com.car.model.dto.Carhistory"%>
+<%@page import="com.car.model.dao.CarhistoryDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     
@@ -22,12 +22,12 @@
         	<br /><br />
         	<div>
               	<input class="btn btn-danger" type="button" id="inputOutcome"
-							value="지출입력" style="height: 30px" onclick="location.href='/car/write.action';"/>
+							value="지출입력" style="height: 30px" onclick="location.href='/outcome/write.action';"/>
 				<input class="btn btn-danger" type="button" id="inputFuel"
-							value="주유입력" style="height: 30px" onclick="location.href='/car/write.action';"/>
+							value="주유입력" style="height: 30px" onclick="location.href='/fuel/write.action';"/>
 			</div>
 			
-	<section class="section" id="content_wrapper">
+	<%-- <section class="section" id="content_wrapper">
 		<div class="content_area">
 			<div class="content ledger_area" id="ledgerHistory">
 				<header class="con_title">
@@ -79,12 +79,15 @@
 						<dl>
 							<dt>유형</dt>
 							<dd>
-								<div class="ddOutOfVision" id="selCarSttkind1_msddHolder" style="height: 0px; overflow: hidden; position: absolute;"><select name="" id="selCarSttkind1" tabindex="-1">
+								<div class="ddOutOfVision" id="selCarSttkind1_msddHolder" style="height: 0px; overflow: hidden; position: absolute;">
+								<select name="category" id="selCarSttkind1" tabindex="-1">
 									<option value="">전체</option>
 									<option value="1">주유</option>
 									<option value="2">정비</option>
 									<option value="3">유지</option>
-								</select></div><div class="dd ddcommon borderRadius" id="selCarSttkind1_msdd" tabindex="0" style="width: 85px;"><div class="ddTitle borderRadiusTp">
+								</select>
+								</div>
+								<div class="dd ddcommon borderRadius" id="selCarSttkind1_msdd" tabindex="0" style="width: 85px;"><div class="ddTitle borderRadiusTp">
 								<span class="divider"></span><span class="ddArrow arrowoff"></span><span class="ddTitleText " id="selCarSttkind1_title"><span class="ddlabel">전체</span><span class="description" style="display: none;"></span></span></div><input id="selCarSttkind1_titleText" type="text" autocomplete="off" class="text shadow borderRadius" style="display: none;"><div class="ddChild ddchild_ border shadow" id="selCarSttkind1_child" style="position: absolute; visibility: visible; top: 32px; display: none; height: 143px; z-index: 1;"><ul><li class="enabled _msddli_ selected"><span class="ddlabel">전체</span><div class="clear"></div></li><li class="enabled _msddli_"><span class="ddlabel">주유</span><div class="clear"></div></li><li class="enabled _msddli_"><span class="ddlabel">정비</span><div class="clear"></div></li><li class="enabled _msddli_"><span class="ddlabel">유지</span><div class="clear"></div></li><li class="enabled _msddli_"><span class="ddlabel">용품구입</span><div class="clear"></div></li></ul></div></div>
 							</dd>
 						</dl>
@@ -96,7 +99,7 @@
 							<dd>
 								<div class="inp_wrap inp_num">
 									
-									<input type="text" name="termstartdate" value="2015-08-12" size="10" maxlength="10" readonly="readonly" title="검색 시작일 선택" class="inp_txt_comm j_inp_calendar j_termstartdate hasDatepicker" id="dp1470963723511">
+									<input type="date" name="termstartdate"  size="10" maxlength="10" readonly="readonly" title="검색 시작일 선택" class="inp_txt_comm j_inp_calendar j_termstartdate hasDatepicker" id="dp1470963723511">
 								</div>
 							</dd>
 						</dl>
@@ -104,7 +107,7 @@
 							<dt>종료일</dt>
 							<dd>
 								<div class="inp_wrap inp_num">
-									<input type="text" name="termenddate" value="2016-08-12" size="10" maxlength="10" readonly="readonly" title="검색 종료일 선택" class="inp_txt_comm j_inp_calendar j_termenddate hasDatepicker" id="dp1470963723512">
+									<input type="date" name="termenddate" size="10" maxlength="10" readonly="readonly" title="검색 종료일 선택" class="inp_txt_comm j_inp_calendar j_termenddate hasDatepicker" id="dp1470963723512">
 								</div>
 							</dd>
 						</dl>
@@ -117,9 +120,7 @@
 			<caption class="hideClass">내차 내역 및 통계</caption>
 			<thead>
 				<tr>
-					<th scope="row" class="tb_car_chk">
-						<div class="icheckbox_flat-aero" style="position: relative;"><input type="checkbox" name="all_check" value="" title="모두선택" class="inp_chk_comm j_icheck j_all_icheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-					</th>
+					
 					<th scope="row" class="regdate">날짜</th>
 					<th scope="row" class="category">항목</th>
 					<th scope="row" class="fee">금액</th>
@@ -144,7 +145,7 @@
 </div>
 			<aside id="aside"></aside>
 		</div>
-	</section>
+	</section> --%>
 			
 			
 			
@@ -156,7 +157,7 @@
         			<td>금액</td>
         			<td>리터</td>
         		</tr>        	
-        	<c:forEach var="carhistory" items="${ historys }">
+        <c:forEach var="carhistory" items="${ historys }" >
         		<tr style="height:30px">
         		
         			<td>${ carhistory.regdate }</td>
@@ -165,6 +166,7 @@
         			<td>${ carhistory.liter }</td>
    
         		</tr>
+        		
         	</c:forEach>
         	
         	</table>

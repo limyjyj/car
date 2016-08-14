@@ -3,6 +3,7 @@ package com.car.model.dto;
 import java.util.Date;
 
 public class Car {
+	
 	private int memberNo;
 	private int carindex;
 	private int historyno;
@@ -11,8 +12,15 @@ public class Car {
 	private int carno;
 	private int totaldistance;
 	private int totaloutcome;
+	private int deleted;
 	
 	
+	public int getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
+	}
 	public int getCarindex() {
 		return carindex;
 	}

@@ -11,6 +11,7 @@ public class Carhistory {
 	private Date regdate;
 	private String fee;
 	private String liter;
+	private int deleted;
 	
 
 	
@@ -58,6 +59,12 @@ public class Carhistory {
 	}
 	public void setSelectCars(List<Car> selectCars) {
 		this.selectCars = selectCars;
+	}
+	public int getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
 	}
 
 	

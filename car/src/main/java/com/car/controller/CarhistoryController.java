@@ -44,7 +44,7 @@ public class CarhistoryController {
 		
 		//데이터베이스에서 데이터 조회
 		List<Carhistory> historys = carhistoryService.selectCarByCarindex(member.getMemberNo());
-		
+		System.out.println(historys.size());
 		
 		mav.setViewName("carhistory/list");
 		mav.addObject("historys", historys);
