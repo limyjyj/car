@@ -19,7 +19,7 @@ public interface ReservationDao {
 
 	Reservation selectReservationByReservationNo(int number);
 
-	 int getReservationCount();
+	 int selectReservationCount();
 		
 	 void updateReservationReadCount(int number);
 	 

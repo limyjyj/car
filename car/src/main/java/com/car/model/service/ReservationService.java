@@ -16,7 +16,7 @@ public interface ReservationService {
 	
 	Reservation selectReservationByReservationNo(int reservationNo);
 	
-    int getReservationCount();
+    int selectReservationCount();
 	
 	void updateReservationReadCount(int number);
 }

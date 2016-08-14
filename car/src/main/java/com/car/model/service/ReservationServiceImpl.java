@@ -50,8 +50,8 @@ public class ReservationServiceImpl implements ReservationService {
 	
 
 	@Override
-	public int getReservationCount() {
-		return reservationDao.getReservationCount();
+	public int selectReservationCount() {
+		return reservationDao.selectReservationCount();
 	}
 
 	@Override

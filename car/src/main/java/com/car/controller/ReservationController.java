@@ -73,14 +73,14 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		int startRow = (currentPage - 1) * pageSize + 1;
 		
 		// 데이터베이스에서 데이터 조회
-//		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
-//		dataCount = reservationService.selectReservationCount();
+		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+		dataCount = reservationService.selectReservationCount();
 
 //		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		
 		
 		mav.setViewName("reservation/list");
-	//	mav.addObject("reservations", reservations);
+		mav.addObject("reservations", reservations);
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
 			
@@ -113,26 +113,24 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			// 요청 정보에서 내용을 표시할 글번호를 읽고 변수에 저장
 			// (없으면 목록으로 이동)	
-			String boardNo = request.getParameter("reservationo");
-			if (boardNo == null || boardNo.length() == 0) {
-				mav.setViewName("redirect:/reservation/list.action");
-				return mav;
-			}
-			int no = Integer.parseInt(boardNo);
+			String reservationNo = request.getParameter("reservationo");
+//			if (reservationNo == null || reservationNo.length() == 0) {
+//				mav.setViewName("redirect:/reservation/list.action");
+//				return mav;
+//			}
+			int no = Integer.parseInt(reservationNo);
 			// 데이터베이스에서 데이터 조회
 			Reservation reservation = reservationService.selectReservationByReservationNo(no);
 			
 			
 			
 			// 조회 실패하면 목록으로 이동
-			if (reservation == null) {
-				mav.setViewName("redirect:/reservation/list.action");
-				return mav;
-			}
+//			if (reservation == null) {
+//				mav.setViewName("redirect:/reservation/list.action");
+//				return mav;
+//			}
 
-			reservationService.updateReservationReadCount(reservation.getReservationNo());
-			reservation.setReservationCount(reservation.getReservationCount() + 1);
-
+			
 			String pageNo = "1";
 			if (request.getParameter("pageno") != null) {
 				pageNo = request.getParameter("pageno");
