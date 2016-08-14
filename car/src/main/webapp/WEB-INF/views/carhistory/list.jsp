@@ -22,9 +22,9 @@
         	<br /><br />
         	<div>
               	<input class="btn btn-danger" type="button" id="inputOutcome"
-							value="지출입력" style="height: 30px" onclick="location.href='/outcome/writeform.action';"/>
+							value="지출입력" style="height: 30px" onclick="location.href='/car/outcome/writeform.action';"/>
 				<input class="btn btn-danger" type="button" id="inputFuel"
-							value="주유입력" style="height: 30px" onclick="location.href='/fuel/writeform.action';"/>
+							value="주유입력" style="height: 30px" onclick="location.href='/car/fuel/writeform.action';"/>
 			</div>
 			
 	<%-- <section class="section" id="content_wrapper">
