@@ -12,7 +12,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#delete').on('click', function(event) {
+			var reservationno = ${reservation.reservationNo}
+			var result = confirm('삭제 하시겠습니까?');
+			if (result) {
+				//yes
+				location.href = ('/car/reservation/delete.action?reservationno=' + reservationno);
+			} else {
+				//no
+			}
+		});
+	});
+</script>
 <meta charset="utf-8" />
 <title>세부사항</title>
 
@@ -364,7 +379,7 @@ function getTimeHTML(distance) {
 			<div class="bbtn">
 				<c:choose>
 					<c:when test="${ loginuser.memberNo eq reservation.memberNo }">						
-						<a href='javascript:doDelete(${ reservation.reservationNo }, ${ pageno })'>삭제</a>&nbsp;&nbsp;
+						<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
 						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
 					</c:when>
 					<c:otherwise>

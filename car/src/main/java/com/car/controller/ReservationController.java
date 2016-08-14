@@ -193,15 +193,12 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		 
 		//삭제
 		 @RequestMapping(value = "delete.action", method = RequestMethod.GET)
-		 public String deleteReservation(HttpServletRequest req, Reservation reservation) {
+		 public String deleteReservation(HttpServletRequest req, int reservationno) {
 		 // 1. 요청 데이터 읽기 (글번호)
-		 String reservationNo = req.getParameter("reservationno");
-		 if (reservationNo == null || reservationNo.length() == 0) {
-		 return "redirect:/reservation/list.action";
-		 }
+		
 		
 		 // 2. 데이터 처리 (db에서 데이터 변경)
-		 reservationService.deleteReservation(reservation);
+		 reservationService.deleteReservation(reservationno);
 		 
 		
 		 return "redirect:/reservation/list.action";

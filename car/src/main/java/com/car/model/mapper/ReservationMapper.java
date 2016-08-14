@@ -22,5 +22,5 @@ public interface ReservationMapper {
 
 	void updateReservation(Reservation reservation);
 	
-	void deleteReservation(Reservation reservation);
+	void deleteReservation(int reservationNo);
 }
