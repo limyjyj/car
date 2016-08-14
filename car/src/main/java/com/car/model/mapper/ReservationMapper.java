@@ -20,4 +20,7 @@ public interface ReservationMapper {
 		
 	void updateReservationReadCount(int number);
 
+	void updateReservation(Reservation reservation);
+	
+	void deleteReservation(Reservation reservation);
 }

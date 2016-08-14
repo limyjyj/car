@@ -33,9 +33,7 @@ $(document).ready(function (){
 				<tr>		
 					<td>	
 					
-					<select id="reservationfind" name="reservationfind">
-							<option>type</option>
-						</select>					
+									
 						<input type="hidden" name="pageno2" value=${ pageno } /> 
 							<input type="hidden" name="reservationfind" value=${ b.reservationKind } />
 						<select	id="reservationsearch" name="reservationsearch">

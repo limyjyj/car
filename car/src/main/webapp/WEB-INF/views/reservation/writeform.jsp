@@ -100,7 +100,7 @@
 							
 							<input id='submitbutton' type="submit" value="등록"
 						style="height: 25px" /> <input type="button" value="취소"
-						style="height: 25px" onclick="location.href='../home.action';" />
+						style="height: 25px" onclick="location.href='list.action';" />
 							
 							
 						</div>

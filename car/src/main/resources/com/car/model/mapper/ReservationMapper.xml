@@ -42,7 +42,7 @@
 	
 	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
 		SELECT
-		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMemeber, content
+		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content
 		FROM Reservation
 		WHERE reservationNo =
 		#{reservationNo} AND deleted
@@ -61,5 +61,15 @@
 	</update>
 	
 	
+	<update id="deleteReservation" parameterType="Reservation">
+	UPDATE Reservation SET deleted
+	= '1' WHERE reservationno = #{reservationNo}
+	</update>
+
+	<update id="updateReservation" parameterType="Reservation">
+	UPDATE Reservation
+	*
+	WHERE reservationno = #{reservationNo}
+	</update>
 	
 </mapper>

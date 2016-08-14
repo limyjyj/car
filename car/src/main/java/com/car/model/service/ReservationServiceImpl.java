@@ -58,6 +58,18 @@ public class ReservationServiceImpl implements ReservationService {
 	public void updateReservationReadCount(int number) {
 		reservationDao.updateReservationReadCount(number);
 	}
+
+	@Override
+	public void updateReservation(Reservation reservation) {
+		reservationDao.updateReservation(reservation);
+		
+	}
+
+	@Override
+	public void deleteReservation(Reservation reservation) {
+		reservationDao.deleteReservation(reservation);
+		
+	 }
 	}
 
 

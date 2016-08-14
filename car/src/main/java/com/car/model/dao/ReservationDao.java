@@ -23,5 +23,8 @@ public interface ReservationDao {
 		
 	 void updateReservationReadCount(int number);
 	 
+	 void updateReservation(Reservation reservation);
+	 
+	 void deleteReservation(Reservation reservation);
 	 
 }

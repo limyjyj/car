@@ -19,4 +19,8 @@ public interface ReservationService {
     int selectReservationCount();
 	
 	void updateReservationReadCount(int number);
+	
+	void updateReservation(Reservation reservation);
+	
+	void deleteReservation(Reservation reservation);
 }

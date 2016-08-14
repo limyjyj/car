@@ -18,9 +18,20 @@
 
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
 
-
 </head>
 <body>
+	
+	<div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=0b310b2f318c9e4b7fd52459eb35d927"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new daum.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new daum.maps.Map(container, options);
+	</script>
 	
 		<br/><br/>
 		<div>
@@ -70,7 +81,7 @@
 				<c:choose>
 					<c:when test="${ loginuser.memberNo eq reservation.memberNo }">						
 						<a href='javascript:doDelete(${ reservation.reservationNo }, ${ pageno })'>삭제</a>&nbsp;&nbsp;
-						<a href='edit.action?boardno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
+						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
 					</c:when>
 					<c:otherwise>
 						<%-- 작성자가 자기 글에 댓글을 쓸 수 없다면 여기에 댓글 링크 만들기 --%>
