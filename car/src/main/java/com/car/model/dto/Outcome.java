@@ -6,11 +6,12 @@ public class Outcome {
 
 	private int outcomeNo;	//지출번호
 	private int historyNo;	//차계부번호
-	private String cartegory;//지출항목
+	private String category;//지출항목
 	private int payment;	//지출금액
-	private Date regDate;	//Datr형식으로 받기
+	private Date regDate;	//지출날짜
 	private String location;//지출장소
 	private String content;	//내용
+	
 	public int getOutcomeNo() {
 		return outcomeNo;
 	}
@@ -23,11 +24,11 @@ public class Outcome {
 	public void setHistoryNo(int historyNo) {
 		this.historyNo = historyNo;
 	}
-	public String getCartegory() {
-		return cartegory;
+	public String getCategory() {
+		return category;
 	}
-	public void setCartegory(String cartegory) {
-		this.cartegory = cartegory;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public int getPayment() {
 		return payment;
