@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8" />
 <title>지출 입력</title>
-	<link href="/car/resources/css/business-casual.css" rel="stylesheet">
+
 <!-- <script src="/car/resources/js/jquery-1.12.4.js"></script> -->
 <!-- <script src="/car/resources/js/jquery.js"></script> -->
 <script type="text/javascript">
@@ -64,7 +64,7 @@ $(function () {
 							</tr>
 							<tr>
 								<th>지출 날짜</th>
-								<td style="width: 200px; font-size: x-large;; padding-left:50px; "><
+								<td style="width: 200px; font-size: x-large;; padding-left:50px; ">
 									<input class="form-control" type="date" name="regDate" />
 								</td>
 							</tr>

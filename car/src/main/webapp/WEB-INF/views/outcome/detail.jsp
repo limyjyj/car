@@ -18,7 +18,6 @@
 <head>
 <meta charset="utf-8" />
 <title>지출</title>
-<link href="/car/resources/css/business-casual.css" rel="stylesheet">
 
 <%-- <jsp:include page="/WEB-INF/views/include/head.jsp" /> --%>
 </head>
@@ -37,15 +36,15 @@
 
 				<table class="table table-striped" align="center" width="700px">
 					<tr>
-						<th>지출유형</th>
+						<th>지출 유형</th>
 						<td>${ outcome.cartegory }</td>
 					</tr>
 					<tr>
-						<th>지출금액</th>
+						<th>지출 금액</th>
 						<td>${ outcome.payment }</td>
 					</tr>
 					<tr>
-						<th>지출날짜</th>
+						<th>지출 날짜</th>
 						<td>${ outcome.regDate }</td>
 					</tr>
 					<tr>
