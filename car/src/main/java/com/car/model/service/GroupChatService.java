@@ -6,7 +6,7 @@ import com.car.model.dto.GroupChat;
 
 public interface GroupChatService {
 	
-	void createGroupChat(GroupChat groupChat);
+	void insertGroupChat(GroupChat groupChat);
 	
 	public List<GroupChat> selectAllGroupChat();
 	
