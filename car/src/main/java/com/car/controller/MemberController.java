@@ -25,12 +25,12 @@ public class MemberController {
 
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String registerForm(@ModelAttribute Member member) {
-		return "member/registerform";
+		return "member/registerform1";
 	}
 
 	@RequestMapping(value = "register.action", method = RequestMethod.POST)
 	public String register(@Valid @ModelAttribute Member member) {
-
+		System.out.println(member.getMemberId());
 		member.setPassWd(Util.getHashedString(member.getPassWd(), "SHA-256"));
 
 		memberService.insertMember(member);
