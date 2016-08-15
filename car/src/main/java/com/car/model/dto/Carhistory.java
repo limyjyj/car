@@ -6,7 +6,7 @@ import java.util.List;
 public class Carhistory {
 	
 	private int historyno;
-	private int memberno;
+	private int memberNo;
 	private String category;
 	private Date regdate;
 	private String fee;
@@ -24,11 +24,11 @@ public class Carhistory {
 	public void setHistoryno(int historyno) {
 		this.historyno = historyno;
 	}
-	public int getMemberno() {
-		return memberno;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setMemberno(int memberno) {
-		this.memberno = memberno;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 	public String getCategory() {
 		return category;

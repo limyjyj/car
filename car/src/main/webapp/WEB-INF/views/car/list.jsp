@@ -20,9 +20,19 @@
 
         <div id="content">
         	<br /><br />
+        	<div id="selectCar">
+        	<c:forEach var="car" items="${ cars }">
+        	<select name="carno" >
+        		<option value="${ car.carno }">${ car.carno }</option>
+        	</select>
+        	</c:forEach>
+        	<div id="regist" class="buttons">
+		        	<a href="register.action">차량등록</a>
+		    </div>
+        	</div>
         	
         	<table class="table table-striped"  align="center" width="700px">
-        		
+        	<c:forEach var="car" items="${ cars }">
         		<tr style="height:30px" align="center">
         			<td>차량정보번호</td>
         			<td>차종</td>
@@ -31,7 +41,7 @@
         			<td>총주행거리</td>
         			<td>총지출금액</td>
         		</tr>        	
-        	<c:forEach var="car" items="${ cars }">
+        	
         		<tr style="height:30px">
         		
         			<td>${ car.carindex }</td>
@@ -45,6 +55,7 @@
         		</tr>
         	</c:forEach>
         	
+        	</table>
         	<table class="table table-striped"  align="center" width="700px">
         	
         		<tr style="height:30px">

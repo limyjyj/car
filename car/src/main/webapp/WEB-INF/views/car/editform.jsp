@@ -51,7 +51,7 @@
 			        </div>
 			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="text" path="regdate" class="form-control" placeholder="기록시작일"/>
+		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
 			        </div>	       
 
 		       <br><br>		       

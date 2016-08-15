@@ -58,7 +58,7 @@
 	</select>
 	<select id="selectCarByCarindex"
 		parameterType="int" resultMap="carhistoryMap">
-		select DISTINCT Carhistory.*
+		select Carhistory.*
 		from Car
 		join Member
 		on Car.memberNo = #{memberNo}

@@ -4,18 +4,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.car.model.dto.Car;
-import com.car.model.dto.Carhistory;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;
 
@@ -28,24 +27,28 @@ public class CarController {
 	private CarService carService;
 
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
-	public String registerForm(
-			@ModelAttribute Car car) {
+	public String registerForm(@ModelAttribute @Valid Car car) {
+		System.out.println("1번");
+	
+
 		return "car/registerform";
 
 	}
 
 	@RequestMapping(value = "register.action", method = RequestMethod.POST)
-	public String registerForm(
-			@ModelAttribute Car car, HttpSession session) {
+	public String register(@Valid @ModelAttribute Car car, HttpSession session) {
+		System.out.println("2번");
 
+		System.out.println(car.getCarno());
+		Member member = (Member)session.getAttribute("loginuser");
+		member.setMemberNo(member.getMemberNo());
 		carService.insertCar(car);
-
 		return "redirect:/car/list.action";
 
 	}
 	
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public ModelAndView carList(HttpServletRequest request, HttpSession session ) {
+	public ModelAndView carList(HttpServletRequest req, HttpSession session ) {
 				
 		ModelAndView mav = new ModelAndView();
 		//로그인 상태가 아닌 경우 로그인 페이지로 이동
@@ -73,13 +76,8 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public String update(HttpServletRequest req) {
+	public String update(HttpServletRequest req, Car car) {
 
-		Car car = new Car();
-		car.setCarindex(Integer.parseInt(req.getParameter("carindex")));
-		car.setModel(req.getParameter("model"));
-		car.setCarno(Integer.parseInt("carno"));
-		car.setTotaldistance(Integer.parseInt("totaldistance"));
 		
 		carService.updateCar(car);
 		

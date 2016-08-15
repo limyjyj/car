@@ -1,129 +1,69 @@
-<%@ page import="com.car.model.dto.Car" %>
-<%@ page import="com.car.model.dto.Caruploadfile" %>
-
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@page import="com.car.model.dto.Member"%>
+<%@page import="com.car.model.dto.Car"%>
 
 <!DOCTYPE html>
 
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>차량 등록</title>
-
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-<script>
-
-$(function(){
-	
-	$('#btnNext').on('click', function(event) {
-		
-		event.stopPropagation();
-		event.preventDefault();
-		
-		var info = $("#model, #carno, #regdate")
-		valid = true;
-		$.each(info, function(index, element) {
-			if (element.value == null || element.value.length == 0) {
-				valid = false;	
-			}
-		});
-		
-		if (valid) {
-			$('form').submit();
-		} else {
-			alert('차량정보를 빠짐없이 입력해주세요')
-		}
-})	
-});    
-
-$(function(){
-	
-	$('#btnNext2').on('click', function(event) {
-		
-		event.stopPropagation();
-		event.preventDefault();
-		
-		var info = $("#fileno")
-		valid = true;
-		$.each(info, function(index, element) {
-			if (element.value == null || element.value.length == 0) {
-				valid = false;	
-			}
-		});
-		
-		if (valid) {
-			$('form').submit();
-		} else {
-			alert('')
-		}
-})	
-});
-
-
-</script>
-
 </head>
+
 <body>
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<div id="pageContainer" >
-	
-		<%-- <c:import url="/WEB-INF/views/include/header.jsp" /> --%>
-		
-		   		<div id="inputmain">
-		        <div class="inputsubtitle"><h2 align="center">차량 등록</h2></div>
-		        <br>
-		        
-			    <div class="col-md-6 col-md-offset-3">
-			    
-			     <form:form action="fileregister.action" method="post" modelAttribute="caruploadfile"><!-- 상대경로표시 -->
-		       	
-		       		<div class="form-group">
-     		     	  <label for="inputUplaod">사진등록</label>
-		              <input type="file" name="attach" class="form-control" >
-		              <font size="1" style="color: red">*차 전경 사진을 올려주세요</font>
-			       
-			        <input class="btn btn-primary" type="submit" id="btnNext2" 
-							value="등록 " style="height: 30px" />
-					</div>
-			    </form:form>
-		        <form:form action="register.action" method="post" modelAttribute="car"><!-- 상대경로표시 -->
-		       	
-		       		
-     		       <div class="form-group">
-     		     	  <label for="inputModel">차종</label>
-     		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>
-     		     	  <font size="1" style="color: red">*제조사와 모델명을 적어주세요</font>
-			       </div>
-		       		<div class="form-group">
-     		     	  <label for="inputCarno">차량번호</label>
-		              <form:input type="text" path="carno" class="form-control" placeholder="차번호" />
-			       </div>
-		          <div class="form-group">
-     		     	  <label for="inputRegdate">기록시작일</label> 
-		              <form:input type="date" path="regdate" class="form-control"  placeholder="기록시작일" />
-			       </div>
-			      
+	<div id="inputcontent">
+		<br /> <br />
+		<div id="inputmain">
+			<div class="inputsubtitle">차 등록</div>
 
-		       <br><br>
-		        <div class="buttons" align="center">
-						<input class="btn btn-primary" type="submit" id="btnNext" 
-							value="등록 " style="height: 30px" />
-						<input class="btn btn-danger" type="button" id="btnCancel"
-							value="취소" style="height: 30px" onclick="location.href='/car/car/list.action';"/>
+			<form id="registerform" action="register.action" method="post">
+				<!-- 상대경로표시 -->
+
+				<table>
+					<tr>
+						<th style="text-align: center;">번호</th>
+						<td>${ car.memberNo } </td>
+					</tr>
+					<tr>
+						<th>차종</th>
+						<td><input type="text" id="model" name="${ car.model }"
+							style="width: 280px" /></td>
+					</tr>
+
+					<tr>
+						<th>차번호</th>
+						<td><input type="text" id="carno" name="carno"
+							style="width: 280px" /></td>
+					</tr>
+					
+					<tr>
+						<th>기록시작일</th>
+						<td><input type="date" id="regdate" name="regdate"
+							style="width: 280px" /></td>
+					</tr>
+					
+
+				</table>
+
+				<div class="buttons">
+
+					<input id='submitbutton' type="submit" value="등록" style="height: 25px" /> 
+					<input type="button" value="취소" style="height: 25px" onclick="location.href='../list.action';" />
+
 				</div>
-				
-		        </form:form>
-		    </div>
-		</div>   	<br><br><br>
-</div>
+			</form>
+		</div>
+
+	</div>
+	<br />
+	<br />
+	<br />
+
+
 
 </body>
 </html>

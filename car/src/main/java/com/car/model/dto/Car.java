@@ -9,7 +9,7 @@ public class Car {
 	private int historyno;
 	private String model;
 	private Date regdate;
-	private int carno;
+	private String carno;
 	private int totaldistance;
 	private int totaloutcome;
 	private int deleted;
@@ -45,10 +45,10 @@ public class Car {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getCarno() {
+	public String getCarno() {
 		return carno;
 	}
-	public void setCarno(int carno) {
+	public void setCarno(String carno) {
 		this.carno = carno;
 	}
 	public int getTotaldistance() {
