@@ -49,7 +49,7 @@ $(document).ready(function (){
 		<table class="btable">
 			<thead>
 				<tr>
-					<th style="width: 100px">회원</th>
+					<th style="width: 100px">회원번호</th>
 					
 					<th style="width: 100px">타태워</th>
 					<th style="width: 150px">출발지</th>
@@ -94,7 +94,7 @@ $(document).ready(function (){
 		
 		<br/>
 		</form>
-		<br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/>
 		<div class="bbtn">
 			<a href='writeform.action'>글쓰기</a> <br /> <br />
 			${ pager } 

@@ -57,6 +57,7 @@
 								<li class="active"><a href="#">예약</a>
 									<ul class="dropdown-menu">
 										<li><a href="/car/reservation/list.action#targetb">카풀신청</a></li>
+										<li><a href="/car/reservation/confirmlist.action#targetb">예약확인</a></li>
 
 
 
