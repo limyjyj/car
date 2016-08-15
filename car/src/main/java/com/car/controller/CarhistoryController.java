@@ -1,5 +1,6 @@
 package com.car.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,8 @@ public class CarhistoryController {
 		String url = "list.action";
 		Member member = (Member)session.getAttribute("loginuser");
 		
-		
+	
+		 
 		
 		//데이터베이스에서 데이터 조회
 		List<Carhistory> historys = carhistoryService.selectCarByCarindex(member.getMemberNo());

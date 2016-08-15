@@ -4,7 +4,7 @@
     pageEncoding="utf-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
 <html>
@@ -157,10 +157,11 @@
         			<td>금액</td>
         			<td>리터</td>
         		</tr>        	
-        <c:forEach var="carhistory" items="${ historys }" >
+        	<c:forEach var="carhistory" items="${ historys }" >
         		<tr style="height:30px">
         		
-        			<td>${ carhistory.regdate }</td>
+        			<td><fmt:formatDate value="${ carhistory.regdate }" pattern="yyyy-MM-dd" var="regDate"/>
+                      ${ regDate }</td>
         			<td>${ carhistory.category }</td>
         			<td>${ carhistory.fee }</td>
         			<td>${ carhistory.liter }</td>

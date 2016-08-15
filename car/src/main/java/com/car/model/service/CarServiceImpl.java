@@ -40,4 +40,7 @@ public class CarServiceImpl implements CarService {
 	public void updateCar(Car car) {
 		carDao.updateCar(car);
 	}
+	public void deleteCar(Car car) {
+		carDao.deleteCar(car);
+	}
 }

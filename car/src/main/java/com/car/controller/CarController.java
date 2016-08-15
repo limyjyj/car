@@ -65,15 +65,41 @@ public class CarController {
 		return mav;
 				
 	}
+	@RequestMapping(value = "update.action", method = RequestMethod.GET)
+	public String updateForm(
+			@ModelAttribute Car car) {
+		return "car/editform";
+
+	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public String matching(
-			// 스프링 태그 라이브러리를 사용하기 위해 구성한 전달인자
-			@ModelAttribute Car car) {
+	public String update(HttpServletRequest req) {
 
+		Car car = new Car();
+		car.setCarindex(Integer.parseInt(req.getParameter("carindex")));
+		car.setModel(req.getParameter("model"));
+		car.setCarno(Integer.parseInt("carno"));
+		car.setTotaldistance(Integer.parseInt("totaldistance"));
+		
 		carService.updateCar(car);
+		
 		return "redirect:/car/list.action";
 
+	}
+	@RequestMapping(value = "delete.action", method = RequestMethod.GET)
+	public String deleteCar(HttpServletRequest req) {
+		
+		Car car = new Car();
+		String carindex = req.getParameter("carindex");
+		if (carindex == null || carindex.length() == 0) {
+			return "redirect:/car/list.action";
+		}
+		
+		
+		carService.deleteCar(car);
+		
+				
+		return "redirect:/car/list.action";
 	}
 	
 

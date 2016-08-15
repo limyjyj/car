@@ -43,5 +43,8 @@ public class MysqlCarDao implements CarDao {
 	public void updateCar(Car car) {
 		carMapper.updateCar(car);
 	}
+	public void deleteCar(Car car) {
+		carMapper.deleteCar(car);
+	}
 
 }

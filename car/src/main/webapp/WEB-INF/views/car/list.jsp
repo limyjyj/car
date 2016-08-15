@@ -4,7 +4,7 @@
     pageEncoding="utf-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
 <html>
@@ -29,6 +29,7 @@
         			<td>차량번호</td>
         			<td>기록시작일</td>
         			<td>총주행거리</td>
+        			<td>총지출금액</td>
         		</tr>        	
         	<c:forEach var="car" items="${ cars }">
         		<tr style="height:30px">
@@ -36,14 +37,31 @@
         			<td>${ car.carindex }</td>
         			<td>${ car.model }</td>
         			<td>${ car.carno }</td>
-        			<td>${ car.regdate }</td>
+        			<td><fmt:formatDate value="${ car.regdate }" pattern="yyyy-MM-dd" var="regDate"/>
+                      ${ regDate }</td>
         			<td>${ car.totaldistance }</td>
+        			<td>${ car.totaloutcome }</td>
    
         		</tr>
         	</c:forEach>
         	
+        	<table class="table table-striped"  align="center" width="700px">
+        	
+        		<tr style="height:30px">
+        		
+        		<td>기간별 조회</td>
+        		</tr>
+        	
+        	
+        	
         	</table>
         	
+        	<div class="buttons">
+		        	<a href="update.action">수정</a>
+		    </div>
+        	<div class="buttons">
+		        	<a href="delete.action">삭제</a>
+		    </div>
         </div>
     </div>
     

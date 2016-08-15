@@ -21,7 +21,6 @@
 
 	<div id="pageContainer">
 	
-		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
 		
 		<div id="inputmain">
 		        <div class="inputsubtitle"><h2 align="center">차정보 수정</h2></div>
@@ -43,25 +42,25 @@
 		       		
 			        <div class="form-group">
      		     	  <label for="inputDistance">총주행거리</label>
-		              <form:input type="text" path="distance" class="form-control" placeholder="총주행거리"/>
+		              <form:input type="text" path="totaldistance" class="form-control" placeholder="총주행거리"/>
 			        </div>
 			        
+			        <div class="form-group">
+     		     	  <label for="inputDistance">총지출금액</label>
+		              <form:input type="text" path="totaloutcome" class="form-control" placeholder="총지출금액"/>
+			        </div>
 			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
 		              <form:input type="text" path="regdate" class="form-control" placeholder="기록시작일"/>
 			        </div>	       
 
 		       <br><br>		       
-		      <%--  <% Car car = (Car)request.getAttribute("car"); %>
-		       		<input type='hidden' name="carno" 
-		       		value="<%= car.getCarno() %>" />
-		       		<input type='hidden' name="pageno" value="${ pageno }" />		       		
-		        <div class="buttons" align="center">
-						<input class="btn btn-primary" type="submit" id="btnNext" 
-							value="수정 완료 " style="height: 30px" />
-						<input class="btn btn-danger" type="button" id="btnCancel"
-							value="취소" style="height: 30px" onclick="location.href='detail.action?rvno=<%= car.getRvNo() %>&pageno=<%= request.getAttribute("pageno") %>';"/>
-				</div> --%>				
+		     	<div class="buttons">
+		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
+		        	<a href="javascript:document.forms[0].submit();">수정</a>
+		        	&nbsp;&nbsp;
+		        	<a href='list.action'>취소</a>
+		        </div>
 		        </form:form>
 		    </div>
 		</div>
