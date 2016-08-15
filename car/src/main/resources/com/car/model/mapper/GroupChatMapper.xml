@@ -15,7 +15,7 @@
 	
 	<!-- 논리적 메서드 만들기 -->
 	<!-- make physical method -->
-	<insert id="createGroupChat">
+	<insert id="insertGroupChat">
 		INSERT INTO GroupChat
 		(totalnumber, deleted, title)
 		VALUES

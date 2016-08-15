@@ -28,11 +28,14 @@ $(document).ready(function (){
 		</div>
 		<br/><br/>	
 		
-		<form id="boardform" action="list.action" method="post">		
+		<form id="detailform" action="list.action" method="post">		
 			<table class="bsearch">					
 				<tr>		
-					<td>					
-						
+					<td>	
+					
+									
+						<input type="hidden" name="pageno2" value=${ pageno } /> 
+							<input type="hidden" name="reservationfind" value=${ b.reservationKind } />
 						<select	id="reservationsearch" name="reservationsearch">
 							<option>선택</option>
 							<option>실시간</option>					
@@ -57,13 +60,17 @@ $(document).ready(function (){
 				</tr>
 			</thead>	
 				
-				<c:forEach var="b" items="${ reservation }">		
+				<c:forEach var="b" items="${ reservations }">		
 					<tr>
-						<td>${ sessionScope.loginuser.memeberId }</td>
+						<td>${ b.memberNo }</td>
 						
 						<td>${ b.type }</td>
 						<td>
-						${b.departure }
+						
+						<a href='detail.action?reservationno=${ b.reservationNo }&pageno=${ pageno }'>
+								${b.departure }
+							</a>						
+					
 						</td>	
 						
 						<td>

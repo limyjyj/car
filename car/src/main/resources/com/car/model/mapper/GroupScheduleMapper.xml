@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 논리적 클래스 만들기 -->
+<!-- make physical class -->
+<mapper namespace="com.car.model.mapper.GroupScheduleMapper">
+
+	<sql id="selectDefault">
+		SELECT scheduleno, chatno, title, content, startdate, enddate, duration, term
+		FROM GroupChat
+	</sql>
+	
+	<!-- 논리적 메서드 만들기 -->
+	<!-- make physical method -->
+	<insert id="insertGroupSchedule">
+		INSERT INTO GroupSchedule
+		(chatno, title, content, startdate, enddate, duration, term)
+		VALUES
+		(#{chatNo}, #{title}, #{content}, #{startDate}, #{endDate}, #{duration}, #{term})
+	</insert>
+	
+	<select id="selectAllGroupSchedule" resultType="GroupSchedule">
+		SELECT *
+		FROM GroupSchedule
+	</select>
+	
+	<select id="selectGroupScheduleByMemberId" 
+		parameterType="string" resultType="GroupSchedule">			
+		<include refid="selectDefault" />
+		WHERE memberid = #{memberId}
+	</select>
+	
+	<select id="selectGroupScheduleByGroupScheduleNo" 
+		parameterType="int" resultType="GroupSchedule">			
+		<include refid="selectDefault" />
+		WHERE scheduleno = #{scheduleNo}
+	</select>
+	
+	<select id="updateGroupSchedule" parameterType="GroupSchedule">	
+		UPDATE GroupSchedule
+		SET totalnumber = #{totalNumber}, content = #{content}, startdate = #{startDate}, 
+		    enddate = #{endDate}, duration = #{duration}, term = #{term}
+		WHERE scheduleno = #{scheduleNo}
+	</select>
+	
+	<select id="deleteGroupSchedule" parameterType="int">
+		DELETE 
+		FROM GroupSchedule
+		WHERE scheduleno = #{scheduleNo}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+

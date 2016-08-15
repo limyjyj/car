@@ -56,6 +56,7 @@
 									style="height: 20px; width: 220px;" />
 								</td>
 							</tr>
+							
 							<tr>
 								<th>타태워</th>
 								<td>
@@ -64,7 +65,17 @@
 								</td>
 							</tr>
 							
+							 <tr>
+								<th>출발지</th>
+								<td><input class="form-control" type="text" name="departure"
+										style="width: 100px" /></td>
+							</tr>
 							
+							 <tr>
+								<th>목적지</th>
+								<td><input class="form-control" type="text" name="arrival"
+										style="width: 100px" /></td>
+							</tr>
 							 <tr>
 								<th>시작날짜</th>
 								<td><input type="date" name="startDate"
@@ -100,7 +111,7 @@
 							
 							<input id='submitbutton' type="submit" value="등록"
 						style="height: 25px" /> <input type="button" value="취소"
-						style="height: 25px" onclick="location.href='../home.action';" />
+						style="height: 25px" onclick="location.href='list.action';" />
 							
 							
 						</div>
