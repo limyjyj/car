@@ -29,9 +29,27 @@ public class MysqlCarDao implements CarDao {
 		return carMapper.selectCars();
 	}
 
-	public Car selectCarByCarno(int carno) {
+	public List<Car> selectAllCarByCarno(int memberNo) {
 		
+		return carMapper.selectAllCarByCarno(memberNo);
+	}
+	
+	
+	public Car selectCarnoByCarindex(int carindex) {
+
+		return carMapper.selectCarnoByCarindex(carindex);
+	}
+	public Car selectCarByCarno(int carno) {
+
 		return carMapper.selectCarByCarno(carno);
+	}
+	
+	
+	public void updateCar(Car car) {
+		carMapper.updateCar(car);
+	}
+	public void deleteCar(Car car) {
+		carMapper.deleteCar(car);
 	}
 
 }

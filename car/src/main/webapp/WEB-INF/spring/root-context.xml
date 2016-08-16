@@ -55,7 +55,14 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+<<<<<<< HEAD
 
+=======
+	<bean id="groupScheduleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.GroupScheduleMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 
 	<bean id="groupChatMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.GroupChatMapper" />
@@ -66,9 +73,15 @@
 		<property name="mapperInterface" value="com.car.model.mapper.OutcomeMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+<<<<<<< HEAD
 
 	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.BoardMapper" />
+=======
+	
+	<bean id="fuelMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.FuelMapper" />
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
@@ -76,7 +89,14 @@
 		<property name="mapperInterface" value="com.car.model.mapper.CarMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+<<<<<<< HEAD
 
+=======
+	<bean id="carhistoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.CarhistoryMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 </beans>
 
 

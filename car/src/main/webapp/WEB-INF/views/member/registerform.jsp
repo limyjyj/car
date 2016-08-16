@@ -12,7 +12,8 @@
 </head>
 
 <body>
-
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 	<div id="inputcontent">
 		<br /> <br />

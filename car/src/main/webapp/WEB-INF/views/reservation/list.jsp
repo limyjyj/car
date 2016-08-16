@@ -12,8 +12,8 @@
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
 <script>
 $(document).ready(function (){
-		$("#boardsearch").change(function (event) {
-			$("#boardform").submit();
+		$("#reservationsearch").change(function (event) {
+			$("#reservationform").submit();
 		});
 		
 })
@@ -28,15 +28,17 @@ $(document).ready(function (){
 		</div>
 		<br/><br/>	
 		
-		<form id="boardform" action="list.action" method="post">		
+		<form id="reservationform" action="list.action" method="post">		
 			<table class="bsearch">					
 				<tr>		
 					<td>					
-						
+			
+					 	<input type="hidden" name="pageno2" value=${ pageno } />  
+							<input type="hidden" name="reservationkind" value=${ b.reservationKind } />
 						<select	id="reservationsearch" name="reservationsearch">
-							<option>선택</option>
-							<option>실시간</option>					
-							<option>정기</option>
+							<option >선택</option>
+							<option value="실시간">실시간</option>					
+							<option value="정기">정기</option>
 							
 						</select>
 					</td>				
@@ -47,7 +49,7 @@ $(document).ready(function (){
 			<thead>
 				<tr>
 					<th style="width: 100px">회원</th>
-					
+					<th style="width: 100px">실시간.정기</th>
 					<th style="width: 100px">타태워</th>
 					<th style="width: 150px">출발지</th>
 					<th style="width: 150px">도착지</th>
@@ -57,18 +59,24 @@ $(document).ready(function (){
 				</tr>
 			</thead>	
 				
-				<c:forEach var="b" items="${ reservation }">		
+				<c:forEach var="b" items="${ reservations }">		
 					<tr>
-						<td>${ sessionScope.loginuser.memeberId }</td>
+						<td>${ sessionScope.loginuser.memberId }</td>
+						
+						<td>${ b.frequency }</td>
 						
 						<td>${ b.type }</td>
 						<td>
-						${b.departure }
+						
+						  <a href='detail.action?reservationno=${ b.reservationNo }&pageno=${ pageno }'>
+						        ${b.departure }
+						  </a>	
 						</td>	
 						
 						<td>
-							${ b.arrival }
+						${ b.arrival }
 						</td>
+					
 						<td>
 							${ b.startDate }
 						</td>

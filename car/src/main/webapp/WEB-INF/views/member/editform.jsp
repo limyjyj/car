@@ -11,8 +11,6 @@
 <head>
 <meta charset="utf-8" />
 
-<link href="/mysbl-spring/resources/css/business-casual.css"
-	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -32,7 +30,8 @@
 </head>
 <body>
 
-	<c:import url="/WEB-INF/views/include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 	<div class="jumbotron"
 		style="background-color: #EAEAEA; padding-top: 35px; width: 800px; align: center; margin: auto;">

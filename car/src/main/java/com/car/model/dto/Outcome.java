@@ -8,7 +8,7 @@ public class Outcome {
 	private int historyNo;	//차계부번호
 	private String category;//지출항목
 	private int payment;	//지출금액
-	private Date regeDate;	//지출날짜
+	private Date regDate;	//지출날짜
 	private String location;//지출장소
 	private String content;	//내용
 	
@@ -36,11 +36,11 @@ public class Outcome {
 	public void setPayment(int payment) {
 		this.payment = payment;
 	}
-	public Date getRegeDate() {
-		return regeDate;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setRegeDate(Date regeDate) {
-		this.regeDate = regeDate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getLocation() {
 		return location;
@@ -54,6 +54,7 @@ public class Outcome {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	
 	
 }
