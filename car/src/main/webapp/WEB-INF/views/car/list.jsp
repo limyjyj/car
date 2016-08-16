@@ -13,6 +13,22 @@
     <title></title>
 	<!-- Custom CSS -->
 	<link href="/car/resources/css/business-casual.css" rel="stylesheet">
+	<script type="text/javascript">
+	$(function() {
+		$('#Status').on('click', function(event) {
+			var carno = $('#carno').val();
+			if (result) {
+				//yes
+				location.href = ('/car/car/view.action?carno=' + carno);
+			} else {
+				//no
+			}
+		});
+	});
+	
+	
+	
+	</script>
 </head>
 <body>
 
@@ -24,9 +40,12 @@
         	<div id="selectCar">
         	
         	<select name="carno" >
-        		<option value="${ car.carno }"><c:forEach var="car" items="${ cars }">
-        		${ car.carno }<br />
-        		</c:forEach></option>
+        	<option value="선택하세요">선택하세요.</option>
+        	<c:forEach var="car" items="${ cars }" varStatus="Status">
+        		<option value="${ car.carno }" id="Status">
+        		${ car.carno }<!-- <br /> -->
+        		</option>
+        		</c:forEach>
         	</select>
         	
         	<div id="regist" class="buttons">

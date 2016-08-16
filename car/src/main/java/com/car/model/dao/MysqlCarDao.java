@@ -34,11 +34,16 @@ public class MysqlCarDao implements CarDao {
 		return carMapper.selectAllCarByCarno(memberNo);
 	}
 	
-	@Override
+	
 	public Car selectCarnoByCarindex(int carindex) {
 
 		return carMapper.selectCarnoByCarindex(carindex);
 	}
+	public Car selectCarByCarno(int carno) {
+
+		return carMapper.selectCarByCarno(carno);
+	}
+	
 	
 	public void updateCar(Car car) {
 		carMapper.updateCar(car);

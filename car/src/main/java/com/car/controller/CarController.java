@@ -39,8 +39,7 @@ public class CarController {
 
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String registerForm(@ModelAttribute @Valid Car car) {
-		System.out.println("1번");
-	
+		
 
 		return "car/registerform";
 
@@ -48,9 +47,7 @@ public class CarController {
 
 	@RequestMapping(value = "register.action", method = RequestMethod.POST)
 	public String register(Car car, HttpSession session) {
-		System.out.println("2번");
-
-		System.out.println(car.getCarno());
+		
 		Member member = (Member)session.getAttribute("loginuser");
 		car.setMemberNo(member.getMemberNo());
 		carService.insertCar(car);
@@ -86,6 +83,21 @@ public class CarController {
 		return mav;
 				
 	}
+	
+
+	@RequestMapping(value = "view.action", method = RequestMethod.GET)
+	public ModelAndView viewList(@ModelAttribute Car car, int carno) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		car = carService.selectCarByCarno(carno);
+		mav.setViewName("car/list");
+		mav.addObject("car", car);
+		
+		return mav;
+
+	}
+	
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
 	public String updateForm(
 			@ModelAttribute Car car) {
