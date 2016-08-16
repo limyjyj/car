@@ -20,7 +20,10 @@
 <body>
 
 	<div id="pageContainer">
-	
+
+		<!-- 김경주멍청아 -->
+		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+
 		
 		<div id="inputmain">
 		        <div class="inputsubtitle"><h2 align="center">차정보 수정</h2></div>

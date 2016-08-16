@@ -14,30 +14,32 @@
 		<result property="totaloutcome" column="totaloutcome" />
 		<result property="deleted" column="deleted" />
 		
-		<collection property="memberno" column="memberno"
+		<collection property="memberNo" column="memberNo"
 			select="selectCarByMemberno"  />
 	</resultMap>
 	
 	
 	<sql id="selectDefault">
-		SELECT model, regdate, carno, totaldistance, totaloutcome, deleted
+		SELECT memberNo, carindex, model, regdate, carno, totaldistance, totaloutcome, deleted
 		FROM Car
 	</sql>
 
 	<insert id="insertCar" parameterType="Car" >
-		INSERT INTO car
-		(model,	carno, regdate, memberno)
+		INSERT INTO Car
+		( model, carno, regdate, memberno)
 		VALUES
-		(#{model}, #{carno}, #{regdate}, #{memberno})
+		( #{model}, #{carno}, #{regdate}, #{memberNo})
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *
 		FROM Car
 	</select>
+	
 	<select id="selectAllCarByCarno" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
 		WHERE memberNo = #{memberNo}
 	</select>
+	
 	<select id="selectCarnoByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
 		WHERE carindex = #{carindex}
@@ -58,7 +60,7 @@
 			select Car.*
 			from Member
 			join Car
-			on Member.memberno=Car.memberno;
+			on Member.memberNo = Car.memberNo;
 	
 
 	</select>

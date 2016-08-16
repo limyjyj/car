@@ -15,6 +15,7 @@ public class Car {
 	private int deleted;
 	
 	
+	
 	public int getDeleted() {
 		return deleted;
 	}

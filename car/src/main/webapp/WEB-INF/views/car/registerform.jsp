@@ -24,13 +24,10 @@
 				<!-- 상대경로표시 -->
 
 				<table>
-					<tr>
-						<th style="text-align: center;">번호</th>
-						<td>${ car.memberNo } </td>
-					</tr>
+					
 					<tr>
 						<th>차종</th>
-						<td><input type="text" id="model" name="${ car.model }"
+						<td><input type="text" id="model" name="model"
 							style="width: 280px" /></td>
 					</tr>
 
@@ -52,7 +49,7 @@
 				<div class="buttons">
 
 					<input id='submitbutton' type="submit" value="등록" style="height: 25px" /> 
-					<input type="button" value="취소" style="height: 25px" onclick="location.href='../list.action';" />
+					<input type="button" value="취소" style="height: 25px" onclick="location.href='/car/car/list.action';" />
 
 				</div>
 			</form>
