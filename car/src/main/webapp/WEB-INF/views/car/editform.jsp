@@ -11,8 +11,6 @@
 <head>
 	<meta charset="utf-8" />
 	<title>차 정보 수정</title>
-	<link href="/car/resources/css/business-casual.css"
-	rel="stylesheet">
 	<!-- <link href="/mysbl-spring/resources/css/bootstrap.min.css" rel="stylesheet"> -->	
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>	
@@ -21,8 +19,9 @@
 
 	<div id="pageContainer">
 
-		<!-- 김경주멍청아 -->
-		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+	
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 		
 		<div id="inputmain">
