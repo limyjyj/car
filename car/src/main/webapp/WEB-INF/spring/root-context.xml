@@ -80,6 +80,11 @@
 		<property name="mapperInterface" value="com.car.model.mapper.CarMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.BoardMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
 	<bean id="carhistoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.CarhistoryMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
