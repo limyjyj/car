@@ -68,7 +68,7 @@
                                     <li><a href="/car/board/list.action" >게시판</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="/car/board/list.action">공지사항</a></li>
-                                            <li><a href="/car/board/list.action">후기</a></li>
+                                            <li><a href="/car/board/list2.action">후기</a></li>
                                         </ul>
                                     </li>
 

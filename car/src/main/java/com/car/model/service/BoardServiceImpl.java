@@ -45,5 +45,34 @@ public class BoardServiceImpl implements BoardService {
 	public int updateBoard(Board board) {
 		return BoardDao.updateBoard(board);
 	}
+	
+	
+	//--------------------------Review-------------------------------//
+
+	
+	@Override
+	public Board selectReviewByBoardNo(int number) {
+		return BoardDao.selectReviewByBoardNo(number);
+	}
+
+	@Override
+	public List<Board> selectReviewList(int startRow, int i) {
+		return BoardDao.selectReviewList(startRow, i);
+	}
+
+	@Override
+	public int getReviewCount() {
+		return BoardDao.getReviewCount();
+	}
+
+	@Override
+	public int deleteReview(int number) {
+		return BoardDao.deleteReview(number);
+	}
+
+	@Override
+	public int updateReview(Board board) {
+		return BoardDao.updateReview(board);
+	}
 
 }

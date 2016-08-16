@@ -5,7 +5,7 @@ import java.util.List;
 import com.car.model.dto.Board;
 //import com.mysbl.model.dto.NoticeBoardComment;
 
-public interface BoardDao {
+	public interface BoardDao {
 
 	int insertBoard(Board board);
 
@@ -24,5 +24,19 @@ public interface BoardDao {
 	//void updateComment(NoticeBoardComment comment);
 
 	//void deleteComment(int commentNo);
+	
+	
+	//------------------------------Review------------------------------
+	
+	
+	List<Board> selectReviewList(int start, int last);
+
+	Board selectReviewByBoardNo(int number);
+
+	int getReviewCount();
+
+	int deleteReview(int number);
+
+	int updateReview(Board board);
 
 }
