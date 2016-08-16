@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>공지 등록</title>
+	<title>후기 등록</title>
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 </head>
 <body>
@@ -18,10 +18,10 @@
 		
 		<div id="inputmain" style="padding-top: 20px; text-align: center; margin: auto; width: 800px">
 			    
-		        <form:form action="write.action" method="post" modelAttribute="Board"><!-- 상대경로표시 -->
+		        <form:form action="write2.action" method="post" modelAttribute="Board"><!-- 상대경로표시 -->
 		       		
 		       		<div>
-		       			<form:input type="hidden" value="Notice" path="type" />
+		       			<form:input type="hidden" value="Review" path="type" />
 		       		</div>
 		       		
 		       		<div>
@@ -44,7 +44,7 @@
 		        <div class="buttons" align="center">
 						<input type="submit" id="submit" value="글등록 " style="height:30px"  />
 						<input type="button" id="Cancel"
-							value="취소" style="height: 30px" onclick="location.href='/car/board/list.action';"/>
+							value="취소" style="height: 30px" onclick="location.href='/car/board/list2.action';"/>
 				</div>				
 		        </form:form>
 		    

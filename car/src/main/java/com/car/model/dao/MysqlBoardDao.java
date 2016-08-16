@@ -52,8 +52,8 @@ public class MysqlBoardDao implements BoardDao {
 	
 	public Board selectBoardByBoardNo(int number) {
 		
-		Board Board = BoardMapper.selectBoardByBoardNo(number);
-		return Board;
+	Board Board = BoardMapper.selectBoardByBoardNo(number);
+	return Board;
 
 	}	
 	
@@ -69,6 +69,44 @@ public class MysqlBoardDao implements BoardDao {
 	
 	public int updateBoard(Board Board) {
 		BoardMapper.updateBoard(Board);
+		return 0;
+	}
+	
+	
+	//-----------------------------Review--------------------------------//
+
+	
+	@Override
+	public List<Board> selectReviewList(int start,  int count) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("count", count);
+		List<Board> BoardList = BoardMapper.selectReviewList(map);
+		
+		return BoardList;
+	}
+
+	@Override
+	public Board selectReviewByBoardNo(int number) {
+		Board Board = BoardMapper.selectReviewByBoardNo(number);
+		return Board;
+	}
+
+	@Override
+	public int getReviewCount() {
+		int count = BoardMapper.selectReviewCount();
+		return count;
+	}
+
+	@Override
+	public int deleteReview(int number) {
+		BoardMapper.deleteReview(number);
+		return 0;
+	}
+
+	@Override
+	public int updateReview(Board Board) {
+		BoardMapper.updateReview(Board);
 		return 0;
 	}
 

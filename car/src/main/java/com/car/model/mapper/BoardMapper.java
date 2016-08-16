@@ -28,5 +28,20 @@ public interface BoardMapper {
 	//void updateComment(BoardComment comment);
 	//void deleteComment(int commentNo);
 	
+	
+	//--------------------------Review-------------------------------//
+	
+	
+	List<Board> selectReviewList(HashMap<String, Object> map);
+	
+	Board selectReviewByBoardNo(int BoardNo);
+	
+	
+	int selectReviewCount();
+	
+	void deleteReview(int BoardNo);
+	
+	void updateReview(Board Board);
+	
 
 }

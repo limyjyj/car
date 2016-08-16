@@ -21,6 +21,21 @@ public interface BoardService {
 	//void updateBoardReadCount(int number);
 
 	int updateBoard(Board board);
+
 	
-	//List<Board> selectAllBoardList();	
+	
+ //----------------------------Review----------------------------------//
+	
+	Board selectReviewByBoardNo(int number);
+
+	List<Board> selectReviewList(int start, int last);
+
+	int getReviewCount();
+
+	int deleteReview(int number);
+
+	//void updateBoardReadCount(int number);
+
+	int updateReview(Board board);
+	
 }
