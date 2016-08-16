@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 import com.car.model.service.ReservationService;
+import com.car.ui.ThePager;
 import com.car.ui.ThePager3;
 import com.car.controller.ReservationController;
 
@@ -73,21 +74,18 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		int startRow = (currentPage - 1) * pageSize + 1;
 		
 		// 데이터베이스에서 데이터 조회
-					List<Reservation> reservations = reservationService.selectReservationList();					
-					
-
-					for( Reservation sb : reservations)
-					{
-						System.out.println(sb.getArrival() +" " + sb.getDeparture());
-					}
-					mav.setViewName("reservation/list");
-					mav.addObject("reservations", reservations);
+				//	List<Reservation> reservations = reservationService.selectReservationList();								
+//					mav.setViewName("reservation/list");
+//					mav.addObject("reservations", reservations);
 				
-	//	List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
 		dataCount = reservationService.selectReservationCount();
 
-//		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
+		//ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		
+		
+			
+		
 		
 		mav.setViewName("reservation/list");
 	//	mav.addObject("reservations", reservations);
@@ -123,7 +121,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			// 요청 정보에서 내용을 표시할 글번호를 읽고 변수에 저장
 			// (없으면 목록으로 이동)	
-			String reservationNo = request.getParameter("reservationo");
+			String reservationNo = request.getParameter("reservationno");
 			if (reservationNo == null || reservationNo.length() == 0) {
 				mav.setViewName("redirect:/reservation/list.action");
 				return mav;
@@ -140,8 +138,8 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 				return mav;
 			}
 
-			reservationService.updateReservationReadCount(reservation.getReservationNo());
-			reservation.setReservationCount(reservation.getReservationCount() + 1);
+			//reservationService.updateReservationReadCount(reservation.getReservationNo());
+			//reservation.setReservationCount(reservation.getReservationCount() + 1);
 
 			String pageNo = "1";
 			if (request.getParameter("pageno") != null) {

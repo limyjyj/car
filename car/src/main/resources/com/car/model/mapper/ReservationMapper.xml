@@ -55,6 +55,10 @@
 		WHERE deleted
 		= '0'
 		
+		
+		SELECT *
+		FROM Reservation ORDER BY reservationno desc
+		LIMIT #{start}, #{count} 
 </select>
 	
 	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
@@ -80,8 +84,8 @@
 	<select id="selectReservationSearchType" parameterType="hashMap" resultMap="reservationMap2">
 		select *
 		
-		From (select * from Reservation
-		where reservationkind = #{reservationSearch})  where idx >= #{start} AND idx <![CDATA[<]]> #{last}
+		From (select * from Reservation where reservationkind = #{reservationSearch})  
+		where idx >= #{start} AND idx <![CDATA[<]]> #{last}
 	</select>
 	
 	<update id="deleteReservation" parameterType="int">

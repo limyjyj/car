@@ -3,6 +3,7 @@
 <%@page import="com.car.model.dto.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" session="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%	//치환변수선언
     pageContext.setAttribute("cr", "\r"); //Space
@@ -381,13 +382,15 @@ function getTimeHTML(distance) {
 					<c:when test="${ loginuser.memberNo eq reservation.memberNo }">						
 						<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
 						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
+						<a href='#'>수락하기</a>
 					</c:when>
 					<c:otherwise>
-						<%-- 작성자가 자기 글에 댓글을 쓸 수 없다면 여기에 댓글 링크 만들기 --%>
+						<a href='/car/reservation/write.action?reservationno=${ reservation.reservationNo }'>신청하기</a>&nbsp;&nbsp;
+						<a href='list.action?pageno=${pageno}'>뒤로가기</a>
 					</c:otherwise>
 				</c:choose>
 					
-					<a href='list.action?pageno=${ pageno }'>목록보기</a>
+	
 			</div>
 		</div>
 		

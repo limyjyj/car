@@ -19,9 +19,8 @@ public interface ReservationDao {
 
 	Reservation selectReservationByReservationNo(int number);
 
-	 int selectReservationCount();
-		
-	 void updateReservationReadCount(int number);
+	int selectReservationCount();
+	
 	 
 	 void updateReservation(Reservation reservation);
 	 

@@ -48,7 +48,7 @@ $(document).ready(function (){
 		<table class="btable">
 			<thead>
 				<tr>
-					<th style="width: 100px">회원</th>
+					<th style="width: 100px">회원번호</th>
 					<th style="width: 100px">실시간.정기</th>
 					<th style="width: 100px">타태워</th>
 					<th style="width: 150px">출발지</th>
@@ -61,7 +61,7 @@ $(document).ready(function (){
 				
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
-						<td>${ sessionScope.loginuser.memberId }</td>
+						<td>${ sessionScope.loginuser.memberId}</td>
 						
 						<td>${ b.frequency }</td>
 						
@@ -89,6 +89,7 @@ $(document).ready(function (){
 							${ b.totalMember}
 						</td>
 					
+						
 					</tr>
 				</c:forEach>				
 		</table>
