@@ -24,7 +24,7 @@
               	<input class="btn btn-danger" type="button" id="inputOutcome"
 							value="지출입력" style="height: 30px" onclick="location.href='/car/outcome/writeform.action?historyno=${ carhistory.historyno }';"/>
 				<input class="btn btn-danger" type="button" id="inputFuel"
-							value="주유입력" style="height: 30px" onclick="location.href='/car/fuel/writeform.action';"/>
+							value="주유입력" style="height: 30px" onclick="location.href='/car/fuel/writeform.action?historyno=${ carhistory.historyno }';"/>
 			</div>
 			
 	<%-- <section class="section" id="content_wrapper">
@@ -150,7 +150,17 @@
 			
 			
         	<table class="table table-striped"  align="center" width="700px">
+        	
+        	<select name="carno" >
+        	<option value="선택하세요">선택하세요.</option>
+     <%--    	<c:forEach var="car" items="${ cars }">
         		
+        		<option value="${ car.carno }">
+        		${ car.carno }
+        		</option>
+        		
+        	</c:forEach> --%>
+        	</select>
         		<tr style="height:30px" align="center">
         			<td>날짜</td>
         			<td>항목</td>

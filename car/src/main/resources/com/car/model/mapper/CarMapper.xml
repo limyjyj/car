@@ -40,6 +40,11 @@
 		WHERE memberNo = #{memberNo}
 	</select>
 	
+	<select id="selectCarByCarno" parameterType="int" resultType="Car">
+		<include refid="selectDefault" />
+		WHERE carno = #{carno}
+	</select>
+	
 	<select id="selectCarnoByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
 		WHERE carindex = #{carindex}

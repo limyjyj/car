@@ -11,6 +11,7 @@ public interface CarDao {
 	
 	List<Car> selectAllCarByCarno(int memberNo);
 	Car selectCarnoByCarindex(int carindex);
+	Car selectCarByCarno(int carno);
 
 	void updateCar(Car car);
 	void deleteCar(Car car);
