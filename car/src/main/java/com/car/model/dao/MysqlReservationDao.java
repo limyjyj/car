@@ -39,7 +39,6 @@ public class MysqlReservationDao implements ReservationDao {
 		
 		return reservationlist;
 	}
-
 	
 	@Override
 	public List<Reservation> selectReservationList2(int start, int last) {
@@ -47,10 +46,13 @@ public class MysqlReservationDao implements ReservationDao {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("last", last);
-		List<Reservation> reservationList = reservationMapper.selectReservationList(map);
+		List<Reservation> reservationlist = reservationMapper.selectReservationList();
 
-		return reservationList;
+		return reservationlist;
 	}
+
+
+	
 
 	@Override
 	public Reservation selectReservationByReservationNo(int number) {

@@ -73,14 +73,24 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		int startRow = (currentPage - 1) * pageSize + 1;
 		
 		// 데이터베이스에서 데이터 조회
-		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+					List<Reservation> reservations = reservationService.selectReservationList();					
+					
+
+					for( Reservation sb : reservations)
+					{
+						System.out.println(sb.getArrival() +" " + sb.getDeparture());
+					}
+					mav.setViewName("reservation/list");
+					mav.addObject("reservations", reservations);
+				
+	//	List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
 		dataCount = reservationService.selectReservationCount();
 
 //		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		
 		
 		mav.setViewName("reservation/list");
-		mav.addObject("reservations", reservations);
+	//	mav.addObject("reservations", reservations);
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
 			
@@ -113,11 +123,11 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			// 요청 정보에서 내용을 표시할 글번호를 읽고 변수에 저장
 			// (없으면 목록으로 이동)	
-			String reservationNo = request.getParameter("reservationno");
-//			if (reservationNo == null || reservationNo.length() == 0) {
-//				mav.setViewName("redirect:/reservation/list.action");
-//				return mav;
-//			}
+			String reservationNo = request.getParameter("reservationo");
+			if (reservationNo == null || reservationNo.length() == 0) {
+				mav.setViewName("redirect:/reservation/list.action");
+				return mav;
+			}
 			int no = Integer.parseInt(reservationNo);
 			// 데이터베이스에서 데이터 조회
 			Reservation reservation = reservationService.selectReservationByReservationNo(no);
@@ -125,12 +135,14 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 			
 			
 			// 조회 실패하면 목록으로 이동
-//			if (reservation == null) {
-//				mav.setViewName("redirect:/reservation/list.action");
-//				return mav;
-//			}
+			if (reservation == null) {
+				mav.setViewName("redirect:/reservation/list.action");
+				return mav;
+			}
 
-			
+			reservationService.updateReservationReadCount(reservation.getReservationNo());
+			reservation.setReservationCount(reservation.getReservationCount() + 1);
+
 			String pageNo = "1";
 			if (request.getParameter("pageno") != null) {
 				pageNo = request.getParameter("pageno");
@@ -145,64 +157,5 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		}
 
-		//수정
-		 @RequestMapping(value = "edit.action", method = RequestMethod.GET)
-		 public ModelAndView showBoardEditForm(HttpServletRequest request) {
-		
-		 ModelAndView mav = new ModelAndView();
-		
-		 String reservationNo = request.getParameter("reservationno");
-
-		 if (reservationNo == null || reservationNo.length() == 0) {
-		 mav.setViewName("redirect:/reservation/list.action");
-		 return mav;
-		 }
-		
-		 Reservation reservation =
-		 reservationService.selectReservationByReservationNo(Integer.parseInt(reservationNo));
-		
-		 if (reservation == null) {
-		 mav.setViewName("redirect:/reservation/detail.action");
-		 return mav;
-		 }
-		
-		 String pageNo = "1";
-		 if (request.getParameter("pageno") != null) {
-		 pageNo = request.getParameter("pageno");
-		 }
-		
-		 mav.addObject("reservation",reservation);
-		 mav.addObject("pageno", pageNo);
-		 mav.setViewName("reservation/editform");
-		 return mav;
-		 }
-		 
-		//수정
-		 @RequestMapping(value = "update.action", method = RequestMethod.POST)
-		 public String updateBoard(HttpServletRequest req, Reservation reservation) {
-		 
-		 // 2. 데이터베이스에 변경된 내용 적용
-		 reservationService.updateReservation(reservation);
-		
-		 // 3. 목록 페이지로 이동
-		 return "redirect:/reservation/detail.action" + "?reservationno=" + reservation.getReservationNo()
-		 + "&pageno="
-		 + req.getParameter("pageno");
-		 }
-		 
-		 
-		//삭제
-		 @RequestMapping(value = "delete.action", method = RequestMethod.GET)
-		 public String deleteReservation(HttpServletRequest req, int reservationno) {
-		 // 1. 요청 데이터 읽기 (글번호)
-		
-		
-		 // 2. 데이터 처리 (db에서 데이터 변경)
-		 reservationService.deleteReservation(reservationno);
-		 
-		
-		 return "redirect:/reservation/list.action";
-		 }
-		 
 	
 }
