@@ -14,6 +14,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<absolute-ordering>
+		<name>MyWebFragment</name>
+		<name>spring_web</name>
+	</absolute-ordering>
 
 	<!-- Processes application requests -->
 	<servlet>
