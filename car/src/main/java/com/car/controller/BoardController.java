@@ -48,6 +48,8 @@ public class BoardController {
 		List<Board> Boards = BoardService.selectBoardList(startRow, pageSize);
 		dataCount = BoardService.getBoardCount();
 		
+		
+		
 		ThePager pager = 
 			new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		
@@ -65,18 +67,13 @@ public class BoardController {
 		
 		ModelAndView mav = new ModelAndView();
 		//로그인 상태가 아닌 경우 로그인 페이지로 이동
-		if (request.getSession().getAttribute("loginuser") == null) {
-			mav.setViewName(
-				"redirect:/loginform.action?" + 
-				"returnuri=" + request.getRequestURI());
-			return mav;
-		}
+		
 				
 		//요청 정보에서 내용을 표시할 글번호를 읽고 변수에 저장
 		//(없으면 목록으로 이동)
 		String BoardNo = request.getParameter("boardno");
 		if (BoardNo == null || BoardNo.length() == 0) {
-			mav.setViewName("redirect:/Board/list.action");					
+			mav.setViewName("redirect:/board/list.action");					
 			return mav;
 		}
 		int no = Integer.parseInt(BoardNo);
@@ -86,7 +83,7 @@ public class BoardController {
 		
 		//조회 실패하면 목록으로 이동
 		if (Board == null) {
-			mav.setViewName("redirect:/Board/list.action");
+			mav.setViewName("redirect:/board/list.action");
 			return mav;
 		}
 		
@@ -100,7 +97,7 @@ public class BoardController {
 		
 		//조회된 데이터를 jsp 처리할 수 있도록 request 객체에 저장
 		mav.setViewName("board/detail");
-		mav.addObject("Board", Board);
+		mav.addObject("board", Board);
 		mav.addObject("pageno", pageNo);
 
 		return mav;
@@ -116,7 +113,7 @@ public class BoardController {
 	public String writeBoard(@ModelAttribute("Board") Board board, HttpSession session) {
 				
 		Member member = (Member)session.getAttribute("loginuser");
-		board.setMemberno(member.getMemberNo());
+		board.setMemberNo(member.getMemberNo());
 		
 		BoardService.insertBoard(board);
 
@@ -128,16 +125,16 @@ public class BoardController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String boardNo = request.getParameter("boardno");
+		String boardNo = request.getParameter("boardNo");
 		if (boardNo == null || boardNo.length() == 0) {
-			mav.setViewName("redirect:/Board/list.action");
+			mav.setViewName("redirect:/board/list.action");
 			return mav;
 		}
 
 		Board = BoardService.selectBoardByBoardNo(Integer.parseInt(boardNo));
 		
 		if (Board == null) {
-			mav.setViewName("redirect:/Board/list.action");
+			mav.setViewName("redirect:/board/list.action");
 			return mav;
 		}
 		
@@ -146,9 +143,9 @@ public class BoardController {
 			pageNo = request.getParameter("pageno");
 		}
 				
-		mav.addObject("Board", Board);
+		mav.addObject("board", Board);
 		mav.addObject("pageno", pageNo);
-		mav.setViewName("Board/editform");
+		mav.setViewName("board/editform");
 		return mav;
 	}
 	
@@ -156,8 +153,8 @@ public class BoardController {
 	public String updateBoard(HttpServletRequest req) {
 		//1. Board 객체를 만들고 사용자가 입력한 데이터를 저장
 		Board Board = new Board();
-		Board.setBoardno(
-			Integer.parseInt(req.getParameter("boardno")));
+		Board.setBoardNo(
+			Integer.parseInt(req.getParameter("boardNo")));
 		Board.setTitle(req.getParameter("title"));
 		Board.setContent(req.getParameter("content"));
 
@@ -165,24 +162,24 @@ public class BoardController {
 		BoardService.updateBoard(Board);
 		
 		//3. 목록 페이지로 이동
-		return "redirect:/Board/detail.action" +
-			"?boardno=" + Board.getBoardno() + 
+		return "redirect:/board/detail.action" +
+			"?boardno=" + Board.getBoardNo() + 
 			"&pageno=" + req.getParameter("pageno");
 	}
 	
 	@RequestMapping(value = "delete.action", method = RequestMethod.GET)
 	public String deleteBoard(HttpServletRequest req) {
 		//1. 요청 데이터 읽기 (글번호)
-		String boardNo = req.getParameter("boardno");
+		String boardNo = req.getParameter("boardNo");
 		if (boardNo == null || boardNo.length() == 0) {
-			return "redirect:/Board/list.action";
+			return "redirect:/board/list.action";
 		}
 		
 		//2. 데이터 처리 (db에서 데이터 변경)
 		BoardService.deleteBoard(Integer.parseInt(boardNo));
 		
 		//3. 목록으로 이동 		
-		return "redirect:/Board/list.action";
+		return "redirect:/board/list.action";
 	}
 	
 /*	@RequestMapping(value = "replyform.action", method = RequestMethod.GET)

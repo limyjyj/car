@@ -6,9 +6,9 @@ import com.car.model.dto.Board;
 
 public interface BoardService {
 
-	void insertBoard(Board noticeboard);
+	void insertBoard(Board board);
 
-	//int insertReply(NoticeBoard noticeboard);
+	//int insertReply(Board board);
 
 	Board selectBoardByBoardNo(int number);
 
@@ -22,5 +22,5 @@ public interface BoardService {
 
 	int updateBoard(Board board);
 	
-	//List<NoticeBoard> selectAllNoticeBoardList();	
+	//List<Board> selectAllBoardList();	
 }

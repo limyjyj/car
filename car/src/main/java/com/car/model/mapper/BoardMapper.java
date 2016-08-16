@@ -14,7 +14,6 @@ public interface BoardMapper {
 	
 	Board selectBoardByBoardNo(int BoardNo);
 	
-	//List<BoardComment> selectBoardCommentsByBoardNo(int boardNo);
 	
 	int selectBoardCount();
 	

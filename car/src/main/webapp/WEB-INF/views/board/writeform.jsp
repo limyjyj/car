@@ -8,6 +8,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>공지 등록</title>
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 </head>
 <body>
 
@@ -37,7 +38,7 @@
 
 		       <br><br>
 		        <div class="buttons" align="center">
-						<input type="button" id="submit" value="글등록 " style="height:30px"  />
+						<input type="submit" id="submit" value="글등록 " style="height:30px"  />
 						<input type="button" id="Cancel"
 							value="취소" style="height: 30px" onclick="location.href='/car/board/list.action';"/>
 				</div>				

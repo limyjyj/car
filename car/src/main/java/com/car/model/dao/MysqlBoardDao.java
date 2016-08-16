@@ -21,7 +21,7 @@ public class MysqlBoardDao implements BoardDao {
 	
 	public int insertBoard(Board Board) {		
 		BoardMapper.insertBoard(Board);
-		return Board.getBoardno();
+		return Board.getBoardNo();
 	}
 	
 /*	public int insertReply(NoticeBoard board) {

@@ -12,6 +12,8 @@
 
 	<meta charset="utf-8" />
 	<title>글쓰기</title>	
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function() {
 		$('#delete').on('click', function(event) {
@@ -69,10 +71,10 @@
 		        		<input id="boardNo" type="hidden" value="${ board.boardNo }" />
 		        	</div>
 		        	<div>
-		        		<input type="submit" value="수정" style="height: 40px" /> 
+		        		<input type="button" value="수정" style="height: 40px" onclick="location.href='edit.action?boardNo=${ board.boardNo }';"/> 
 		        	</div>
 		        	<div>
-		        		<input type="button" value="목록보기" style="height: 40px" onclick="list.action"/> 
+		        		<input type="button" value="목록보기" style="height: 40px" onclick="location.href='list.action';"/> 
 		        	</div>
 		   		</div>
 		      </div> 

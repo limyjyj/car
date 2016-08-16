@@ -13,31 +13,30 @@
 		<result property="regDate" column="regdate" />
 		<result property="type" column="type" />
 		<result property="deleted" column="deleted" />
-		<result property="memberno" column="memberno" />
-		<collection property="comments" column="boardno" select="selectBoardCommentsByBoardNo" />	
+		<result property="memberNo" column="memberno" />
+		<!-- <collection property="comments" column="boardno" select="selectBoardCommentsByBoardNo" />	 -->
 	</resultMap>
 	
 	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="boardNo" keyColumn="boardno">
 		INSERT INTO Board
-		(
-			, title
+		(	 title
 			, memberno
 			, content
 		)
-		VALUES (#{title}, #{memberno}, #{content})
+		VALUES (#{title}, #{memberNo}, #{content})
 	</insert>
 	
-	<select id="selectBoardList" parameterType="hashMap" resultMap="BoardMap">
+	<select id="selectBoardList" parameterType="hashMap" resultType="Board">
 		SELECT boardno, title, content, memberno, regdate, type, deleted
-		FROM Board ORDER BY boardno desc
+		FROM Board WHERE deleted='0' ORDER BY boardno desc
 		LIMIT #{start}, #{count} 
 	</select>
 	
 	<select id="selectBoardByBoardNo" parameterType="int" resultMap="BoardMap">
 		SELECT 
-			boardno, title, content, mamberno, regdate, type, deleted
+			boardno, title, content, memberno, regdate, type, deleted
 		FROM Board
-		WHERE boardno = #{boardNo}
+		WHERE boardNo = #{boardNo}
 	</select>
 	
 <!-- 	<select id="selectBoardCommentsByBoardNo"
@@ -51,9 +50,11 @@
 		SELECT COUNT(*) FROM Board
 	</select> 
 
-	<delete id="deleteBoard" parameterType="int">
-		DELETE Board WHERE boardno = #{boardNo}
-	</delete>
+	<update id="deleteBoard" parameterType="int">
+		UPDATE Board
+		SET deleted = '1'
+		WHERE boardNo = #{ boardNo }
+	</update>
 
 	<update id="updateBoard" parameterType="Board">
 		UPDATE Board 
