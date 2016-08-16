@@ -50,14 +50,26 @@ public class ReservationServiceImpl implements ReservationService {
 	
 
 	@Override
-	public int getReservationCount() {
-		return reservationDao.getReservationCount();
+	public int selectReservationCount() {
+		return reservationDao.selectReservationCount();
 	}
 
 	@Override
 	public void updateReservationReadCount(int number) {
 		reservationDao.updateReservationReadCount(number);
 	}
+
+	@Override
+	public void updateReservation(Reservation reservation) {
+		reservationDao.updateReservation(reservation);
+		
+	}
+
+	@Override
+	public void deleteReservation(int reservationNo) {
+		reservationDao.deleteReservation(reservationNo);
+		
+	 }
 	}
 
 

@@ -5,31 +5,63 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.car.model.mapper.CarMapper">
-
+	<resultMap type="Car" id="carMap">
+		<id property="carindex" column="carindex" />
+		<result property="model" column="model" />
+		<result property="regdate" column="regdate" />
+		<result property="carno" column="carno" />
+		<result property="totaldistance" column="totaldistance" />
+		<result property="totaloutcome" column="totaloutcome" />
+		<result property="deleted" column="deleted" />
+		
+		<collection property="memberno" column="memberno"
+			select="selectCarByMemberno"  />
+	</resultMap>
+	
+	
 	<sql id="selectDefault">
-		SELECT model, regdate, carno, totaldistance, delet ed
-		FROM
-		Car
+		SELECT model, regdate, carno, totaldistance, totaloutcome, deleted
+		FROM Car
 	</sql>
 
-	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
-		keyProperty="carindex" keyColumn="carindex">
+	<insert id="insertCar" parameterType="Car" >
 		INSERT INTO car
-		(historyno, model,
-		regdate, carno, totaldistance, deleted)
+		(model,	carno, regdate, memberno)
 		VALUES
-		(#{historyno}, #{model},
-		#{regdate}, #{carno}, #{totaldistance}, 1, 0)
+		(#{model}, #{carno}, #{regdate}, #{memberno})
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *
 		FROM Car
 	</select>
-	<select id="selectCarByCarno" parameterType="int" resultType="Car">
+	<select id="selectAllCarByCarno" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE carno = #{carno}
+		WHERE memberNo = #{memberNo}
 	</select>
+	<select id="selectCarnoByCarindex" parameterType="int" resultType="Car">
+		<include refid="selectDefault" />
+		WHERE carindex = #{carindex}
+	</select>
+	
+	<update id="updateCar" parameterType="Car">
+		UPDATE Car
+		SET  (model = #{model}, regdate = #{regdate}, carno = #{carno}, totaldistance = #{totaldistance}, totaloutcome = #{ totaloutcome})
+		WHERE carindex = #{carindex}
+		
+	</update>
+	<update id="deleteCar" parameterType="int">
+		UPDATE Car SET deleted = '1' WHERE carindex = #{carindex}
+	</update>
+	
+	<select id="selectCarByMemberno"
+		parameterType="int" resultMap="carMap">
+			select Car.*
+			from Member
+			join Car
+			on Member.memberno=Car.memberno;
+	
 
+	</select>
 
 
 </mapper>

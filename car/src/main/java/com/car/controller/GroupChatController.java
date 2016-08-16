@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.car.model.dto.GroupChat;
 import com.car.model.service.GroupChatService;
+import com.car.model.service.GroupScheduleService;
+import com.car.model.service.ReservationService;
 import com.google.gson.Gson;
 
 
@@ -28,6 +30,15 @@ public class GroupChatController {
 	@Autowired
 	@Qualifier("groupChatService")
 	private GroupChatService groupChatService;
+
+	
+	@Autowired
+	@Qualifier("groupScheduleService")
+	private GroupScheduleService groupScheduleService;
+	
+	@Autowired
+	@Qualifier("reservationService")
+	private ReservationService reservationService;
 
 	
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
@@ -65,7 +76,7 @@ public class GroupChatController {
 				writer = resp.getWriter();
 				String json = gson.toJson(groupChat);
 				
-				groupChatService.createGroupChat(groupChat);
+				groupChatService.insertGroupChat(groupChat);
 				writer.println(json);
 				
 			} catch (IOException e) {
@@ -90,7 +101,7 @@ public class GroupChatController {
 				writer = resp.getWriter();
 				String json = gson.toJson(groupChat);
 				
-				groupChatService.createGroupChat(groupChat);
+				groupChatService.insertGroupChat(groupChat);
 				writer.println(json);
 				
 			} catch (IOException e) {

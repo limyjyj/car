@@ -1,5 +1,7 @@
 package com.car.model.dto;
 
+import java.util.Date;
+
 public class GroupSchedule {
 
 	int scheduleNo;
@@ -7,7 +9,11 @@ public class GroupSchedule {
 	String title;
 	String content;
 
-	
+	Date startDate;
+	Date endDate;
+	int duration;
+	int term;
+
 	public int getScheduleNo() {
 		return scheduleNo;
 	}
@@ -38,6 +44,38 @@ public class GroupSchedule {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public int getTerm() {
+		return term;
+	}
+
+	public void setTerm(int term) {
+		this.term = term;
 	}
 
 }

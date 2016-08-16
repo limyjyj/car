@@ -18,9 +18,9 @@ public class MysqlGroupChatDao implements GroupChatDao {
 	private GroupChatMapper groupChatMapper;
 
 	@Override
-	public void createGroupChat(GroupChat groupChat) {
+	public void insertGroupChat(GroupChat groupChat) {
 		
-		groupChatMapper.createGroupChat(groupChat);
+		groupChatMapper.insertGroupChat(groupChat);
 		
 	}
 
