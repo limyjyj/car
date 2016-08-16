@@ -36,6 +36,29 @@
 		<result property="content" column="content" />
 	
 	</resultMap>
+	
+	
+<resultMap type="Member" id="memberMap">
+		<id property="memberNo" column="memberno" />
+		<result property="passWd" column="passwd" />
+		<result property="name" column="name" />
+		<result property="gender" column="gender" />
+		<result property="phone" column="phone" />
+		<result property="memberId" column="memberid" />
+		<result property="likes" column="likes" />
+		<result property="deleted" column="deleted" />
+		<result property="regDate" column="regdate" />
+		
+	</resultMap>
+	
+
+	
+	<insert id="insertConfirm" parameterType="Member" >
+		INSERT INTO Confirm
+		(memberNo, reservationNo)
+		VALUES
+		( #{memberNo}, #{reservationNo})
+	</insert>
 
 
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
@@ -52,20 +75,15 @@
 		SELECT *
 		FROM
 		Reservation
-		WHERE deleted
-		= '0'
-		
-		
-		SELECT *
-		FROM Reservation ORDER BY reservationno desc
-		LIMIT #{start}, #{count} 
+		WHERE deleted ='0'
+	
 </select>
 	
 	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
 		SELECT
 		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content
 		FROM Reservation
-		WHERE reservationNo =
+		WHERE reservationno =
 		#{reservationNo} AND deleted
 		= '0'
 	</select>
@@ -82,10 +100,9 @@
 	</update>
 	
 	<select id="selectReservationSearchType" parameterType="hashMap" resultMap="reservationMap2">
-		select *
-		
-		From (select * from Reservation where reservationkind = #{reservationSearch})  
-		where idx >= #{start} AND idx <![CDATA[<]]> #{last}
+	SELECT *
+		FROM Reservation 
+		WHERE frequency =#{frequency}
 	</select>
 	
 	<update id="deleteReservation" parameterType="int">

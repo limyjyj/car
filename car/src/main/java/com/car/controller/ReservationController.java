@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.car.model.dto.Confirm;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 import com.car.model.service.ReservationService;
@@ -58,6 +59,13 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	public ModelAndView showReservationList(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
+		
+		
+		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
+				if (request.getSession().getAttribute("loginuser") == null) {
+					mav.setViewName("redirect:/account/login.action?" + "returnuri=" + request.getRequestURI());
+					return mav;
+				}
 
 		int currentPage = 1;
 		int pageSize = 10;
@@ -88,7 +96,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		
 		
 		mav.setViewName("reservation/list");
-	//	mav.addObject("reservations", reservations);
+		mav.addObject("reservations", reservations);
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
 			
@@ -153,6 +161,27 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			return mav;
 
+		}
+		
+		
+	//그룹 리스트 보기	
+		@RequestMapping(value = "confirm.action", method = RequestMethod.GET)
+		public ModelAndView showConfirmList(HttpServletRequest request) {
+
+			ModelAndView mav = new ModelAndView();
+			
+			// 데이터베이스에서 데이터 조회
+					//	List<Reservation> reservations = reservationService.selectReservationList();								
+//						mav.setViewName("reservation/list");
+//						mav.addObject("reservations", reservations);
+					
+		//	List<Confirm> confirms = reservationService.selectReservationList();
+		
+			mav.setViewName("reservation/confirmlist");
+		//	mav.addObject("confirms", confirms);
+		
+				
+			return mav;
 		}
 
 	

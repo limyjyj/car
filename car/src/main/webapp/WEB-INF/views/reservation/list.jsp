@@ -56,12 +56,13 @@ $(document).ready(function (){
 					<th style="width: 120px">시작날짜</th>
 					<th style="width: 120px">끝날짜</th>
 					<th style="width: 120px">인원수</th>
+					<th style="width: 120px">신청여부</th>
 				</tr>
 			</thead>	
 				
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
-						<td>${ sessionScope.loginuser.memberId}</td>
+						<td>${ b.memberNo}</td>
 						
 						<td>${ b.frequency }</td>
 						
@@ -69,7 +70,7 @@ $(document).ready(function (){
 						<td>
 						
 						  <a href='detail.action?reservationno=${ b.reservationNo }&pageno=${ pageno }'>
-						        ${b.departure }
+						    ${b.departure }
 						  </a>	
 						</td>	
 						
@@ -88,7 +89,71 @@ $(document).ready(function (){
 						<td>
 							${ b.totalMember}
 						</td>
-					
+					     <td>
+					     
+					    <c:choose>
+					<c:when test="${ loginuser.memberNo eq b.memberNo }">						
+						
+						<input id='submitbutton' type="submit" value="수락하기"
+						style="height: 25px" />  
+					</c:when>
+					<c:otherwise>
+						<input id='submitbutton' type="submit" value="신청하기" 
+						style="height: 25px" />
+						
+						<!-- Button trigger modal -->
+						<button type="button" data-toggle="modal" data-target="#myModal">
+									신청하기
+			</button>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">그룹보기</h4>
+						      </div>
+						      <div class="modal-body">
+						 
+						 <table class="btable">
+			<thead>
+				<tr>
+					<th style="width: 100px">MEMBERNO</th>
+					<th style="width: 100px">RESERVATIONNO</th>
+					<th style="width: 100px">NAME</th>
+					<th style="width: 150px">GENDER</th>
+				</tr>
+			</thead>	
+				
+				<c:forEach var="c" items="${ confirm }">		
+					<tr>
+						<td>${ c.memberNo}</td>
+						
+						<td>${ c.reservationNo }</td>
+						
+						<td>${ c.name }</td>
+						
+						<td> ${ c.gender }	</td>	
+						
+					</tr>
+				</c:forEach>				
+		</table>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						        
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+						
+					</c:otherwise>
+				</c:choose>
+						
+						
+						</td>
 						
 					</tr>
 				</c:forEach>				
@@ -96,7 +161,7 @@ $(document).ready(function (){
 		
 		<br/>
 		</form>
-		<br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/>
 		<div class="bbtn">
 			<a href='writeform.action'>글쓰기</a> <br /> <br />
 			${ pager } 

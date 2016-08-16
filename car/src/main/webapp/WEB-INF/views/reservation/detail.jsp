@@ -343,7 +343,7 @@ function getTimeHTML(distance) {
 				<tr>
 		     		<th>작성자</th>
 					<td >
-					${ sessionScope.loginuser.memberId }
+					${loginuser.memberId }
 					</td>
 				</tr>
 				
@@ -382,10 +382,9 @@ function getTimeHTML(distance) {
 					<c:when test="${ loginuser.memberNo eq reservation.memberNo }">						
 						<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
 						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
-						<a href='#'>수락하기</a>
+						<a href='list.action?pageno=${pageno}'>뒤로가기</a>
 					</c:when>
 					<c:otherwise>
-						<a href='/car/reservation/write.action?reservationno=${ reservation.reservationNo }'>신청하기</a>&nbsp;&nbsp;
 						<a href='list.action?pageno=${pageno}'>뒤로가기</a>
 					</c:otherwise>
 				</c:choose>
