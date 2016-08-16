@@ -8,7 +8,6 @@ import com.car.model.dto.Reservation;
 
 
 
-
 public interface ReservationDao {
 
 	void insertReservation(Reservation reservation);
@@ -16,6 +15,7 @@ public interface ReservationDao {
 	List<Reservation> selectReservationList();
 
 	List<Reservation> selectReservationList2(int start, int last);
+
 
 	Reservation selectReservationByReservationNo(int number);
 
