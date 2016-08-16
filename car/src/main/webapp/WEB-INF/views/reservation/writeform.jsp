@@ -70,14 +70,14 @@
 							<tr>
 								<th>출발</th>
 								<td>
-									<input class="form-control" type="text" name="departure"
+									<input  type="text" name="departure"
 									style="height: 20px; width: 220px;" />
 								</td>
 							</tr>
 							<tr>
 								<th>도착</th>
 								<td>
-									<input class="form-control" type="text" name="arrival"
+									<input  type="text" name="arrival"
 									style="height: 20px; width: 220px;" />
 								</td>
 							</tr>
@@ -95,13 +95,13 @@
 							
 							 <tr>
 								<th>인원수</th>
-								<td><input class="form-control" type="text" name="totalMember"
+								<td><input  type="text" name="totalMember"
 										style="width: 100px" /></td>
 							</tr>
 							<tr>
 								<th>내용</th>
 								<td>
-									<textarea class="form-control" name="content" cols="35" rows="15" style="font-size: small;"></textarea>
+									<textarea name="content" cols="35" rows="15" style="font-size: small;"></textarea>
 								</td>
 							</tr>
 						</table>
@@ -113,11 +113,12 @@
 							<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->
 					<!-- 	<!-- <!-- 	<a href="javascript:document.forms[0].submit();">글쓰기</a> 
 								&nbsp;&nbsp; 
-							<a href="/car/reservation/list.action">목록보기</a>  --> --> -->
+							<a href="/car/reservation/list.action">목록보기</a>  --> 
 							
 							<input id='submitbutton' type="submit" value="등록"
 						style="height: 25px" /> <input type="button" value="취소"
 						style="height: 25px" onclick="location.href='/car/reservation/list.action';" />
+						
 							
 							
 						</div>

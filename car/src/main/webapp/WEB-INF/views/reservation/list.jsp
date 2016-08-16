@@ -12,8 +12,8 @@
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
 <script>
 $(document).ready(function (){
-		$("#boardsearch").change(function (event) {
-			$("#boardform").submit();
+		$("#reservationsearch").change(function (event) {
+			$("#reservationform").submit();
 		});
 		
 })
@@ -28,14 +28,13 @@ $(document).ready(function (){
 		</div>
 		<br/><br/>	
 		
-		<form id="boardform" action="list.action" method="post">		
+		<form id="reservationform" action="list.action" method="post">		
 			<table class="bsearch">					
 				<tr>		
 					<td>					
-						<select id="boardfind" name="boardfind">
-							<option>type</option>
-						</select>							
-							
+			
+					 	<input type="hidden" name="pageno2" value=${ pageno } />  
+							<input type="hidden" name="reservationkind" value=${ b.reservationKind } />
 						<select	id="reservationsearch" name="reservationsearch">
 							<option >선택</option>
 							<option value="실시간">실시간</option>					

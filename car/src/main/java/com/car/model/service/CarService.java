@@ -9,5 +9,9 @@ public interface CarService {
 	void insertCar(Car car);
 	List<Car> selectCars();
 	
-	Car selectCarByCarno(int carno);
+	List<Car> selectAllCarByCarno(int memberNo);
+	Car selectCarnoByCarindex(int carindex);
+
+	void updateCar(Car car);
+	void deleteCar(Car car);
 }

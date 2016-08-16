@@ -73,8 +73,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		int startRow = (currentPage - 1) * pageSize + 1;
 		
 		// 데이터베이스에서 데이터 조회
-					List<Reservation> reservations = reservationService.selectReservationList();
-					
+					List<Reservation> reservations = reservationService.selectReservationList();					
 					
 
 					for( Reservation sb : reservations)
@@ -84,6 +83,8 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 					mav.setViewName("reservation/list");
 					mav.addObject("reservations", reservations);
 				
+	//	List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+		dataCount = reservationService.selectReservationCount();
 
 //		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		

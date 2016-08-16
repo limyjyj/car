@@ -7,25 +7,31 @@
 <mapper namespace="com.car.model.mapper.FuelMapper">
 
 	<sql id="selectDefault">
-		SELECT model, regdate, carno, totaldistance, delet	ed
-		FROM Car
+		SELECT fuelNo, type, perLiter, payment, liter, regDate, location, content, historyNo
+		FROM Fuel
 	</sql>
 
-	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
-		keyProperty="carindex" keyColumn="carindex">
-		INSERT INTO car
-		(historyno, model, regdate, carno, totaldistance, deleted)
+	<insert id="insertFuel" parameterType="Fuel">
+		INSERT INTO Fuel
+		(historyNo, type, perLiter, payment, liter, regDate, location, content)
 		VALUES
-		(#{historyno}, #{model}, #{regdate}, #{carno}, #{totaldistance}, 1, 0)
+        (#{historyNo}, #{type}, #{perLiter}, #{payment}, #{liter}, #{regDate}, #{location}, #{content});
 	</insert>
-	<select id="selectCars" resultType="Car">
+
+	<select id="selectFuelList" resultType="Fuel">
 		SELECT *
-		FROM Car
+		FROM Fuel
 	</select>
-	<select id="selectCarByCarno" 
-		parameterType="int" resultType="Car">			
+
+	<select id="selectFuelByFuelNo" parameterType="int" resultType="Fuel">
 		<include refid="selectDefault" />
-		WHERE carno = #{carno}
+		WHERE fuelNo = #{fuelNo}
+	</select>
+
+	<select id="updateFuel" parameterType="Fuel">
+		UPDATE Fuel
+		SET type = #{type}, perLiter = #{perLiter}, payment = #{payment}, liter = #{liter}, regDate = #{regDate}, location = #{location}, content = #{content} 
+		WHERE fuelNo = #{fuelNo}
 	</select>
 	
 	

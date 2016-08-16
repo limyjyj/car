@@ -10,10 +10,11 @@ import com.car.model.dto.Reservation;
 public interface ReservationMapper {
 	
 	void insertReservation(Reservation reservation);
-	List<Reservation> selectReservationList();
-
-	List<Reservation> selectReservationList(HashMap<String, Object> map);
 	
+	List<Reservation> selectReservationList();
+	
+
+	List<Reservation> selectReservationList2(int start, int last);
 	
 	Reservation selectReservationByReservationNo(int reservationNo);
 	    
@@ -21,4 +22,7 @@ public interface ReservationMapper {
 		
 	void updateReservationReadCount(int number);
 
+	void updateReservation(Reservation reservation);
+	
+	void deleteReservation(int reservationNo);
 }
