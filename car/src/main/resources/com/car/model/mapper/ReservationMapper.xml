@@ -21,6 +21,44 @@
 		<result property="content" column="content" />
 	
 	</resultMap>
+	
+	<resultMap type="Reservation" id="reservationMap2">
+		<id property="reservationNo" column="reservationno" />
+		<result property="type" column="tpye" />
+		<result property="purpose" column="purpose" />
+		<result property="departure" column="departure" />
+		<result property="arrival" column="arrival" />
+		<result property="frequency" column="frequency" />
+		<result property="startDate" column="startdate" />
+		<result property="endDate" column="enddate" />
+		<result property="totalMemeber" column="totalmemeber" />
+		<result property="endDate" column="enddate" />
+		<result property="content" column="content" />
+	
+	</resultMap>
+	
+	
+<resultMap type="Member" id="memberMap">
+		<id property="memberNo" column="memberno" />
+		<result property="passWd" column="passwd" />
+		<result property="name" column="name" />
+		<result property="gender" column="gender" />
+		<result property="phone" column="phone" />
+		<result property="memberId" column="memberid" />
+		<result property="likes" column="likes" />
+		<result property="deleted" column="deleted" />
+		<result property="regDate" column="regdate" />
+		
+	</resultMap>
+	
+
+	
+	<insert id="insertConfirm" parameterType="Member" >
+		INSERT INTO Confirm
+		(memberNo, reservationNo)
+		VALUES
+		( #{memberNo}, #{reservationNo})
+	</insert>
 
 
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
@@ -37,16 +75,15 @@
 		SELECT *
 		FROM
 		Reservation
-		WHERE deleted
-		= '0'
-		
+		WHERE deleted ='0'
+	
 </select>
 	
 	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
 		SELECT
 		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content
 		FROM Reservation
-		WHERE reservationNo =
+		WHERE reservationno =
 		#{reservationNo} AND deleted
 		= '0'
 	</select>
@@ -62,6 +99,11 @@
 	WHERE reservationNo = #{reservationNo}
 	</update>
 	
+	<select id="selectReservationSearchType" parameterType="hashMap" resultMap="reservationMap2">
+	SELECT *
+		FROM Reservation 
+		WHERE frequency =#{frequency}
+	</select>
 	
 	<update id="deleteReservation" parameterType="int">
 	UPDATE Reservation SET deleted

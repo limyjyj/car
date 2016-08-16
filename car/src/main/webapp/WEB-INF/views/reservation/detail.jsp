@@ -345,7 +345,7 @@ function getTimeHTML(distance) {
 				<tr>
 		     		<th>작성자</th>
 					<td >
-					${ sessionScope.loginuser.memberId }
+					${loginuser.memberId }
 					</td>
 				</tr>
 				
@@ -384,13 +384,14 @@ function getTimeHTML(distance) {
 					<c:when test="${ loginuser.memberNo eq reservation.memberNo }">						
 						<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
 						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
+						<a href='list.action?pageno=${pageno}'>뒤로가기</a>
 					</c:when>
 					<c:otherwise>
 						작성자가 자기 글에 댓글을 쓸 수 없다면 여기에 댓글 링크 만들기
 					</c:otherwise>
 				</c:choose>
 					
-					<a href='list.action?pageno=${ pageno }'>목록보기</a>
+	
 			</div> --%>
 			
 			<div class="buttons">

@@ -42,7 +42,7 @@ public class OutcomeController {
 	
 	// 입력
 	@RequestMapping(value = "write.action", method = RequestMethod.POST)
-	public void writePost(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
+	public String writePost(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
 
 		System.out.println("in write, post");
 
@@ -66,35 +66,38 @@ public class OutcomeController {
 				writer.println(json);
 				outcomeService.insertOutcome(outcome);
 				
-				
 				System.out.println(json);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		return "redirect:/carhistory/list.action";
+
 	}
 
-	@RequestMapping(value = "write.action", method = RequestMethod.GET)
-	public void writeGet(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
-				
-		System.out.println("in register, get");
-
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-				
-		PrintWriter writer;
-		if (outcome != null) {
-			try {
-				writer = resp.getWriter();
-				resp.setContentType("text/plain;charset=utf-8");
-				String json = gson.toJson(outcome);
-								
-				outcomeService.insertOutcome(outcome);
-				
-				writer.println(json);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	@RequestMapping(value = "writeform.action", method = RequestMethod.GET)
+	public String writeGet(HttpServletRequest req, HttpServletResponse resp, Outcome outcome) {
+		return "outcome/writeform";
+		
+//		System.out.println("in register, get");
+//
+//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//				
+//		PrintWriter writer;
+//		if (outcome != null) {
+//			try {
+//				writer = resp.getWriter();
+//				resp.setContentType("text/plain;charset=utf-8");
+//				String json = gson.toJson(outcome);
+//								
+//				outcomeService.insertOutcome(outcome);
+//				
+//				writer.println(json);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 
 	// 출력

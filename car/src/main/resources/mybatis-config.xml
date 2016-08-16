@@ -24,6 +24,7 @@
 		<typeAlias type="com.car.model.dto.Reservation" alias="Reservation"/>
 		<typeAlias type="com.car.model.dto.Outcome" alias="Outcome"/>
 		<typeAlias type="com.car.model.dto.Fuel" alias="Fuel"/>
+		<typeAlias type="com.car.model.dto.Board" alias="Board"/>		
 	</typeAliases>
 
 	<environments default="development">
@@ -50,9 +51,11 @@
 		<mapper resource="com/car/model/mapper/CarMapper.xml" />
 		<mapper resource="com/car/model/mapper/CarhistoryMapper.xml" />
 		<mapper resource="com/car/model/mapper/GroupChatMapper.xml" />
+		<mapper resource="com/car/model/mapper/GroupScheduleMapper.xml" />
 		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
 		<mapper resource="com/car/model/mapper/OutcomeMapper.xml" />
 		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
+		<mapper resource="com/car/model/mapper/BoardMapper.xml" />
 	</mappers>
 
 </configuration>

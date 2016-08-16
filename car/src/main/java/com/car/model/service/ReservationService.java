@@ -14,13 +14,14 @@ public interface ReservationService {
 	
 	List<Reservation> selectReservationList2(int start, int last);
 	
+	
 	Reservation selectReservationByReservationNo(int reservationNo);
 	
-    int selectReservationCount();
-	
-	void updateReservationReadCount(int number);
+   int selectReservationCount();
 	
 	void updateReservation(Reservation reservation);
 	
 	void deleteReservation(int reservationNo);
+
+	
 }

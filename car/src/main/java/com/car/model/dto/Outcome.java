@@ -11,6 +11,7 @@ public class Outcome {
 	private Date regDate;	//Datr형식으로 받기
 	private String location;//지출장소
 	private String content;	//내용
+	
 	public int getOutcomeNo() {
 		return outcomeNo;
 	}

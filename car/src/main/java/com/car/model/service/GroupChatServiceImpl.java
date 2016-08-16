@@ -18,9 +18,9 @@ public class GroupChatServiceImpl implements GroupChatService {
 	private MysqlGroupChatDao mysqlGroupChatDao;
 
 	@Override
-	public void createGroupChat(GroupChat groupChat) {
+	public void insertGroupChat(GroupChat groupChat) {
 		
-		mysqlGroupChatDao.createGroupChat(groupChat);
+		mysqlGroupChatDao.insertGroupChat(groupChat);
 		
 	}
 

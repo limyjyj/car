@@ -11,8 +11,6 @@
 <head>
 	<meta charset="utf-8" />
 	<title>차 정보 수정</title>
-	<link href="/car/resources/css/business-casual.css"
-	rel="stylesheet">
 	<!-- <link href="/mysbl-spring/resources/css/bootstrap.min.css" rel="stylesheet"> -->	
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>	
@@ -20,8 +18,15 @@
 <body>
 
 	<div id="pageContainer">
-	
+
+<<<<<<< HEAD
 		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+=======
+	
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+
 		
 		<div id="inputmain">
 		        <div class="inputsubtitle"><h2 align="center">차정보 수정</h2></div>

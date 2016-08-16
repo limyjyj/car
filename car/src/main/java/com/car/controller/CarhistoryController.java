@@ -1,5 +1,6 @@
 package com.car.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ import com.car.model.dto.Carhistory;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/carhistory/")
@@ -41,6 +44,8 @@ public class CarhistoryController {
 		String url = "list.action";
 		Member member = (Member)session.getAttribute("loginuser");
 		
+	
+		 
 		
 		//데이터베이스에서 데이터 조회
 		List<Carhistory> historys = carhistoryService.selectCarByCarindex(member.getMemberNo());
