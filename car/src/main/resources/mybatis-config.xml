@@ -54,11 +54,8 @@
 		<mapper resource="com/car/model/mapper/GroupScheduleMapper.xml" />
 		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
 		<mapper resource="com/car/model/mapper/OutcomeMapper.xml" />
-<<<<<<< HEAD
 		<mapper resource="com/car/model/mapper/BoardMapper.xml" />
-=======
 		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 	</mappers>
 
 </configuration>

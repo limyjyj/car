@@ -26,9 +26,9 @@
 
 	<insert id="insertCar" parameterType="Car" >
 		INSERT INTO Car
-		( model, carno, regdate, memberno)
+		( model, carno, regdate, totaldistance, memberno)
 		VALUES
-		( #{model}, #{carno}, #{regdate}, #{memberNo})
+		( #{model}, #{carno}, #{regdate}, #{totaldistance}, #{memberNo})
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *

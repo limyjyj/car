@@ -48,10 +48,6 @@
 			        </div>
 			        
 			        <div class="form-group">
-     		     	  <label for="inputDistance">총지출금액</label>
-		              <form:input type="text" path="totaloutcome" class="form-control" placeholder="총지출금액"/>
-			        </div>
-			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
 		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
 			        </div>	       
@@ -59,9 +55,11 @@
 		       <br><br>		       
 		     	<div class="buttons">
 		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
-		        	<a href="javascript:document.forms[0].submit();">수정</a>
-		        	&nbsp;&nbsp;
-		        	<a href='list.action'>취소</a>
+		        	
+		        	<input type="submit" value="수정" style="height: 40px" /> 
+		        	<input id="cancel" type="button" value="취소" style="height: 40px"
+						onclick="location.href='view.action?carno=${ car.carno }';" />
+		        	
 		        </div>
 		        </form:form>
 		    </div>
