@@ -29,20 +29,19 @@ public class FuelController {
 
 	@InitBinder
 	public void binder(WebDataBinder binder) {
-	    binder.registerCustomEditor(Date.class, 
-	            new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
 	}
-	
+
 	@Autowired
 	@Qualifier("fuelService")
 	private FuelService fuelService;
 
 	@RequestMapping(value = "write.action", method = RequestMethod.POST)
-	public void writePost(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
+	public String writePost(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
 
 		System.out.println("in write, post");
 
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 		PrintWriter writer;
 		if (fuel != null) {
@@ -54,35 +53,37 @@ public class FuelController {
 				String json = gson.toJson(fuel);
 				writer.println(json);
 				fuelService.insertFuel(fuel);
+
 				System.out.println(json);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
+		return "redirect:/carhistory/list.action";
 	}
 
-	@RequestMapping(value = "write.action", method = RequestMethod.GET)
-	public void writeGet(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
-				
-		System.out.println("in register, get");
+	@RequestMapping(value = "writeform.action", method = RequestMethod.GET)
+	public String writeGet(HttpServletRequest req, HttpServletResponse resp, Fuel fuel) {
+		return "fure/writeform";
 
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-				
-		PrintWriter writer;
-		if (fuel != null) {
-			try {
-				writer = resp.getWriter();
-				resp.setContentType("text/plain;charset=utf-8");
-				String json = gson.toJson(fuel);
-				
-				fuelService.insertFuel(fuel);
-				
-				writer.println(json);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		// System.out.println("in register, get");
+		//
+		// Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		//
+		// PrintWriter writer;
+		// if (fuel != null) {
+		// try {
+		// writer = resp.getWriter();
+		// resp.setContentType("text/plain;charset=utf-8");
+		// String json = gson.toJson(fuel);
+		//
+		// fuelService.insertFuel(fuel);
+		//
+		// writer.println(json);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// }
 	}
 
 	// 출력
