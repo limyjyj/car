@@ -40,7 +40,7 @@
 		WHERE memberNo = #{memberNo}
 	</select>
 	
-	<select id="selectCarByCarno" parameterType="int" resultType="Car">
+	<select id="selectCarByCarno" parameterType="String" resultType="Car">
 		<include refid="selectDefault" />
 		WHERE carno = #{carno}
 	</select>

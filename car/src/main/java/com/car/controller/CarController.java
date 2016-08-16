@@ -1,6 +1,7 @@
 package com.car.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,13 +87,21 @@ public class CarController {
 	
 
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public ModelAndView viewList(@ModelAttribute Car car, int carno) {
-		
+	public ModelAndView viewList(String carno, HttpSession session) {
+		System.out.println(carno);
 		ModelAndView mav = new ModelAndView();
+		List<Car> cars = null;
+		if(carno == null || carno.length()==0){
+			Member member = (Member)session.getAttribute("loginuser");
+			cars = carService.selectAllCarByCarno(member.getMemberNo());
+		}else{
+			Car car = carService.selectCarByCarno(carno);
+			cars = new ArrayList<>();
+			cars.add(car);
+		}
 		
-		car = carService.selectCarByCarno(carno);
-		mav.setViewName("car/list");
-		mav.addObject("car", car);
+		mav.setViewName("car/view");
+		mav.addObject("cars", cars);
 		
 		return mav;
 
