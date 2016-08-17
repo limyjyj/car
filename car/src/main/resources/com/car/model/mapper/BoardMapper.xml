@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.car.model.mapper.BoardMapper">
+
+	<resultMap type="Board" id="BoardMap">
+		<id property="boardNo" column="boardno" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="regDate" column="regdate" />
+		<result property="type" column="type" />
+		<result property="deleted" column="deleted" />
+		<result property="memberno" column="memberno" />
+		<collection property="comments" column="boardno" select="selectBoardCommentsByBoardNo" />	
+	</resultMap>
+	
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="boardNo" keyColumn="boardno">
+		INSERT INTO Board
+		(
+			, title
+			, memberno
+			, content
+		)
+		VALUES (#{title}, #{memberno}, #{content})
+	</insert>
+	
+	<select id="selectBoardList" parameterType="hashMap" resultMap="BoardMap">
+		SELECT boardno, title, content, memberno, regdate, type, deleted
+		FROM Board ORDER BY boardno desc
+		LIMIT #{start}, #{count} 
+	</select>
+	
+	<select id="selectBoardByBoardNo" parameterType="int" resultMap="BoardMap">
+		SELECT 
+			boardno, title, content, mamberno, regdate, type, deleted
+		FROM Board
+		WHERE boardno = #{boardNo}
+	</select>
+	
+<!-- 	<select id="selectBoardCommentsByBoardNo"
+		parameterType="int" resultType="BoardComment">
+		SELECT commentno, boardno, writer, content, regdate
+		FROM boardcomment
+		WHERE boardno = #{boardNo}
+	</select> -->
+	
+	<select id="selectBoardCount" resultType="int">
+		SELECT COUNT(*) FROM Board
+	</select> 
+
+	<delete id="deleteBoard" parameterType="int">
+		DELETE Board WHERE boardno = #{boardNo}
+	</delete>
+
+	<update id="updateBoard" parameterType="Board">
+		UPDATE Board 
+		SET title = #{title}, content = #{content}  
+		WHERE boardno = #{boardNo}
+	</update>
+	
+</mapper>

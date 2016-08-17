@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.car.model.dto.Confirm;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 import com.car.model.service.ReservationService;
+import com.car.ui.ThePager;
 import com.car.ui.ThePager3;
 import com.car.controller.ReservationController;
 
@@ -57,6 +59,13 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	public ModelAndView showReservationList(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
+		
+		
+		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
+				if (request.getSession().getAttribute("loginuser") == null) {
+					mav.setViewName("redirect:/account/login.action?" + "returnuri=" + request.getRequestURI());
+					return mav;
+				}
 
 		int currentPage = 1;
 		int pageSize = 10;
@@ -73,14 +82,21 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		int startRow = (currentPage - 1) * pageSize + 1;
 		
 		// 데이터베이스에서 데이터 조회
-//		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
-//		dataCount = reservationService.selectReservationCount();
+				//	List<Reservation> reservations = reservationService.selectReservationList();								
+//					mav.setViewName("reservation/list");
+//					mav.addObject("reservations", reservations);
+				
+		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
+		dataCount = reservationService.selectReservationCount();
 
-//		ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
+		//ThePager pager = new ThePager(dataCount, currentPage, pageSize, pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);		
 		
+			
+		
+		
 		mav.setViewName("reservation/list");
-	//	mav.addObject("reservations", reservations);
+		mav.addObject("reservations", reservations);
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
 			
@@ -113,12 +129,12 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			// 요청 정보에서 내용을 표시할 글번호를 읽고 변수에 저장
 			// (없으면 목록으로 이동)	
-			String boardNo = request.getParameter("reservationo");
-			if (boardNo == null || boardNo.length() == 0) {
+			String reservationNo = request.getParameter("reservationno");
+			if (reservationNo == null || reservationNo.length() == 0) {
 				mav.setViewName("redirect:/reservation/list.action");
 				return mav;
 			}
-			int no = Integer.parseInt(boardNo);
+			int no = Integer.parseInt(reservationNo);
 			// 데이터베이스에서 데이터 조회
 			Reservation reservation = reservationService.selectReservationByReservationNo(no);
 			
@@ -130,8 +146,8 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 				return mav;
 			}
 
-			reservationService.updateReservationReadCount(reservation.getReservationNo());
-			reservation.setReservationCount(reservation.getReservationCount() + 1);
+			//reservationService.updateReservationReadCount(reservation.getReservationNo());
+			//reservation.setReservationCount(reservation.getReservationCount() + 1);
 
 			String pageNo = "1";
 			if (request.getParameter("pageno") != null) {
@@ -145,6 +161,27 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			return mav;
 
+		}
+		
+		
+	//그룹 리스트 보기	
+		@RequestMapping(value = "confirm.action", method = RequestMethod.GET)
+		public ModelAndView showConfirmList(HttpServletRequest request) {
+
+			ModelAndView mav = new ModelAndView();
+			
+			// 데이터베이스에서 데이터 조회
+					//	List<Reservation> reservations = reservationService.selectReservationList();								
+//						mav.setViewName("reservation/list");
+//						mav.addObject("reservations", reservations);
+					
+		//	List<Confirm> confirms = reservationService.selectReservationList();
+		
+			mav.setViewName("reservation/confirmlist");
+		//	mav.addObject("confirms", confirms);
+		
+				
+			return mav;
 		}
 
 	

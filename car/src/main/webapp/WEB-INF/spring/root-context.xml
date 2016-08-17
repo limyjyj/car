@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<context:component-scan base-package="com.car.model.dao" />
 	<context:component-scan base-package="com.car.model.dto" />
 	<context:component-scan base-package="com.car.model.service" />
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" 
-			value="com.mysql.jdbc.Driver" />
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://210.16.214.194:3306/car" />
 		<property name="username" value="car" />
-		<property name="password" value="Carcar1!" />			
+		<property name="password" value="Carcar1!" />
 	</bean>
-	
+
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<bean id="sqlSessionFactory" 
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
-	
-	<bean id="sqlSessionTemplate" 
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory" />	
-	</bean>	
-	
-	<!-- 원래는 platformTransactionManager을 사용하는 jdbc를 사용하면 DataSourceTransactionManager를 사용할수 있다  -->
-	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- 원래는 platformTransactionManager을 사용하는 jdbc를 사용하면 DataSourceTransactionManager를 
+		사용할수 있다 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<bean id="txTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+
+	<bean id="txTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
 		<property name="transactionManager" ref="txManager" />
 	</bean>
-	
+
 	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.MemberMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
@@ -57,7 +55,11 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
-	
+	<bean id="groupScheduleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.GroupScheduleMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
 
 	<bean id="groupChatMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.GroupChatMapper" />
@@ -78,6 +80,11 @@
 		<property name="mapperInterface" value="com.car.model.mapper.CarMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.car.model.mapper.BoardMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
 	<bean id="carhistoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.CarhistoryMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
