@@ -3,12 +3,13 @@ package com.car.model.service;
 import java.util.List;
 
 import com.car.model.dto.Board;
+import com.car.model.dto.BoardComent;
 
 public interface BoardService {
 
-	void insertBoard(Board noticeboard);
+	void insertBoard(Board board);
 
-	//int insertReply(NoticeBoard noticeboard);
+	//int insertReply(Board board);
 
 	Board selectBoardByBoardNo(int number);
 
@@ -21,6 +22,34 @@ public interface BoardService {
 	//void updateBoardReadCount(int number);
 
 	int updateBoard(Board board);
+
 	
-	//List<NoticeBoard> selectAllNoticeBoardList();	
+	
+	//----------------------------Review----------------------------------//
+	
+	Board selectReviewByBoardNo(int number);
+
+	List<Board> selectReviewList(int start, int last);
+
+	int getReviewCount();
+
+	int deleteReview(int number);
+
+	//void updateBoardReadCount(int number);
+
+	int updateReview(Board board);
+	
+	
+	//----------------------------Coment----------------------------------//
+	
+	
+	List<BoardComent> selectComentByBoardNo(int BoardNo);
+
+	void insertComent(BoardComent coment);
+
+	void updateComent(BoardComent coment);
+
+	void deleteComent(int comentNo);
+	
+	 
 }

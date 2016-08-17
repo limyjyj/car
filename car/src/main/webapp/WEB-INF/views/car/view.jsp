@@ -7,30 +7,44 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-        	<c:forEach var="car" items="${ cars }">
+
+	 <div>
+	 <c:forEach var="car" items="${ cars }">
+	 
+		<table id="carlist" class="table table-striped"  align="center" width="700px">
+        	
         		<tr style="height:30px" align="center">
-        			<td>멤버</td>
+        			
         			<td>차량정보번호</td>
         			<td>차종</td>
         			<td>차량번호</td>
         			<td>기록시작일</td>
         			<td>총주행거리</td>
         			<td>총지출금액</td>
+        			<td></td>
+        			<td></td>
         		</tr>        	
         	
-        		<tr style="height:30px">
+        		<tr style="height:30px"align="center">
         		
-        			<td>${ car.memberNo }</td>
-        			<td>${ car.carindex }</td>
+        			
+        			<td>${ car.carindex }<input type="hidden" ${ car.memberNo }/></td>
         			<td>${ car.model }</td>
         			<td>${ car.carno }</td>
         			<td><fmt:formatDate value="${ car.regdate }" pattern="yyyy-MM-dd" var="regDate"/>
                       ${ regDate }</td>
         			<td>${ car.totaldistance }</td>
         			<td>${ car.totaloutcome }</td>
-   
+   					<td><a href="update.action?carindex=${ car.carindex }">수정</a></td>
+		    
+		        	<td><a href="delete.action?carindex=${ car.carindex }">삭제</a></td>
         		</tr>
+        		
+		        	
+		 	
+        	</table>
+        	 
         	</c:forEach>
-        	
- 
+       </div>
+
 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.car.model.dto.Board;
 import com.car.model.dto.Car;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;
@@ -86,20 +87,21 @@ public class CarController {
 	}
 	
 
+	
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public ModelAndView viewList(String carno, HttpSession session) {
-		System.out.println(carno);
+	public ModelAndView viewList(int carindex, HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
 		List<Car> cars = null;
-		if(carno == null || carno.length()==0){
+		if(carindex == 0){
 			Member member = (Member)session.getAttribute("loginuser");
 			cars = carService.selectAllCarByCarno(member.getMemberNo());
 		}else{
-			Car car = carService.selectCarByCarno(carno);
+			Car car = carService.selectCarByCarindex(carindex);
 			cars = new ArrayList<>();
 			cars.add(car);
 		}
-		
+				
 		mav.setViewName("car/view");
 		mav.addObject("cars", cars);
 		
@@ -108,10 +110,21 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
-	public String updateForm(
-			@ModelAttribute Car car) {
-		return "car/editform";
+	public ModelAndView updateForm(int carindex) {
+		
+		ModelAndView mav = new ModelAndView();
+		
 
+		Car car = carService.selectCarnoByCarindex(carindex);
+		
+		if (car == null) {
+			mav.setViewName("redirect:/car/list.action");
+			return mav;
+		}
+				
+		mav.addObject("car", car);
+		mav.setViewName("car/editform");
+		return mav;
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
@@ -139,6 +152,13 @@ public class CarController {
 		return "redirect:/car/list.action";
 	}
 	
+	@RequestMapping(value = "graph.action", method = RequestMethod.GET)
+	public String graph(@ModelAttribute @Valid Car car) {
+		
+
+		return "car/graph";
+
+	}
 
 	
 }

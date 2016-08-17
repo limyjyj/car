@@ -10,7 +10,7 @@
 
 	<sql id="selectDefault">
 		SELECT scheduleno, chatno, title, content, startdate, enddate, duration, term
-		FROM GroupChat
+		FROM GroupSchedule
 	</sql>
 	
 	<!-- 논리적 메서드 만들기 -->

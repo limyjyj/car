@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.car.model.dto.Confirm;
+import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
 import com.car.model.mapper.ReservationMapper;
@@ -73,6 +75,27 @@ public class MysqlReservationDao implements ReservationDao {
 	@Override
 	public void deleteReservation(int reservationNo) {
 		reservationMapper.deleteReservation(reservationNo);
+		
+	}
+
+	@Override
+	public void insertConfirm(Confirm confirm) {
+		reservationMapper.insertConfirm(confirm);
+		
+	}
+
+	@Override
+	public List<Confirm> selectConfirmList() {
+
+		List<Confirm> confirmlist =reservationMapper.selectConfirmList();
+		reservationMapper.selectConfirmList();
+		
+		return confirmlist;
+	}
+
+	@Override
+	public List<Member> selectConfirmListByReservationNo(int reservationNo) {
+		return reservationMapper.selectConfirmListByReservationNo(reservationNo);
 		
 	}
 

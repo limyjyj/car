@@ -4,34 +4,34 @@ import java.util.Date;
 
 public class Fuel {
 
-	private int fuelNo;		//주유번호
-	private int historyNo;	//차계부번호
-	private String type;	//주유형태
+	private int fuelNo;		
+	private String category;
+	private Date regDate;
 	private int perLiter;	//리터당금액
-	private int payment;	//주유금액
 	private int liter;		//주유리터
-	private Date regDate;	//주유날짜 Date형식으로받기
-	private String location;//주유장소
-	private String content;	//메모
+	private int payment;
+	private String location;
+	private String content;
+	private int historyNo;
 	
-	
+
 	public int getFuelNo() {
 		return fuelNo;
 	}
 	public void setFuelNo(int fuelNo) {
 		this.fuelNo = fuelNo;
 	}
-	public int getHistoryNo() {
-		return historyNo;
+	public String getCategory() {
+		return category;
 	}
-	public void setHistoryNo(int historyNo) {
-		this.historyNo = historyNo;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public String getType() {
-		return type;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public int getPerLiter() {
 		return perLiter;
@@ -39,23 +39,17 @@ public class Fuel {
 	public void setPerLiter(int perLiter) {
 		this.perLiter = perLiter;
 	}
-	public int getPayment() {
-		return payment;
-	}
-	public void setPayment(int payment) {
-		this.payment = payment;
-	}
 	public int getLiter() {
 		return liter;
 	}
 	public void setLiter(int liter) {
 		this.liter = liter;
 	}
-	public Date getRegDate() {
-		return regDate;
+	public int getPayment() {
+		return payment;
 	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+	public void setPayment(int payment) {
+		this.payment = payment;
 	}
 	public String getLocation() {
 		return location;
@@ -69,8 +63,12 @@ public class Fuel {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
-	
+	public int getHistoryNo() {
+		return historyNo;
+	}
+	public void setHistoryNo(int historyNo) {
+		this.historyNo = historyNo;
+	}
+		
 	
 }

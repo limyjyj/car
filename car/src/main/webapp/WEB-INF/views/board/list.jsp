@@ -2,13 +2,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
 
+<jsp:include page="/WEB-INF/views/include/head.jsp" />
+<script src="/car/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
 	
 </script>
 
@@ -28,19 +32,22 @@
 
 			<div style="width: 700px; margin: auto;">
 
-				<table style="width: 700px; margin: auto;">
+				<table style="width: 700px; margin: auto;" class="type11">
 					<tr>
-						<th style="text-align: center;">번호</th>
-						<th style="text-align: center;">제목</th>
-						<th style="text-align: center;">작성자</th>
-						<th style="text-align: center;">작성일</th>
+						<th style="text-align: center;" scope="cols">번호</th>
+						<th style="text-align: center;" scope="cols">제목</th>
+						<th style="text-align: center;" scope="cols">작성자</th>
+						<th style="text-align: center;" scope="cols">작성일</th>
 					</tr>
+					<c:forEach var="board" items="${ Boards }"> 
 					<tr>
 						<td>${ board.boardNo }</td>
-						<td>${ board.title }</td>
+						<td><a href='detail.action?boardno=${ board.boardNo }&pageno=${ pageno }'>${ board.title }</a></td>
 						<td>관리자</td>
-						<td>${ board.regdate }</td>
+						<td><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd" var="regDate"/>
+                      ${ regDate }</td>
 					</tr>
+					</c:forEach>
 				</table>
 			</div>
 			<br /> <br />

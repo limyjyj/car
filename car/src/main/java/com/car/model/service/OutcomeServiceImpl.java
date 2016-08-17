@@ -13,7 +13,7 @@ import com.car.model.dto.Outcome;
 public class OutcomeServiceImpl implements OutcomeService {
 
 	@Autowired
-	@Qualifier("oracleOutcomeDao")
+	@Qualifier("mysqlOutcomeDao")
 	private OutcomeDao outcomeDao;
 
 	@Override

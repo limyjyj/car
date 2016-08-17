@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.car.model.dao.ReservationDao;
+import com.car.model.dto.Confirm;
+import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
 
@@ -14,11 +16,13 @@ import com.car.model.dto.Reservation;
 
 
 @Service("reservationService")
+
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	@Qualifier("mysqlReservationDao")
 	private ReservationDao reservationDao;
+	
 
 	
 
@@ -67,6 +71,24 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		 return reservationDao.selectReservationCount();
 	}
+
+	@Override
+	public void insertConfirm(Confirm confirm) {
+		reservationDao.insertConfirm(confirm);
+		
+	}
+
+	@Override
+	public List<Confirm> selectConfirmList() {
+		return reservationDao.selectConfirmList();
+	}
+
+	@Override
+	public List<Member> selectConfirmListByReservationNo(int reservationNo) {
+		return reservationDao.selectConfirmListByReservationNo(reservationNo);
+		
+	}
+
 
 
 	}

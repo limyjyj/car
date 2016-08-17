@@ -1,21 +1,24 @@
 package com.car.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Board {
-	private int boardno;
+	private int boardNo;
 	private String title;
 	private String content;
-	private Date regdate;
+	private Date regDate;
 	private String type;
 	private String deleted;
-	private int memberno;
+	private int memberNo;
 	
-	public int getBoardno() {
-		return boardno;
+	private List<BoardComent> coment;
+	
+	public int getBoardNo() {
+		return boardNo;
 	}
-	public void setBoardno(int boardno) {
-		this.boardno = boardno;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 	public String getTitle() {
 		return title;
@@ -29,11 +32,11 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getType() {
 		return type;
@@ -47,11 +50,19 @@ public class Board {
 	public void setDeleted(String deleted) {
 		this.deleted = deleted;
 	}
-	public int getMemberno() {
-		return memberno;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setMemberno(int memberno) {
-		this.memberno = memberno;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
+	public List<BoardComent> getComent() {
+		return coment;
+	}
+	public void setComent(List<BoardComent> coment) {
+		this.coment = coment;
+	}
+
+	
 	
 }

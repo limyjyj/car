@@ -8,6 +8,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title>공지 등록</title>
+	<script src="/car/resources/js/bootstrap.min.js"></script>
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 </head>
 <body>
 
@@ -15,9 +17,13 @@
 	
 		<c:import url="/WEB-INF/views/include/header.jsp" />
 		
-		<div id="inputmain">
+		<div id="inputmain" style="padding-top: 20px; text-align: center; margin: auto; width: 800px">
 			    
 		        <form:form action="write.action" method="post" modelAttribute="Board"><!-- 상대경로표시 -->
+		       		
+		       		<div>
+		       			<form:input type="hidden" value="Notice" path="type" />
+		       		</div>
 		       		
 		       		<div>
      		     	  <label for="inputTitle">제목</label>
@@ -37,7 +43,7 @@
 
 		       <br><br>
 		        <div class="buttons" align="center">
-						<input type="button" id="submit" value="글등록 " style="height:30px"  />
+						<input type="submit" id="submit" value="글등록 " style="height:30px"  />
 						<input type="button" id="Cancel"
 							value="취소" style="height: 30px" onclick="location.href='/car/board/list.action';"/>
 				</div>				

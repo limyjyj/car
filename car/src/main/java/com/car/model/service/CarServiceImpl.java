@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.car.model.dao.CarDao;
+import com.car.model.dao.CarhistoryDao;
 import com.car.model.dto.Car;
+import com.car.model.dto.Carhistory;
 
 @Service("carService")
 public class CarServiceImpl implements CarService {
@@ -14,6 +16,10 @@ public class CarServiceImpl implements CarService {
 	@Autowired
 	@Qualifier("mysqlCarDao")
 	private CarDao carDao;
+	
+	@Autowired
+	@Qualifier("mysqlCarhistoryDao")
+	private CarhistoryDao carhistoryDao;
 
 	@Override
 	public void insertCar(Car car) {
@@ -21,9 +27,9 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<Car> selectCars() {
-
-		return carDao.selectCars();
+	public List<Car> selectCars(int carindex) {
+		List<Car> car = carDao.selectCars(carindex);
+		return car;
 	}
 
 	@Override
@@ -37,9 +43,9 @@ public class CarServiceImpl implements CarService {
 		return carDao.selectCarnoByCarindex(carindex);
 	}
 	@Override
-	public Car selectCarByCarno(String carno) {
+	public Car selectCarByCarindex(int carindex) {
 
-		return carDao.selectCarByCarno(carno);
+		return carDao.selectCarByCarindex(carindex);
 	}
 	@Override
 	public void updateCar(Car car) {
@@ -48,4 +54,11 @@ public class CarServiceImpl implements CarService {
 	public void deleteCar(Car car) {
 		carDao.deleteCar(car);
 	}
+
+	@Override
+	public List<Car> selectCarindexByMemberno(int memberNo) {
+		return carDao.selectCarindexByMemberno(memberNo);
+	}
+
+	
 }

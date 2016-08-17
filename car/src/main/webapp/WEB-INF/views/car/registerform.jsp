@@ -1,66 +1,70 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@page import="com.car.model.dto.Member"%>
 <%@page import="com.car.model.dto.Car"%>
+<%@page import="com.car.model.dto.Member"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 
 <html>
 <head>
+	<meta charset="utf-8" />
+	<title>차 정보 수정</title>
+	<!-- <link href="/mysbl-spring/resources/css/bootstrap.min.css" rel="stylesheet"> -->	
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>	
 </head>
-
 <body>
+
+	<div id="pageContainer">
+
+	
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<div id="inputcontent">
-		<br /> <br />
+		
 		<div id="inputmain">
-			<div class="inputsubtitle">차 등록</div>
+		        <div class="inputsubtitle"><h2 align="center">차정보 등록</h2></div>
+		        <br>		        
+			    <div class="col-md-6 col-md-offset-3">
+			    
+		        <form:form action="register.action" method="post" modelAttribute="car"><!-- 상대경로표시 -->
+		       		<input type='hidden' name="carindex" 
+		       		value="${ car.carindex }" />
+		       		
+		        	<div class="form-group">
+     		     	  <label for="inputModel">차종</label>
+     		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>
+			        </div>
+			        <div class="form-group">
+     		     	  <label for="inputCarno">차량번호</label>
+		              <form:input type="text" path="carno" class="form-control" placeholder="차량번호"/>
+			        </div>
+		       		
+			        <div class="form-group">
+     		     	  <label for="inputDistance">총주행거리</label>
+		              <form:input type="text" path="totaldistance" class="form-control" placeholder="총주행거리"/>
+			        </div>
+			        
+			      
+			        <div class="form-group">
+     		     	  <label for="inputRegdate">기록시작일</label>
+		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
+			        </div>	       
 
-			<form id="registerform" action="register.action" method="post">
-				<!-- 상대경로표시 -->
-
-				<table>
-					
-					<tr>
-						<th>차종</th>
-						<td><input type="text" id="model" name="model"
-							style="width: 280px" /></td>
-					</tr>
-
-					<tr>
-						<th>차번호</th>
-						<td><input type="text" id="carno" name="carno"
-							style="width: 280px" /></td>
-					</tr>
-					
-					<tr>
-						<th>기록시작일</th>
-						<td><input type="date" id="regdate" name="regdate"
-							style="width: 280px" /></td>
-					</tr>
-					
-
-				</table>
-
-				<div class="buttons">
-
-					<input id='submitbutton' type="submit" value="등록" style="height: 25px" /> 
-					<input type="button" value="취소" style="height: 25px" onclick="location.href='/car/car/list.action';" />
-
-				</div>
-			</form>
+		       <br><br>		       
+		     	<div class="buttons">
+		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
+		        	<a href="javascript:document.forms[0].submit();">등록</a>
+		        	&nbsp;&nbsp;
+		        	<a href='list.action'>취소</a>
+		        </div>
+		        </form:form>
+		    </div>
 		</div>
 
 	</div>
-	<br />
-	<br />
-	<br />
-
-
 
 </body>
 </html>

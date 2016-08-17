@@ -7,12 +7,12 @@ import com.car.model.dto.Carhistory;
 
 public interface CarhistoryMapper {
 
-	void insertCarhistory(Carhistory history);
+	int insertCarhistory(Carhistory carhistory);
 	List<Carhistory> selectAllCarhistory();
 	
 	Carhistory selectCarhistoryByCarno(int carno);
 	Carhistory selectCarhistoryByHistoryno(int historyno);
 	
 	List<Carhistory> selectCarByCarindex(int memberNo);
-	void updateCarhistory(Carhistory history);
+	void updateCarhistory(Carhistory carhistory);
 }

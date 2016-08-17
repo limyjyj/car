@@ -26,9 +26,9 @@
 
 	<insert id="insertCar" parameterType="Car" >
 		INSERT INTO Car
-		( model, carno, regdate, memberno)
+		( model, carno, regdate, totaldistance, memberno)
 		VALUES
-		( #{model}, #{carno}, #{regdate}, #{memberNo})
+		( #{model}, #{carno}, #{regdate}, #{totaldistance}, #{memberNo})
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *
@@ -45,14 +45,14 @@
 		WHERE carno = #{carno}
 	</select>
 	
-	<select id="selectCarnoByCarindex" parameterType="int" resultType="Car">
+	<select id="selectCarByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
 		WHERE carindex = #{carindex}
 	</select>
 	
 	<update id="updateCar" parameterType="Car">
 		UPDATE Car
-		SET  (model = #{model}, regdate = #{regdate}, carno = #{carno}, totaldistance = #{totaldistance}, totaloutcome = #{ totaloutcome})
+		SET  model = #{model}, regdate = #{regdate}, carno = #{carno}, totaldistance = #{totaldistance}
 		WHERE carindex = #{carindex}
 		
 	</update>
@@ -68,6 +68,13 @@
 			on Member.memberNo = Car.memberNo;
 	
 
+	</select>
+
+	<select id="selectCarindexByMemberno"
+		parameterType="int" resultMap="carMap">
+			select carindex
+			from Car
+			where memberNo = #{memberNo}
 	</select>
 
 
