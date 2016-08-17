@@ -24,8 +24,8 @@ public class MysqlCarhistoryDao implements CarhistoryDao {
 	private CarhistoryMapper historyMapper;
 
 	
-	public void insertCarhistory(Carhistory history) {
-		historyMapper.insertCarhistory(history);
+	public void insertCarhistory(Carhistory carhistory) {
+		historyMapper.insertCarhistory(carhistory);
 	}
 	public List<Carhistory> selectAllCarhistory() {
 		
@@ -46,8 +46,8 @@ public class MysqlCarhistoryDao implements CarhistoryDao {
 	}
 	
 	
-	public void updateCarhistory(Carhistory history) {
-		historyMapper.updateCarhistory(history);
+	public void updateCarhistory(Carhistory carhistory) {
+		historyMapper.updateCarhistory(carhistory);
 	}
 
 }

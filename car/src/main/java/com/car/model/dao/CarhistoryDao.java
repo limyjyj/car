@@ -6,7 +6,7 @@ import com.car.model.dto.Carhistory;
 
 public interface CarhistoryDao {
 
-	void insertCarhistory(Carhistory history);
+	void insertCarhistory(Carhistory carhistory);
 	List<Carhistory> selectAllCarhistory();
 	
 	Carhistory selectCarhistoryByCarno(int carno);
@@ -14,5 +14,5 @@ public interface CarhistoryDao {
 	
 	List<Carhistory> selectCarByCarindex(int memberNo);
 
-	void updateCarhistory(Carhistory history);
+	void updateCarhistory(Carhistory carhistory);
 }

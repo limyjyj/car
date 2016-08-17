@@ -16,8 +16,8 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 	private CarhistoryDao carhistoryDao;
 
 	@Override
-	public void insertCarhistory(Carhistory history) {
-		carhistoryDao.insertCarhistory(history);
+	public void insertCarhistory(Carhistory carhistory) {
+		carhistoryDao.insertCarhistory(carhistory);
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 	
 	
 	@Override
-	public void updateCarhistory(Carhistory history) {
-		carhistoryDao.updateCarhistory(history);
+	public void updateCarhistory(Carhistory carhistory) {
+		carhistoryDao.updateCarhistory(carhistory);
 	}
 
 	@Override

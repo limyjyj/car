@@ -7,16 +7,17 @@
 <mapper namespace="com.car.model.mapper.CarhistoryMapper">
 	
 	<resultMap type="Carhistory" id="carhistoryMap">
-		<id property="historyno" column="historyno" />
+		<id property="historyNo" column="historyno" />
 		<result property="category" column="category" />
-		<result property="regdate" column="regdate" />
+		<result property="regDate" column="regdate" />
 		<result property="fee" column="fee" />
 		<result property="liter" column="liter" />
 		<result property="deleted" column="deleted" />
 				
-		<collection property="carno" column="carno"
+		<collection property="carNo" column="carno"
 			select="selectCarByCarindex"  />
 	</resultMap>
+	
 	<resultMap type="Car" id="carMap">
 		<id property="carindex" column="carindex" />
 		<result property="model" column="model" />
@@ -28,16 +29,16 @@
 	</resultMap>
 	
 	<sql id="selectDefault">
-		SELECT historyno, category, regdate, fee, liter, deleted
+		SELECT historyno, carindex, category, regdate, fee, liter, deleted
 		FROM Carhistory
 	</sql>
 
 	<insert id="insertCarhistory" parameterType="String" useGeneratedKeys="true"
 		keyProperty="historyno" keyColumn="historyno">
-		INSERT INTO carhistory
-		(category, regdate, fee, liter)
+		INSERT INTO Carhistory
+		(category, regdate)
 		VALUES
-		(#{category}, #{regdate}, #{fee}, #{liter})
+		(#{category}, #{regdate})
 	</insert>
 	
 	<select id="selectCarhistoryByCarno" 
