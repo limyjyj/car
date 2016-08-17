@@ -32,7 +32,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page-header">
-				<h2>심플한 로그인 폼</h2>
+			
 			</div>
 			<div class="col-md-3">
 				<div class="login-box well">
