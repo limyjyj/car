@@ -32,7 +32,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	}
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/aaa").setViewName("chat");
+		registry.addViewController("/aaa").setViewName("groupchat/groupchat");
 	}
 
 	@Override
@@ -40,28 +40,28 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		registry.addResourceHandler("/resources/**").addResourceLocations("resources/");
 	}
 
-	@Bean
-	public ViewResolver viewResolver() {
-		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-		resolver.setTemplateEngine(templateEngine());
-		return resolver;
-	}
-
-	@Bean
-	public SpringTemplateEngine templateEngine() {
-		SpringTemplateEngine engine = new SpringTemplateEngine();
-		engine.setTemplateResolver(templateResolver());
-		return engine;
-	}
-
-	@Bean
-	public TemplateResolver templateResolver() {
-		ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
-		resolver.setPrefix("/WEB-INF/templates/");
-		resolver.setSuffix(".html");
-		resolver.setTemplateMode("HTML5");
-		resolver.setCacheable(false);
-		return resolver;
-	}
+//	@Bean
+//	public ViewResolver viewResolver() {
+//		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+//		resolver.setTemplateEngine(templateEngine());
+//		return resolver;
+//	}
+//
+//	@Bean
+//	public SpringTemplateEngine templateEngine() {
+//		SpringTemplateEngine engine = new SpringTemplateEngine();
+//		engine.setTemplateResolver(templateResolver());
+//		return engine;
+//	}
+//
+//	@Bean
+//	public TemplateResolver templateResolver() {
+//		ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+//		resolver.setPrefix("/WEB-INF/templates/");
+//		resolver.setSuffix(".html");
+//		resolver.setTemplateMode("HTML5");
+//		resolver.setCacheable(false);
+//		return resolver;
+//	}
 
 }

@@ -24,7 +24,11 @@ $(document).ready(function() {
 				return;
 			}
 			var form = $("#joinChatForm");
-			that.activePollingXhr($.ajax({url : form.attr("action"), type : "GET", data : form.serialize(),cache: false,
+			that.activePollingXhr($.ajax({
+				url : form.attr("action"),
+				type : "GET",
+				data : form.serialize(),
+				cache: false,
 				success : function(messages) {
 					for ( var i = 0; i < messages.length; i++) {
 						that.chatContent(that.chatContent() + messages[i] + "\n");
@@ -45,8 +49,10 @@ $(document).ready(function() {
 		that.postMessage = function() {
 			if (that.message().trim() != '') {
 				var form = $("#postMessageForm");
-				$.ajax({url : form.attr("action"), type : "POST",
-				  data : "message=[" + that.userName() + "] " + $("#postMessageForm input[name=message]").val(),
+				$.ajax({
+					url : form.attr("action"), 
+					type : "POST",
+					data : "message=[" + that.userName() + "] " + $("#postMessageForm input[name=message]").val(),
 					error : function(xhr) {
 						console.error("Error posting chat message: status=" + xhr.status + ", statusText=" + xhr.statusText);
 					}
