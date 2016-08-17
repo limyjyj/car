@@ -21,9 +21,9 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<Car> selectCars() {
+	public List<Car> selectCars(int carindex) {
 
-		return carDao.selectCars();
+		return carDao.selectCars(carindex);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class CarServiceImpl implements CarService {
 	public Car selectCarnoByCarindex(int carindex) {
 
 		return carDao.selectCarnoByCarindex(carindex);
+	}
+	@Override
+	public Car selectCarByCarno(String carno) {
+
+		return carDao.selectCarByCarno(carno);
 	}
 	@Override
 	public void updateCar(Car car) {

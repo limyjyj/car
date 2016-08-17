@@ -74,13 +74,13 @@ public class CarhistoryController implements ApplicationContextAware, BeanNameAw
 	}
 
 	@RequestMapping(value = "write.action", method = RequestMethod.POST)
-	public String writeCarhistory(HttpServletRequest req, Carhistory carhistory, Car car, HttpSession session) {
+	public String writeCarhistory(HttpServletRequest req, Carhistory carhistory, Car car, HttpSession session,int carindex) {
 		System.out.println("2");
 		
 		
 
 		
-		List<Car> cars = carService.selectCars();
+		List<Car> cars = carService.selectCars(carindex);
 		
 		System.out.println("히스토리넘버 :" + carhistory.getHistoryNo() + "," + cars.get(0).getCarindex());
 		System.out.println("인덱스 :" + carhistory.getCarindex() + "," + car.getCarindex() );

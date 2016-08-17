@@ -29,8 +29,9 @@
 					value="지출입력" style="height: 30px"
 					onclick="location.href='/car/carhistory/writeform.action?historyno=${ carhistory.historyno }';" />
 				<input class="btn btn-danger" type="button" id="inputFuel"
-					value="주유입력" style="height: 30px"
+					value="주유입력" style="height: 30px" 
 					onclick="location.href='/car/carhistory/writeform.action?historyno=${ carhistory.historyno }';" />
+
 			</div>
 
 			<table class="table table-striped" align="center" width="700px">
@@ -57,8 +58,51 @@
 			</table>
 
 		</div>
+<<<<<<< HEAD
 	</div>
 
+=======
+	</section> --%>
+			
+			
+			
+        	<table class="table table-striped"  align="center" width="700px">
+        	
+        	<select name="carno" >
+        	<option value="선택하세요">선택하세요.</option>
+     <%--    	<c:forEach var="car" items="${ cars }">
+        		
+        		<option value="${ car.carno }">
+        		${ car.carno }
+        		</option>
+        		
+        	</c:forEach> --%>
+        	</select>
+        		<tr style="height:30px" align="center">
+        			<td>날짜</td>
+        			<td>항목</td>
+        			<td>금액</td>
+        			<td>리터</td>
+        		</tr>        	
+        	<c:forEach var="carhistory" items="${ historys }" >
+        		<tr style="height:30px">
+        		
+        			<td><fmt:formatDate value="${ carhistory.regdate }" pattern="yyyy-MM-dd" var="regDate"/>
+                      ${ regDate }</td>
+        			<td>${ carhistory.category }</td>
+        			<td>${ carhistory.fee }</td>
+        			<td>${ carhistory.liter }</td>
+   
+        		</tr>
+        		
+        	</c:forEach>
+        	
+        	</table>
+        	
+        </div>
+    </div>
+    
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 </body>
 </html>
 

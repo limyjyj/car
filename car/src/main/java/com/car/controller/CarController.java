@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.car.model.dto.Board;
 import com.car.model.dto.Car;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;
@@ -39,8 +40,7 @@ public class CarController {
 
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String registerForm(@ModelAttribute @Valid Car car) {
-		System.out.println("1번");
-	
+		
 
 		return "car/registerform";
 
@@ -48,9 +48,7 @@ public class CarController {
 
 	@RequestMapping(value = "register.action", method = RequestMethod.POST)
 	public String register(Car car, HttpSession session) {
-		System.out.println("2번");
-
-		System.out.println(car.getCarno());
+		
 		Member member = (Member)session.getAttribute("loginuser");
 		car.setMemberNo(member.getMemberNo());
 		carService.insertCar(car);
@@ -86,11 +84,37 @@ public class CarController {
 		return mav;
 				
 	}
-	@RequestMapping(value = "update.action", method = RequestMethod.GET)
-	public String updateForm(
-			@ModelAttribute Car car) {
-		return "car/editform";
+	
 
+	@RequestMapping(value = "view.action", method = RequestMethod.GET)
+	public ModelAndView viewList(@ModelAttribute Car car, int carno) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		/*car = carService.selectCarByCarno(carno);
+		mav.setViewName("car/list");
+		mav.addObject("car", car);*/
+		
+		return mav;
+
+	}
+	
+	@RequestMapping(value = "update.action", method = RequestMethod.GET)
+	public ModelAndView updateForm(int carindex) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+
+		Car car = carService.selectCarnoByCarindex(carindex);
+		
+		if (car == null) {
+			mav.setViewName("redirect:/car/list.action");
+			return mav;
+		}
+				
+		mav.addObject("car", car);
+		mav.setViewName("car/editform");
+		return mav;
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
