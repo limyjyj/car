@@ -39,9 +39,9 @@ public class MysqlCarDao implements CarDao {
 
 		return carMapper.selectCarnoByCarindex(carindex);
 	}
-	public Car selectCarByCarno(String carno) {
+	public Car selectCarByCarindex(int carindex) {
 
-		return carMapper.selectCarByCarno(carno);
+		return carMapper.selectCarByCarindex(carindex);
 	}
 	
 	

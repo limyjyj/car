@@ -1,6 +1,7 @@
 package com.car.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,14 +87,23 @@ public class CarController {
 	}
 	
 
+	
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public ModelAndView viewList(@ModelAttribute Car car, int carno, int carindex) {
+	public ModelAndView viewList(int carindex, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
+		List<Car> cars = null;
+		if(carindex == 0){
+			Member member = (Member)session.getAttribute("loginuser");
+			cars = carService.selectAllCarByCarno(member.getMemberNo());
+		}else{
+			Car car = carService.selectCarByCarindex(carindex);
+			cars = new ArrayList<>();
+			cars.add(car);
+		}
 				
-		/*car = carService.selectCarByCarno(carno);
-		mav.setViewName("car/list");
-		mav.addObject("car", car);*/
+		mav.setViewName("car/view");
+		mav.addObject("cars", cars);
 		
 		return mav;
 
@@ -142,6 +152,13 @@ public class CarController {
 		return "redirect:/car/list.action";
 	}
 	
+	@RequestMapping(value = "graph.action", method = RequestMethod.GET)
+	public String graph(@ModelAttribute @Valid Car car) {
+		
+
+		return "car/graph";
+
+	}
 
 	
 }

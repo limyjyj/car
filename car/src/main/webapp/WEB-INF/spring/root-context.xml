@@ -59,7 +59,7 @@
 		<property name="mapperInterface" value="com.car.model.mapper.GroupScheduleMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	
+
 	<bean id="groupChatMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.GroupChatMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
@@ -70,10 +70,13 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+
 	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.BoardMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+
 	</bean>
+
 
 	<bean id="fuelMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.car.model.mapper.FuelMapper" />

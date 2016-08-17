@@ -59,6 +59,26 @@
 		VALUES
 		( #{memberNo}, #{reservationNo})
 	</insert>
+	
+	<select id="selectConfirmList" resultType="Confirm">
+		
+		SELECT *
+		FROM
+		Confirm
+    </select>
+    
+    <select id="selectConfirmListByReservationNo" parameterType="int"
+	resultType="Member">
+
+	select Member.*
+			from Confirm
+			join Member
+			on Member.memberno = Confirm.memberno
+            WHERE Confirm.reservationno=#{reservationNo};
+	
+	
+	</select>
+	
 
 
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"

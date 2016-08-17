@@ -24,12 +24,13 @@ import com.google.gson.Gson;
 
 
 @Controller
-@RequestMapping(value = "/groupchat/")
+@RequestMapping(value = "/groupchat")
 public class GroupChatController {
 	
 	@Autowired
 	@Qualifier("groupChatService")
 	private GroupChatService groupChatService;
+
 	
 	@Autowired
 	@Qualifier("groupScheduleService")

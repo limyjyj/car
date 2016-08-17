@@ -11,7 +11,7 @@ public interface CarService {
 	
 	List<Car> selectAllCarByCarno(int memberNo);
 	Car selectCarnoByCarindex(int carindex);
-	Car selectCarByCarno(String carno);
+	Car selectCarByCarindex(int carindex);
 	void updateCar(Car car);
 	void deleteCar(Car car);
 	

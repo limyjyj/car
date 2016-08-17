@@ -8,6 +8,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>후기 등록</title>
+	<script src="/car/resources/js/bootstrap.min.js"></script>
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 </head>
 <body>

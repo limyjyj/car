@@ -16,8 +16,8 @@
 	
 </script>
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="/car/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -35,23 +35,23 @@
 				action="update.action">
 				<!-- 상대경로표시 -->
 
-				<table>
+				<table class="type11">
 					<tr>
-						<th style="text-align: center;">제목</th>
+						<th style="text-align: center;" scope="cols">제목</th>
 						<td><form:input type="text" path="title"
 								style="text-align: center;" /></td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">작성자</th>
+						<th style="text-align: center;" scope="cols">작성자</th>
 						<td>관리자</td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">작성일</th>
+						<th style="text-align: center;" scope="cols">작성일</th>
 						<td><fmt:formatDate value="${ board.regDate }"
 								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">내용</th>
+						<th style="text-align: center;" scope="cols">내용</th>
 						<td><form:input type="text" path="content"
 								style="text-align: center;" /> <input type="hidden"
 							value="${ board.boardNo }" name="boardNo" /></td>

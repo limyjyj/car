@@ -3,7 +3,8 @@ package com.car.model.dao;
 import java.util.List;
 
 import com.car.model.dto.Board;
-//import com.mysbl.model.dto.NoticeBoardComment;
+import com.car.model.dto.BoardComent;
+
 
 	public interface BoardDao {
 
@@ -18,15 +19,9 @@ import com.car.model.dto.Board;
 	int deleteBoard(int number);
 
 	int updateBoard(Board board);
-
-	//void insertComment(NoticeBoardComment comment);
-
-	//void updateComment(NoticeBoardComment comment);
-
-	//void deleteComment(int commentNo);
 	
 	
-	//------------------------------Review------------------------------
+	//------------------------------Review------------------------------//
 	
 	
 	List<Board> selectReviewList(int start, int last);
@@ -38,5 +33,17 @@ import com.car.model.dto.Board;
 	int deleteReview(int number);
 
 	int updateReview(Board board);
+	
+	
+	//--------------------------------Coment---------------------------//
+	
+	
+	List<BoardComent> selectComentByBoardNo(int BoardNo);
+
+	void insertComent(BoardComent coment);
+
+	void updateComent(BoardComent coment);
+
+	void deleteComent(int comentNo);
 
 }

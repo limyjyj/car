@@ -14,16 +14,22 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<absolute-ordering>
+		<name>MyWebFragment</name>
+		<name>spring_web</name>
+	</absolute-ordering>
 
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>		
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 		<multipart-config>
 			<max-file-size>10485760</max-file-size>
 			<max-request-size>104857600</max-request-size>
@@ -41,6 +47,7 @@
         <filter-class>
             org.springframework.web.filter.CharacterEncodingFilter
         </filter-class>
+        <async-supported>true</async-supported>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>

@@ -95,4 +95,37 @@
 		WHERE boardno = #{boardNo}
 	</update>
 	
+	
+	<!-- ============================Coment============================== -->
+	
+	
+	<insert id="insertBoardComent" parameterType="BoardComent">
+		INSERT INTO BoardComent
+		(	 
+			boardNo
+			, content
+			, writer
+			
+		)
+		VALUES (#{boardNo}, #{content}, #{writer})
+	</insert>
+	
+	<select id="selectComentByBoardNo" parameterType="int" resultType="BoardComent">
+		SELECT comentNo, content, regdate, boardNo, deleted, writer
+		FROM BoardComent
+		WHERE boardNo = #{boardNo}
+	</select>
+	
+	<update id="deleteComent" parameterType="int">
+		UPDATE BoardComent
+		SET deleted = '1'
+		WHERE comentNo = #{comentNo}
+	</update>
+
+	<update id="updateComent" parameterType="BoardComent">
+		UPDATE BoardComent
+		SET content = #{content}  
+		WHERE comentNo = #{comentNo}
+	</update>
+	
 </mapper>
