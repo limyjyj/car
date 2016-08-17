@@ -59,6 +59,8 @@
 
 		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
 
-	</mappers>
+		<mapper resource="com/car/model/mapper/OutcomeMapper.xml" />
+		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
+		<mapper resource="com/car/model/mapper/BoardMapper.xml" />
 
 </configuration>

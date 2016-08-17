@@ -74,7 +74,8 @@
 								href='detail.action?reservationno=${reservation.reservationNo }&pageno=${pageno}'>취소</a> --%>
 								
 					<input id='submitbutton' type="submit" value="수정완료"
-						style="height: 25px" /> <input type="button" value="취소"
+						style="height: 25px" /> 
+						<input type="button" value="취소"
 						style="height: 25px" onclick="location.href='detail.action?reservationno=${reservation.reservationNo }&pageno=${pageno}';" />			
 						</div>
 					</form>

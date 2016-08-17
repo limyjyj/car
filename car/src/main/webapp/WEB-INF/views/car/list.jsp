@@ -11,18 +11,15 @@
 <head>
 	<meta charset="utf-8" />
     <title></title>
-	<!-- Custom CSS -->
-	<link href="/car/resources/css/business-casual.css" rel="stylesheet">
+	
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	
 	<script type="text/javascript">
-	$(function() {
-		$('#Status').on('click', function(event) {
-			var carno = $('#carno').val();
-			if (result) {
-				//yes
-				location.href = ('/car/car/view.action?carno=' + carno);
-			} else {
-				//no
-			}
+		$(function() {
+		$('#status').on('change', function(event) {
+			var url = $('#status').val();
+			$( "#carlist" ).load( url );
+			
 		});
 	});
 	
@@ -39,10 +36,10 @@
       
         	<div id="selectCar">
         	
-        	<select name="carno" >
-        	<option value="선택하세요">선택하세요.</option>
+        	<select id="status" name="status" >
+        	<option value="/car/car/view.action?carno=">선택하세요.</option>
         	<c:forEach var="car" items="${ cars }" varStatus="Status">
-        		<option value="${ car.carno }" id="Status">
+        		<option value="/car/car/view.action?carno=${ car.carno }">
         		${ car.carno }<!-- <br /> -->
         		</option>
         		</c:forEach>
@@ -53,7 +50,7 @@
 		    </div>
         	</div>
         	
-        	<table class="table table-striped"  align="center" width="700px">
+        	<table id="carlist" class="table table-striped"  align="center" width="700px">
         	<c:forEach var="car" items="${ cars }">
         		<tr style="height:30px" align="center">
         			<td>멤버</td>
@@ -80,6 +77,10 @@
         	</c:forEach>
         	
         	</table>
+        	
+        	
+        	
+        	
         	<table class="table table-striped"  align="center" width="700px">
         	
         		<tr style="height:30px">

@@ -90,9 +90,9 @@ public class CarController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		car = carService.selectCarByCarno(carno);
+		/*car = carService.selectCarByCarno(carno);
 		mav.setViewName("car/list");
-		mav.addObject("car", car);
+		mav.addObject("car", car);*/
 		
 		return mav;
 

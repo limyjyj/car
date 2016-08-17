@@ -11,8 +11,6 @@
 <head>
 	<meta charset="utf-8" />
 	<title>차 정보 수정</title>
-	<link href="/car/resources/css/business-casual.css"
-	rel="stylesheet">
 	<!-- <link href="/mysbl-spring/resources/css/bootstrap.min.css" rel="stylesheet"> -->	
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>	
@@ -21,8 +19,13 @@
 
 	<div id="pageContainer">
 
-		<!-- 김경주멍청아 -->
+<<<<<<< HEAD
 		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+=======
+	
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+>>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 
 		
 		<div id="inputmain">
@@ -45,25 +48,25 @@
 		       		
 			        <div class="form-group">
      		     	  <label for="inputDistance">총주행거리</label>
-		              <form:input type="text" path="totaldistance" class="form-control" placeholder="총주행거리"/>
+		              <form:input type="text" path="distance" class="form-control" placeholder="총주행거리"/>
 			        </div>
 			        
 			        <div class="form-group">
-     		     	  <label for="inputDistance">총지출금액</label>
-		              <form:input type="text" path="totaloutcome" class="form-control" placeholder="총지출금액"/>
-			        </div>
-			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
+		              <form:input type="text" path="regdate" class="form-control" placeholder="기록시작일"/>
 			        </div>	       
 
 		       <br><br>		       
-		     	<div class="buttons">
-		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
-		        	<a href="javascript:document.forms[0].submit();">수정</a>
-		        	&nbsp;&nbsp;
-		        	<a href='list.action'>취소</a>
-		        </div>
+		      <%--  <% Car car = (Car)request.getAttribute("car"); %>
+		       		<input type='hidden' name="carno" 
+		       		value="<%= car.getCarno() %>" />
+		       		<input type='hidden' name="pageno" value="${ pageno }" />		       		
+		        <div class="buttons" align="center">
+						<input class="btn btn-primary" type="submit" id="btnNext" 
+							value="수정 완료 " style="height: 30px" />
+						<input class="btn btn-danger" type="button" id="btnCancel"
+							value="취소" style="height: 30px" onclick="location.href='detail.action?rvno=<%= car.getRvNo() %>&pageno=<%= request.getAttribute("pageno") %>';"/>
+				</div> --%>				
 		        </form:form>
 		    </div>
 		</div>

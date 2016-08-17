@@ -49,16 +49,6 @@ public class ReservationServiceImpl implements ReservationService {
 	  }
 	
 
-	@Override
-	public int selectReservationCount() {
-		return reservationDao.selectReservationCount();
-	}
-
-	@Override
-	public void updateReservationReadCount(int number) {
-		reservationDao.updateReservationReadCount(number);
-	}
-
 
 	@Override
 	public void updateReservation(Reservation reservation) {
@@ -71,6 +61,14 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDao.deleteReservation(reservationNo);
 		
 	 }
+
+	@Override
+	public int selectReservationCount() {
+		
+		 return reservationDao.selectReservationCount();
+	}
+
+
 	}
 
 
