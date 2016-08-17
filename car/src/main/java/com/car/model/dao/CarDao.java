@@ -16,4 +16,5 @@ public interface CarDao {
 	void updateCar(Car car);
 	void deleteCar(Car car);
 	
+	List<Car> selectCarindexByMemberno(int memberNo);
 }

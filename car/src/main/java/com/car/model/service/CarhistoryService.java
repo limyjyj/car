@@ -7,7 +7,7 @@ import com.car.model.dto.Carhistory;
 
 public interface CarhistoryService {
 
-	void insertCarhistory(Carhistory carhistory);
+	int insertCarhistory(Carhistory carhistory);
 	List<Carhistory> selectAllCarhistory();
 	
 	Carhistory selectCarhistoryByCarno(int carno);

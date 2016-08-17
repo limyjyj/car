@@ -1,5 +1,6 @@
 <%@page import="com.car.model.dto.Carhistory"%>
 <%@page import="com.car.model.dto.Outcome"%>
+<%@page import="com.car.model.dto.Car"%>
 <%@page import="com.car.model.dao.CarhistoryDao"%>
 <%@page import="com.car.model.dao.OutcomeDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -22,14 +23,13 @@
 		style="padding-top: 25px; text-align: center; margin: auto; width: 1000px">
 
 		<div id="content">
-			<br />
-			<br />
+			<br /> <br />
 			<div>
 				<input class="btn btn-danger" type="button" id="inputOutcome"
 					value="지출입력" style="height: 30px"
-					onclick="location.href='/car/carhistory/writeform.action?historyno=${ carhistory.historyno }';" />
+					onclick="location.href='/car/carhistory/writeform.action';" />
 				<input class="btn btn-danger" type="button" id="inputFuel"
-					value="주유입력" style="height: 30px" 
+					value="주유입력" style="height: 30px"
 					onclick="location.href='/car/carhistory/writeform.action?historyno=${ carhistory.historyno }';" />
 
 			</div>
@@ -57,52 +57,36 @@
 
 			</table>
 
-		</div>
-<<<<<<< HEAD
-	</div>
+		<table class="table table-striped" align="center" width="700px">
 
-=======
-	</section> --%>
-			
-			
-			
-        	<table class="table table-striped"  align="center" width="700px">
-        	
-        	<select name="carno" >
-        	<option value="선택하세요">선택하세요.</option>
-     <%--    	<c:forEach var="car" items="${ cars }">
+			<select name="carno">
+				<option value="선택하세요">선택하세요.</option>
+				<%--    	<c:forEach var="car" items="${ cars }">
         		
         		<option value="${ car.carno }">
         		${ car.carno }
         		</option>
         		
         	</c:forEach> --%>
-        	</select>
-        		<tr style="height:30px" align="center">
-        			<td>날짜</td>
-        			<td>항목</td>
-        			<td>금액</td>
-        			<td>리터</td>
-        		</tr>        	
-        	<c:forEach var="carhistory" items="${ historys }" >
-        		<tr style="height:30px">
-        		
-        			<td><fmt:formatDate value="${ carhistory.regdate }" pattern="yyyy-MM-dd" var="regDate"/>
-                      ${ regDate }</td>
-        			<td>${ carhistory.category }</td>
-        			<td>${ carhistory.fee }</td>
-        			<td>${ carhistory.liter }</td>
-   
-        		</tr>
-        		
-        	</c:forEach>
-        	
-        	</table>
-        	
-        </div>
-    </div>
-    
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+			</select>
+			<tr style="height: 30px" align="center">
+				<td>번호</td>
+				<td>항목</td>
+				
+			</tr>
+			<c:forEach var="c" items="${ historys }">
+				<tr style="height: 30px">
+
+					<td>${ c.carindex }</td>
+					<td>${ c.category }</td>
+
+				</tr>
+
+			</c:forEach>
+
+		</table>
+</div>
+</div>
 </body>
 </html>
 

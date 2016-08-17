@@ -70,5 +70,12 @@
 
 	</select>
 
+	<select id="selectCarindexByMemberno"
+		parameterType="int" resultMap="carMap">
+			select carindex
+			from Car
+			where memberNo = #{memberNo}
+	</select>
+
 
 </mapper>

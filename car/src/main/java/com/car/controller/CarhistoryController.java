@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,20 +27,7 @@ import com.car.model.service.CarhistoryService;
 
 @Controller
 @RequestMapping(value = "/carhistory/")
-public class CarhistoryController implements ApplicationContextAware, BeanNameAware {
-
-	private ApplicationContext context;
-	private String beanName;
-
-	@Override
-	public void setBeanName(String arg0) {
-		this.beanName = arg0;
-	}
-
-	@Override
-	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
-		this.context = arg0;
-	}
+public class CarhistoryController {
 
 	@Autowired
 	@Qualifier("carhistoryService")
@@ -70,54 +58,13 @@ public class CarhistoryController implements ApplicationContextAware, BeanNameAw
 	// 작성
 	@RequestMapping(value = "writeform.action", method = RequestMethod.GET)
 	public String getCarhistoryWriteForm() {
-		return "outcome/writeform";
+		return "carhistory/writeform";
 	}
 
 	@RequestMapping(value = "write.action", method = RequestMethod.POST)
-	public String writeCarhistory(HttpServletRequest req, Carhistory carhistory, Car car, HttpSession session,int carindex) {
-		System.out.println("2");
-		
-		
-
-		
-		List<Car> cars = carService.selectCars(carindex);
-		
-		System.out.println("히스토리넘버 :" + carhistory.getHistoryNo() + "," + cars.get(0).getCarindex());
-		System.out.println("인덱스 :" + carhistory.getCarindex() + "," + car.getCarindex() );
-			
-//		int size = mapwidth * mapheight;
-//		MapInfo mi = new MapInfo();
-//		System.out.println(maptitle);
-//
-//		mi.setMapHeight(mapheight);
-//		mi.setMapWidth(mapwidth);
-//		mi.setMapTitle(maptitle);
-//		
-//		carhistoryService.insertCarhistory(carhistory);
-//		farmMapService.insertMapInfo(mi);
-//
-//		List<FarmMap> fms = new ArrayList<FarmMap>();
-//		for (int i = 0; i < size; i++) {
-//			FarmMap fm = new FarmMap();
-//
-//			fm.setMapPrice(mapprice);
-//			fm.setMapIndex(i);
-//			fm.setUsed(req.getParameter("used" + i));
-//			fm.setMapInfoNo(mi.getMapInfoNo());
-//			fms.add(fm);
-//		}
-//
-//		for (int i = 0; i < size; i++) {
-//
-//			farmMapService.insertFarmMap(fms.get(i));
-//		}
-
-
-//	return"redirect:/farmmap/list.action";
-//
-//	System.out.println("3");
-//
-	return"redirect:/carhistory/list.action";
+	public String writeCarhistory(HttpServletRequest req) {
+	
+		return"redirect:/carhistory/list.action";
 
 	}
 

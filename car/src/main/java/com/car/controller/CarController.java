@@ -87,10 +87,10 @@ public class CarController {
 	
 
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public ModelAndView viewList(@ModelAttribute Car car, int carno) {
+	public ModelAndView viewList(@ModelAttribute Car car, int carno, int carindex) {
 		
 		ModelAndView mav = new ModelAndView();
-		
+				
 		/*car = carService.selectCarByCarno(carno);
 		mav.setViewName("car/list");
 		mav.addObject("car", car);*/

@@ -16,9 +16,9 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 	private CarhistoryDao carhistoryDao;
 
 	@Override
-	public void insertCarhistory(Carhistory carhistory) {
-		carhistoryDao.insertCarhistory(carhistory);
-	}
+	public int insertCarhistory(Carhistory carhistory) {
+		return carhistoryDao.insertCarhistory(carhistory);
+	} 
 
 	@Override
 	public List<Carhistory> selectAllCarhistory() {

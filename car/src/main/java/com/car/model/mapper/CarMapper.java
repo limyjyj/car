@@ -15,4 +15,6 @@ public interface CarMapper {
 	void updateCar(Car car);
 	void deleteCar(Car car);
 	List<Car> selectCarByMemberno(int memberno);
+	List<Car> selectCarindexByMemberno(int memberNo);
+			  
 }

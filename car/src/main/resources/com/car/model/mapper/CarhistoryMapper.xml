@@ -36,9 +36,9 @@
 	<insert id="insertCarhistory" parameterType="String" useGeneratedKeys="true"
 		keyProperty="historyno" keyColumn="historyno">
 		INSERT INTO Carhistory
-		(category, regdate)
+		(category, carindex)
 		VALUES
-		(#{category}, #{regdate})
+		(#{category}, #{carindex})
 	</insert>
 	
 	<select id="selectCarhistoryByCarno" 
