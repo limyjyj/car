@@ -39,9 +39,9 @@
 				}
 			})
 			
-			$("#inputOutcome").on('onclick', function(event){
-				//alert($("#status").val());
-				location.href=$("#status").val();
+// 			$("#inputOutcome").on('onclick', function(event){
+// 				//alert($("#status").val());
+// 				location.href=$("#status").val();
 			})
 			
 		});

@@ -43,22 +43,16 @@
 		       		
 			        <div class="form-group">
      		     	  <label for="inputDistance">총주행거리</label>
-<<<<<<< HEAD
+
 		              <form:input type="text" path="totaldistance" class="form-control" placeholder="${ car.totaldistance }"/>
-=======
-		              <form:input type="text" path="distance" class="form-control" placeholder="총주행거리"/>
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+
 			        </div>
 			        
 			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-<<<<<<< HEAD
 		              <form:input type="date" path="regdate" class="form-control" placeholder="${ car.regdate }"/>
-=======
-		              <form:input type="text" path="regdate" class="form-control" placeholder="기록시작일"/>
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+
 			        </div>	       
-<<<<<<< HEAD
 	       
 		     	<div class="buttons" style="text-align: center">
 		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
@@ -68,20 +62,7 @@
 						onclick="location.href='list.action';" />
 		        	
 		        </div>
-=======
 
-		       <br><br>		       
-		      <%--  <% Car car = (Car)request.getAttribute("car"); %>
-		       		<input type='hidden' name="carno" 
-		       		value="<%= car.getCarno() %>" />
-		       		<input type='hidden' name="pageno" value="${ pageno }" />		       		
-		        <div class="buttons" align="center">
-						<input class="btn btn-primary" type="submit" id="btnNext" 
-							value="수정 완료 " style="height: 30px" />
-						<input class="btn btn-danger" type="button" id="btnCancel"
-							value="취소" style="height: 30px" onclick="location.href='detail.action?rvno=<%= car.getRvNo() %>&pageno=<%= request.getAttribute("pageno") %>';"/>
-				</div> --%>				
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 		        </form:form>
 		    </div>
 		</div>

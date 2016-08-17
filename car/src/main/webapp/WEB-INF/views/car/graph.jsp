@@ -72,10 +72,10 @@
         	
         		<tr style="height:30px" align="center">
         			<td><input type="hidden" value="멤버"/></td>
-        			<td onclick="#">주유금액</td>
-        			<td onclick="#">주유횟수</td>
-        			<td onclick="#">정비비용</td>
-        			<td onclick="#">유지비용</td>
+        			<td><a href="#">주유금액</td>
+        			<td><a href="#">주유횟수</td>
+        			<td><a href="#">정비비용</td>
+        			<td><a href="#">유지비용</td>
         		</tr>        	
         	<c:forEach var="car" items="${ cars }">
         		<tr style="height:30px" align="center">
