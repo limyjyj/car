@@ -14,8 +14,9 @@
 <meta charset="utf-8" />
 <title>글쓰기</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="/car/resources/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		$('#delete')
@@ -40,44 +41,52 @@
 	<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
 
 	<div id="inputcontent">
+	
+		<br />
+	
+		<h3 style="text-align: center">후 기</h3>
+		
+		<br />
+	
 		<div id="inputmain">
 			<!-- <div class="inputsubtitle">게시판 글 내용</div> -->
 
-			<table style="text-align: center;">
+			<table style="text-align: center; margin: auto;" class="type11" >
 				<tr>
-					<th style="text-align: center;">제목</th>
+					<th style="text-align: center;" scope="cols">제목</th>
 					<td>${ board.title }</td>
 				</tr>
 				<tr>
-					<th style="text-align: center;">작성자</th>
+					<th style="text-align: center;" scope="cols">작성자</th>
 					<td><input type="hidden" name="memberId"
 						value="${ loginuser.memberId }" /> 관리자</td>
 				</tr>
 				<tr>
-					<th style="text-align: center;">작성일</th>
+					<th style="text-align: center;" scope="cols">작성일</th>
 					<td><fmt:formatDate value="${ board.regDate }"
 							pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 				</tr>
 
 				<tr>
-					<th style="text-align: center; vertical-align: middle;">내용</th>
-					<td>${ board.content }</td>
+					<th style="text-align: center; vertical-align:middle" scope="cols">내용</th>
+					<td style="height: 300px; width: 400px; vertical-align: middle">${ board.content }</td>
 				</tr>
 
 			</table>
+			
+			 <br />
+		     <br />
 
 			<div>
 
-				<div>
-					<input id="delete" type="button" value="삭제" style="height: 40px" />
+				<div style="margin: auto; text-align: center">
+					<input id="delete" type="button" value="삭제" style="height: 40px;"/>
 					<input id="boardNo" type="hidden" value="${ board.boardNo }" />
-				</div>
-				<div>
-					<input type="button" value="수정" style="height: 40px"
+				
+					<input type="button" value="수정" style="height: 40px;"
 						onclick="location.href='edit2.action?boardNo=${ board.boardNo }';" />
-				</div>
-				<div>
-					<input type="button" value="목록보기" style="height: 40px"
+				
+					<input type="button" value="목록보기" style="height: 40px;"
 						onclick="location.href='list2.action';" />
 				</div>
 			</div>
@@ -179,15 +188,8 @@
 
 	</table>
 	
-
-
 	<br />
 	<br />
-	<br />
-	<br />
-	<br />
-
-
 
 
 </body>
