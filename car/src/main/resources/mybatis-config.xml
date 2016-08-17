@@ -24,8 +24,8 @@
 		<typeAlias type="com.car.model.dto.Outcome" alias="Outcome" />
 		<typeAlias type="com.car.model.dto.Fuel" alias="Fuel" />
 		<typeAlias type="com.car.model.dto.Board" alias="Board" />
-
 		<typeAlias type="com.car.model.dto.BoardComent" alias="Boardcoment"/>			
+		<typeAlias type="com.car.model.dto.Confirm" alias="Confirm" />
 
 	</typeAliases>
 

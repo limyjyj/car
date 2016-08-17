@@ -17,7 +17,7 @@
 	<script type="text/javascript">
 		$(function() {
 		$('#status').on('change', function(event) {
-			var url = $('#status').val();
+			var url = "/car/car/view.action?carindex="+$('#status').val();
 			$( "#carlist" ).load( url );
 			
 		});
@@ -57,7 +57,7 @@
         	<select id="status" name="status" >
         		<option value="/car/car/list.action">선택하세요</option>
         		<c:forEach var="car" items="${ cars }" varStatus="Status">
-	        		<option value="/car/car/view.action?carno=${ car.carno }" >
+	        		<option value="${ car.carindex }" >
 	        		${ car.carno }
 	        		</option>
         		</c:forEach>

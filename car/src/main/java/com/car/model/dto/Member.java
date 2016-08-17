@@ -13,6 +13,15 @@ public class Member {
 	private int likes;
 	private boolean deleted;
 	private Date regDate;
+	private int reservationNo;
+
+	public int getReservationNo() {
+		return reservationNo;
+	}
+
+	public void setReservationNo(int reservationNo) {
+		this.reservationNo = reservationNo;
+	}
 
 	public int getMemberNo() {
 		return memberNo;

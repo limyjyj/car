@@ -45,7 +45,7 @@
 		WHERE carno = #{carno}
 	</select>
 	
-	<select id="selectCarnoByCarindex" parameterType="int" resultType="Car">
+	<select id="selectCarByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
 		WHERE carindex = #{carindex}
 	</select>
