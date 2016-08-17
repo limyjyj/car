@@ -3,6 +3,7 @@ package com.car.model.service;
 import java.util.List;
 
 import com.car.model.dto.Board;
+import com.car.model.dto.BoardComent;
 
 public interface BoardService {
 
@@ -24,7 +25,7 @@ public interface BoardService {
 
 	
 	
- //----------------------------Review----------------------------------//
+	//----------------------------Review----------------------------------//
 	
 	Board selectReviewByBoardNo(int number);
 
@@ -38,4 +39,17 @@ public interface BoardService {
 
 	int updateReview(Board board);
 	
+	
+	//----------------------------Coment----------------------------------//
+	
+	
+	BoardComent selectComentByBoardNo(int BoardNo);
+
+	void insertComent(BoardComent coment);
+
+	void updateComent(BoardComent coment);
+
+	void deleteComent(int comentNo);
+	
+	 
 }
