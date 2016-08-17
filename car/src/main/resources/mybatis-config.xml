@@ -21,10 +21,10 @@
 		<typeAlias type="com.car.model.dto.Carhistory" alias="Carhistory" />
 		<typeAlias type="com.car.model.dto.GroupChat" alias="GroupChat" />
 		<typeAlias type="com.car.model.dto.GroupSchedule" alias="GroupSchedule" />
-		<typeAlias type="com.car.model.dto.Reservation" alias="Reservation"/>
-		<typeAlias type="com.car.model.dto.Outcome" alias="Outcome"/>
-		<typeAlias type="com.car.model.dto.Fuel" alias="Fuel"/>
-		<typeAlias type="com.car.model.dto.Board" alias="Board"/>		
+		<typeAlias type="com.car.model.dto.Reservation" alias="Reservation" />
+		<typeAlias type="com.car.model.dto.Outcome" alias="Outcome" />
+		<typeAlias type="com.car.model.dto.Fuel" alias="Fuel" />
+		<typeAlias type="com.car.model.dto.Board" alias="Board" />
 	</typeAliases>
 
 	<environments default="development">
@@ -54,11 +54,11 @@
 		<mapper resource="com/car/model/mapper/GroupScheduleMapper.xml" />
 		<mapper resource="com/car/model/mapper/ReservationMapper.xml" />
 		<mapper resource="com/car/model/mapper/OutcomeMapper.xml" />
-<<<<<<< HEAD
+
 		<mapper resource="com/car/model/mapper/BoardMapper.xml" />
-=======
+
 		<mapper resource="com/car/model/mapper/FuelMapper.xml" />
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+
 	</mappers>
 
 </configuration>
