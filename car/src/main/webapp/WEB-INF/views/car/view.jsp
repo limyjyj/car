@@ -8,9 +8,11 @@
 
 
 
+	 <div>
+	 <c:forEach var="car" items="${ cars }">
 	 
 		<table id="carlist" class="table table-striped"  align="center" width="700px">
-        	<c:forEach var="car" items="${ cars }">
+        	
         		<tr style="height:30px" align="center">
         			
         			<td>차량정보번호</td>
@@ -19,6 +21,8 @@
         			<td>기록시작일</td>
         			<td>총주행거리</td>
         			<td>총지출금액</td>
+        			<td></td>
+        			<td></td>
         		</tr>        	
         	
         		<tr style="height:30px"align="center">
@@ -31,16 +35,16 @@
                       ${ regDate }</td>
         			<td>${ car.totaldistance }</td>
         			<td>${ car.totaloutcome }</td>
-   
-        		</tr>
-        	</c:forEach>
-        	</table>
-        	 <div align="center">
-		        	<a href="update.action">수정</a>
+   					<td><a href="update.action?carindex=${ car.carindex }">수정</a></td>
 		    
-		        	<a href="delete.action">삭제</a>
-		 	</div>
-        
-       
+		        	<td><a href="delete.action?carindex=${ car.carindex }">삭제</a></td>
+        		</tr>
+        		
+		        	
+		 	
+        	</table>
+        	 
+        	</c:forEach>
+       </div>
 
 

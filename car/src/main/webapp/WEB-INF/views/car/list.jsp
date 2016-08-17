@@ -22,7 +22,24 @@
 			
 		});
 	});
-	
+	$(function(){
+		$("#but").on('click', function(event){
+			var startDate = $('#startDate').val();
+			var endDate = $('#endDate').val();
+			var carNo =$("#status option:selected").text();
+		
+			$.ajax({
+				url:"/car/carhistory/list.action",
+				type:"post",
+				data: {	startDate:startDate,
+						endDate:endDate,
+						carNo:carNo},
+				success : function(data){
+					
+				}
+			})
+		})
+	})
 	
 	
 	</script>
@@ -38,9 +55,9 @@
         	<div id="selectCar" >
         	
         	<select id="status" name="status" >
-        		<option value="/car/car/list.action">선택하세요.</option>
+        		<option value="/car/car/list.action">선택하세요</option>
         		<c:forEach var="car" items="${ cars }" varStatus="Status">
-	        		<option value="/car/car/view.action?carno=${ car.carno }">
+	        		<option value="/car/car/view.action?carno=${ car.carno }" >
 	        		${ car.carno }
 	        		</option>
         		</c:forEach>
@@ -50,7 +67,7 @@
 			   <a href="register.action">차량등록</a>
 			   
         	</div>
-        	
+        	<br><br>
         	<table id="carlist" class="table table-striped"  align="center" width="700px">
         	
         		<tr style="height:30px" align="center">
@@ -73,8 +90,9 @@
                       ${ regDate }</td>
         			<td>${ car.totaldistance }</td>
         			<td>${ car.totaloutcome }</td>
-   
+   				
         		</tr>
+        		
         	</c:forEach>
         	
         	</table>
@@ -87,9 +105,17 @@
         		<tr style="height:30px">
         		
         		<td>기간별 조회</td>
+        		<td class="form-group">
+     		     	  <label for="inputRegdate">기록시작일</label>
+		              <input type="date" path="regdate" class="form-control" placeholder="기록시작일" id="startDate"/>
+			     </td>
+			     <td class="form-group">
+     		     	  <label for="inputRegdate">기록종료일</label>
+		              <input type="date" path="regdate" class="form-control" placeholder="기록종료일" id="endDate"/>
+			     </td>
+			     
         		</tr>
-        	
-        	
+        	<button type="button" id="but">조회</button>
         	
         	</table>
         	

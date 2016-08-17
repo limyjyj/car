@@ -35,30 +35,29 @@
 		       		
 		        	<div class="form-group">
      		     	  <label for="inputModel">차종</label>
-     		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>
+     		     	  <form:input type="text" path="model" class="form-control" placeholder="${ car.model }"/>
 			        </div>
 			        <div class="form-group">
      		     	  <label for="inputCarno">차량번호</label>
-		              <form:input type="text" path="carno" class="form-control" placeholder="차량번호"/>
+		              <form:input type="text" path="carno" class="form-control" placeholder="${ car.carno }"/>
 			        </div>
 		       		
 			        <div class="form-group">
      		     	  <label for="inputDistance">총주행거리</label>
-		              <form:input type="text" path="totaldistance" class="form-control" placeholder="총주행거리"/>
+		              <form:input type="text" path="totaldistance" class="form-control" placeholder="${ car.totaldistance }"/>
 			        </div>
 			        
 			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
+		              <form:input type="date" path="regdate" class="form-control" placeholder="${ car.regdate }"/>
 			        </div>	       
-
-		       <br><br>		       
-		     	<div class="buttons">
+	       
+		     	<div class="buttons" style="text-align: center">
 		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
 		        	
 		        	<input type="submit" value="수정" style="height: 40px" /> 
 		        	<input id="cancel" type="button" value="취소" style="height: 40px"
-						onclick="location.href='view.action?carno=${ car.carno }';" />
+						onclick="location.href='list.action';" />
 		        	
 		        </div>
 		        </form:form>

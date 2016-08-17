@@ -52,7 +52,7 @@
 	
 	<update id="updateCar" parameterType="Car">
 		UPDATE Car
-		SET  (model = #{model}, regdate = #{regdate}, carno = #{carno}, totaldistance = #{totaldistance}, totaloutcome = #{ totaloutcome})
+		SET  model = #{model}, regdate = #{regdate}, carno = #{carno}, totaldistance = #{totaldistance}
 		WHERE carindex = #{carindex}
 		
 	</update>
