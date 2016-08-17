@@ -245,6 +245,8 @@
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
+					<type>date</type>
+					<dateFormat>yyyy-MM-dd</dateFormat>
 				</configuration>
 			</plugin>
 			<plugin>

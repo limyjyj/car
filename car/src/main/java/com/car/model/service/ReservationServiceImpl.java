@@ -11,6 +11,8 @@ import com.car.model.dto.Reservation;
 
 
 
+
+
 @Service("reservationService")
 public class ReservationServiceImpl implements ReservationService {
 
@@ -30,16 +32,14 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public List<Reservation> selectReservationList() {
-		List<Reservation> rs = reservationDao.selectReservationList();
-		return rs;
+		return reservationDao.selectReservationList();
 	}
+	
+
 	@Override
 	public List<Reservation> selectReservationList2(int start, int last) {
 		return reservationDao.selectReservationList2(start, last);
-		
 	}
-
-	
 
 	@Override
 	public Reservation selectReservationByReservationNo(int reservationNo) {
@@ -50,14 +50,27 @@ public class ReservationServiceImpl implements ReservationService {
 	
 
 	@Override
-	public int getReservationCount() {
-		return reservationDao.getReservationCount();
+	public int selectReservationCount() {
+		return reservationDao.selectReservationCount();
 	}
 
 	@Override
 	public void updateReservationReadCount(int number) {
 		reservationDao.updateReservationReadCount(number);
 	}
+
+
+	@Override
+	public void updateReservation(Reservation reservation) {
+		reservationDao.updateReservation(reservation);
+		
+	}
+
+	@Override
+	public void deleteReservation(int reservationNo) {
+		reservationDao.deleteReservation(reservationNo);
+		
+	 }
 	}
 
 

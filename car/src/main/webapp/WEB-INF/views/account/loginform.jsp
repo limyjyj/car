@@ -1,22 +1,24 @@
 
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>로그인</title>
-	<link rel="Stylesheet" href="/mysbl-spring/resources/styles/default.css" />
-	<link rel="Stylesheet" href="/mysbl-spring/resources/styles/input.css" />	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<meta charset="utf-8" />
+<title>로그인</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 </head>
-<body>	
+<body>
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div id="pageContainer">
-	
-		
-		
+
+
+
 		<div id="inputcontent">
 			<br /><br />
 		   <div style="height:80px">

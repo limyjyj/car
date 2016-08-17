@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>글수정</title>
+	<title>차 정보 수정</title>
 	<link href="/car/resources/css/business-casual.css"
 	rel="stylesheet">
 	<!-- <link href="/mysbl-spring/resources/css/bootstrap.min.css" rel="stylesheet"> -->	
@@ -20,8 +20,10 @@
 <body>
 
 	<div id="pageContainer">
-	
+
+		<!-- 김경주멍청아 -->
 		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+
 		
 		<div id="inputmain">
 		        <div class="inputsubtitle"><h2 align="center">차정보 수정</h2></div>
@@ -29,39 +31,39 @@
 			    <div class="col-md-6 col-md-offset-3">
 			    
 		        <form:form action="update.action" method="post" modelAttribute="car"><!-- 상대경로표시 -->
-		       		<input type='hidden' name="carno" 
-		       		value="${ car.carno }" />
-		       		<div class="form-group">
-     		     	  <label for="inputTitle">제목</label>
-		              <form:input type="text" path="title" class="form-control" placeholder=""/>
-			        </div>
+		       		<input type='hidden' name="carindex" 
+		       		value="${ car.carindex }" />
 		       		
 		        	<div class="form-group">
-     		     	  <label for="inputName">작성자</label>
-     		     	  <%= ((Member)session.getAttribute("loginuser")).getName() %>
+     		     	  <label for="inputModel">차종</label>
+     		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>
 			        </div>
-			              
 			        <div class="form-group">
-     		     	  <label for="inputContent">내용</label>
-		              <form:textarea path="content" class="form-control" placeholder="공지 입력." cols="76" rows="15"/>
+     		     	  <label for="inputCarno">차량번호</label>
+		              <form:input type="text" path="carno" class="form-control" placeholder="차량번호"/>
+			        </div>
+		       		
+			        <div class="form-group">
+     		     	  <label for="inputDistance">총주행거리</label>
+		              <form:input type="text" path="totaldistance" class="form-control" placeholder="총주행거리"/>
 			        </div>
 			        
 			        <div class="form-group">
-     		     	  <label for="inputUplaod">첨부자료</label>
-		              <input type="file" name="attach" class="form-control" placeholder="수정할 첨부자료를 올려주세요."/>
+     		     	  <label for="inputDistance">총지출금액</label>
+		              <form:input type="text" path="totaloutcome" class="form-control" placeholder="총지출금액"/>
+			        </div>
+			        <div class="form-group">
+     		     	  <label for="inputRegdate">기록시작일</label>
+		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
 			        </div>	       
 
 		       <br><br>		       
-		      <%--  <% Car car = (Car)request.getAttribute("car"); %>
-		       		<input type='hidden' name="carno" 
-		       		value="<%= car.getCarno() %>" />
-		       		<input type='hidden' name="pageno" value="${ pageno }" />		       		
-		        <div class="buttons" align="center">
-						<input class="btn btn-primary" type="submit" id="btnNext" 
-							value="수정 완료 " style="height: 30px" />
-						<input class="btn btn-danger" type="button" id="btnCancel"
-							value="취소" style="height: 30px" onclick="location.href='detail.action?rvno=<%= car.getRvNo() %>&pageno=<%= request.getAttribute("pageno") %>';"/>
-				</div> --%>				
+		     	<div class="buttons">
+		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
+		        	<a href="javascript:document.forms[0].submit();">수정</a>
+		        	&nbsp;&nbsp;
+		        	<a href='list.action'>취소</a>
+		        </div>
 		        </form:form>
 		    </div>
 		</div>

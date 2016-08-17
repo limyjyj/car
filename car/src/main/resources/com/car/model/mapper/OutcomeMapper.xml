@@ -7,15 +7,15 @@
 <mapper namespace="com.car.model.mapper.OutcomeMapper">
 
 	<sql id="selectDefault">
-		SELECT outcomeNo, cartegory, payment, regDate, location, content
+		SELECT outcomeNo, category, payment, regDate, location, content, historyNo
 		FROM Outcome
 	</sql>
 
 	<insert id="insertOutcome" parameterType="Outcome">
 		INSERT INTO Outcome
-		(cartegory, payment, location, content, historyNo)
+		(category, payment, regDate, location, content, historyNo)
 		VALUES
-        (#{cartegory}, #{payment}, #{location}, #{content}, #{historyNo});
+        (#{category}, #{payment}, #{regDate}, #{location}, #{content}, #{historyNo});
 	</insert>
 
 	<select id="selectOutcomeList" resultType="Outcome">
@@ -30,7 +30,7 @@
 
 	<select id="updateOutcome" parameterType="Outcome">
 		UPDATE Outcome
-		SET cartegory = #{cartegory}, payment = #{payment}, location = #{location}, content = #{content}, historyNo = #{historyNo} 
+		SET category = #{category}, payment = #{payment}, regDate = #{regDate}, location = #{location}, content = #{content}
 		WHERE outcomeNo = #{outcomeNo}
 	</select>
 

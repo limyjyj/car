@@ -5,23 +5,65 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.car.model.mapper.CarhistoryMapper">
-
+	
+	<resultMap type="Carhistory" id="carhistoryMap">
+		<id property="historyno" column="historyno" />
+		<result property="category" column="category" />
+		<result property="regdate" column="regdate" />
+		<result property="fee" column="fee" />
+		<result property="liter" column="liter" />
+		<result property="deleted" column="deleted" />
+				
+		<collection property="carno" column="carno"
+			select="selectCarByCarindex"  />
+	</resultMap>
+	<resultMap type="Car" id="carMap">
+		<id property="carindex" column="carindex" />
+		<result property="model" column="model" />
+		<result property="regdate" column="regdate" />
+		<result property="carno" column="carno" />
+		<result property="totaldistance" column="totaldistance" />
+		<result property="totaloutcome" column="totaloutcome" />
+		<result property="deleted" column="deleted" />
+	</resultMap>
+	
 	<sql id="selectDefault">
-		SELECT model, regdate, carno, totaldistance
+		SELECT historyno, category, regdate, fee, liter, deleted
 		FROM Carhistory
 	</sql>
 
-	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
-		keyProperty="carindex" keyColumn="carindex">
-		INSERT INTO car
-		(historyno, model, regdate, carno, totaldistance)
+	<insert id="insertCarhistory" parameterType="String" useGeneratedKeys="true"
+		keyProperty="historyno" keyColumn="historyno">
+		INSERT INTO carhistory
+		(category, regdate, fee, liter)
 		VALUES
-		(#{historyno}, #{model}, #{regdate}, #{carno}, #{totaldistance})
+		(#{category}, #{regdate}, #{fee}, #{liter})
 	</insert>
-	<select id="selectCarByCarindex" 
-		parameterType="string" resultType="Car">			
+	
+	<select id="selectCarhistoryByCarno" 
+		parameterType="string" resultType="Carhistory">			
 		<include refid="selectDefault" />
-		WHERE carindex = #{carindex}
+		
+		WHERE carno = #{carno}
+	</select>
+	<select id="selectAllCarhistory" resultType="Carhistory">
+		SELECT *
+		FROM Carhistory
+	</select>
+	<select id="selectCarhistoryByHistoryno" 
+		parameterType="string" resultType="Carhistory">			
+		<include refid="selectDefault" />
+		
+		WHERE historyno = #{historyno}
+	</select>
+	<select id="selectCarByCarindex"
+		parameterType="int" resultMap="carhistoryMap">
+		select Carhistory.*
+		from Car
+		join Member
+		on Car.memberNo = #{memberNo}
+		join Carhistory
+		on Car.carindex = Carhistory.carindex;
 	</select>
 	
 	
