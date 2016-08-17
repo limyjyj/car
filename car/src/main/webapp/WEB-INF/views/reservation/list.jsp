@@ -3,6 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -10,15 +15,46 @@
 <meta charset="utf-8" />
 <title>게시물 목록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
-<script>
-$(document).ready(function (){
-		$("#reservationsearch").change(function (event) {
-			$("#reservationform").submit();
-		});
-		
-})
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="./javascript.js"></script>
+<script
+    src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
+</script>
+
+
+
+
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+
+  
+  
+  
+  
+<script type="text/javascript">
+$(function() {
+	$('input#register').on('click',
+			function(event) {
+				var reservationNo = $('#reservationNo').val();
+				var memberNo = $('#memberNo').val();
+				var result = confirm('신청하시겠습니까?');
+				if (result) {
+				//yes
+				location.href = ('/car/reservation/confirm.action?reservationNo=' + reservationNo +'&memberNo=' + memberNo);
+				
+				alert("신청 완료 되었습니당");
+				} else {
+				//no
+				}
+			});
+     });
+
 
 </script>
+
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br/>
@@ -51,6 +87,8 @@ $(document).ready(function (){
 					<th style="width: 100px">회원번호</th>
 					
 					<th style="width: 100px">타태워</th>
+					<th style="width: 100px">실시간.정기</th>
+					<th style="width: 100px">목적</th>
 					<th style="width: 150px">출발지</th>
 					<th style="width: 150px">도착지</th>
 					<th style="width: 120px">시작날짜</th>
@@ -63,6 +101,8 @@ $(document).ready(function (){
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
 						<td>${ b.memberNo}</td>
+						
+						<td>${ b.purpose }</td>
 						
 						<td>${ b.frequency }</td>
 						
@@ -91,63 +131,22 @@ $(document).ready(function (){
 						</td>
 					     <td>
 					     
-					    <c:choose>
+					    <c:choose> 
 					<c:when test="${ loginuser.memberNo eq b.memberNo }">						
-						
-						<input id='submitbutton' type="submit" value="수락하기"
-						style="height: 25px" />  
+						<div class="buttons">
+						<!-- <input id='submitbutton' type="submit" value="수락하기"
+						style="height: 25px" />   -->
+						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
+						<input type="button" onclick="window.open('confirmlist.action?reservationNo=12' , 'popup', 'width=730, height=800, scrollbars=1')" value="목록보기">
+	
 					</c:when>
 					<c:otherwise>
-						<input id='submitbutton' type="submit" value="신청하기" 
-						style="height: 25px" />
+					
 						
-						<!-- Button trigger modal -->
-						<button type="button" data-toggle="modal" data-target="#myModal">
-									신청하기
-			</button>
-						
-						<!-- Modal -->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-dialog">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">그룹보기</h4>
-						      </div>
-						      <div class="modal-body">
-						 
-						 <table class="btable">
-			<thead>
-				<tr>
-					<th style="width: 100px">MEMBERNO</th>
-					<th style="width: 100px">RESERVATIONNO</th>
-					<th style="width: 100px">NAME</th>
-					<th style="width: 150px">GENDER</th>
-				</tr>
-			</thead>	
-				
-				<c:forEach var="c" items="${ confirm }">		
-					<tr>
-						<td>${ c.memberNo}</td>
-						
-						<td>${ c.reservationNo }</td>
-						
-						<td>${ c.name }</td>
-						
-						<td> ${ c.gender }	</td>	
-						
-					</tr>
-				</c:forEach>				
-		</table>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						        
-						      </div>
-						    </div>
-						  </div>
-						</div>
-						
+						 <input type="button" id="register" value="신청하기" style="height: 25px" />
+						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
+						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
+			
 						
 					</c:otherwise>
 				</c:choose>
