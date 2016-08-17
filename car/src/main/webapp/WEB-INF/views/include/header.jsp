@@ -102,12 +102,25 @@
                                         </ul>
                                     </li>
                                     
-                                    <li><a href="#"></a>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
                                     
-                                    <li><a href="/car/account/login.action">로그인</a>                                        
-                                    </li>
-                                    
+                             
+                                    <c:choose>
+					<c:when test="${empty loginuser}">
+						
+							<li><a style="font-size: 15px; text-align: right;"
+									href="/car/account/login.action">LogIn</a></li>&nbsp&nbsp
+					
+					</c:when>
+					<c:otherwise>
+											 
+							<li><a style="font-size: 15px; text-align: right;"
+								href="/car/account/logout.action">LogOut</a></li>
+						
+					</c:otherwise>
+				</c:choose>                                        
+                                   
                                     
                                 </ul>
                             </div>
@@ -117,8 +130,6 @@
             </div>
         </div>
     </header>
-    
-    
     
     
     <script type="text/javascript"
@@ -249,5 +260,6 @@
       new WOW().init();
    </script>
    <![endif]-->
+
     
     

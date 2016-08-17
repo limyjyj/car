@@ -142,6 +142,13 @@ public class CarController {
 		return "redirect:/car/list.action";
 	}
 	
+	@RequestMapping(value = "graph.action", method = RequestMethod.GET)
+	public String graph(@ModelAttribute @Valid Car car) {
+		
+
+		return "car/graph";
+
+	}
 
 	
 }

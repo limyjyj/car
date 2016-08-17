@@ -48,6 +48,8 @@
 	<context:component-scan base-package="com.car.controller" />
 	<context:component-scan base-package="com.car.aop" />
 	<context:component-scan base-package="com.car.model.service" />
+	<context:component-scan base-package="com.car.async.config" />
+	<context:component-scan base-package="com.car.async.chat" />
 			
 	
 	<!-- 미리 만든 Advice(언제 공통 관심 기능을 핵심 로직에 적용할지를 정의) -->

@@ -1,6 +1,7 @@
 package com.car.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Board {
 	private int boardNo;
@@ -11,6 +12,7 @@ public class Board {
 	private String deleted;
 	private int memberNo;
 	
+	private List<BoardComent> coment;
 	
 	public int getBoardNo() {
 		return boardNo;
@@ -53,6 +55,12 @@ public class Board {
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+	public List<BoardComent> getComent() {
+		return coment;
+	}
+	public void setComent(List<BoardComent> coment) {
+		this.coment = coment;
 	}
 
 	

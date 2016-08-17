@@ -10,6 +10,7 @@
 <meta charset="utf-8" />
 
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
+<script src="/car/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 	
@@ -31,12 +32,12 @@
 
 			<div style="width: 700px; margin: auto;">
 
-				<table style="width: 700px; margin: auto;">
+				<table style="width: 700px; margin: auto;" class="type11">
 					<tr>
-						<th style="text-align: center;">번호</th>
-						<th style="text-align: center;">제목</th>
-						<th style="text-align: center;">작성자</th>
-						<th style="text-align: center;">작성일</th>
+						<th style="text-align: center;" scope="cols">번호</th>
+						<th style="text-align: center;" scope="cols">제목</th>
+						<th style="text-align: center;" scope="cols">작성자</th>
+						<th style="text-align: center;" scope="cols">작성일</th>
 					</tr>
 					<c:forEach var="board" items="${ Boards }"> 
 					<tr>
