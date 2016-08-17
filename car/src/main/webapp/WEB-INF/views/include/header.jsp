@@ -61,7 +61,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/car/car/list.action">홈</a></li>
                                             <li><a href="/car/carhistory/list.action">내역</a></li>
-                                            <li><a href="columns.html">그래프</a></li>
+                                            <li><a href="/car/car/graph.action">그래프</a></li>
                                         </ul>
                                     </li>
 
