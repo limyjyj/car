@@ -55,10 +55,8 @@ public class MysqlBoardDao implements BoardDao {
 		return 0;
 	}
 
-	
 	// -----------------------------Review--------------------------------//
 
-	
 	@Override
 	public List<Board> selectReviewList(int start, int count) {
 		HashMap<String, Object> map = new HashMap<>();
@@ -93,35 +91,29 @@ public class MysqlBoardDao implements BoardDao {
 		return 0;
 	}
 
-	
 	// ------------------------------Coment----------------------------//
 
-	
 	@Override
-	public BoardComent selectComentByBoardNo(int number) {
-		BoardComent coment = BoardMapper.selectComentByBoardNo(number);
-		return coment;
+	public List<BoardComent> selectComentByBoardNo(int number) {
+		return BoardMapper.selectComentByBoardNo(number);
 	}
 
-	
-	 @Override 
-	 public void insertComent(BoardComent coment) {
-	 BoardMapper.insertBoardComent(coment); 
-	 
-	 }
+	@Override
+	public void insertComent(BoardComent coment) {
+		BoardMapper.insertBoardComent(coment);
 
-	
-	 @Override 
-	 public void updateComent(BoardComent coment) {
-	 BoardMapper.updateComent(coment); 
-	 
-	 }
-	 
-	 @Override 
-	 public void deleteComent(int comentNo) {
-	 BoardMapper.deleteComent(comentNo); 
-	 
-	 }
-	 
+	}
+
+	@Override
+	public void updateComent(BoardComent coment) {
+		BoardMapper.updateComent(coment);
+
+	}
+
+	@Override
+	public void deleteComent(int comentNo) {
+		BoardMapper.deleteComent(comentNo);
+
+	}
 
 }

@@ -39,7 +39,7 @@ public interface BoardMapper {
 	// --------------------------------Comment--------------------------------//
 
 	
-	BoardComent selectComentByBoardNo(int BoardNo);
+	List<BoardComent> selectComentByBoardNo(int BoardNo);
 	
 	void insertBoardComent(BoardComent coment);
 	

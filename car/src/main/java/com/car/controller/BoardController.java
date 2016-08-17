@@ -243,7 +243,9 @@ public class BoardController {
 				
 		//데이터베이스에서 데이터 조회
 		Board Board = BoardService.selectReviewByBoardNo(no);
-		BoardComent coment = BoardService.selectComentByBoardNo(no);
+		List<BoardComent> coment = BoardService.selectComentByBoardNo(no);
+		
+		
 		//조회 실패하면 목록으로 이동
 		if (Board == null) {
 			mav.setViewName("redirect:/board/list2.action");
@@ -259,7 +261,7 @@ public class BoardController {
 		//조회된 데이터를 jsp 처리할 수 있도록 request 객체에 저장
 		mav.setViewName("board/detail2");
 		mav.addObject("board", Board);
-		mav.addObject("coment", coment);
+		mav.addObject("coments", coment);
 		mav.addObject("pageno", pageNo);
 
 		return mav;
@@ -361,14 +363,14 @@ public class BoardController {
 		int number = Integer.parseInt(req.getParameter("boardNo"));
 		
 		//댓글  대상글의 번호로 데이터베이스에서 조회
-		BoardComent coment = BoardService.selectComentByBoardNo(number);
+	
 		
 		String pageNo = "1";
 		if (req.getParameter("pageno") != null) {
 			pageNo = req.getParameter("pageno");
 		}
 		
-		mav.addObject("coment", coment);
+
 		mav.addObject("pageno", pageNo);
 		mav.setViewName("board/detail2");
 		

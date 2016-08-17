@@ -81,7 +81,7 @@ public class BoardServiceImpl implements BoardService {
 
 	
 	@Override
-	public BoardComent selectComentByBoardNo(int BoardNo) {
+	public List<BoardComent> selectComentByBoardNo(int BoardNo) {
 		return BoardDao.selectComentByBoardNo(BoardNo);
 		
 	}

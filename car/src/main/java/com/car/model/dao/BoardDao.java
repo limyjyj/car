@@ -38,7 +38,7 @@ import com.car.model.dto.BoardComent;
 	//--------------------------------Coment---------------------------//
 	
 	
-	BoardComent selectComentByBoardNo(int BoardNo);
+	List<BoardComent> selectComentByBoardNo(int BoardNo);
 
 	void insertComent(BoardComent coment);
 

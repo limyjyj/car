@@ -110,9 +110,9 @@
 
 	<!-------------------------------------------------------->
 
-	
-	<h4 id="nodata" style="text-align: center">작성된 댓글이 없습니다.</h4>
-	
+	<c:if test="${ empty coments }">
+		<h4 id="nodata" style="text-align: center">작성된 댓글이 없습니다.</h4>
+	</c:if>
 	<!-- comment 표시 영역 -->
 	<script type="text/javascript">
 		var v = null, e = null;
@@ -136,7 +136,7 @@
 		}
 	</script>
 	<table style="width: 600px; border: solid 1px; margin: 0 auto">
-		<c:forEach var="coment" items="${ coment }" > 
+		<c:forEach var="coment" items="${ coments }"  > 
 		<tr>
 			<td style="text-align: left; margin: 5px; border-bottom: solid 1px">
 
@@ -163,7 +163,7 @@
 						<input type="hidden" name="boardno" value="${ board.boardNo }" /> 
 							<input type="hidden" name="pageno" value="${ pageNo }" /> 
 							<input type="hidden" name="comentno" value="${ coment.comentNo }" />
-						<textarea name="content" style="width: 600px" rows="3" maxlength="200">${ coment.content }</textarea>
+						<textarea name="content" style="width: 600px" rows="3" maxlength="200">${ board.coment.content }</textarea>
 					</form>
 					<br />
 					<div>
