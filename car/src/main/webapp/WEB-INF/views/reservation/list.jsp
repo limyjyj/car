@@ -57,6 +57,7 @@ $(function() {
 
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br/>
 	
 		<div class="bdiv">
@@ -137,7 +138,7 @@ $(function() {
 						<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
-						<input type="button" onclick="window.open('confirmlist.action?reservationNo=12' , 'popup', 'width=730, height=800, scrollbars=1')" value="목록보기">
+						<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=730, height=800, scrollbars=1')" value="목록보기">
 	
 					</c:when>
 					<c:otherwise>
