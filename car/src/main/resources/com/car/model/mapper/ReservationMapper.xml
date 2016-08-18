@@ -70,7 +70,7 @@
     <select id="selectConfirmListByReservationNo" parameterType="int"
 	resultType="Member">
 
-	select Member.*
+	select distinct Member.*
 			from Confirm
 			join Member
 			on Member.memberno = Confirm.memberno
