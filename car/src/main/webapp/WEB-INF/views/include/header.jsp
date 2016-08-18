@@ -259,7 +259,7 @@
 	<script>
 		// WOW Animation
 		new WOW().init();
-	}
+	
 	</script>
 	<![endif]-->
     
