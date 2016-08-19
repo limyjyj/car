@@ -1,11 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<script
+    src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
+</script>
+
+
+
+
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+
+<script type="text/javascript">
+
+
+
+$(function() {
+	$('input#enter-groupchatroom').on('click',
+			function(event) {
+		
+				//var chatroom = $(this).attr("chatroom-no");
+				//alert(chatroom)
+				
+				location.href = ('/car/groupschedule/longtermreservationchat.action');
+				
+				}
+			);
+     });
+
+</script>
+	
 </head>
 <body class="home">
     <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -46,11 +79,12 @@
 						
 						<td>${ b.totalMember}</td>
 						
-						<td><button href=""></button></td>
-					
+						<td>
+						<input type="button" id="enter-groupchatroom" 
+						value="채팅방" style="height: 25px"/>
+						</td>
+						
 					</tr>
-					
-					<input type="button" id="enter-groupchatroom" value="채팅방" style="height: 25px"/>
 					
 				</c:forEach>
 				

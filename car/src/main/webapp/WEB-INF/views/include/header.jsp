@@ -251,18 +251,6 @@
       })(jQuery);
    </script>
 
-
-<<<<<<< HEAD
-	<!-- WARNING: Wow.js doesn't work in IE 9 or less -->
-	<!--[if gte IE 9 | !IE ]><!-->
-	<script type="text/javascript" src="/car/resources/js/wow.min.js"></script>
-	<script>
-		// WOW Animation
-		new WOW().init();
-	
-	</script>
-	<![endif]-->
-=======
    <!-- WARNING: Wow.js doesn't work in IE 9 or less -->
    <!--[if gte IE 9 | !IE ]><!-->
    <script type="text/javascript" src="/car/resources/js/wow.min.js"></script>
@@ -272,6 +260,6 @@
    </script>
    <![endif]-->
 
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
+
     
     

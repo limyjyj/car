@@ -111,6 +111,11 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 
+	@Override
+	public List<Reservation> selectReservationByMemberNo(int memberNo) {		
+		return reservationDao.selectReservationByMemberNo(memberNo);
+	}
+
 	
 
 

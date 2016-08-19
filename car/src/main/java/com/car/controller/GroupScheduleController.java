@@ -31,6 +31,7 @@ import com.car.model.service.GroupChatService;
 import com.car.model.service.GroupScheduleService;
 import com.car.model.service.ReservationService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/groupschedule/")
@@ -55,12 +56,14 @@ public class GroupScheduleController {
 	
 	
 	@RequestMapping(value = "longtermreservationlist.action", method = RequestMethod.GET)
-	public String longtermReservationList(HttpServletResponse resp, Model model) {
+	public String longtermReservationList(HttpSession session, HttpServletResponse resp, Model model) {
 
+		Member member = (Member) session.getAttribute("loginuser");
+		
 		Gson gson = new Gson();
 		PrintWriter writer;
 
-		List<Reservation> reservationList = reservationService.selectReservationList();
+		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
 
 		if (reservationList != null) {
 			try {
@@ -144,7 +147,7 @@ public class GroupScheduleController {
 		
 		GroupSchedule groupSchedule = groupScheduleService.selectGroupScheduleByGroupScheduleNo(scheduleNo);
 		
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(groupSchedule);
 
 		return json;

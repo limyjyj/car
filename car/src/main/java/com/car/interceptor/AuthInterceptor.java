@@ -2,8 +2,12 @@ package com.car.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.car.model.dto.Member;
 
 public class AuthInterceptor implements HandlerInterceptor{
 
@@ -12,19 +16,18 @@ public class AuthInterceptor implements HandlerInterceptor{
 			HttpServletRequest req, HttpServletResponse resp,
 			Object handler) throws Exception {
 		
-		/*HttpSession session = req.getSession();
+		HttpSession session = req.getSession();
 		Member member = (Member)session.getAttribute("loginuser");
 		
 		String url = req.getRequestURI();
 		
 		boolean redirect = false;
 		
-		if(url.contains("/member/list")){
-			if(member != null && member.getUserType().toLowerCase().equals("admin")){
-			}else{
-				redirect = true;
-			}
-		}else if(url.contains("/board/") || url.contains("/upload/")){
+		if(url.contains("/board/") || url.contains("/car/")
+				 || url.contains("/carhistory/") || url.contains("/fuel/")
+				 || url.contains("/groupchat/") || url.contains("/groupschedule/")
+				 || url.contains("/member/") || url.contains("/outcome/") || 
+				 url.contains("/reservation/") ){
 			if(member != null){
 			}else{
 				redirect = true;
@@ -32,13 +35,12 @@ public class AuthInterceptor implements HandlerInterceptor{
 		}
 		
 		if(redirect){
-			resp.sendRedirect("/teamfive/account/login.action");
+			resp.sendRedirect("/car/account/login.action");
 			return false;
 		}else{
 			return true;
-		}*/
+		}
 		
-		return true;
 	}
 	
 	@Override

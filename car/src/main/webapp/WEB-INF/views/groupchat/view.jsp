@@ -7,9 +7,12 @@
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
+<!-- <html class="no-js" lang="en"> -->
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 <head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,8 +27,7 @@
 	src="/car/resources/bower_components/moment/min/moment.min.js"></script>
 <script type="text/javascript"
 	src="/car/resources/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> -->
- -->
-
+ 
 
 
 <script type="text/javascript">
@@ -199,10 +201,38 @@ function reverseDisplay() {
 									<th style="text-align: center">채팅</th>
 									<tr>
 										<td>
-											<div class="buttons">
+											<!-- <div class="buttons">
 												<input type="button" value="시작" style="height: 25px"
 													onclick="location.href='chat.action';" />
-											</div>
+											</div> -->
+											
+												<form id="joinChatForm" action="/car/mvc/chat" th:action="@{/mvc/chat}" data-bind="visible: activePollingXhr() == null">
+		<p>
+			<label for="user">User Nick Name: </label>
+			<input id="user" name="user" type="text" data-bind="value: userName"/>
+			<input name="messageIndex" type="hidden" data-bind="value: messageIndex"/>
+			<button id="start" type="submit" data-bind="click: joinChat">Join Chat</button>
+		</p>
+	</form>
+
+	<form id="leaveChatForm" action="/car/mvc/chat"  th:action="@{/mvc/chat}" data-bind="visible: activePollingXhr() != null">
+		<p>
+			You're chatting as <strong data-bind="text: userName"></strong>
+			<button id="leave" type="submit" data-bind="click: leaveChat">Leave Chat</button>
+		</p>
+	</form>
+
+	<div data-bind="visible: activePollingXhr() != null">
+		<textarea rows="15" cols="60" readonly="readonly" data-bind="text: chatContent"></textarea>
+	</div>
+	
+	<form id="postMessageForm" action="/car/mvc/chat"  th:action="@{/mvc/chat}" data-bind="visible: activePollingXhr() != null">
+		<p>
+			<input id="message" name="message" type="text" data-bind="value: message" />
+			<button id="post" type="submit" data-bind="click: postMessage">Post</button>
+		</p>
+	</form>
+											
 										</td>
 									</tr>
 								</table>
@@ -350,4 +380,9 @@ function reverseDisplay() {
 	</div>
 
 </body>
+
+<script type="text/javascript" src="/car/resources/js/jquery-1.7.2.min.js" th:src="@{/car/resources/js/jquery-1.7.2.min.js}"></script>
+<script type="text/javascript" src="/car/resources/js/knockout-2.0.0.js" th:src="@{/car/resources/js/knockout-2.0.0.js}"></script>
+<script type="text/javascript" src="/car/resources/js/chat.js" th:src="@{/car/resources/js/chat.js}"></script>
+
 </html>
