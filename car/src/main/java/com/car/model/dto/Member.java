@@ -1,6 +1,7 @@
 package com.car.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Member {
 
@@ -14,6 +15,7 @@ public class Member {
 	private boolean deleted;
 	private Date regDate;
 	private int reservationNo;
+	private List<Car> car;
 
 	public int getReservationNo() {
 		return reservationNo;
@@ -93,6 +95,14 @@ public class Member {
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	public List<Car> getCar() {
+		return car;
+	}
+
+	public void setCar(List<Car> car) {
+		this.car = car;
 	}
 
 }

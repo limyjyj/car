@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.car.model.dao.FuelDao;
 import com.car.model.dto.Fuel;
+import com.car.model.dto.Outcome;
 
 @Service("fuelService")
 public class FuelServiceImpl implements FuelService {
@@ -22,13 +23,13 @@ public class FuelServiceImpl implements FuelService {
 	}
 
 	@Override
-	public List<Fuel> selectFuelList() {
-		return fuelDao.selectFuelList();
+	public List<Fuel> selectFuelByMemberNo(int memberNo) {
+		return fuelDao.selectFuelByMemberNo(memberNo);
 	}
 
 	@Override
-	public Fuel selectFuelByFuelNo(int fuelNo) {
-		return fuelDao.selectFuelByFuelNo(fuelNo);
+	public List<Fuel> selectFuelByCarindex(int carindex) {
+		return fuelDao.selectFuelByCarindex(carindex);
 	}
 
 	@Override

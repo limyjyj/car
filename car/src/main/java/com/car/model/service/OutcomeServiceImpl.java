@@ -22,15 +22,15 @@ public class OutcomeServiceImpl implements OutcomeService {
 	}
 
 	@Override
-	public List<Outcome> selectOutcomeList() {
-		return outcomeDao.selectOutcomeList();
+	public List<Outcome> selectOutcomeByMemberNo(int memberNo) {
+		return outcomeDao.selectOutcomeByMemberNo(memberNo);
 	}
 
 	@Override
-	public Outcome selectOutcomeByOutcomeNo(int outcomeNo) {
-		return outcomeDao.selectOutcomeByOutcomeNo(outcomeNo);
+	public List<Outcome> selectOutcomeByCarindex(int carindex) {
+		return outcomeDao.selectOutcomeByCarindex(carindex);
 	}
-
+	
 	@Override
 	public void updateOutcome(Outcome outcome) {
 		outcomeDao.updateOutcome(outcome);

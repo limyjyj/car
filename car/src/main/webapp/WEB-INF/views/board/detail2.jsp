@@ -125,7 +125,7 @@
 	<!-- comment 표시 영역 -->
 	<script type="text/javascript">
 		var v = null, e = null;
-		function toggleCommentStatus(comentNo, edit) {
+		function toggleComentStatus(comentNo, edit) {
 			if (v != null) {
 				v.style.display = edit ? 'block' : 'none';
 				e.style.display = edit ? 'none' : 'block';

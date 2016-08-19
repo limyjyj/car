@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Fuel {
 
-	private int fuelNo;		
+	private int historyNo;
 	private String category;
 	private Date regDate;
 	private int perLiter;	//리터당금액
@@ -12,15 +12,9 @@ public class Fuel {
 	private int payment;
 	private String location;
 	private String content;
-	private int historyNo;
+	
 	
 
-	public int getFuelNo() {
-		return fuelNo;
-	}
-	public void setFuelNo(int fuelNo) {
-		this.fuelNo = fuelNo;
-	}
 	public String getCategory() {
 		return category;
 	}

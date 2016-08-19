@@ -6,32 +6,69 @@
 
 <mapper namespace="com.car.model.mapper.OutcomeMapper">
 
+	<resultMap type="Outcome" id="outcomeMap">
+		<id property="historyNo" column="historyno" />
+		<result property="category" column="category" />
+		<result property="payment" column="payment" />
+		<result property="regDate" column="regdate" />
+		<result property="location" column="location" />
+		<result property="content" column="content" />
+
+		<association property="memberNo" column="memberno" select="selectOutcomeByMemberNo" />
+		<association property="memberNo" column="memberno" select="selectOutcomeByCarindex" />
+	</resultMap>
+	
+
+
 	<sql id="selectDefault">
-		SELECT outcomeNo, category, payment, regDate, location, content, historyNo
+		SELECT outcomeNo, category, payment, regDate, location,
+		content, historyNo
 		FROM Outcome
 	</sql>
+
 
 	<insert id="insertOutcome" parameterType="Outcome">
 		INSERT INTO Outcome
 		(category, payment, regDate, location, content, historyNo)
 		VALUES
-        (#{category}, #{payment}, #{regDate}, #{location}, #{content}, #{historyNo});
+		(#{category}, #{payment}, #{regDate}, #{location}, #{content},
+		#{historyNo});
 	</insert>
 
-	<select id="selectOutcomeList" resultType="Outcome">
-		SELECT *
-		FROM Outcome
+	<select id="selectOutcomeByMemberNo" parameterType="int" resultMap="outcomeMap">
+		SELECT ch.*, o.*
+		FROM Member m
+		JOIN Car c
+		ON m.memberno = c.memberno
+		JOIN Carhistory ch
+		ON ch.carindex = c.carindex
+		JOIN Outcome o
+		ON ch.historyno = o.historyno
+		WHERE m.memberno = #{memberno}
+	</select>
+	
+	<select id="selectOutcomeByCarindex" parameterType="int" resultMap="outcomeMap">
+		SELECT ch.*, o.* 
+		FROM Member m
+		JOIN Car c
+		ON m.memberno = c.memberno
+		JOIN Carhistory ch
+		ON ch.carindex = c.carindex
+		JOIN Outcome o
+		ON ch.historyno = o.historyno
+		WHERE ch.carindex = #{carindex};
 	</select>
 
-	<select id="selectOutcomeByOutcomeNo" parameterType="int" resultType="Outcome">
-		<include refid="selectDefault" />
-		WHERE outcomeNo = #{outcomeNo}
-	</select>
 
 	<select id="updateOutcome" parameterType="Outcome">
 		UPDATE Outcome
-		SET category = #{category}, payment = #{payment}, regDate = #{regDate}, location = #{location}, content = #{content}
-		WHERE outcomeNo = #{outcomeNo}
+		SET
+		category = #{category}, payment = #{payment}, regDate = #{regDate},
+		location = #{location}, content = #{content}
+		WHERE outcomeNo =
+		#{outcomeNo}
 	</select>
+
+
 
 </mapper>
