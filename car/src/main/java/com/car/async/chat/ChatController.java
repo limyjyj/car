@@ -53,7 +53,9 @@ public class ChatController {
 
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
-	public void postMessage(@RequestParam String message) {
+	public void postMessage(@RequestParam String message, int reservationNo) {
+		
+		System.out.println("reservation no : " + reservationNo);
 		
 		this.chatRepository.addMessage(message);
 

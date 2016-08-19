@@ -28,10 +28,8 @@ $(function() {
 	$('input#enter-groupchatroom').on('click',
 			function(event) {
 		
-				//var chatroom = $(this).attr("chatroom-no");
-				//alert(chatroom)
-				
-				location.href = ('/car/groupschedule/longtermreservationchat.action');
+				var reservationNo = $(this).attr('data-rno');
+				location.href = ('/car/groupschedule/longtermreservationchat.action?reservationNo=' + reservationNo);
 				
 				}
 			);
@@ -62,9 +60,10 @@ $(function() {
 				</tr>
 				
 			</thead>
-			<tbody>					
+			<tbody>	
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
+						
 						<td>${ b.memberNo } </td>
 						
 						<td>${ b.type } </td>
@@ -78,10 +77,9 @@ $(function() {
 						<td>${ b.endDate }</td>
 						
 						<td>${ b.totalMember}</td>
-						
 						<td>
 						<input type="button" id="enter-groupchatroom" 
-						value="채팅방" style="height: 25px"/>
+						value="채팅방" style="height: 25px" data-rno="${ b.reservationNo }"/>
 						</td>
 						
 					</tr>

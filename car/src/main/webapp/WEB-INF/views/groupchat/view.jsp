@@ -206,10 +206,11 @@ function reverseDisplay() {
 													onclick="location.href='chat.action';" />
 											</div> -->
 											
-												<form id="joinChatForm" action="/car/mvc/chat" th:action="@{/mvc/chat}" data-bind="visible: activePollingXhr() == null">
+	<form id="joinChatForm" action="/car/mvc/chat" th:action="@{/mvc/chat}" data-bind="visible: activePollingXhr() == null">
 		<p>
-			<label for="user">User Nick Name: </label>
+			<label for="user">User Name : </label>
 			<input id="user" name="user" type="text" data-bind="value: userName"/>
+			<input id="reservationNo" name="rNo" type="hidden" value='${ reservationno }'/>
 			<input name="messageIndex" type="hidden" data-bind="value: messageIndex"/>
 			<button id="start" type="submit" data-bind="click: joinChat">Join Chat</button>
 		</p>
@@ -245,7 +246,7 @@ function reverseDisplay() {
 										<td>
 											<div class="buttons">
 												<button type="button" data-toggle="modal"
-													data-target="#myModal3">작성</button>
+													data-target="#myModal3">작성</button>													
 
 											</div> <!-- Modal -->
 											<div class="modal fade" id="myModal3" role="dialog">
@@ -300,14 +301,8 @@ function reverseDisplay() {
 
 													</div>
 												</div>
+											</div>
 										</td>
-
-
-
-
-
-
-
 
 										<td>
 											<div class="buttons">
