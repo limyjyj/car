@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.car.model.dto.Board;
 import com.car.model.dto.BoardComent;
+import com.car.model.dto.BoardUpload;
 
 
 	public interface BoardDao {
@@ -45,5 +46,11 @@ import com.car.model.dto.BoardComent;
 	void updateComent(BoardComent coment);
 
 	void deleteComent(int comentNo);
+	
+	//---------------------------Upload----------------------------------//
+	
+	void insertBoardUpload(BoardUpload boardupload);
+
+	BoardUpload selectBoardUploadByBoardNo(int BoardNo);
 
 }

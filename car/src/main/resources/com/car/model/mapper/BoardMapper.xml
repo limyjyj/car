@@ -128,4 +128,24 @@
 		WHERE comentNo = #{comentNo}
 	</update>
 	
+	<!-- ============================Upload============================== -->
+	
+	<insert id="insertBoardUpload" parameterType="BoardUpload">
+		INSERT INTO BoardUpload
+		(	 
+			boardNo
+			, savedFileName
+			, userFileName
+			
+		)
+		VALUES (#{boardNo}, #{savedFileName}, #{userFileName})
+	</insert>
+	
+	<select id="selectBoardUploadByBoardNo" parameterType="int" resultType="BoardUpload">
+		SELECT boardNo, fileNo, savedFileName, userFileName
+		FROM BoardUpload
+		WHERE boardNo = #{boardNo}
+	</select>
+	
+	
 </mapper>
