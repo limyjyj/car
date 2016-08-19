@@ -37,13 +37,13 @@
 		FROM Car
 	</sql>
 
-	<insert id="insertCar" parameterType="Car">
+	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
+		keyProperty="carindex" keyColumn="carindex">
 		INSERT INTO Car
 		(
 		model, carno, regdate, totaldistance, memberno)
 		VALUES
-		( #{model},
-		#{carno}, #{regdate}, #{totaldistance}, #{memberNo})
+		(#{model},	#{carno}, #{regdate}, #{totaldistance}, #{memberNo})
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *
@@ -52,17 +52,17 @@
 
 	<select id="selectAllCarByCarno" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE memberNo = #{memberNo}
+		WHERE memberNo = #{memberNo} And deleted = '0'
 	</select>
 
 	<select id="selectCarByCarno" parameterType="String" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE carno = #{carno}
+		WHERE carno = #{carno} And deleted = '0'
 	</select>
 
 	<select id="selectCarByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE carindex = #{carindex}
+		WHERE carindex = #{carindex} And deleted = '0'
 	</select>
 
 	<update id="updateCar" parameterType="Car">
