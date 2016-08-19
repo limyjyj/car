@@ -31,6 +31,7 @@
 		});
 	});
 </script>
+
 <meta charset="utf-8" />
 <title>세부사항</title>
 
@@ -345,7 +346,7 @@ function getTimeHTML(distance) {
 				<tr>
 		     		<th>작성자</th>
 					<td >
-					${loginuser.memberId }
+					${ reservation.member.memberId }
 					</td>
 				</tr>
 				
@@ -398,6 +399,8 @@ function getTimeHTML(distance) {
 			<div class="buttons">
 						<c:choose>
 							<c:when test="${ loginuser.memberNo eq reservation.memberNo  }">
+							
+							
 							<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
 						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
 						<a href='list.action?pageno=${ pageno }'>뒤로가기</a>						

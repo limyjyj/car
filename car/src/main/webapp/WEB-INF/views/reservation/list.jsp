@@ -14,10 +14,9 @@
 <head>
 <meta charset="utf-8" />
 <title>게시물 목록</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="./javascript.js"></script>
+
 <script
     src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
 </script>
@@ -37,20 +36,36 @@
 $(function() {
 	$('input#register').on('click',
 			function(event) {
-				var reservationNo = $('#reservationNo').val();
+		
+		
+				var reservation=$(this).attr("name");
+				alert(reservation)
+				/* var reservationNo = $('#reservationNo').val(); */
 				var memberNo = $('#memberNo').val();
 				var result = confirm('신청하시겠습니까?');
 				if (result) {
 				//yes
-				location.href = ('/car/reservation/confirm.action?reservationNo=' + reservationNo +'&memberNo=' + memberNo);
+				location.href = ('/car/reservation/confirm.action?reservationNo=' + reservation +'&memberNo=' + memberNo);
 				
 				alert("신청 완료 되었습니당");
 				} else {
+					alert("취소욤");
 				//no
 				}
 			});
      });
 
+
+$(document).ready(function (){
+	$("#reservationsearch").change(function (event) {
+		
+		location.href="/car/reservation/frequencylist.action?frequency="+$("#reservationsearch").val();
+		
+	});
+
+	
+	
+})
 
 </script>
 
@@ -65,8 +80,8 @@ $(function() {
 		</div>
 		<br/><br/>	
 		
-		<form id="reservationform" action="list.action" method="post">		
-			<table class="bsearch">					
+		
+			<table class="bsearch" >					
 				<tr>		
 					<td>					
 			
@@ -81,12 +96,11 @@ $(function() {
 					</td>				
 				</tr>
 			</table>
-
+<form id="reservationform" action="list.action" method="post">		
 		<table class="btable">
 			<thead>
 				<tr>
 					<th style="width: 100px">회원번호</th>
-					
 					<th style="width: 100px">타태워</th>
 					<th style="width: 100px">실시간.정기</th>
 					<th style="width: 100px">목적</th>
@@ -101,7 +115,7 @@ $(function() {
 				
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
-						<td>${ b.memberNo}</td>
+						<td>${ b.member.memberId}</td>
 						
 						<td>${ b.purpose }</td>
 						
@@ -138,13 +152,13 @@ $(function() {
 						<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
-						<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=730, height=800, scrollbars=1')" value="목록보기">
+						<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=500, height=500, scrollbars=1')" value="목록보기">
 	
 					</c:when>
 					<c:otherwise>
 					
 						
-						 <input type="button" id="register" value="신청하기" style="height: 25px" />
+						 <input type="button" id="register" value="신청하기" name="${ b.reservationNo }" style="height: 25px"/>
 						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
 						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
 			

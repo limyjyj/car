@@ -94,8 +94,30 @@ public class MysqlReservationDao implements ReservationDao {
 	}
 
 	@Override
-	public List<Member> selectConfirmListByReservationNo(int reservationNo) {
+	public List<Confirm> selectConfirmListByReservationNo(int reservationNo) {
 		return reservationMapper.selectConfirmListByReservationNo(reservationNo);
+		
+	}
+
+	@Override
+	public Member selectMemberByMemeberNo(int memberNo) {
+		return reservationMapper.selectMemberByMemeberNo(memberNo);
+	}
+
+	@Override
+	public List<Reservation> selectReservationSearchType(String frequency) {
+		
+		return reservationMapper.selectReservationSearchType(frequency);
+	}
+
+	@Override
+	public int insertReservationNoToMember(int reservationNo) {
+		return reservationMapper.insertReservationNoToMember(reservationNo);
+	}
+
+	@Override
+	public void updateMemberByReservationNo(Member member) {
+		reservationMapper.updateMemberByReservationNo(member);
 		
 	}
 

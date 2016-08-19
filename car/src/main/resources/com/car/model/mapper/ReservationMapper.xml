@@ -9,7 +9,8 @@
 
 <resultMap type="Reservation" id="reservationMap">
 		<id property="reservationNo" column="reservationno" />
-		<result property="type" column="tpye" />
+		<result property="memberNo" column="memberno" />
+		<result property="type" column="type" />
 		<result property="purpose" column="purpose" />
 		<result property="departure" column="departure" />
 		<result property="arrival" column="arrival" />
@@ -19,19 +20,22 @@
 		<result property="totalMemeber" column="totalmemeber" />
 		<result property="endDate" column="enddate" />
 		<result property="content" column="content" />
-	
+		
+		<collection property="memberNo" column="memberno"
+			select="selectMemberByMemeberNo"  />
 	</resultMap>
 	
 	<resultMap type="Reservation" id="reservationMap2">
 		<id property="reservationNo" column="reservationno" />
-		<result property="type" column="tpye" />
+		<result property="type" column="type" />
+		<result property="memberNo" column="memberno" />
 		<result property="purpose" column="purpose" />
 		<result property="departure" column="departure" />
 		<result property="arrival" column="arrival" />
 		<result property="frequency" column="frequency" />
 		<result property="startDate" column="startdate" />
 		<result property="endDate" column="enddate" />
-		<result property="totalMemeber" column="totalmemeber" />
+		<result property="totalMember" column="totalmember" />
 		<result property="endDate" column="enddate" />
 		<result property="content" column="content" />
 	
@@ -51,7 +55,30 @@
 		
 	</resultMap>
 	
+	<update id="updateMemberByReservationNo" parameterType="Member">
+	UPDATE Member
+	SET reservationno = #{reservationNo}
+	WHERE memberno = #{memberNo}
+	</update>
+	
+	
+	
+	
+	
+	<select id="selectMemberByMemeberNo" parameterType="int" resultType="Member">
+	
+	SELECT * FROM Member
+	WHERE memberNo = #{memberNo}
+	
+	</select>
 
+		<insert id="insertReservationNoToMember" parameterType="Member" >
+		INSERT INTO Member
+		reservationNo
+		VALUES
+		#{reservationNo}
+	</insert>
+	
 	
 	<insert id="insertConfirm" parameterType="Member" >
 		INSERT INTO Confirm
@@ -74,7 +101,7 @@
 			from Confirm
 			join Member
 			on Member.memberno = Confirm.memberno
-            WHERE Confirm.reservationno=#{reservationNo};
+            WHERE Confirm.reservationno=#{reservationNo}
 	
 	
 	</select>
@@ -99,7 +126,7 @@
 	
 </select>
 	
-	<select id="selectReservationByReservationNo" parameterType="int" resultMap="reservationMap">
+	<select id="selectReservationByReservationNo" parameterType="int" resultType="Reservation">
 		SELECT
 		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content
 		FROM Reservation
@@ -136,5 +163,15 @@
 	startDate=#{startDate}, endDate=#{endDate}
 	WHERE reservationno = #{reservationNo}
 	</update>
+	
+	<select id="selectReservationByMemberNo" parameterType="int" resultType="Reservation">   
+   SELECT
+   r.reservationNo, r.memberNo, r.type, r.purpose, 
+   r.departure, r.arrival, r.frequency, r.startDate, 
+   r.endDate, r.totalMember, r.content
+   FROM Reservation r
+   JOIN Member m
+   WHERE r.memberNo = #{memberNo} AND r.deleted = '0';
+  </select>
 	
 </mapper>

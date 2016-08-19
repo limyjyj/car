@@ -32,6 +32,13 @@ public interface ReservationDao {
 	 
 	 List<Confirm> selectConfirmList();
 	 
-	 List<Member> selectConfirmListByReservationNo(int reservationNo);
+	 List<Confirm> selectConfirmListByReservationNo(int reservationNo);
 	 
+	 Member selectMemberByMemeberNo(int memberNo);
+	 
+	 List<Reservation> selectReservationSearchType(String frequency);
+	 
+	 int insertReservationNoToMember(int reservationNo);
+	 
+	 void updateMemberByReservationNo(Member member);
 }
