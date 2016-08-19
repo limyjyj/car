@@ -102,11 +102,7 @@ public class CarController {
 	    	    
 	     Car car = carService.selectCarByCarindex(carindex);
 	    
-	     if (car == null) {
-	     mav.setViewName("redirect:/reservation/detail.action");
-	     return mav;
-	     }
-	    
+	     
 	    
 	    
 	     mav.addObject("car", car);
