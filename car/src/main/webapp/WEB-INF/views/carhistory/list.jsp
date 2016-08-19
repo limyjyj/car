@@ -16,6 +16,15 @@
 <html>
 <head>
 <meta charset="utf-8" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title></title>
 
 <script
@@ -78,7 +87,7 @@
 							location.href = "/car/carhistory/fuelwriteform.action?carindex="
 									+ $('#status').val();
 						})
-	
+
 	});
 </script>
 </head>
@@ -86,7 +95,7 @@
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div id="pageContainer" class="panel panel-heading"
-		style="padding-top: 25px; text-align =center; margin: auto; width: 1000px">
+		style="padding-top: 25px; margin: auto; width: 1000px">
 
 		<div id="content">
 			<br /> <br />
@@ -98,10 +107,8 @@
 					<c:forEach var="car" items="${ cars }" varStatus="Status">
 						<option value="${ car.carindex }">${ car.carno }</option>
 					</c:forEach>
-				</select> 
-					<input class="btn btn-danger" type="button" id="inputOutcome"
-					value="지출입력" style="height: 30px" /> 
-					<input class="btn btn-danger"
+				</select> <input class="btn btn-danger" type="button" id="inputOutcome"
+					value="지출입력" style="height: 30px" /> <input class="btn btn-danger"
 					type="button" id="inputFuel" value="주유입력" style="height: 30px" />
 
 			</div>
@@ -119,7 +126,8 @@
 				</tr>
 
 				<c:forEach var="f" items="${ fuels }">
-					<tr style="height: 30px" align="center" id="fList">
+					<tr style="height: 30px" align="center" data-toggle="modal"
+						data-target="#fView">
 						<td><input type="hidden" ${ f.historyNo } /></td>
 						<td>${ f.historyNo }</td>
 						<td>${ f.category }</td>
@@ -131,7 +139,8 @@
 				</c:forEach>
 
 				<c:forEach var="o" items="${ outcomes }">
-					<tr style="height: 30px" align="center" id="oList">
+					<tr style="height: 30px" align="center" id="oList"
+						data-toggle="modal" data-target="#oView">
 						<td><input type="hidden" ${ o.historyNo } /></td>
 						<td>${ o.historyNo }</td>
 						<td>${ o.category }</td>
@@ -157,14 +166,171 @@
 						placeholder="기록종료일" id="endDate" /></td>
 
 				</tr>
-				
+
 				<button type="button" id="but">조회</button>
 
 			</table>
 
-
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+	<table class="table table-borderd" style="align: center; width: 200px">
+	<th style="text-align: center" colspan="2">스케줄</th>
+	<tr>
+		<td>
+			<div class="buttons">
+				<button type="button" data-toggle="modal" data-target="#myModal3">작성</button>
+
+			</div> 
+			
+			
+			
+			<!-- Modal -->
+			<div class="modal fade" id="fView" role="dialog">
+				<div class="modal-dialog modal-md">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">주유 상세내역</h4>
+						</div>
+						<div class="modal-body">
+
+
+							<form role="form" id="save-schedule">
+
+								<div class="form-group">
+									<label for="title">Title</label> <input type="text"
+										class="form-control" id="title1" name="title"
+										placeholder="Enter title" />
+
+								</div>
+								<div class="form-group">
+									<label for="startDate">Start Date</label> <input type="date"
+										class="form-control" name="startDate" placeholder="Start-date" />
+								</div>
+								<div class="form-group">
+									<label for="endDate">End Date</label> <input type="date"
+										class="form-control" id="end-date1" name="endDate"
+										placeholder="end-date" />
+								</div>
+								<div class="form-group">
+									<label for="duration">Depart Time</label> <input type="time"
+										class="form-control" id="depart-time1" name="departTime"
+										placeholder="depart-time" />
+								</div>
+								<div class="form-group">
+									<label for="content">Content</label> <input type="text"
+										class="form-control" id="content1" name="content"
+										placeholder="content" />
+								</div>
+								<button type="button" id="save" class="btn btn-default"
+									data-dismiss="modal">저장</button>
+							</form>
+
+
+						</div>
+
+						<!-- Modal Footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">취소</button>
+						</div>
+
+					</div>
+				</div>
+		</td>
+
+
+
+
+
+
+
+
+		<td>
+			<div class="buttons">
+				<button type="button" data-toggle="modal" id="view-schedule"
+					data-target="#myModal4">확인</button>
+			</div> <!-- Modal -->
+			<div class="modal fade" id="myModal4" role="dialog">
+				<div class="modal-dialog modal-md">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Modify Schedule</h4>
+						</div>
+						<div class="modal-body">
+
+							<form role="form">
+
+								<div class="form-group">
+									<label for="title">Title</label> <input type="text"
+										class="form-control" id="title2" readonly></input>
+
+								</div>
+								<div class="form-group">
+									<label for="startDate">Start Date</label> <input type="text"
+										class="form-control" id="start-date2" readonly></input>
+								</div>
+								<div class="form-group">
+									<label for="endDate">End Date</label> <input type="text"
+										class="form-control" id="end-date2" readonly></input>
+								</div>
+								<div class="form-group">
+									<label for="departTime">Depart Time</label> <input type="text"
+										class="form-control" id="depart-time2" readonly></input>
+								</div>
+								<div class="form-group">
+									<label for="content">Content</label> <input type="text"
+										class="form-control" id="content2" readonly></input>
+								</div>
+
+								<button type="button" class="btn btn-default" id="intro-modify"
+									onClick="changeReadOnlyAttribute()">수정</button>
+								<button type="button" class="btn btn-default" id="modify"
+									style="display: none" onClick="reverseDisplay()">완료</button>
+
+							</form>
+
+						</div>
+						<!-- Modal Footer -->
+						<div class="modal-footer">
+							<button id="return" type="button" class="btn btn-default"
+								data-dismiss="modal" onClick="reverseDisplay()">확인</button>
+							<button id="cancle" type="button" class="btn btn-default"
+								data-dismiss="modal" style="display: none"
+								onClick="reverseDisplay()">취소</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</td>
+
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
