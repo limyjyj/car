@@ -303,10 +303,13 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		List<Confirm> confirmedMembersList = reservationService.selectConfirmListByReservationNo(reservationNo);
 		
-		for (Confirm confirm : confirmedMembersList) {
-		//	confirm.setMember(confirm.getMemberNo());
-			System.out.println(confirm.getMemberNo());
-		}
+	/*	for (Confirm confirm : confirmedMembersList) {
+		
+			
+				confirm.setMember(reservationService.selectMemberByMemeberNo(confirm.getMemberNo()));
+			
+			
+		}*/
 		
 		
 		
@@ -326,16 +329,37 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		
 		
 		@RequestMapping(value = "confirmAjax.action", method = RequestMethod.GET)
-		public String confirmAjaxPost(Member member) {
-			System.out.println(member.getReservationNo());
-			System.out.println(member.getMemberNo());
-	
+		public String confirmAjaxPost(int memberno, int reservationno) {
+		 System.out.println(memberno);
+		 System.out.println(reservationno);
+			
+			//	System.out.println(confirm.getMemberNo());
+		 	//	System.out.println(confirm.getReservationNo());
+		 	Member member = new Member();
+	        member.setMemberNo(memberno);
+	        member.setReservationNo(reservationno);
 		
 			reservationService.updateMemberByReservationNo(member);
 
-			return "redirect:/reservation/list.action";
+			return "redirect:/reservation/confirmlist.action";
 		
 		}
+		
+		 //삭제
+	     @RequestMapping(value = "deleteConfirm.action", method = RequestMethod.GET)
+	     public String deleteConfirm(HttpServletRequest req, Confirm confirm, int reservationNo) {
+	     // 1. 요청 데이터 읽기 (글번호)
+	    System.out.println(confirm.getMemberNo());
+	    System.out.println(reservationNo);
+	    confirm.setReservationNo(reservationNo);
+	     // 2. 데이터 처리 (db에서 데이터 변경)
+	     reservationService.deleteConfirm(confirm);
+	     
+	    
+	     return "redirect:/reservation/confirmlist.action?reservationNo="+reservationNo;
+	     }
+	     
+		
 		
 	
 

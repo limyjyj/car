@@ -111,6 +111,12 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 
+	@Override
+	public void deleteConfirm(Confirm confirm) {
+		reservationDao.deleteConfirm(confirm);
+		
+	}
+
 	
 
 

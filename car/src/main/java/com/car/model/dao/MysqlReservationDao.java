@@ -121,6 +121,12 @@ public class MysqlReservationDao implements ReservationDao {
 		
 	}
 
+	@Override
+	public void deleteConfirm(Confirm confirm) {
+		reservationMapper.deleteConfirm(confirm);
+		
+	}
+
 	
 
 

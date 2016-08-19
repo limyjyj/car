@@ -40,4 +40,6 @@ public interface ReservationMapper {
 	int insertReservationNoToMember(int reservationNo);
 	
 	 void updateMemberByReservationNo(Member member);
+	 
+	 void deleteConfirm(Confirm confirm);
 	}

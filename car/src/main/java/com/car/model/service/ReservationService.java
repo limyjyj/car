@@ -40,5 +40,6 @@ public interface ReservationService {
 	
 	void updateMemberByReservationNo(Member member);
 
+	void deleteConfirm(Confirm confirm);
 
 }

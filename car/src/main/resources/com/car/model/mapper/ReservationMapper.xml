@@ -55,6 +55,17 @@
 		
 	</resultMap>
 	
+	
+	<resultMap type="Confirm" id="confirmMap">
+		<result property="memberNo" column="memberno" />
+		<result property="reservationNo" column="reservationno" />
+		
+		
+		<collection property="member" column="memberno"
+			select="selectMemberByMemeberNo"  />
+	</resultMap>
+	
+	
 	<update id="updateMemberByReservationNo" parameterType="Member">
 	UPDATE Member
 	SET reservationno = #{reservationNo}
@@ -62,13 +73,16 @@
 	</update>
 	
 	
+		<delete id="deleteConfirm" parameterType="Confirm">
+	DELETE FROM Confirm WHERE reservationNo=#{reservationNo} AND memberNo =#{memberNo};
+	</delete>
 	
 	
 	
 	<select id="selectMemberByMemeberNo" parameterType="int" resultType="Member">
 	
 	SELECT * FROM Member
-	WHERE memberNo = #{memberNo}
+	WHERE memberno = #{memberNo}
 	
 	</select>
 
@@ -95,7 +109,7 @@
     </select>
     
     <select id="selectConfirmListByReservationNo" parameterType="int"
-	resultType="Member">
+	resultMap="confirmMap">
 
 	select distinct Member.*
 			from Confirm
@@ -103,7 +117,7 @@
 			on Member.memberno = Confirm.memberno
             WHERE Confirm.reservationno=#{reservationNo}
 	
-	
+	                                  
 	</select>
 	
 

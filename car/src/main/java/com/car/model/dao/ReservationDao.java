@@ -41,4 +41,6 @@ public interface ReservationDao {
 	 int insertReservationNoToMember(int reservationNo);
 	 
 	 void updateMemberByReservationNo(Member member);
+	 
+	 void deleteConfirm(Confirm confirm);
 }
