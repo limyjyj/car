@@ -49,7 +49,11 @@
 						<td><button href=""></button></td>
 					
 					</tr>
+					
+					<input type="button" id="enter-groupchatroom" value="채팅방" style="height: 25px"/>
+					
 				</c:forEach>
+				
 			</tbody>				
 		</table>
 		
