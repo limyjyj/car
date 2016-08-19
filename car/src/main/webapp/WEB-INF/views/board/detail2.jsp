@@ -72,6 +72,74 @@
 	background:-ms-linear-gradient(#ffffff, #e6d6dc);
 	background:linear-gradient(#ffffff, #e6d6dc);
 }
+.view_titlebg01 {
+   background: repeat-x #aeaeae;
+   width: 100%;
+   border-collapse: collapse;
+}
+
+.view_titlebg02 {
+   padding: 3px 10px;
+   font-size: 13px;
+   COLOR: #ffffff;
+   font-weight: bold;
+   letter-spacing: -1px;
+}
+
+.view01 {
+   font-size: 11px;
+   width: 65px;
+   padding: 4px 0 4px 18px;
+   letter-spacing: -1px;
+   background: no-repeat 8px 10px;
+   border-bottom: 1px solid #dfdfdf;
+   vertical-align: top;
+}
+
+.view02 {
+   font-size: 12px;
+   padding: 4px 10px;
+   background: no-repeat left 6px;
+   border-bottom: 1px solid #dfdfdf;
+}
+
+.board_title {
+   border-collapse: collapse;
+   width: 100%;
+   border-top: 2px solid #f0f0f0;
+   table-layout: fixed;
+}
+
+tbody {
+   display: table-row-group;
+   vertical-align: middle;
+   border-color: inherit;
+}
+
+body, th, td, textarea, p, dt, dd, li, select, div {
+   margin: 0;
+   padding: 0;
+   line-height: 150%;
+   font-family: NanumGothic, '나눔고딕', '맑은 고딕', Tahoma, AppleGothic,
+      sans-serif;
+   color: #666;
+}
+
+.view_content {
+   padding: 30px 15px 30px 15px;
+   line-height: 150%;
+}
+
+.bbs_area_view {
+   margin: 20px 0;
+   padding: 20px 0 20px 0;
+   border-top: 1px solid #ddd;
+}
+
+img{
+width:200px;
+
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -122,21 +190,26 @@
 					<td><fmt:formatDate value="${ board.regDate }"
 							pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 				</tr>
-				<tr>
-		            <th style="text-align: center; vertical-align:middle" scope="cols">첨부파일</th>
-		            <td style="height: 300px; width: 400px; vertical-align: middle"> 
-		            <img style="height: 300px; width: 400px; vertical-align: middle" src="/car/resources/Upload/${ boardupload.savedFileName }">		                	
-		            </td>
-		        </tr>
-
+				
 				<tr>
 					<th style="text-align: center; vertical-align:middle" scope="cols">내용</th>
 					<td style="height: 300px; width: 400px; vertical-align: middle">${ board.content }</td>
 				</tr>
-
+				 
+				<tr>
+		            <th style="text-align: center; vertical-align:middle" scope="cols">첨부파일</th>
+		            <td style="height: 300px; width: 400px; vertical-align: middle">
+		            </td>
+		        </tr> 
+		       
 			</table>
+			<br />
+			<div style="margin: auto; text-align: center;">
+				<c:forEach items="${ boardupload }" var="b">
+		        	<img class="jbox-img img-rounded" style="height: 100px; width: 100px; vertical-align: middle" src="/car/resources/Upload/${ b.savedFileName }">		                	
+		    	</c:forEach>
+			</div>
 			
-			 <br />
 		     <br />
 
 			<div>

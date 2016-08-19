@@ -113,7 +113,7 @@
 					<tr>
 					  <th style="text-align:center; vertical-align:middle" scope="cols">첨부자료</th>
 		              <td style="height: 100px; width: 400px; vertical-align: middle">
-		              <input type="file" name="attach" placeholder="첨부자료를 올려주세요."/>
+		              <input type="file" multiple="multiple" name="attach" placeholder="첨부자료를 올려주세요." maxlength="5" class="multi"/>
 			        </td>
 			        </tr>
 			        	  

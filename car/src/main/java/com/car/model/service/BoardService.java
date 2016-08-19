@@ -56,6 +56,6 @@ public interface BoardService {
 	
 	void insertBoardUpload(BoardUpload boardupload);
 
-	BoardUpload selectBoardUploadByBoardNo(int BoardNo);
+	List<BoardUpload> selectBoardUploadByBoardNo(int BoardNo);
 	 
 }
