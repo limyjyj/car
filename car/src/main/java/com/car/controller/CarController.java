@@ -1,5 +1,6 @@
 package com.car.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,10 +69,46 @@ public class CarController {
 		return mav;
 				
 	}
+	
+	@RequestMapping(value = "view.action", method = RequestMethod.GET)
+	public ModelAndView viewList(int carindex, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+
+		Member member = (Member)session.getAttribute("loginuser");
+	
+		List<Car> cars = null;
+		
+		if(carindex == 0){
+			cars = carService.selectCarindexByMemberno(member.getMemberNo());
+		}else{
+			Car car = carService.selectCarByCarindex(carindex);
+			cars = new ArrayList<>();
+			cars.add(car);
+		}
+		
+		mav.addObject("cars", cars);
+		return mav;
+
+	}
+	
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
-	public String updateForm(
-			@ModelAttribute Car car) {
-		return "car/editform";
+	public ModelAndView updateForm(HttpSession session, int carindex) {
+		
+		ModelAndView mav = new ModelAndView();
+	    
+		Member member = (Member)session.getAttribute("loginuser");
+		
+	    	    
+	     Car car = carService.selectCarByCarindex(carindex);
+	    
+	     
+	    
+	    
+	     mav.addObject("car", car);
+	     mav.setViewName("car/editform");
+	     return mav;
+		
 
 	}
 	
@@ -85,13 +122,8 @@ public class CarController {
 
 	}
 	@RequestMapping(value = "delete.action", method = RequestMethod.GET)
-	public String deleteCar(HttpServletRequest req) {
+	public String deleteCar(HttpServletRequest req, Car car, int carindex) {
 		
-		Car car = new Car();
-		String carindex = req.getParameter("carindex");
-		if (carindex == null || carindex.length() == 0) {
-			return "redirect:/car/list.action";
-		}
 		
 		
 		carService.deleteCar(car);

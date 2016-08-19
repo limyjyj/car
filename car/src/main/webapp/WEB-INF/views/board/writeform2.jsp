@@ -84,7 +84,7 @@
 		
 		<div id="inputmain" style="padding-top: 20px; text-align: center; margin: auto; width: 800px">
 			    
-		        <form:form action="write2.action" method="post" modelAttribute="Board" id="form"><!-- 상대경로표시 -->
+		        <form:form action="write2.action" method="post" modelAttribute="Board" id="form" enctype="multipart/form-data"><!-- 상대경로표시 -->
 		        
 		       		
 		       		<div>
@@ -109,6 +109,13 @@
 						<form:input type="text" path="content" style="height: 300px; width: 400px; vertical-align: middle; text-align: center;" /> 
 						</td>
 					</tr>
+					
+					<tr>
+					  <th style="text-align:center; vertical-align:middle" scope="cols">첨부자료</th>
+		              <td style="height: 100px; width: 400px; vertical-align: middle">
+		              <input type="file" name="attach" placeholder="첨부자료를 올려주세요."/>
+			        </td>
+			        </tr>
 			        	  
 				</table>
 			        	  
