@@ -7,16 +7,22 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.car.model.dao.ReservationDao;
+import com.car.model.dto.Confirm;
+import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
 
 
+
+
 @Service("reservationService")
+
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	@Qualifier("mysqlReservationDao")
 	private ReservationDao reservationDao;
+	
 
 	
 
@@ -30,16 +36,14 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public List<Reservation> selectReservationList() {
-		List<Reservation> rs = reservationDao.selectReservationList();
-		return rs;
+		return reservationDao.selectReservationList();
 	}
+	
+
 	@Override
 	public List<Reservation> selectReservationList2(int start, int last) {
 		return reservationDao.selectReservationList2(start, last);
-		
 	}
-
-	
 
 	@Override
 	public Reservation selectReservationByReservationNo(int reservationNo) {
@@ -49,15 +53,6 @@ public class ReservationServiceImpl implements ReservationService {
 	  }
 	
 
-	@Override
-	public int selectReservationCount() {
-		return reservationDao.selectReservationCount();
-	}
-
-	@Override
-	public void updateReservationReadCount(int number) {
-		reservationDao.updateReservationReadCount(number);
-	}
 
 	@Override
 	public void updateReservation(Reservation reservation) {
@@ -70,6 +65,56 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDao.deleteReservation(reservationNo);
 		
 	 }
+
+	@Override
+	public int selectReservationCount() {
+		
+		 return reservationDao.selectReservationCount();
+	}
+
+	@Override
+	public void insertConfirm(Confirm confirm) {
+		reservationDao.insertConfirm(confirm);
+		
+	}
+
+	@Override
+	public List<Confirm> selectConfirmList() {
+		return reservationDao.selectConfirmList();
+	}
+
+	@Override
+	public List<Confirm> selectConfirmListByReservationNo(int reservationNo) {
+		return reservationDao.selectConfirmListByReservationNo(reservationNo);
+		
+	}
+
+	@Override
+	public Member selectMemberByMemeberNo(int memberNo) {
+		
+		return reservationDao.selectMemberByMemeberNo(memberNo);
+	}
+
+	@Override
+	public List<Reservation> selectReservationSearchType(String frequency) {
+		return reservationDao.selectReservationSearchType(frequency);
+	}
+
+	@Override
+	public int insertReservationNoToMember(int reservationNo) {
+		return reservationDao.insertReservationNoToMember(reservationNo);
+	}
+
+	@Override
+	public void updateMemberByReservationNo(Member member) {
+		reservationDao.updateMemberByReservationNo(member);
+		
+	}
+
+	
+
+
+
 	}
 
 

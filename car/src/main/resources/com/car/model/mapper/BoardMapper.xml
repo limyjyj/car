@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.car.model.mapper.BoardMapper">
+
+	<resultMap type="Board" id="BoardMap">
+		<id property="boardNo" column="boardno" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="regDate" column="regdate" />
+		<result property="type" column="type" />
+		<result property="deleted" column="deleted" />
+		<result property="memberNo" column="memberno" />
+		<!-- <collection property="comments" column="boardno" select="selectBoardCommentsByBoardNo" />	 -->
+	</resultMap>
+	
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="boardNo" keyColumn="boardno">
+		INSERT INTO Board
+		(	 title
+			, memberno
+			, content
+			, type
+		)
+		VALUES (#{title}, #{memberNo}, #{content}, #{type})
+	</insert>
+	
+	<select id="selectBoardList" parameterType="hashMap" resultType="Board">
+		SELECT boardno, title, content, memberno, regdate, type, deleted
+		FROM Board WHERE deleted='0' and type='Notice' ORDER BY boardno desc
+		LIMIT #{start}, #{count} 
+	</select>
+	
+	<select id="selectBoardByBoardNo" parameterType="int" resultMap="BoardMap">
+		SELECT 
+			boardno, title, content, memberno, regdate, type, deleted
+		FROM Board
+		WHERE boardNo = #{boardNo}
+	</select>
+	
+	<select id="selectBoardCount" resultType="int">
+		SELECT COUNT(*) FROM Board
+	</select> 
+
+	<update id="deleteBoard" parameterType="int">
+		UPDATE Board
+		SET deleted = '1'
+		WHERE boardNo = #{ boardNo }
+	</update>
+
+	<update id="updateBoard" parameterType="Board">
+		UPDATE Board 
+		SET title = #{title}, content = #{content}  
+		WHERE boardno = #{boardNo}
+	</update>
+	
+	
+	<!-- ============================Review============================== -->
+	
+	
+	<select id="selectReviewList" parameterType="hashMap" resultType="Board">
+		SELECT boardno, title, content, memberno, regdate, type, deleted
+		FROM Board WHERE deleted='0' and type='Review' ORDER BY boardno desc
+		LIMIT #{start}, #{count} 
+	</select>
+	
+	<select id="selectReviewByBoardNo" parameterType="int" resultMap="BoardMap">
+		SELECT boardno, title, content, memberno, regdate, type, deleted
+		FROM Board
+		WHERE boardNo = #{boardNo}
+	</select>
+	
+<!-- 	<select id="selectBoardCommentsByBoardNo"
+		parameterType="int" resultType="BoardComment">
+		SELECT commentno, boardno, writer, content, regdate
+		FROM boardcomment
+		WHERE boardno = #{boardNo}
+	</select> -->
+	
+	<select id="selectReviewCount" resultType="int">
+		SELECT COUNT(*) FROM Board
+	</select> 
+
+	<update id="deleteReview" parameterType="int">
+		UPDATE Board
+		SET deleted = '1'
+		WHERE boardNo = #{ boardNo }
+	</update>
+
+	<update id="updateReview" parameterType="Board">
+		UPDATE Board 
+		SET title = #{title}, content = #{content}  
+		WHERE boardno = #{boardNo}
+	</update>
+	
+	
+	<!-- ============================Coment============================== -->
+	
+	
+	<insert id="insertBoardComent" parameterType="BoardComent">
+		INSERT INTO BoardComent
+		(	 
+			boardNo
+			, content
+			, writer
+			
+		)
+		VALUES (#{boardNo}, #{content}, #{writer})
+	</insert>
+	
+	<select id="selectComentByBoardNo" parameterType="int" resultType="BoardComent">
+		SELECT comentNo, content, regdate, boardNo, deleted, writer
+		FROM BoardComent
+		WHERE boardNo = #{boardNo} and deleted = '0'
+	</select>
+	
+	<update id="deleteComent" parameterType="int">
+		UPDATE BoardComent
+		SET deleted = '1'
+		WHERE comentNo = #{comentNo}
+	</update>
+
+	<update id="updateComent" parameterType="BoardComent">
+		UPDATE BoardComent
+		SET content = #{content}  
+		WHERE comentNo = #{comentNo}
+	</update>
+	
+</mapper>

@@ -5,41 +5,37 @@ import java.util.Date;
 public class Outcome {
 
 	private int outcomeNo;	//지출번호
-	private int historyNo;	//차계부번호
-	private String cartegory;//지출항목
-	private int payment;	//지출금액
-	private Date regDate;	//Datr형식으로 받기
-	private String location;//지출장소
-	private String content;	//내용
+	private String category;
+	private Date regDate;
+	private int payment;
+	private String location;
+	private String content;
+	private int historyNo;
+	
+	
 	public int getOutcomeNo() {
 		return outcomeNo;
 	}
 	public void setOutcomeNo(int outcomeNo) {
 		this.outcomeNo = outcomeNo;
 	}
-	public int getHistoryNo() {
-		return historyNo;
+	public String getCategory() {
+		return category;
 	}
-	public void setHistoryNo(int historyNo) {
-		this.historyNo = historyNo;
-	}
-	public String getCartegory() {
-		return cartegory;
-	}
-	public void setCartegory(String cartegory) {
-		this.cartegory = cartegory;
-	}
-	public int getPayment() {
-		return payment;
-	}
-	public void setPayment(int payment) {
-		this.payment = payment;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public Date getRegDate() {
 		return regDate;
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+	public int getPayment() {
+		return payment;
+	}
+	public void setPayment(int payment) {
+		this.payment = payment;
 	}
 	public String getLocation() {
 		return location;
@@ -53,6 +49,15 @@ public class Outcome {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public int getHistoryNo() {
+		return historyNo;
+	}
+	public void setHistoryNo(int historyNo) {
+		this.historyNo = historyNo;
+	}
+	
+	
+	
 	
 	
 	

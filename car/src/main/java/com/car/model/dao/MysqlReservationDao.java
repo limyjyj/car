@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.car.model.dto.Confirm;
+import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
 import com.car.model.mapper.ReservationMapper;
@@ -39,7 +41,6 @@ public class MysqlReservationDao implements ReservationDao {
 		
 		return reservationlist;
 	}
-
 	
 	@Override
 	public List<Reservation> selectReservationList2(int start, int last) {
@@ -47,26 +48,24 @@ public class MysqlReservationDao implements ReservationDao {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("last", last);
-		List<Reservation> reservationList = reservationMapper.selectReservationList(map);
+		List<Reservation> reservationlist = reservationMapper.selectReservationList();
 
-		return reservationList;
+		return reservationlist;
 	}
+
+
+	public int selectReservationCount() {
+		int count = reservationMapper.selectReservationCount();
+		return count;
+	}
+	
 
 	@Override
 	public Reservation selectReservationByReservationNo(int number) {
 		return reservationMapper.selectReservationByReservationNo(number);
 	}
 
-	@Override
-	public int selectReservationCount() {
-		return reservationMapper.selectReservationCount();
-	}
-
-	@Override
-	public void updateReservationReadCount(int number) {
-		reservationMapper.updateReservationReadCount(number);
-	}
-
+	
 	@Override
 	public void updateReservation(Reservation reservation) {
 		reservationMapper.updateReservation(reservation);
@@ -76,6 +75,49 @@ public class MysqlReservationDao implements ReservationDao {
 	@Override
 	public void deleteReservation(int reservationNo) {
 		reservationMapper.deleteReservation(reservationNo);
+		
+	}
+
+	@Override
+	public void insertConfirm(Confirm confirm) {
+		reservationMapper.insertConfirm(confirm);
+		
+	}
+
+	@Override
+	public List<Confirm> selectConfirmList() {
+
+		List<Confirm> confirmlist =reservationMapper.selectConfirmList();
+		reservationMapper.selectConfirmList();
+		
+		return confirmlist;
+	}
+
+	@Override
+	public List<Confirm> selectConfirmListByReservationNo(int reservationNo) {
+		return reservationMapper.selectConfirmListByReservationNo(reservationNo);
+		
+	}
+
+	@Override
+	public Member selectMemberByMemeberNo(int memberNo) {
+		return reservationMapper.selectMemberByMemeberNo(memberNo);
+	}
+
+	@Override
+	public List<Reservation> selectReservationSearchType(String frequency) {
+		
+		return reservationMapper.selectReservationSearchType(frequency);
+	}
+
+	@Override
+	public int insertReservationNoToMember(int reservationNo) {
+		return reservationMapper.insertReservationNoToMember(reservationNo);
+	}
+
+	@Override
+	public void updateMemberByReservationNo(Member member) {
+		reservationMapper.updateMemberByReservationNo(member);
 		
 	}
 

@@ -24,9 +24,9 @@ public class MysqlCarDao implements CarDao {
 	public void insertCar(Car car) {
 		carMapper.insertCar(car);
 	}
-	public List<Car> selectCars() {
-		
-		return carMapper.selectCars();
+	public List<Car> selectCars(int carindex) {
+		List<Car> car = carMapper.selectCars(carindex);
+		return car;
 	}
 
 	public List<Car> selectAllCarByCarno(int memberNo) {
@@ -34,11 +34,16 @@ public class MysqlCarDao implements CarDao {
 		return carMapper.selectAllCarByCarno(memberNo);
 	}
 	
-	@Override
+	
 	public Car selectCarnoByCarindex(int carindex) {
 
 		return carMapper.selectCarnoByCarindex(carindex);
 	}
+	public Car selectCarByCarindex(int carindex) {
+
+		return carMapper.selectCarByCarindex(carindex);
+	}
+	
 	
 	public void updateCar(Car car) {
 		carMapper.updateCar(car);
@@ -46,5 +51,10 @@ public class MysqlCarDao implements CarDao {
 	public void deleteCar(Car car) {
 		carMapper.deleteCar(car);
 	}
+	
+	public List<Car> selectCarindexByMemberno(int memberNo) {
+		return carMapper.selectCarindexByMemberno(memberNo);
+	}
+	
 
 }

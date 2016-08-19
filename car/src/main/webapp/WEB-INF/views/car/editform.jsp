@@ -11,8 +11,6 @@
 <head>
 	<meta charset="utf-8" />
 	<title>차 정보 수정</title>
-	<link href="/car/resources/css/business-casual.css"
-	rel="stylesheet">
 	<!-- <link href="/mysbl-spring/resources/css/bootstrap.min.css" rel="stylesheet"> -->	
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>	
@@ -21,6 +19,9 @@
 
 	<div id="pageContainer">
 	
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+
 		
 		<div id="inputmain">
 		        <div class="inputsubtitle"><h2 align="center">차정보 수정</h2></div>
@@ -33,34 +34,35 @@
 		       		
 		        	<div class="form-group">
      		     	  <label for="inputModel">차종</label>
-     		     	  <form:input type="text" path="model" class="form-control" placeholder="차종"/>
+     		     	  <form:input type="text" path="model" class="form-control" placeholder="${ car.model }"/>
 			        </div>
 			        <div class="form-group">
      		     	  <label for="inputCarno">차량번호</label>
-		              <form:input type="text" path="carno" class="form-control" placeholder="차량번호"/>
+		              <form:input type="text" path="carno" class="form-control" placeholder="${ car.carno }"/>
 			        </div>
 		       		
 			        <div class="form-group">
      		     	  <label for="inputDistance">총주행거리</label>
-		              <form:input type="text" path="totaldistance" class="form-control" placeholder="총주행거리"/>
+
+		              <form:input type="text" path="totaldistance" class="form-control" placeholder="${ car.totaldistance }"/>
+
 			        </div>
 			        
 			        <div class="form-group">
-     		     	  <label for="inputDistance">총지출금액</label>
-		              <form:input type="text" path="totaloutcome" class="form-control" placeholder="총지출금액"/>
-			        </div>
-			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="date" path="regdate" class="form-control" placeholder="기록시작일"/>
-			        </div>	       
+		              <form:input type="date" path="regdate" class="form-control" placeholder="${ car.regdate }"/>
 
-		       <br><br>		       
-		     	<div class="buttons">
+			        </div>	       
+	       
+		     	<div class="buttons" style="text-align: center">
 		        	<!-- 아래 a 링크는 input type='submit' 버튼을 누르는 효과 발생 -->		        	
-		        	<a href="javascript:document.forms[0].submit();">수정</a>
-		        	&nbsp;&nbsp;
-		        	<a href='list.action'>취소</a>
+		        	
+		        	<input type="submit" value="수정" style="height: 40px" /> 
+		        	<input id="cancel" type="button" value="취소" style="height: 40px"
+						onclick="location.href='list.action';" />
+		        	
 		        </div>
+
 		        </form:form>
 		    </div>
 		</div>

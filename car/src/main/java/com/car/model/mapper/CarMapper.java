@@ -7,11 +7,14 @@ import com.car.model.dto.Car;
 public interface CarMapper {
 
 	void insertCar(Car car);
-	List<Car> selectCars();
+	List<Car> selectCars(int carindex);
 	
 	List<Car> selectAllCarByCarno(int memberNo);
 	Car selectCarnoByCarindex(int carindex);
+	Car selectCarByCarindex(int carindex);
 	void updateCar(Car car);
 	void deleteCar(Car car);
-	Car selectCarByMemberno(int memberno);
+	List<Car> selectCarByMemberno(int memberno);
+	List<Car> selectCarindexByMemberno(int memberNo);
+			  
 }
