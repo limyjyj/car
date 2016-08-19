@@ -35,9 +35,12 @@
 <meta charset="utf-8" />
 <title>세부사항</title>
 
-<jsp:include page="/WEB-INF/views/include/head.jsp" />
+	
+		<jsp:include page="/WEB-INF/views/include/head.jsp" />
+		<jsp:include page="/WEB-INF/views/include/header.jsp" />
+	<div class="bdiv" align="center">세부정보</div>
 
-
+		<br/><br/>
    
     <style>
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
@@ -335,11 +338,9 @@ function getTimeHTML(distance) {
 </script>
 </head>
 <body>
+		<br/><br/>
+		<div >
 	
-		<br/><br/>
-		<div>
-		<div class="bdiv">세부정보</div>
-		<br/><br/>
 			
 			<form id="detailform" action="detail.action" method="post">	
 			<table class="dtable">

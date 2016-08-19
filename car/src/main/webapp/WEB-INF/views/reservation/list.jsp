@@ -75,13 +75,13 @@ $(document).ready(function (){
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br/>
 	
-		<div class="bdiv">
+		<div class="bdiv" style="padding-top:25px;margin:auto;width:1000px">
 		실시간.정기 예약판
 		</div>
 		<br/><br/>	
 		
 		
-			<table class="bsearch" >					
+			<table class="bsearch">					
 				<tr>		
 					<td>					
 			
@@ -148,7 +148,7 @@ $(document).ready(function (){
 					     
 					    <c:choose> 
 					<c:when test="${ loginuser.memberNo eq b.memberNo }">						
-						<div class="buttons">
+						<div class="buttons" >
 						<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
@@ -158,7 +158,7 @@ $(document).ready(function (){
 					<c:otherwise>
 					
 						
-						 <input type="button" id="register" value="신청하기" name="${ b.reservationNo }" style="height: 25px"/>
+						 <input type="button" id="register" value="신청하기" name="${ b.reservationNo }" style="height: 25px" />
 						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
 						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
 			
