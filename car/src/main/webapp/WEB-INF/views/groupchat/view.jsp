@@ -210,7 +210,7 @@ function reverseDisplay() {
 		<p>
 			<label for="user">User Name : </label>
 			<input id="user" name="user" type="text" data-bind="value: userName"/>
-			<input id="reservationNo" name="rNo" type="hidden" value='${ reservationno }'/>
+			<input id="reservationNo" name="reservationNo" type="hidden" value='${ reservationno }'/>
 			<input name="messageIndex" type="hidden" data-bind="value: messageIndex"/>
 			<button id="start" type="submit" data-bind="click: joinChat">Join Chat</button>
 		</p>
