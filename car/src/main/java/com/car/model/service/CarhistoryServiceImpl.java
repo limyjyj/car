@@ -49,9 +49,14 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 
 
 	@Override
-	public List<Carhistory> selectCarByCarindex(int memberNo) {
+	public List<Carhistory> selectCarhistoryByCarindex(int carindex) {
 		
-		return carhistoryDao.selectCarByCarindex(memberNo);
+		return carhistoryDao.selectCarhistoryByCarindex(carindex);
+	}
+
+	@Override
+	public List<Carhistory> selectCarhistoryByMemberNo(int memberNo) {
+		return carhistoryDao.selectCarhistoryByMemberNo(memberNo);
 	}
 
 

@@ -22,18 +22,17 @@ public class MysqlOutcomeDao implements OutcomeDao {
 	}
 
 	@Override
-	public List<Outcome> selectOutcomeList() {
-		return outcomeMapper.selectOutcomeList();
+	public List<Outcome> selectOutcomeByMemberNo(int memberNo) {
+		return outcomeMapper.selectOutcomeByMemberNo(memberNo);
 	}
 
 	@Override
-	public Outcome selectOutcomeByOutcomeNo(int outcomeNo) {
-		return outcomeMapper.selectOutcomeByOutcomeNo(outcomeNo);
+	public List<Outcome> selectOutcomeByCarindex(int carindex) {		
+		return outcomeMapper.selectOutcomeByCarindex(carindex);
 	}
 
 	@Override
 	public void updateOutcome(Outcome outcome) {
 		outcomeMapper.updateOutcome(outcome);
 	}
-
 }

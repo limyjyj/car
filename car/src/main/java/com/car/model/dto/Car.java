@@ -1,6 +1,7 @@
 package com.car.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Car {
 	
@@ -13,6 +14,7 @@ public class Car {
 	private int totaldistance;
 	private int totaloutcome;
 	private int deleted;
+	private List<Carhistory> car;
 	
 	
 	
@@ -69,6 +71,12 @@ public class Car {
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+	public List<Carhistory> getCar() {
+		return car;
+	}
+	public void setCar(List<Carhistory> car) {
+		this.car = car;
 	}
 
 	

@@ -17,6 +17,8 @@
 	border: solid 1px white;
 }
 </style>
+
+
 </head>
 
 <body>
@@ -25,13 +27,13 @@
 		<br/><br/>
 			<div class="bdiv">예약 설정</div>
 		<br/><br/>
-					<form id="write" action="write.action" method="post">
+					<form id="write" action="write.action" method="post" enctype="multipart/form-data" onSubmit="return chkval(this)">
 						<table class="swell" style="width: 70%; border: 2px solid white;">
 							<tr class="bfile">
 								<th style="width: 200px">종류</th>
 								<td style="width: 900px">
 									<select class="form-control" id="frequency" name="frequency" 
-										style="height: 30px; width:220px; font-size: medium;">
+										style="height: 30px; width:120px; font-size: medium;">
 									
 										<option value="실시간">실시간 카풀</option>
 						
@@ -45,8 +47,8 @@
 							<tr>
 								<th>작성자</th>
 								<td style="width: 200px; font-size: x-large;; padding-left:50px; "><font color="#0a9e36">
-									<input class="form-control" type="hidden" name="memberId" value="${ sessionScope.loginuser.memberId }" />
-									${ sessionScope.loginuser.memberId }
+									<input class="form-control" type="hidden" name="memberId" value="${reservation.member.memberId}" />
+									${ reservation.member.memberId}
 								</font></td>
 							</tr>
 							
@@ -62,8 +64,14 @@
 							<tr>
 								<th>타태워</th>
 								<td>
-									<input type="checkbox" name="active" value="true">타</input>
-									<input type="checkbox" name="active" value="true">태워</input>
+								
+								<select class="form-control" id="purpose" name="purpose" 
+										style="height: 30px; width:120px; font-size: medium;">
+									
+										<option value="타세요">타세요</option>
+						
+										<option value="태워주세요">태워주세요</option>
+									
 								</td>
 							</tr>
 							

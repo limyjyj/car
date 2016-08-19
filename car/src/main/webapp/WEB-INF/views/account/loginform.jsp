@@ -34,13 +34,17 @@
 			<div class="page-header">
 			
 			</div>
+
 			<div class="col-md-3" align="center">
 				<div class="login-box well" align="center" style="" >
 					<form accept-charset="UTF-8" role="form" method="post" action="login.action">
+			<div class="col-md-3" style="text-align: center;" >
+				<div class="login-box well">
+					<form accept-charset="UTF-8" role="form" method="post" action="login.action" >
 						<legend>로그인</legend>
 						<div class="form-group">
-							<label for="username-email"> 아이디</label> <input name="memberId"
-								value='' id="memberId" placeholder="UserId" type="text"
+							<label for="username-email"> 아이디</label> 
+							<input name="memberId" value='' id="memberId" placeholder="UserId" type="text"
 								class="form-control" />
 						</div>
 						<div class="form-group">
@@ -55,7 +59,7 @@
 						</div>
 						<!-- <span class='text-center'><a href="/bbs/index.php?mid=index&act=dispMemberFindAccount" class="text-sm">비밀번호 찾기</a></span> -->
 						<hr />
-						<div class="form-group">
+						<div class="form-group" style="margin: auto;">
 							<a href="/car/member/register.action"
 								class="btn btn-default btn-block m-t-md"> 회원가입</a>
 						</div>

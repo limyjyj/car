@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.car.model.dto.Fuel;
+import com.car.model.dto.Outcome;
 import com.car.model.mapper.FuelMapper;
 
 @Repository(value = "mysqlFuelDao")
@@ -22,18 +23,18 @@ public class MysqlFuelDao implements FuelDao {
 	}
 
 	@Override
-	public List<Fuel> selectFuelList() {
-		return fuelMapper.selectFuelList();
-	}
-
-	@Override
-	public Fuel selectFuelByFuelNo(int fuelNo) {
-		return fuelMapper.selectFuelByFuelNo(fuelNo);
+	public List<Fuel> selectFuelByMemberNo(int memberNo) {
+		return fuelMapper.selectFuelByMemberNo(memberNo);
 	}
 
 	@Override
 	public void updateFuel(Fuel fuel) {
 		fuelMapper.updateFuel(fuel);
+	}
+
+	@Override
+	public List<Fuel> selectFuelByCarindex(int carindex) {
+		return fuelMapper.selectFuelByCarindex(carindex);
 	}
 
 }
