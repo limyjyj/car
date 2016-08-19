@@ -42,19 +42,18 @@ $(function () {
 <body>
 	<div style="padding-left: 100px"> 지출 입력</div>
 		<br/><br/>
-					<form action="write.action" method="post">
+					<form action="outcomewrite.action" method="post">
 						<table class="swell" style="width: 70%; border: 2px solid white;">
 							<tr class="bfile">
 								<th style="width: 200px">지출 항목</th>
 								<td style="width: 900px">
-									<select class="form-control" id="cartegory" name="Cartegory" 
+									<select class="form-control" id="category" name="category" 
 										style="height: 40px; width:230px; font-size: medium;">
 										<option value="정비비">정비비</option>
 										<option value="유지비">유지비</option>
 									</select>
 								</td>
 							</tr>
-
 							<tr>
 								<th>지출 금액</th>
 								<td>
@@ -77,7 +76,7 @@ $(function () {
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td>
+								<td><input type="hidden" name="carindex" value="${ carindex }" />
 									<textarea class="form-control" name="content" cols="35" rows="15" style="font-size: small;"></textarea>
 								</td>
 							</tr>

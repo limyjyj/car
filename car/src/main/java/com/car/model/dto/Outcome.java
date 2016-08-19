@@ -3,22 +3,17 @@ package com.car.model.dto;
 import java.util.Date;
 
 public class Outcome {
-
-	private int outcomeNo;	//지출번호
+	
+	private int historyNo;
 	private String category;
 	private Date regDate;
 	private int payment;
 	private String location;
 	private String content;
-	private int historyNo;
 	
 	
-	public int getOutcomeNo() {
-		return outcomeNo;
-	}
-	public void setOutcomeNo(int outcomeNo) {
-		this.outcomeNo = outcomeNo;
-	}
+	
+	
 	public String getCategory() {
 		return category;
 	}

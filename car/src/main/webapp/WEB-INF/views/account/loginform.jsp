@@ -29,11 +29,15 @@
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<div class="container">
-		<div class="row">
+	<div class="container" align="center" >
+		<div class="row"align="center">
 			<div class="page-header">
 			
 			</div>
+
+			<div class="col-md-3" align="center">
+				<div class="login-box well" align="center" style="" >
+					<form accept-charset="UTF-8" role="form" method="post" action="login.action">
 			<div class="col-md-3" style="text-align: center;" >
 				<div class="login-box well">
 					<form accept-charset="UTF-8" role="form" method="post" action="login.action" >

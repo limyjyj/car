@@ -8,9 +8,9 @@ public interface OutcomeMapper {
 
 	void insertOutcome(Outcome outcome);
 	
-	public List<Outcome> selectOutcomeList();
+	List<Outcome> selectOutcomeByMemberNo(int memberNo);
 	
-	Outcome selectOutcomeByOutcomeNo(int outcomeNo);
+	List<Outcome> selectOutcomeByCarindex(int carindex);
 	
 	void updateOutcome(Outcome outcome);
 		

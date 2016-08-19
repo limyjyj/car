@@ -139,8 +139,7 @@
    <script src="/car/resources/js/retina-1.1.0.min.js"></script>
    <script type="text/javascript" src="/car/resources/js/jquery.cookie.js"></script>
    <!-- jQuery cookie -->
-   <script type="text/javascript" src="/car/resources/js/styleswitch.js"></script>
-   <!-- Style Colors Switcher -->
+
    <script src="/car/resources/js/jquery.fractionslider.js"
       type="text/javascript" charset="utf-8"></script>
    <script type="text/javascript"
@@ -259,7 +258,3 @@
       new WOW().init();
    </script>
    <![endif]-->
-
-
-    
-    

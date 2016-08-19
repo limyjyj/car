@@ -9,9 +9,9 @@ public interface OutcomeDao {
 
 	void insertOutcome(Outcome outcome);
 	
-	List<Outcome> selectOutcomeList();
+	List<Outcome> selectOutcomeByMemberNo(int memberNo);
 	
-	Outcome selectOutcomeByOutcomeNo(int outcomeNo);
+	List<Outcome> selectOutcomeByCarindex(int carindex);
 	
 	void updateOutcome(Outcome outcome);
 	

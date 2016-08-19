@@ -1,6 +1,7 @@
 package com.car.model.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.car.model.dao.CarDao;
 import com.car.model.dao.CarhistoryDao;
 import com.car.model.dto.Car;
-import com.car.model.dto.Carhistory;
 
 @Service("carService")
 public class CarServiceImpl implements CarService {
