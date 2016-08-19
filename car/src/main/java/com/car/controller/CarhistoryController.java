@@ -22,12 +22,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
 import com.car.model.dto.Fuel;
+import com.car.model.dto.GroupSchedule;
 import com.car.model.dto.Member;
 import com.car.model.dto.Outcome;
 import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
 import com.car.model.service.FuelService;
 import com.car.model.service.OutcomeService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/carhistory/")
@@ -69,7 +72,9 @@ public class CarhistoryController {
 		}
 		List<Outcome> outcomes = outcomeService.selectOutcomeByMemberNo(member.getMemberNo());
 		List<Fuel> fuels = fuelService.selectFuelByMemberNo(member.getMemberNo());
-			
+		
+		outcomes.get(0).getHistoryNo();
+		
 		mav.setViewName("carhistory/list");
 		mav.addObject("cars", cars);
 		mav.addObject("outcomes", outcomes);
@@ -136,6 +141,21 @@ public class CarhistoryController {
 
 		return "redirect:/carhistory/list.action";
 
+	}
+	
+	@RequestMapping(value = "outcomeview.action", method = RequestMethod.GET)
+	public String outcomeViewList(HttpSession session, int historyNo) {
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		System.out.println("히스토리 = " + historyNo);
+		List<Outcome> outcomes;
+		
+		outcomes = outcomeService.selectOutcomeByHistoryNo(historyNo);
+			
+		String json = gson.toJson(outcomes);
+		
+		return json;
 	}
 
 	// Fuel

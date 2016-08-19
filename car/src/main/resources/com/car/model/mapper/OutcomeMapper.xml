@@ -16,6 +16,7 @@
 
 		<association property="memberNo" column="memberno" select="selectOutcomeByMemberNo" />
 		<association property="memberNo" column="memberno" select="selectOutcomeByCarindex" />
+		<association property="memberNo" column="memberno" select="selectOutcomeByHistoryNo" />
 	</resultMap>
 	
 
@@ -59,6 +60,17 @@
 		WHERE ch.carindex = #{carindex};
 	</select>
 
+	<select id="selectOutcomeByCarhistory" parameterType="int" resultMap="outcomeMap">
+	    SELECT o.* 
+		FROM Member m
+		JOIN Car c
+		ON m.memberno = c.memberno
+		JOIN Carhistory ch
+		ON ch.carindex = c.carindex
+		JOIN Outcome o
+		ON ch.historyno = o.historyno
+		WHERE ch.historyno = #{historyno};
+	</select>
 
 	<select id="updateOutcome" parameterType="Outcome">
 		UPDATE Outcome
@@ -68,7 +80,8 @@
 		WHERE outcomeNo =
 		#{outcomeNo}
 	</select>
-
+	
+	
 
 
 </mapper>

@@ -13,5 +13,7 @@ public interface OutcomeMapper {
 	List<Outcome> selectOutcomeByCarindex(int carindex);
 	
 	void updateOutcome(Outcome outcome);
+	
+	List<Outcome> selectOutcomeByHistoryNo(int historyNo);
 		
 }

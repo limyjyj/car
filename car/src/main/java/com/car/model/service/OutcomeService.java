@@ -14,5 +14,6 @@ public interface OutcomeService {
 	
 	public void updateOutcome(Outcome outcome);
 	
+	List<Outcome> selectOutcomeByHistoryNo(int historyNo);
 	
 }

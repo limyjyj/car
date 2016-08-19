@@ -69,15 +69,7 @@
 			})
 		})
 
-		$("#inputOutcome")
-				.on(
-						'click',
-						function(event) {
-							//alert($("#status").val());
-							var carindex = $('#status').val();
-							location.href = "/car/carhistory/outcomewriteform.action?carindex="
-									+ $('#status').val();
-						})
+		
 		$("#inputFuel")
 				.on(
 						'click',
@@ -88,6 +80,83 @@
 									+ $('#status').val();
 						})
 
+		//ajax
+		//작성	
+		$('#save').on('click', function(event) {
+
+			var groupCarhistory;
+
+			groupCarhistory = {
+				"category" : $('#category1').val(),
+				"payment" : $('#payment1').val(),
+				"location" : $('#location1').val(),
+				"regDate" : $('#regDate1').val(),
+				"content" : $('#content1').val(),
+				"carindex" : $('#status').val()
+			};
+
+			/* groupSchedule = JSON.stringify(groupSchedule); */
+
+			$.ajax({
+				url : "/car/carhistory/outcomewrite.action",
+				type : "post",
+				data : groupCarhistory,
+				/* contentType: "application/json",  */
+				success : function(data, status, xhr) {
+
+					alert("저장했습니다.");
+					//location.reload();
+
+				},
+
+				error : function(request, status, error) {
+					alert("주유내역이 이미 존재하니 존재하는 걸로 사용해 주세요.");
+				}
+
+			});
+
+		});
+
+		// view schedule 	
+		$('tr#viewOutcome')
+				.on('click',
+						function() {
+					var historyNo = $(this).attr('data-rno');
+					alert($(this).attr('data-rno'));	
+					alert(historyNo);
+		            
+					//var historyNo = $("#historyNo").val();
+					$("#historyNo2").val(historyNo);
+					var category = $("#category").val();
+					$("#category2").val(category);
+					var payment = $("#payment").val();
+					$("#payment2").val(payment);
+					var location = $("#location").val();
+					$("#location2").val(location);
+					var content = $("#content").val();
+					$("#content2").val(content);
+					
+					
+				})
+
+		
+		function changeReadOnlyAttribute() {
+
+			$("#category2").readOnly = false;
+			$("#payment2").readOnly = false;
+			$("#regDate2").readOnly = false;
+			$("#location2").readOnly = false;
+			$("#content2").readOnly = false;
+
+			changeDisplay();
+
+			$("#regDate2").type = 'date';
+		
+		}
+
+
+		
+		
 	});
 </script>
 </head>
@@ -107,9 +176,15 @@
 					<c:forEach var="car" items="${ cars }" varStatus="Status">
 						<option value="${ car.carindex }">${ car.carno }</option>
 					</c:forEach>
-				</select> <input class="btn btn-danger" type="button" id="inputOutcome"
-					value="지출입력" style="height: 30px" /> <input class="btn btn-danger"
-					type="button" id="inputFuel" value="주유입력" style="height: 30px" />
+				</select> 
+				
+				<input class="btn btn-danger" type="button" id="inputOutcome"
+					value="지출입력" style="height: 30px" 
+					data-toggle="modal" data-target="#inputOutcome1"/> 
+					
+				<input class="btn btn-danger"
+					type="button" id="inputFuel" value="주유입력" style="height: 30px" 
+					data-toggle="modal" data-target="#inputFuel"/>
 
 			</div>
 			<br> <br>
@@ -124,7 +199,7 @@
 					<td>금액</td>
 					<td>리터</td>
 				</tr>
-
+				
 				<c:forEach var="f" items="${ fuels }">
 					<tr style="height: 30px" align="center" data-toggle="modal"
 						data-target="#fView">
@@ -137,17 +212,88 @@
 						<td>${ f.liter }</td>
 					</tr>
 				</c:forEach>
-
+				
 				<c:forEach var="o" items="${ outcomes }">
-					<tr style="height: 30px" align="center" id="oList"
+					<tr style="height: 30px" align="center" id="viewOutcome"
 						data-toggle="modal" data-target="#oView">
+						
 						<td><input type="hidden" ${ o.historyNo } /></td>
-						<td>${ o.historyNo }</td>
-						<td>${ o.category }</td>
-						<td><fmt:formatDate value="${ o.regDate }"
-								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
-						<td>${ o.payment }</td>
+						<td><input id="historyNo" type="hidden" readonly="readonly" 
+						" data-rno="${ o.historyNo }">${ o.historyNo }</td>
+						<td><input id="category" type="hidden" readonly="readonly" value="${ o.category }">${ o.category }</td>
+						<td><input type="hidden" id="regDate" readonly="readonly" value="${ regDate }">${ regDate }</td>
+						
+						<td><input id="payment" type="hidden" readonly="readonly" value="${ o.payment }">${ o.payment }</td>
 						<td></td>
+						
+						<!-- Modal -->
+		<div class="modal fade" id="oView" role="dialog">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">지출 상세 내역</h4>
+					</div>
+					<div class="modal-body">
+
+						<form role="form">
+
+							<div class="form-group">
+								<label for="historyNo">지출 금액</label> <input type="text"
+									class="form-control" id="historyNo2" ></input>
+							</div>
+
+							<div class="form-group">
+								<label for="category">지출 유형</label> <input type="text"
+									class="form-control" id="category2" readonly></input>
+							</div>
+							
+							<div class="form-group">
+								<label for="payment">지출 금액</label> <input type="text"
+									class="form-control" id="payment2" ></input>
+							</div>
+							<div class="form-group">
+								<label for="regDate">지출 날짜</label> <input type="text"
+									class="form-control" id="regDate2" readonly></input>
+							</div>
+							<div class="form-group">
+								<label for="location">장소</label> <input type="text"
+									class="form-control" id="location2" readonly></input>
+							</div>
+							<div class="form-group">
+								<label for="content">메모</label> <input type="text"
+									class="form-control" id="content2" readonly></input>
+							</div>
+
+							<button type="button" class="btn btn-default" id="intro-modify"
+								onClick="oViewChange">수정</button>
+							<button type="button" class="btn btn-default" id="modify"
+								style="display: none" onClick="reverseDisplay()">완료</button>
+
+							<button type="button" class="btn btn-default" id="intro-modify"
+								onClick="oViewChange">수정</button>
+							<button type="button" class="btn btn-default" id="modify"
+								style="display: none" onClick="reverseDisplay()">완료</button>
+
+						</form>
+
+					</div>
+					<!-- Modal Footer  -->
+					<div class="modal-footer">
+						<button id="return" type="button" class="btn btn-default"
+							data-dismiss="modal" onClick="reverseDisplay()">확인</button>
+						<button id="cancle" type="button" class="btn btn-default"
+							data-dismiss="modal" style="display: none"
+							onClick="reverseDisplay()">취소</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+						
+						
 					</tr>
 				</c:forEach>
 
@@ -175,6 +321,80 @@
 	</div>
 
 	<!-- ------------------------------------------------------------ -->
+
+
+
+
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="inputOutcome1" role="dialog">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">지출 작성</h4>
+				</div>
+				<div class="modal-body">
+
+					<form role="form" id="save-schedule">
+
+						<div class="form-group">
+							<label for="category">지출 유형</label> 
+							<select class="form-control" id="category1" name="category"  
+										style="height: 40px; width:230px; font-size: medium;">
+										<option value="정비비">정비비</option>
+										<option value="유지비">유지비</option>
+									</select>
+						</div>
+						<div class="form-group">
+							<label for="payment">지출 금액</label> <input type="text"
+								class="form-control" id="payment1" name="payment" 
+								placeholder="payment" />
+						</div>
+						<div class="form-group">
+							<label for="regDate">지출 날짜</label> <input type="date"
+								class="form-control" id="regDate1" name="regDate"
+								placeholder="regDate" />
+						</div>
+						<div class="form-group">
+							<label for="location">장소</label> <input type="text"
+								class="form-control" id="location1" name="location"
+								placeholder="location" />
+						</div>
+						<div class="form-group">
+							<label for="content">메모</label> <input type="text"
+								class="form-control" id="content1" name="content"
+								placeholder="content" />
+						</div>
+						<button type="button" id="save" class="btn btn-default"
+							data-dismiss="modal">저장</button>
+					</form>
+
+				</div>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+		<!-- -------------------------------------------------------------------------------------- -->
+
+		
+
+
+
 
 
 

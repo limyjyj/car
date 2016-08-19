@@ -15,4 +15,6 @@ public interface OutcomeDao {
 	
 	void updateOutcome(Outcome outcome);
 	
+	List<Outcome> selectOutcomeByHistoryNo(int historyNo);
+	
 }

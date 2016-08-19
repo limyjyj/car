@@ -35,4 +35,9 @@ public class MysqlOutcomeDao implements OutcomeDao {
 	public void updateOutcome(Outcome outcome) {
 		outcomeMapper.updateOutcome(outcome);
 	}
+
+	@Override
+	public List<Outcome> selectOutcomeByHistoryNo(int historyNo) {
+		return outcomeMapper.selectOutcomeByHistoryNo(historyNo);
+	}
 }
