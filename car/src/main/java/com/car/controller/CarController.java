@@ -1,5 +1,6 @@
 package com.car.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.car.model.dto.Car;
+import com.car.model.dto.Fuel;
 import com.car.model.dto.Member;
+import com.car.model.dto.Outcome;
 import com.car.model.service.CarService;
 
 @Controller
@@ -68,6 +71,29 @@ public class CarController {
 		return mav;
 				
 	}
+	
+	@RequestMapping(value = "view.action", method = RequestMethod.GET)
+	public ModelAndView viewList(int carindex, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+
+		Member member = (Member)session.getAttribute("loginuser");
+	
+		List<Car> cars = null;
+		
+		if(carindex == 0){
+			cars = carService.selectCarindexByMemberno(member.getMemberNo());
+		}else{
+			Car car = carService.selectCarByCarindex(carindex);
+			cars = new ArrayList<>();
+			cars.add(car);
+		}
+		
+		mav.addObject("cars", cars);
+		return mav;
+
+	}
+	
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
 	public String updateForm(
 			@ModelAttribute Car car) {
