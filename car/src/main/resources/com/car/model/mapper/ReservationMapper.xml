@@ -130,13 +130,7 @@
 		SELECT
 		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content
 		FROM Reservation
-<<<<<<< HEAD
 		WHERE reservationNo = #{reservationNo} AND deleted = '0'
-=======
-		WHERE reservationno =
-		#{reservationNo} AND deleted
-		= '0'
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 	</select>
 
 	<select id="selectReservationCount" resultType="int">
