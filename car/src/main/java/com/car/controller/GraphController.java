@@ -29,7 +29,6 @@ public class GraphController {
 	 * rJAVA Engine 의 인스턴스를 가져옴
 	 * @return
 	 */
-	private Rengine getREngine() {
 		
 		
 		
