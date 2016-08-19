@@ -50,7 +50,7 @@
                                     <li class="active"><a href="#">예약</a>
                                         <ul class="dropdown-menu">
                                             <li ><a href="/car/reservation/list.action">카풀신청</a></li>
-                                            <li ><a href="/car/groupschedule/grouppage.action">그룹페이지</a></li>
+                                            <li ><a href="/car/groupschedule/longtermreservationlist.action">정기 예약 리스트</a></li>
                                                                                     
                                            
                                                                                     
@@ -251,7 +251,6 @@
       })(jQuery);
    </script>
 
-
    <!-- WARNING: Wow.js doesn't work in IE 9 or less -->
    <!--[if gte IE 9 | !IE ]><!-->
    <script type="text/javascript" src="/car/resources/js/wow.min.js"></script>
@@ -260,6 +259,7 @@
       new WOW().init();
    </script>
    <![endif]-->
+
 
     
     

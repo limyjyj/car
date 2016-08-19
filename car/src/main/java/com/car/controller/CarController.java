@@ -1,8 +1,5 @@
 package com.car.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +8,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.car.model.dto.Board;
 import com.car.model.dto.Car;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;
@@ -29,53 +22,43 @@ import com.car.model.service.CarService;
 @RequestMapping(value = "/car/")
 public class CarController {
 	
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	}
-	
 	@Autowired
 	@Qualifier("carService")
 	private CarService carService;
 
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String registerForm(@ModelAttribute @Valid Car car) {
-		
+		System.out.println("1번");
+	
 
 		return "car/registerform";
 
 	}
 
 	@RequestMapping(value = "register.action", method = RequestMethod.POST)
-	public String register(Car car, HttpSession session) {
-		
+	public String register(@Valid @ModelAttribute Car car, HttpSession session) {
+		System.out.println("2번");
+
+		System.out.println(car.getCarno());
 		Member member = (Member)session.getAttribute("loginuser");
-		car.setMemberNo(member.getMemberNo());
+		member.setMemberNo(member.getMemberNo());
 		carService.insertCar(car);
 		return "redirect:/car/list.action";
 
 	}
 	
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public ModelAndView carList(HttpServletRequest req, HttpSession session) {
+	public ModelAndView carList(HttpServletRequest req, HttpSession session ) {
 				
 		ModelAndView mav = new ModelAndView();
 		//로그인 상태가 아닌 경우 로그인 페이지로 이동
 	
-		System.out.println("test1");
-		
 		String url = "list.action";
 		Member member = (Member)session.getAttribute("loginuser");
 		
-		System.out.println("test2");
 		
 		//데이터베이스에서 데이터 조회
 		List<Car> cars = carService.selectAllCarByCarno(member.getMemberNo());
-		
-		for (Car car : cars) {
-			System.out.println(car.getMemberNo());
-		}
 		
 		
 		mav.setViewName("car/list");
@@ -85,46 +68,11 @@ public class CarController {
 		return mav;
 				
 	}
-	
-
-	
-	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public ModelAndView viewList(int carindex, HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
-		List<Car> cars = null;
-		if(carindex == 0){
-			Member member = (Member)session.getAttribute("loginuser");
-			cars = carService.selectAllCarByCarno(member.getMemberNo());
-		}else{
-			Car car = carService.selectCarByCarindex(carindex);
-			cars = new ArrayList<>();
-			cars.add(car);
-		}
-				
-		mav.setViewName("car/view");
-		mav.addObject("cars", cars);
-		
-		return mav;
-
-	}
-	
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
-	public ModelAndView updateForm(int carindex) {
-		
-		ModelAndView mav = new ModelAndView();
-		
+	public String updateForm(
+			@ModelAttribute Car car) {
+		return "car/editform";
 
-		Car car = carService.selectCarnoByCarindex(carindex);
-		
-		if (car == null) {
-			mav.setViewName("redirect:/car/list.action");
-			return mav;
-		}
-				
-		mav.addObject("car", car);
-		mav.setViewName("car/editform");
-		return mav;
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
@@ -152,13 +100,6 @@ public class CarController {
 		return "redirect:/car/list.action";
 	}
 	
-	@RequestMapping(value = "graph.action", method = RequestMethod.GET)
-	public String graph(@ModelAttribute @Valid Car car) {
-		
-
-		return "car/graph";
-
-	}
 
 	
 }

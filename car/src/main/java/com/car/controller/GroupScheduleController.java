@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.car.model.dto.GroupChat;
 import com.car.model.dto.GroupSchedule;
+import com.car.model.dto.Member;
+import com.car.model.dto.Reservation;
 import com.car.model.service.GroupChatService;
 import com.car.model.service.GroupScheduleService;
 import com.car.model.service.ReservationService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/groupschedule/")
@@ -47,11 +51,39 @@ public class GroupScheduleController {
 
 	@InitBinder
 	public void binder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"), true));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+	}
+	
+	
+	@RequestMapping(value = "longtermreservationlist.action", method = RequestMethod.GET)
+	public String longtermReservationList(HttpSession session, HttpServletResponse resp, Model model) {
+
+		Member member = (Member) session.getAttribute("loginuser");
+		
+		Gson gson = new Gson();
+		PrintWriter writer;
+
+		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
+
+		if (reservationList != null) {
+			try {
+				writer = resp.getWriter();
+				String json = gson.toJson(reservationList);
+				writer.println(json);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		model.addAttribute("reservations", reservationList);
+
+		return "groupchat/list";
 	}
 
-	@RequestMapping(value = "grouppage.action", method = RequestMethod.GET)
-	public String groupPage(HttpServletRequest req, HttpServletResponse resp, Model model) {
+	
+	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.GET)
+	public String longtermReservationChat(HttpServletRequest req, HttpServletResponse resp, Model model) {
 
 		Gson gson = new Gson();
 		PrintWriter writer;
@@ -74,10 +106,17 @@ public class GroupScheduleController {
 		return "groupchat/view";
 	}
 
-	@RequestMapping(value = "insert.action", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "insert.action", method = RequestMethod.POST)
 	public String insertGet(HttpServletRequest req, HttpServletResponse resp,
-			@Valid @ModelAttribute GroupSchedule groupSchedule) {
-
+			@Valid @ModelAttribute GroupSchedule groupSchedule, HttpSession session) {
+		
+		Member member = (Member)session.getAttribute("loginuser");
+		groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId());
+		
+		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) == null) 
+			return "";
+		
 		Gson gson = new Gson();
 		PrintWriter writer;
 
@@ -86,7 +125,9 @@ public class GroupScheduleController {
 				writer = resp.getWriter();
 
 				String json = gson.toJson(groupSchedule);
-
+				
+				groupSchedule.setChatNo(1);
+				
 				groupScheduleService.insertGroupSchedule(groupSchedule);
 				writer.println(json);
 
@@ -96,57 +137,37 @@ public class GroupScheduleController {
 
 		}
 
-		return "groupschedule/grouppage";
+		return "success";
 
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public void scheduleView(HttpServletRequest req, HttpServletResponse resp, int scheduleNo) throws IOException {
+	public String viewSchedule(int scheduleNo) throws IOException {
 		
 		GroupSchedule groupSchedule = groupScheduleService.selectGroupScheduleByGroupScheduleNo(scheduleNo);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		String json = gson.toJson(groupSchedule);
 
-		/*String output = "";
-		for (FarmMap m : okMap) {
-			output += m.getMapNo();
-			output += "%";
-		}*/
-		
-		Gson gson = new Gson();
-		PrintWriter writer;
+		return json;
 
-		if (groupSchedule != null) {
-			try {
-				writer = resp.getWriter();
-
-				String json = gson.toJson(groupSchedule);
-				//writer.println(json);
-				writer.write(json);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
+	}
+	
+	@RequestMapping(value = "update.action", method = RequestMethod.POST)
+	public void updateSchedule(GroupSchedule groupSchedule) throws IOException {
 		
-		//String output="";
-		
-		/*output += groupSchedule.getTitle();
-		output += "%";
-		output += groupSchedule.getStartDate();
-		output += "%";
-		output += groupSchedule.getEndDate();
-		output += "%";
-		output += groupSchedule.getTerm();
-		output += "%";
-		output += groupSchedule.getDuration();
-		output += "%";
-		output += groupSchedule.getContent();
-		output += "%";
-		
-		resp.getWriter().write(output);*/
-		
+		groupScheduleService.updateGroupSchedule(groupSchedule);
 		
 	}
-
+	
+	
+	@RequestMapping(value = "chat.action", method = RequestMethod.GET)
+	public String chat(GroupChat groupChat) throws IOException {
+		
+		//groupChatService.insertGroupChat(groupChat);
+		
+		return "redirect:../aaa";
+		
+	}
 }

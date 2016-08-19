@@ -9,7 +9,7 @@
 <mapper namespace="com.car.model.mapper.GroupScheduleMapper">
 
 	<sql id="selectDefault">
-		SELECT scheduleno, chatno, title, content, startdate, enddate, duration, term
+		SELECT scheduleno, chatno, title, content, startdate, enddate, departtime
 		FROM GroupSchedule
 	</sql>
 	
@@ -17,9 +17,9 @@
 	<!-- make physical method -->
 	<insert id="insertGroupSchedule">
 		INSERT INTO GroupSchedule
-		(chatno, title, content, startdate, enddate, duration, term)
+		(chatno, title, content, startdate, enddate, departtime)
 		VALUES
-		(#{chatNo}, #{title}, #{content}, #{startDate}, #{endDate}, #{duration}, #{term})
+		(#{chatNo}, #{title}, #{content}, #{startDate}, #{endDate}, #{departTime})
 	</insert>
 	
 	<select id="selectAllGroupSchedule" resultType="GroupSchedule">
@@ -29,8 +29,15 @@
 	
 	<select id="selectGroupScheduleByMemberId" 
 		parameterType="string" resultType="GroupSchedule">			
-		<include refid="selectDefault" />
-		WHERE memberid = #{memberId}
+		SELECT gs.scheduleno, gs.chatno, gs.title, gs.content, gs.startdate, gs.enddate, gs.departtime
+		FROM GroupSchedule gs
+        INNER JOIN GroupChat gc
+        ON gs.chatno = gc.chatno
+        INNER JOIN GroupChatStatement gcs
+        on gc.chatno = gcs.chatno
+        INNER JOIN Member m
+        on gcs.memberno = m.memberno
+        where m.memberid = #{memberId}
 	</select>
 	
 	<select id="selectGroupScheduleByGroupScheduleNo" 
@@ -39,12 +46,12 @@
 		WHERE scheduleno = #{scheduleNo}
 	</select>
 	
-	<select id="updateGroupSchedule" parameterType="GroupSchedule">	
+	<update id="updateGroupSchedule" parameterType="GroupSchedule">	
 		UPDATE GroupSchedule
 		SET totalnumber = #{totalNumber}, content = #{content}, startdate = #{startDate}, 
-		    enddate = #{endDate}, duration = #{duration}, term = #{term}
+		    enddate = #{endDate}, departtime = #{departTime}
 		WHERE scheduleno = #{scheduleNo}
-	</select>
+	</update>
 	
 	<select id="deleteGroupSchedule" parameterType="int">
 		DELETE 

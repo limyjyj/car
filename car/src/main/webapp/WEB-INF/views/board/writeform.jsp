@@ -9,6 +9,62 @@
 	<meta charset="utf-8" />
 	<title>공지 등록</title>
 	<script src="/car/resources/js/bootstrap.min.js"></script>
+	<style type="text/css">
+.button {
+	font-weight:bold;
+	text-decoration:none;
+	font-family:Arial;
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 5px 2px;
+	o-box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 5px 2px;
+	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 5px 2px;
+	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 5px 2px;
+	background:#e6d6dc;
+	background:-o-linear-gradient(90deg, #e6d6dc, #ffffff);
+	background:-moz-linear-gradient( center top, #e6d6dc 5%, #ffffff 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e6d6dc), color-stop(1, #ffffff) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6d6dc', endColorstr='#ffffff');
+	background:-webkit-linear-gradient(#e6d6dc, #ffffff);
+	background:-ms-linear-gradient(#e6d6dc, #ffffff);
+	background:linear-gradient(#e6d6dc, #ffffff);
+	text-indent:0px;
+	line-height:7px;
+	-moz-border-radius:14px;
+	-webkit-border-radius:14px;
+	border-radius:14px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:13px;
+	color:#ce4869;
+	width:90px;
+	height:7px;
+	padding:13px;
+	text-shadow:#f7c6d8 -1px -1px 0px;
+	border-color:#ffe0eb;
+	border-width:1px;
+	border-style:solid;
+}
+
+.button:active {
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 0 2px;
+	o-box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 0 2px;
+	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 0 2px;
+	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px,#ffdee9 1px 0 2px;
+	position:relative;
+	top:5px
+}
+
+.button:hover {
+	background:#ffffff;
+	background:-o-linear-gradient(90deg, #ffffff, #e6d6dc);
+	background:-moz-linear-gradient( center top, #ffffff 5%, #e6d6dc 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #e6d6dc) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6d6dc');
+	background:-webkit-linear-gradient(#ffffff, #e6d6dc);
+	background:-ms-linear-gradient(#ffffff, #e6d6dc);
+	background:linear-gradient(#ffffff, #e6d6dc);
+}
+</style>
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 </head>
 <body>
@@ -25,27 +81,32 @@
 		       			<form:input type="hidden" value="Notice" path="type" />
 		       		</div>
 		       		
-		       		<div>
-     		     	  <label for="inputTitle">제목</label>
-		              <form:input type="text" path="title"/>
-			        </div>
+		       		<table style="text-align:center; margin: auto;" class="type11">
 		       		
-		        	<div>
-     		     	  <label for="inputName">작성자</label>
-     		     	  관리자
-			        </div>
+		       		<tr>
+						<th style="text-align: center;" scope="cols">제목</th>
+						<td><form:input type="text" path="title" style="text-align: center; width: 400px;" /></td>
+					</tr>
+		       		
+		        	<tr>
+						<th style="text-align: center;" scope="cols">작성자</th>
+						<td>관리자</td>
+					</tr>
 			        
-			        <div>
-     		     	  <label for="inputContent">내용</label>
-		             <form:input type="text" path="content"/>
-			        </div>
+			        <tr>
+						<th style="text-align:center; vertical-align:middle" scope="cols">내용</th>
+						<td style="height: 300px; width: 400px; vertical-align: middle">
+						<form:input type="text" path="content" style="height: 300px; width: 400px; vertical-align: middle; text-align: center;" /> 
+						</td>
+					</tr>
 			        	  
-
-		       <br><br>
-		        <div class="buttons" align="center">
-						<input type="submit" id="submit" value="글등록 " style="height:30px"  />
-						<input type="button" id="Cancel"
-							value="취소" style="height: 30px" onclick="location.href='/car/board/list.action';"/>
+				</table>
+				
+		       <br /><br/>
+		       
+		        <div align="center">
+					<input class="button" id="submit" value="등록 " type="submit"   />
+					<input class="button" id="cancel" value="취소" onclick="location.href='/car/board/list.action';"/>
 				</div>				
 		        </form:form>
 		    
