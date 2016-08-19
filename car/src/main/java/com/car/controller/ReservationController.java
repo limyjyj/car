@@ -49,12 +49,13 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	@Qualifier("reservationService")
 	private ReservationService reservationService;
 
+	
 	// 리스트
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public ModelAndView showReservationList(HttpServletRequest request) {
+	public ModelAndView showReservationList(HttpServletRequest request, HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
-
+		
 		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
 		if (request.getSession().getAttribute("loginuser") == null) {
 			mav.setViewName("redirect:/account/login.action?" + "returnuri=" + request.getRequestURI());
@@ -91,8 +92,16 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		// ThePager pager = new ThePager(dataCount, currentPage, pageSize,
 		// pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);
-
+		
+		Member member = (Member) session.getAttribute("loginuser");
+		Confirm tempConfirm = null;
+		List<Confirm> confirms = reservationService.selectConfirmList();
+		for(Confirm comfirm : confirms) {
+			tempConfirm = comfirm;
+		}
+		
 		mav.setViewName("reservation/list");
+		mav.addObject("confirm", tempConfirm);
 		mav.addObject("reservations", reservations);
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
@@ -305,14 +314,10 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		
 	/*	for (Confirm confirm : confirmedMembersList) {
 		
+					confirm.setMember(reservationService.selectMemberByMemeberNo(confirm.getMemberNo()));
 			
-				confirm.setMember(reservationService.selectMemberByMemeberNo(confirm.getMemberNo()));
 			
-			
-		}*/
-		
-		
-		
+		}*/	
 		System.out.println(reservationNo);
 		model.addAttribute("confirms", confirmedMembersList);
 		model.addAttribute("reservationNo",reservationNo );
@@ -341,7 +346,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		
 			reservationService.updateMemberByReservationNo(member);
 
-			return "redirect:/reservation/confirmlist.action";
+			return "redirect:/reservation/confirmList.action";
 		
 		}
 		

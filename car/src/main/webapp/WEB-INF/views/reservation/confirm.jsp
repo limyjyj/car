@@ -22,9 +22,7 @@
 	})
 
 	$(function() {
-		$('input#accept')
-				.on(
-						'click',
+		$('input#accept').on('click',
 						function(event) {
 							var reservationNo = $('input#reservationno').val();
 							var memberNo = $('input#memberno').val();
@@ -41,9 +39,7 @@
 
 						});
 
-		$('input#refuse')
-				.on(
-						'click',
+		$('input#refuse').on('click',
 						function(event) {
 							var reservationNo = $('#reservationno').val();
 							var memberNo = $('#memberno').val();
@@ -59,7 +55,7 @@
 							}
    
 									});
-						
+					
 
 		/* 		$('input#refuse').on('click', function(event) {
 					var reservationno = ${reservation.reservationNo}

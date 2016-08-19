@@ -100,7 +100,7 @@ $(document).ready(function (){
 		<table class="btable">
 			<thead>
 				<tr>
-					<th style="width: 100px">회원번호</th>
+					<th style="width: 100px">회원</th>
 					<th style="width: 100px">타태워</th>
 					<th style="width: 100px">실시간.정기</th>
 					<th style="width: 100px">목적</th>
@@ -148,7 +148,7 @@ $(document).ready(function (){
 					     
 					    <c:choose> 
 					<c:when test="${ loginuser.memberNo eq b.memberNo }">						
-						<div class="buttons" >
+						<div class="buttons" > 
 						<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
@@ -157,8 +157,10 @@ $(document).ready(function (){
 					</c:when>
 					<c:otherwise>
 					
-						
+						 <input type="button" value="신청완료" style="height: 25px" />
+						 
 						 <input type="button" id="register" value="신청하기" name="${ b.reservationNo }" style="height: 25px" />
+						 					
 						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
 						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
 			
