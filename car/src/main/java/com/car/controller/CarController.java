@@ -19,6 +19,7 @@ import com.car.model.dto.Car;
 import com.car.model.dto.Fuel;
 import com.car.model.dto.Member;
 import com.car.model.dto.Outcome;
+import com.car.model.dto.Reservation;
 import com.car.model.service.CarService;
 
 @Controller
@@ -95,9 +96,26 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.GET)
-	public String updateForm(
-			@ModelAttribute Car car) {
-		return "car/editform";
+	public ModelAndView updateForm(HttpSession session, int carindex) {
+		
+		ModelAndView mav = new ModelAndView();
+	    
+		Member member = (Member)session.getAttribute("loginuser");
+		
+	    	    
+	     Car car = carService.selectCarByCarindex(carindex);
+	    
+	     if (car == null) {
+	     mav.setViewName("redirect:/reservation/detail.action");
+	     return mav;
+	     }
+	    
+	    
+	    
+	     mav.addObject("car", car);
+	     mav.setViewName("car/editform");
+	     return mav;
+		
 
 	}
 	
@@ -111,13 +129,8 @@ public class CarController {
 
 	}
 	@RequestMapping(value = "delete.action", method = RequestMethod.GET)
-	public String deleteCar(HttpServletRequest req) {
+	public String deleteCar(HttpServletRequest req, Car car, int carindex) {
 		
-		Car car = new Car();
-		String carindex = req.getParameter("carindex");
-		if (carindex == null || carindex.length() == 0) {
-			return "redirect:/car/list.action";
-		}
 		
 		
 		carService.deleteCar(car);

@@ -6,6 +6,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script type="text/javascript">
+
+$(function() {
+	$('#delete').on('click', function(event) {
+		var carindex = ${car.carindex}
+		var result = confirm('삭제 하시겠습니까?');
+		if (result) {
+			//yes
+			location.href = ('/car/car/delete.action?carindex=' + carindex);
+		} else {
+			//no
+		}
+	});
+});
+
+</script>
 
 
 	 <div>
@@ -37,7 +53,7 @@
         			<td>${ car.totaloutcome }</td>
    					<td><a href="update.action?carindex=${ car.carindex }">수정</a></td>
 		    
-		        	<td><a href="delete.action?carindex=${ car.carindex }">삭제</a></td>
+		        	<td><a href='javascript:doDelete(${ car.carindex })' id="delete">삭제</a></td>
         		</tr>
         		
 		        	

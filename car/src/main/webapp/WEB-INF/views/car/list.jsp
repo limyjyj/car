@@ -53,6 +53,8 @@
  				location.href="/car/carhistory/fuelwriteform.action?carindex=" + $('#status').val();
 			})
 	});
+	
+	
 </script>
 </head>
 <body>
