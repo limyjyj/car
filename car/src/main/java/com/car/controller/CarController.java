@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.car.model.dto.Car;
-import com.car.model.dto.Fuel;
 import com.car.model.dto.Member;
-import com.car.model.dto.Outcome;
-import com.car.model.dto.Reservation;
 import com.car.model.service.CarService;
 
 @Controller

@@ -24,6 +24,7 @@ $(document).ready(function() {
 				return;
 			}
 			var form = $("#joinChatForm");
+			alert(form.serialize());
 			that.activePollingXhr($.ajax({
 				url : form.attr("action"),
 				type : "GET",

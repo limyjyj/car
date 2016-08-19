@@ -83,26 +83,10 @@ public class GroupScheduleController {
 
 	
 	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.GET)
-	public String longtermReservationChat(HttpServletRequest req, HttpServletResponse resp, Model model) {
-
-		Gson gson = new Gson();
-		PrintWriter writer;
-
-		List<GroupChat> groupChatList = groupChatService.selectAllGroupChat();
-
-		if (groupChatList != null) {
-			try {
-				writer = resp.getWriter();
-				String json = gson.toJson(groupChatList);
-				writer.println(json);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		model.addAttribute("groupchatlist", groupChatList);
-
+	public String longtermReservationChat(int reservationNo, Model model) {
+		
+		model.addAttribute("reservationno", reservationNo);
+		
 		return "groupchat/view";
 	}
 
@@ -162,12 +146,12 @@ public class GroupScheduleController {
 	}
 	
 	
-	@RequestMapping(value = "chat.action", method = RequestMethod.GET)
+	/*@RequestMapping(value = "chat.action", method = RequestMethod.GET)
 	public String chat(GroupChat groupChat) throws IOException {
 		
 		//groupChatService.insertGroupChat(groupChat);
 		
 		return "redirect:../aaa";
 		
-	}
+	}*/
 }

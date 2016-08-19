@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.car.model.dto.Board;
 import com.car.model.dto.BoardComent;
+import com.car.model.dto.BoardUpload;
 
 public interface BoardService {
 
-	void insertBoard(Board board);
+	int insertBoard(Board board);
 
 	//int insertReply(Board board);
 
@@ -51,5 +52,10 @@ public interface BoardService {
 
 	void deleteComent(int comentNo);
 	
+	//---------------------------Upload----------------------------------//
+	
+	void insertBoardUpload(BoardUpload boardupload);
+
+	BoardUpload selectBoardUploadByBoardNo(int BoardNo);
 	 
 }
