@@ -45,6 +45,31 @@
 	</pluginRepositories>
 	
 	<dependencies>
+	
+<!-- 	 
+		<dependency>
+		    <groupId>rJava</groupId>
+		    <artifactId>JRI</artifactId>
+		    <version>3.3.1</version>
+		    <scope>system</scope>
+		    <systemPath>C:/Program Files/R/R-3.3.1/library/rJava/jri</systemPath>
+		</dependency>
+		<dependency>
+		    <groupId>rJAVA</groupId>
+		    <artifactId>JRIEngine</artifactId>
+		    <version>3.3.1</version>
+		    <scope>system</scope>
+		    <systemPath>${car}/resources/lib/JRIEngine.jar</systemPath>
+		</dependency>
+		<dependency>
+		    <groupId>rJAVA</groupId>
+		    <artifactId>REngine</artifactId>
+		    <version>3.3.1</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/lib/REngine.jar</systemPath>
+		</dependency> -->
+	
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -1,8 +1,6 @@
 package com.car.model.dao;
 
 import java.util.HashMap;
-import java.util.ArrayList;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.car.model.dto.Confirm;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
-
 import com.car.model.mapper.ReservationMapper;
 
 

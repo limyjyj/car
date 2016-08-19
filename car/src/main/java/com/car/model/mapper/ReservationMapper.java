@@ -1,6 +1,5 @@
 package com.car.model.mapper;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.car.model.dto.Confirm;

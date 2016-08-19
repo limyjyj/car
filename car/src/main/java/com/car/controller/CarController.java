@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.car.model.dto.Board;
 import com.car.model.dto.Car;
 import com.car.model.dto.Member;
 import com.car.model.service.CarService;

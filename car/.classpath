@@ -28,5 +28,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Bigdata/Lab/Git/car/car/src/main/webapp/WEB-INF/lib/JRI.jar"/>
+	<classpathentry kind="lib" path="C:/Bigdata/Lab/Git/car/car/src/main/webapp/WEB-INF/lib/JRIEngine.jar"/>
+	<classpathentry kind="lib" path="C:/Bigdata/Lab/Git/car/car/src/main/webapp/WEB-INF/lib/REngine.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

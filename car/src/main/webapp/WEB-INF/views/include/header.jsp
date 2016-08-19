@@ -61,14 +61,14 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/car/car/list.action">홈</a></li>
                                             <li><a href="/car/carhistory/list.action">내역</a></li>
-                                            <li><a href="columns.html">그래프</a></li>
+                                            <li><a href="/car/car/graph.action">그래프</a></li>
                                         </ul>
                                     </li>
 
                                     <li><a href="/car/board/list.action" >게시판</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="services.html">공지사항</a></li>
-                                            <li><a href="faq.html">후기</a></li>
+                                            <li><a href="/car/board/list.action">공지사항</a></li>
+                                            <li><a href="/car/board/list2.action">후기</a></li>
                                         </ul>
                                     </li>
 
@@ -102,7 +102,7 @@
                                         </ul>
                                     </li>
                                     
-                                    <li>&nbsp&nbsp&nbsp&nbsp
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
                                     
                              
@@ -133,134 +133,131 @@
     
     
     <script type="text/javascript"
-		src="/car/resources/js/jquery-1.10.2.min.js"></script>
-	<script src="/car/resources/js/bootstrap.min.js"></script>
-	<script src="/car/resources/js/jquery.easing.1.3.js"></script>
-	<script src="/car/resources/js/retina-1.1.0.min.js"></script>
-	<script type="text/javascript" src="/car/resources/js/jquery.cookie.js"></script>
-	<!-- jQuery cookie -->
-	<script type="text/javascript" src="/car/resources/js/styleswitch.js"></script>
-	<!-- Style Colors Switcher -->
-	<script src="/car/resources/js/jquery.fractionslider.js"
-		type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery.smartmenus.min.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery.smartmenus.bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="/car/resources/js/jflickrfeed.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery.isotope.min.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery.easypiechart.min.js"></script>
-	<script type="text/javascript" src="/car/resources/js/swipe.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery-hoverdirection.min.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery.matchHeight-min.js"></script>
-	<script type="text/javascript"
-		src="/car/resources/js/jquery-scrolltofixed-min.js"></script>
+      src="/car/resources/js/jquery-1.10.2.min.js"></script>
+   <script src="/car/resources/js/bootstrap.min.js"></script>
+   <script src="/car/resources/js/jquery.easing.1.3.js"></script>
+   <script src="/car/resources/js/retina-1.1.0.min.js"></script>
+   <script type="text/javascript" src="/car/resources/js/jquery.cookie.js"></script>
+   <!-- jQuery cookie -->
 
-	<script src="/car/resources/js/main.js"></script>
+   <script src="/car/resources/js/jquery.fractionslider.js"
+      type="text/javascript" charset="utf-8"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery.smartmenus.min.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery.smartmenus.bootstrap.min.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/owl.carousel.min.js"></script>
+   <script type="text/javascript" src="/car/resources/js/jflickrfeed.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery.magnific-popup.min.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery.isotope.min.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery.easypiechart.min.js"></script>
+   <script type="text/javascript" src="/car/resources/js/swipe.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery-hoverdirection.min.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery.matchHeight-min.js"></script>
+   <script type="text/javascript"
+      src="/car/resources/js/jquery-scrolltofixed-min.js"></script>
 
-	<!-- Start Style Switcher -->
-	<div class="switcher"></div>
-	<!-- End Style Switcher -->
-	
-	<script>
-	
-		/*Portfolio*/
-		(function($) {
-			"use strict";
-			var $container = $('.portfolio'), $items = $container
-					.find('.portfolio-item'), portfolioLayout = 'fitRows';
+   <script src="/car/resources/js/main.js"></script>
 
-			if ($container.hasClass('portfolio-centered')) {
-				portfolioLayout = 'masonry';
-			}
+   <!-- Start Style Switcher -->
+   <div class="switcher"></div>
+   <!-- End Style Switcher -->
 
-			$container.isotope({
-				filter : '*',
-				animationEngine : 'best-available',
-				layoutMode : portfolioLayout,
-				animationOptions : {
-					duration : 750,
-					easing : 'linear',
-					queue : false
-				},
-				masonry : {}
-			}, refreshWaypoints());
+   <script>
+      /*Portfolio*/
+      (function($) {
+         "use strict";
+         var $container = $('.portfolio'), $items = $container
+               .find('.portfolio-item'), portfolioLayout = 'fitRows';
 
-			function refreshWaypoints() {
-				setTimeout(function() {
-				}, 1000);
-			}
+         if ($container.hasClass('portfolio-centered')) {
+            portfolioLayout = 'masonry';
+         }
 
-			$('ul#filter li').on('click', function() {
-				var selector = $(this).attr('data-filter');
-				$container.isotope({
-					filter : selector
-				}, refreshWaypoints());
-				$('ul#filter li').removeClass('selected');
-				$(this).addClass('selected');
-				return false;
-			});
+         $container.isotope({
+            filter : '*',
+            animationEngine : 'best-available',
+            layoutMode : portfolioLayout,
+            animationOptions : {
+               duration : 750,
+               easing : 'linear',
+               queue : false
+            },
+            masonry : {}
+         }, refreshWaypoints());
 
-			function getColumnNumber() {
-				var winWidth = $(window).width(), columnNumber = 1;
+         function refreshWaypoints() {
+            setTimeout(function() {
+            }, 1000);
+         }
 
-				if (winWidth > 1200) {
-					columnNumber = 5;
-				} else if (winWidth > 950) {
-					columnNumber = 4;
-				} else if (winWidth > 600) {
-					columnNumber = 3;
-				} else if (winWidth > 400) {
-					columnNumber = 2;
-				} else if (winWidth > 250) {
-					columnNumber = 1;
-				}
-				return columnNumber;
-			}
+         $('ul#filter li').on('click', function() {
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+               filter : selector
+            }, refreshWaypoints());
+            $('ul#filter li').removeClass('selected');
+            $(this).addClass('selected');
+            return false;
+         });
 
-			function setColumns() {
-				var winWidth = $(window).width(), columnNumber = getColumnNumber(), itemWidth = Math
-						.floor(winWidth / columnNumber);
+         function getColumnNumber() {
+            var winWidth = $(window).width(), columnNumber = 1;
 
-				$container.find('.portfolio-item').each(function() {
-					$(this).css({
-						width : itemWidth + 'px'
-					});
-				});
-			}
+            if (winWidth > 1200) {
+               columnNumber = 5;
+            } else if (winWidth > 950) {
+               columnNumber = 4;
+            } else if (winWidth > 600) {
+               columnNumber = 3;
+            } else if (winWidth > 400) {
+               columnNumber = 2;
+            } else if (winWidth > 250) {
+               columnNumber = 1;
+            }
+            return columnNumber;
+         }
 
-			function setPortfolio() {
-				setColumns();
-				$container.isotope('reLayout');
-			}
+         function setColumns() {
+            var winWidth = $(window).width(), columnNumber = getColumnNumber(), itemWidth = Math
+                  .floor(winWidth / columnNumber);
 
-			$container.imagesLoaded(function() {
-				setPortfolio();
-			});
+            $container.find('.portfolio-item').each(function() {
+               $(this).css({
+                  width : itemWidth + 'px'
+               });
+            });
+         }
 
-			$(window).on('resize', function() {
-				setPortfolio();
-			});
-		})(jQuery);
-	</script>
+         function setPortfolio() {
+            setColumns();
+            $container.isotope('reLayout');
+         }
+
+         $container.imagesLoaded(function() {
+            setPortfolio();
+         });
+
+         $(window).on('resize', function() {
+            setPortfolio();
+         });
+      })(jQuery);
+   </script>
 
 
-	<!-- WARNING: Wow.js doesn't work in IE 9 or less -->
-	<!--[if gte IE 9 | !IE ]><!-->
-	<script type="text/javascript" src="/car/resources/js/wow.min.js"></script>
-	<script>
-		// WOW Animation
-		new WOW().init();
-	
-	</script>
-	<![endif]-->
-    
+   <!-- WARNING: Wow.js doesn't work in IE 9 or less -->
+   <!--[if gte IE 9 | !IE ]><!-->
+   <script type="text/javascript" src="/car/resources/js/wow.min.js"></script>
+   <script>
+      // WOW Animation
+      new WOW().init();
+   </script>
+   <![endif]-->
+
     

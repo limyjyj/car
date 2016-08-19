@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
-import com.car.model.mapper.CarMapper;
 import com.car.model.mapper.CarhistoryMapper;
 
 @Repository("mysqlCarhistoryDao")
