@@ -46,9 +46,7 @@
 		SELECT
 		reservationNo, memberNo, type, purpose,departure, arrival, frequency, startDate,endDate, totalMember, content
 		FROM Reservation
-		WHERE reservationNo =
-		#{reservationNo} AND deleted
-		= '0'
+		WHERE reservationNo = #{reservationNo} AND deleted = '0'
 	</select>
 
 	<select id="selectReservationCount" resultType="int">

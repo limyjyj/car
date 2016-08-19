@@ -54,7 +54,7 @@ public class ChatController {
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
 	public void postMessage(@RequestParam String message) {
-
+		
 		this.chatRepository.addMessage(message);
 
 		// Update all chat requests as part of the POST request

@@ -46,12 +46,12 @@
 		WHERE scheduleno = #{scheduleNo}
 	</select>
 	
-	<select id="updateGroupSchedule" parameterType="GroupSchedule">	
+	<update id="updateGroupSchedule" parameterType="GroupSchedule">	
 		UPDATE GroupSchedule
 		SET totalnumber = #{totalNumber}, content = #{content}, startdate = #{startDate}, 
 		    enddate = #{endDate}, departtime = #{departTime}
 		WHERE scheduleno = #{scheduleNo}
-	</select>
+	</update>
 	
 	<select id="deleteGroupSchedule" parameterType="int">
 		DELETE 

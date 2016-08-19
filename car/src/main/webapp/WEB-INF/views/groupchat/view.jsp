@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
@@ -236,13 +237,13 @@ function reverseDisplay() {
 
 																</div>
 																<div class="form-group">
-																	<label for="startDate">Start Date</label> <input
-																		type="date" class="form-control" id="start-date1"
+																	<label for="startDate">Start Date</label>
+																	<input type="date" class="form-control" 
 																		name="startDate" placeholder="Start-date" />
 																</div>
 																<div class="form-group">
-																	<label for="endDate">End Date</label> <input
-																		type="date" class="form-control" id="end-date1"
+																	<label for="endDate">End Date</label> 
+																	<input type="date" class="form-control" id="end-date1"
 																		name="endDate" placeholder="end-date" />
 																</div>
 																<div class="form-group">

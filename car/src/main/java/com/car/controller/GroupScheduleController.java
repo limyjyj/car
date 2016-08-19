@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.car.model.dto.GroupChat;
 import com.car.model.dto.GroupSchedule;
 import com.car.model.dto.Member;
+import com.car.model.dto.Reservation;
 import com.car.model.service.GroupChatService;
 import com.car.model.service.GroupScheduleService;
 import com.car.model.service.ReservationService;
@@ -51,10 +52,35 @@ public class GroupScheduleController {
 	public void binder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
 	}
+	
+	
+	@RequestMapping(value = "longtermreservationlist.action", method = RequestMethod.GET)
+	public String longtermReservationList(HttpServletResponse resp, Model model) {
+
+		Gson gson = new Gson();
+		PrintWriter writer;
+
+		List<Reservation> reservationList = reservationService.selectReservationList();
+
+		if (reservationList != null) {
+			try {
+				writer = resp.getWriter();
+				String json = gson.toJson(reservationList);
+				writer.println(json);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		model.addAttribute("reservations", reservationList);
+
+		return "groupchat/list";
+	}
 
 	
-	@RequestMapping(value = "grouppage.action", method = RequestMethod.GET)
-	public String groupPage(HttpServletRequest req, HttpServletResponse resp, Model model) {
+	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.GET)
+	public String longtermReservationChat(HttpServletRequest req, HttpServletResponse resp, Model model) {
 
 		Gson gson = new Gson();
 		PrintWriter writer;
@@ -114,7 +140,7 @@ public class GroupScheduleController {
 
 	@ResponseBody
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public String viewSchedule(HttpServletRequest req, HttpServletResponse resp, int scheduleNo) throws IOException {
+	public String viewSchedule(int scheduleNo) throws IOException {
 		
 		GroupSchedule groupSchedule = groupScheduleService.selectGroupScheduleByGroupScheduleNo(scheduleNo);
 		
@@ -126,7 +152,7 @@ public class GroupScheduleController {
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public void updateSchedule(HttpServletRequest req, HttpServletResponse resp, GroupSchedule groupSchedule) throws IOException {
+	public void updateSchedule(GroupSchedule groupSchedule) throws IOException {
 		
 		groupScheduleService.updateGroupSchedule(groupSchedule);
 		
@@ -134,7 +160,7 @@ public class GroupScheduleController {
 	
 	
 	@RequestMapping(value = "chat.action", method = RequestMethod.GET)
-	public String chat(HttpServletRequest req, HttpServletResponse resp, GroupChat groupChat) throws IOException {
+	public String chat(GroupChat groupChat) throws IOException {
 		
 		//groupChatService.insertGroupChat(groupChat);
 		
