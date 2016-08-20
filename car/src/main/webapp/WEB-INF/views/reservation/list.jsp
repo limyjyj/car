@@ -155,15 +155,17 @@ $(document).ready(function (){
 						<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=500, height=500, scrollbars=1')" value="목록보기">
 	
 					</c:when>
+						<c:when test="${ loginuser.memberNo eq confirm.memberNo}">	
+						<input type="button" value="신청완료"  style="height: 25px" />
+						</c:when>
 					<c:otherwise>
 					
-						 <input type="button" value="신청완료" style="height: 25px" />
-						 
+							 
 						 <input type="button" id="register" value="신청하기" name="${ b.reservationNo }" style="height: 25px" />
 						 					
 						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
 						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
-			
+		
 						
 					</c:otherwise>
 				</c:choose>

@@ -127,6 +127,12 @@ public class MysqlReservationDao implements ReservationDao {
 		
 	}
 
+	@Override
+	public void deleteGroup(int reservationNo) {
+		reservationMapper.deleteGroup(reservationNo);
+		
+	}
+
 	
 
 

@@ -74,7 +74,11 @@
 	
 	
 		<delete id="deleteConfirm" parameterType="Confirm">
-	DELETE FROM Confirm WHERE reservationNo=#{reservationNo} AND memberNo =#{memberNo};
+	DELETE FROM Confirm WHERE reservationNo=#{reservationNo} AND memberNo =#{memberNo}
+	</delete>
+	
+		<delete id="deleteGroup" parameterType="int">
+	DELETE FROM Confirm WHERE reservationNo=#{reservationNo}
 	</delete>
 	
 	
@@ -111,7 +115,7 @@
     <select id="selectConfirmListByReservationNo" parameterType="int"
 	resultMap="confirmMap">
 
-	select distinct Member.*
+	select distinct Member.*, Confirm.*
 			from Confirm
 			join Member
 			on Member.memberno = Confirm.memberno

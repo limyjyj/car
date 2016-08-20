@@ -93,8 +93,9 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		// pagerSize, url);
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);
 		
-		Member member = (Member) session.getAttribute("loginuser");
 		Confirm tempConfirm = null;
+		
+		
 		List<Confirm> confirms = reservationService.selectConfirmList();
 		for(Confirm comfirm : confirms) {
 			tempConfirm = comfirm;
@@ -312,7 +313,9 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		List<Confirm> confirmedMembersList = reservationService.selectConfirmListByReservationNo(reservationNo);
 		
-	/*	for (Confirm confirm : confirmedMembersList) {
+		
+		
+	/*	for (Confirm confirm : count) {
 		
 					confirm.setMember(reservationService.selectMemberByMemeberNo(confirm.getMemberNo()));
 			
@@ -321,6 +324,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		System.out.println(reservationNo);
 		model.addAttribute("confirms", confirmedMembersList);
 		model.addAttribute("reservationNo",reservationNo );
+		
 		
 		return "reservation/confirm";
 
@@ -364,6 +368,20 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	     return "redirect:/reservation/confirmlist.action?reservationNo="+reservationNo;
 	     }
 	     
+	     
+	     //그룹 요청 삭제
+	     @RequestMapping(value = "deleteGroup.action", method = RequestMethod.GET)
+	     public String deleteGroup(HttpServletRequest req, Confirm confirm, int reservationNo) {
+	     // 1. 요청 데이터 읽기 (글번호)
+	    System.out.println(confirm.getMemberNo());
+	    System.out.println(reservationNo);
+	    confirm.setReservationNo(reservationNo);
+	     // 2. 데이터 처리 (db에서 데이터 변경)
+	     reservationService.deleteGroup(reservationNo);
+	     
+	    
+	     return "redirect:/reservation/confirmlist.action?reservationNo="+reservationNo;
+	     }     
 		
 		
 	

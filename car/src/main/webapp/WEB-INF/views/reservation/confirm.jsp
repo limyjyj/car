@@ -56,17 +56,23 @@
    
 									});
 					
-
-		/* 		$('input#refuse').on('click', function(event) {
-					var reservationno = ${reservation.reservationNo}
-					var result = confirm('거절 하시겠습니까?');
+		
+		$('#groupok').on('click',
+				function(event) {
+					var reservationNo = $('#reservationno').val();
+					var memberNo = $('#memberno').val();
+					var result = confirm('그룹생성이 완료되었습니까? 지워집니당');
+					
 					if (result) {
-						//yes
-						location.href = ('/car/reservation/confirmlist.action?reservationno=' + reservationno);
-					} else {
-						//no
+						location.href = "/car/reservation/deleteGroup.action?reservationNo="
+								+ reservationNo
+								+ "&memberNo="
+								+ memberNo;
+					 } else {
+						alert('못지움');
 					}
-				}); */
+
+				});
 
 	});
 </script>
@@ -106,7 +112,21 @@
 				<td>${ c.member.phone }</td>
 
 				<td>
-					<input type="button" id="accept" value="수락"style="height: 25px" /> 
+				
+			<%--  <c:choose> 
+			 	<c:when test="${ c.member.reservationNo eq c.reservationNo}">	
+			 		<input type="button"  value="수락됨"style="height: 25px" />
+			 	</c:when>
+			<c:otherwise> --%>
+				<input type="button"  id="accept"  value="수락"  style="height: 25px" />
+		<%-- 		 <input id="reservationno" type="hidden" value="${ c.reservationNo }" />
+				 <input id="memberno" type="hidden" value="${ loginuser.memberNo }" />
+			</c:otherwise>
+			 </c:choose> --%>
+				
+				
+					<!-- <input type="button" id="accept" value="수락"style="height: 25px" />  -->
+					
 					<input type="button" id="refuse" value="거절" style="height: 25px" />
 					<input type="text" id="memberno" style="height: 25px" hidden="hidden" value='${ c.memberNo }' /> 
 					<input type="text" id="reservationno" style="height: 25px" hidden="hidden" value='${ reservationNo }' />
@@ -118,6 +138,12 @@
 
 			</tr>
 		</c:forEach> 
+	
+		    <td>
+					<input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" align="center"/> 
+					
+     		</td>
+		
 	</table>
 
 	<br />

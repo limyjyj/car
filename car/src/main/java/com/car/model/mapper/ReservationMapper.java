@@ -42,4 +42,6 @@ public interface ReservationMapper {
 	 void updateMemberByReservationNo(Member member);
 	 
 	 void deleteConfirm(Confirm confirm);
+	 
+	 void deleteGroup(int reservationNo);
 	}
