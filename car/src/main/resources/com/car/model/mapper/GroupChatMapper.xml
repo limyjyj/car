@@ -36,12 +36,12 @@
 	
 	<select id="selectGroupChatByMemberId" 
 		parameterType="string" resultType="GroupChat">			
-		SELECT gc.chatno, gc.totalnumber, gc.deleted, gc.title, gc.servationno
+		SELECT gc.chatno, gc.totalnumber, gc.deleted, gc.title, gc.reservationno
 		FROM GroupChat gc
-        INNER JOIN GroupChatStatement gcs
+        JOIN GroupChatStatement gcs
         on gc.chatno = gcs.chatno
-        INNER JOIN Member m
-        WHERE m.memberid = #{memberId}		
+        JOIN Member m
+        WHERE m.memberno = gcs.memberno  AND m.memberid = #{memberId};		
 	</select>
 	
 	<select id="selectGroupChatByGroupChatNo" 
@@ -50,11 +50,11 @@
 		WHERE chatno = #{chatNo}
 	</select>
 	
-	<select id="updateGroupChat" parameterType="GroupChat">	
+	<update id="updateGroupChat" parameterType="GroupChat">	
 		UPDATE GroupChat
 		SET totalnumber = #{totalNumber} 
 		WHERE chatno = #{chatNo}
-	</select>
+	</update>
 	
 	<select id="deleteGroupChat" parameterType="int">
 		DELETE 

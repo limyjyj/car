@@ -29,7 +29,7 @@ $(function() {
 			function(event) {
 		
 				var reservationNo = $(this).attr('data-rno');
-				location.href = ('/car/groupschedule/longtermreservationchat.action?reservationNo=' + reservationNo);
+				location.href = ('/car/groupchat/longtermreservationchat.action?reservationNo=' + reservationNo);
 				
 				}
 			);

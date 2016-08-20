@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 import com.car.model.mapper.GroupChatMapper;
 
 
@@ -56,9 +57,10 @@ public class MysqlGroupChatDao implements GroupChatDao {
 		
 	}
 
+
 	@Override
-	public void insertGroupChat(int memberNo, int chatNo) {
-		groupChatMapper.insertGroupChat(memberNo);
+	public void insertGroupChatStatement(GroupChatStatement groupChatStatement) {
+		groupChatMapper.insertGroupChatStatement(groupChatStatement);
 		
 	}
 	

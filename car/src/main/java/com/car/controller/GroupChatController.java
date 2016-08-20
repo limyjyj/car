@@ -1,26 +1,34 @@
 package com.car.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
+import com.car.model.dto.GroupSchedule;
+import com.car.model.dto.Member;
+import com.car.model.dto.Reservation;
 import com.car.model.service.GroupChatService;
 import com.car.model.service.GroupScheduleService;
 import com.car.model.service.ReservationService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 @Controller
@@ -38,109 +46,116 @@ public class GroupChatController {
 	@Autowired
 	@Qualifier("reservationService")
 	private ReservationService reservationService;
+	
+	
+	// long term reservation list
+	@RequestMapping(value = "longtermreservationlist.action", method = RequestMethod.GET)
+	public String longtermReservationList(HttpSession session, HttpServletResponse resp, Model model) {
+
+		Member member = (Member) session.getAttribute("loginuser");
+		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
+		model.addAttribute("reservations", reservationList);
+
+		return "groupchat/list";
+	}
 
 	
+	// group chat list
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public String groupChatList(HttpServletRequest req, HttpServletResponse resp, Model model) {
+	public String groupChatList(Model model) {
 		
-		Gson gson = new Gson();
-		PrintWriter writer;
-		
-		List<GroupChat> groupChatList = groupChatService.selectAllGroupChat();
-		
-		if (groupChatList != null) {
-			try {
-				writer = resp.getWriter();
-				String json = gson.toJson(groupChatList);
-				writer.println(json);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		model.addAttribute("groupchatlist", groupChatList);
-				
+		List<GroupChat> groupChatList = groupChatService.selectAllGroupChat();		
+		model.addAttribute("groupchatlist", groupChatList);				
 		return "groupchat/list";
 	}
 	
-	@RequestMapping(value = "insert.action", method = RequestMethod.GET)
-	public String createGet(HttpServletRequest req, HttpServletResponse resp, @Valid @ModelAttribute GroupChat groupChat) {
+	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.POST)
+	public String enterGroupChatPost(int reservationNo, Model model, HttpSession session) {
 		
-		Gson gson = new Gson();
-		PrintWriter writer;
+		Member member = (Member)session.getAttribute("loginuser");
+		GroupChat groupChat = null;
 		
-		if (groupChat != null) {
-			try {
-				writer = resp.getWriter();
-				String json = gson.toJson(groupChat);
-				
-				groupChatService.insertGroupChat(groupChat);
-				groupChatService.
-				writer.println(json);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		groupChat = groupChatService.selectGroupChatByMemberId(member.getMemberId());
+		int chatNo;
+		
+		if (groupChat == null) {
 			
+			groupChat.setTitle("title");
+			groupChat.setReservationNo(reservationNo);			
+			groupChatService.insertGroupChat(groupChat);
+			
+			GroupChatStatement gcs = null;
+			gcs.setChatNo(groupChatService.selectGroupChatByMemberId(member.getMemberId()).getChatNo());
+			gcs.setMemberNo(member.getMemberNo());
+			groupChatService.insertGroupChatStatement(gcs);
 		}
 		
-		return "groupchat/chatroom";
+		chatNo = groupChat.getChatNo();
+		model.addAttribute("chatno", chatNo);
+		model.addAttribute("reservationno", reservationNo);
+		
+		return "groupchat/view";
 		
 	}
 	
 	
-	@RequestMapping(value = "create.action", method = RequestMethod.POST)
-	public String createPost(HttpServletRequest req, HttpServletResponse resp, @Valid @ModelAttribute GroupChat groupChat) {
+	@RequestMapping(value = "chatupdate.action", method = RequestMethod.POST)
+	public void groupChatUpdate(GroupChat groupChat) {		
 		
-		Gson gson = new Gson();
-		PrintWriter writer;
-		
-		if (groupChat != null) {
-			try {
-				writer = resp.getWriter();
-				String json = gson.toJson(groupChat);
-				
-				groupChatService.insertGroupChat(groupChat);
-				writer.println(json);
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		return "groupchat/chatroom";
-		
-	}
-	
-	
-	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public void update(HttpServletRequest req, HttpServletResponse resp, 
-			@Valid @ModelAttribute GroupChat groupChat) {		
-		
-		Gson gson = new Gson();
-		PrintWriter writer;
-		
-		if (groupChat != null) {
-			try {
-				writer = resp.getWriter();
-				String json = gson.toJson(groupChat);
-				groupChatService.updateGroupChat(groupChat);
-				writer.println(json);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		groupChatService.updateGroupChat(groupChat);
 		
 	}
 	
 	@RequestMapping(value = "delete.action", method = RequestMethod.GET)
-	public String delete(@Valid @ModelAttribute int groupChatNo) {	
+	public String delete(int groupChatNo) {	
 		
-		groupChatService.deleteGroupChat(groupChatNo);
-		
+		groupChatService.deleteGroupChat(groupChatNo);		
 		return "redirect:/groupchat/list.action"; 
+		
+	}
+	
+	
+	@InitBinder
+	public void binder(WebDataBinder binder) {
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+	}
+	
+		
+	//////////////////// schedule part //////////////////////
+	
+	@RequestMapping(value = "insertgroupschedule.action", method = RequestMethod.POST)
+	public void insertGroupSchedulePost(GroupSchedule groupSchedule, HttpSession session, int chatNo) {
+		
+		Member member = (Member)session.getAttribute("loginuser");
+				
+		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) != null) {
+			
+		} else if (groupSchedule != null) {
+				
+			// have to modify this part
+			groupSchedule.setChatNo(chatNo);			
+			groupScheduleService.insertGroupSchedule(groupSchedule);
+		}
+
+	}
+
+	@ResponseBody	
+	@RequestMapping(value = "view.action", method = RequestMethod.GET)
+	public String viewSchedule(int scheduleNo) throws IOException {
+		
+		GroupSchedule groupSchedule = groupScheduleService.selectGroupScheduleByGroupScheduleNo(scheduleNo);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		String json = gson.toJson(groupSchedule);
+
+		return json;
+
+	}
+	
+	@RequestMapping(value = "scheduleupdate.action", method = RequestMethod.POST)
+	public void updateSchedule(GroupSchedule groupSchedule) throws IOException {
+		
+		groupScheduleService.updateGroupSchedule(groupSchedule);
 		
 	}
 	

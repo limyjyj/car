@@ -3,6 +3,7 @@ package com.car.model.dao;
 import java.util.List;
 
 import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 
 
 public interface GroupChatDao {
@@ -19,6 +20,6 @@ public interface GroupChatDao {
 	
 	void deleteGroupChat(int groupChatNo);
 	
-	void insertGroupChatStatement(int memberNo, int chatNo);
+	void insertGroupChatStatement(GroupChatStatement groupChatStatement);
 	
 }

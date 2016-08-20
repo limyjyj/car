@@ -3,6 +3,7 @@ package com.car.model.service;
 import java.util.List;
 
 import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 
 
 public interface GroupChatService {
@@ -19,6 +20,6 @@ public interface GroupChatService {
 	
 	void deleteGroupChat(int groupChatNo);
 	
-	void insertGroupChatStatement(int memberNo, int chatNo);
+	void insertGroupChatStatement(GroupChatStatement groupChatStatement);
 
 }

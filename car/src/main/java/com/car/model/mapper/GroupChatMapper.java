@@ -3,6 +3,7 @@ package com.car.model.mapper;
 import java.util.List;
 
 import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 
 
 public interface GroupChatMapper {
@@ -13,5 +14,6 @@ public interface GroupChatMapper {
 	GroupChat selectGroupChatByGroupChatNo(int groupChatNo);
 	void updateGroupChat(GroupChat groupChat);	
 	void deleteGroupChat(int groupChatNo);
+	void insertGroupChatStatement(GroupChatStatement groupChatStatement);
 
 }
