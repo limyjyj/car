@@ -63,8 +63,18 @@ public class MysqlGroupChatDao implements GroupChatDao {
 		groupChatMapper.insertGroupChatStatement(groupChatStatement);
 		
 	}
-	
-	
-	
+
+	@Override
+	public GroupChatStatement selectGroupChatStatementByMemberNo(int memberNo) {
+		
+		return groupChatMapper.selectGroupChatStatementByMemberNo(memberNo);
+		
+	}
+
+	@Override
+	public GroupChat selectGroupChatByReservationNo(int reservationNo) {
+		
+		return groupChatMapper.selectGroupChatByReservationNo(reservationNo);
+	}
 	
 }

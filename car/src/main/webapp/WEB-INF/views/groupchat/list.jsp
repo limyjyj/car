@@ -27,7 +27,7 @@
 $(function() {
 	$('input#enter-groupchatroom').on('click',
 			function(event) {
-		
+				
 				var reservationNo = $(this).attr('data-rno');
 				location.href = ('/car/groupchat/longtermreservationchat.action?reservationNo=' + reservationNo);
 				

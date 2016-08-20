@@ -15,11 +15,17 @@ public interface GroupChatDao {
 	GroupChat selectGroupChatByMemberId(String memberId);
 	
 	GroupChat selectGroupChatByGroupChatNo(int groupChatNo);
+	
+	GroupChat selectGroupChatByReservationNo(int reservationNo);
 
 	void updateGroupChat(GroupChat groupChat);
 	
 	void deleteGroupChat(int groupChatNo);
 	
+	
+	
 	void insertGroupChatStatement(GroupChatStatement groupChatStatement);
+	
+	GroupChatStatement selectGroupChatStatementByMemberNo(int memberNo);
 	
 }

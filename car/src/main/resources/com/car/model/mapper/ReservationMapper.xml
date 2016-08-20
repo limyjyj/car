@@ -164,13 +164,11 @@
 	
 	<select id="selectReservationByMemberNo" parameterType="int" resultType="Reservation">   
    SELECT
-   r.reservationno, r.memberno, r.type, r.purpose, 
-   r.departure, r.arrival, r.frequency, r.startdate, 
-   r.enddate, r.totalmember, r.content
+   r.*
    FROM Reservation r   
    JOIN Member m
-   ON r.memberno = m.memberno AND r.frequency = '정기'
-   WHERE m.memberno = #{memberNo} AND m.deleted = '0';
+   ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기'
+   WHERE m.memberno = #{memberNo} AND m.deleted = '0'
   </select>
 	
 </mapper>

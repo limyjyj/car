@@ -63,4 +63,16 @@ public class GroupChatServiceImpl implements GroupChatService {
 		
 	}
 
+	@Override
+	public GroupChatStatement selectGroupChatStatementByMemberNo(int memberNo) {
+		
+		return mysqlGroupChatDao.selectGroupChatStatementByMemberNo(memberNo);
+	}
+
+	@Override
+	public GroupChat selectGroupChatByReservationNo(int reservationNo) {
+		
+		return mysqlGroupChatDao.selectGroupChatByReservationNo(reservationNo);
+	}
+
 }

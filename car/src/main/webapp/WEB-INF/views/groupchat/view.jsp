@@ -66,12 +66,20 @@
 
 	//forAjax
 	$(function() {
+		
+		//check for the existent schedule
+		$('#writeSchedule').on('click', function(event) {
+			$.ajax("/car/groupchat/insertgroupschedule.action", {
+				
+			});
+		});
 
 		//insert schedule  	
 		$('#save').on('click', function(event) {
-
+			
+			
 			var groupSchedule;
-
+			
 			groupSchedule = {
 				"title" : $('#title1').val(),
 				"startDate" : $('#start-date1').val(),
@@ -83,7 +91,7 @@
 			/* groupSchedule = JSON.stringify(groupSchedule); */
 
 			$.ajax({
-				url : "/car/groupschedule/insert.action",
+				url : "/car/groupchat/insertgroupschedule.action",
 				type : "post",
 				data : groupSchedule,
 				/* contentType: "application/json",  */
@@ -104,32 +112,32 @@
 
 		// view schedule 	
 		$('#view-schedule').on('click',
-						function(event) {
+			function(event) {
 
-							$.ajax("/car/groupschedule/view.action?scheduleNo=17",{
+				$.ajax("/car/groupchat/view.action?chatNo=" + $('#chatNo').val(),{
+				
+					success : function(data) {
+						
+						eval("var groupSchedule = " + data);
 
-												success : function(data) {
+						document.getElementById("title2").value = groupSchedule.title;
+						document.getElementById("start-date2").value = groupSchedule.startDate;
+						document.getElementById("end-date2").value = groupSchedule.endDate;
+						document.getElementById("depart-time2").value = groupSchedule.departTime;
+						document.getElementById("content2").value = groupSchedule.content;
+						
+						//location.reload();
 
-													eval("var groupSchedule = " + data);
+					},
 
-													document.getElementById("title2").value = groupSchedule.title;
-													document.getElementById("start-date2").value = groupSchedule.startDate;
-													document.getElementById("end-date2").value = groupSchedule.endDate;
-													document.getElementById("depart-time2").value = groupSchedule.departTime;
-													document.getElementById("content2").value = groupSchedule.content;
+					error : function(request,
+							status, error) {
+						alert("작성된 스케줄이 없습니다. 작성하고 싶으시면 작성 버튼을 클릭해 주세요.");
+					}
 
-													//location.reload();
+				});
 
-												},
-
-												error : function(request,
-														status, error) {
-													alert("failed to load the file.");
-												}
-
-											});
-
-						});
+			});
 
 		// modify schedule  	
 		$('#modify').on('click', function(event) {
@@ -145,7 +153,7 @@
 			};
 
 			$.ajax({
-				url : "/car/groupschedule/update.action",
+				url : "/car/groupchat/update.action",
 				type : "post",
 				data : groupSchedule,
 
@@ -230,7 +238,7 @@
 									<tr>
 										<td>
 											<div class="buttons">
-												<button type="button" data-toggle="modal"
+												<button type="button" data-toggle="modal" id="writeSchedule"
 													data-target="#myModal3">작성</button>													
 
 											</div> <!-- Modal -->
@@ -293,6 +301,7 @@
 											<div class="buttons">
 												<button type="button" data-toggle="modal" id="view-schedule"
 													data-target="#myModal4">확인</button>
+												<input type="hidden" value="${ chatno }" id="chatNo">
 											</div> 
 											
 											<!-- Modal -->

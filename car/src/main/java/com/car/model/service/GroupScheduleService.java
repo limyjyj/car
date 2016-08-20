@@ -15,8 +15,10 @@ public interface GroupScheduleService {
 	
 	GroupSchedule selectGroupScheduleByGroupScheduleNo(int groupScheduleNo);
 	
+	GroupSchedule selectGroupScheduleByChatNo(int chatNo);
+	
 	void updateGroupSchedule(GroupSchedule groupSchedule);	
 	
-	void deleteGroupSchedule(int groupScheduleNo);
+	void deleteGroupSchedule(int groupScheduleNo);	
 
 }

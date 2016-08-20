@@ -55,6 +55,12 @@ public class GroupScheduleServiceImpl implements GroupScheduleService {
 		mysqlGroupScheduleDao.deleteGroupSchedule(groupScheduleNo);
 		
 	}
+
+	@Override
+	public GroupSchedule selectGroupScheduleByChatNo(int chatNo) {
+		
+		return mysqlGroupScheduleDao.selectGroupScheduleByChatNo(chatNo);
+	}
 	
 
 }

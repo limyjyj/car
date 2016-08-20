@@ -15,6 +15,8 @@ public interface GroupScheduleDao {
 	
 	GroupSchedule selectGroupScheduleByGroupScheduleNo(int groupScheduleNo);
 	
+	GroupSchedule selectGroupScheduleByChatNo(int chatNo);
+	
 	void updateGroupSchedule(GroupSchedule groupSchedule);	
 	
 	void deleteGroupSchedule(int groupScheduleNo);

@@ -48,6 +48,11 @@ public class GroupChatController {
 	private ReservationService reservationService;
 	
 	
+	@InitBinder
+	public void binder(WebDataBinder binder) {
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+	}
+	
 	// long term reservation list
 	@RequestMapping(value = "longtermreservationlist.action", method = RequestMethod.GET)
 	public String longtermReservationList(HttpSession session, HttpServletResponse resp, Model model) {
@@ -69,28 +74,36 @@ public class GroupChatController {
 		return "groupchat/list";
 	}
 	
-	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.POST)
+	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.GET)
 	public String enterGroupChatPost(int reservationNo, Model model, HttpSession session) {
 		
-		Member member = (Member)session.getAttribute("loginuser");
-		GroupChat groupChat = null;
+		Member member = (Member) session.getAttribute("loginuser");
 		
-		groupChat = groupChatService.selectGroupChatByMemberId(member.getMemberId());
+		GroupChat groupChat = groupChatService.selectGroupChatByReservationNo(reservationNo);
 		int chatNo;
 		
-		if (groupChat == null) {
-			
+		if (groupChat == null) {			
+			groupChat = new GroupChat();			
 			groupChat.setTitle("title");
 			groupChat.setReservationNo(reservationNo);			
 			groupChatService.insertGroupChat(groupChat);
+			groupChat = groupChatService.selectGroupChatByReservationNo(reservationNo);
 			
-			GroupChatStatement gcs = null;
+		} else {
+			chatNo = groupChat.getChatNo();			
+		}
+		
+		GroupChatStatement groupChatStatement = groupChatService.selectGroupChatStatementByMemberNo(member.getMemberNo());
+		
+		if(groupChatStatement == null) {			
+			GroupChatStatement gcs = new GroupChatStatement();
 			gcs.setChatNo(groupChatService.selectGroupChatByMemberId(member.getMemberId()).getChatNo());
 			gcs.setMemberNo(member.getMemberNo());
 			groupChatService.insertGroupChatStatement(gcs);
 		}
 		
 		chatNo = groupChat.getChatNo();
+		
 		model.addAttribute("chatno", chatNo);
 		model.addAttribute("reservationno", reservationNo);
 		
@@ -115,11 +128,6 @@ public class GroupChatController {
 	}
 	
 	
-	@InitBinder
-	public void binder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
-	}
-	
 		
 	//////////////////// schedule part //////////////////////
 	
@@ -129,6 +137,8 @@ public class GroupChatController {
 		Member member = (Member)session.getAttribute("loginuser");
 				
 		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) != null) {
+			int i = 10/0;
+			System.out.println(i);
 			
 		} else if (groupSchedule != null) {
 				
@@ -141,14 +151,23 @@ public class GroupChatController {
 
 	@ResponseBody	
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
-	public String viewSchedule(int scheduleNo) throws IOException {
+	public String viewSchedule(int chatNo) {
 		
-		GroupSchedule groupSchedule = groupScheduleService.selectGroupScheduleByGroupScheduleNo(scheduleNo);
-		
+		GroupSchedule groupSchedule = groupScheduleService.selectGroupScheduleByChatNo(chatNo);		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		String json = gson.toJson(groupSchedule);
-
-		return json;
+		
+		String json = null;
+		
+		if (groupSchedule == null) {
+			int i = 10/0;
+			System.out.println(i);
+			return json;
+			
+		} else {
+			json = gson.toJson(groupSchedule);
+			return json;
+		}
+		
 
 	}
 	
