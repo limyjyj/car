@@ -14,6 +14,8 @@ public class Board {
 	
 	private List<BoardComent> coment;
 	
+	private List<BoardUpload> upload;
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -61,6 +63,12 @@ public class Board {
 	}
 	public void setComent(List<BoardComent> coment) {
 		this.coment = coment;
+	}
+	public List<BoardUpload> getUpload() {
+		return upload;
+	}
+	public void setUpload(List<BoardUpload> upload) {
+		this.upload = upload;
 	}
 
 	

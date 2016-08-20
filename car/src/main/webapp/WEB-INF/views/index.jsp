@@ -183,7 +183,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid grey-transparent-content">
+		<!-- <div class="container-fluid grey-transparent-content">
 			<div class="row">
 				<div class="col-md-8 same-height sub_content clearfix">
 					<div class="col-sm-6">
@@ -254,8 +254,8 @@
 				</div>
 			</div>
 		</div>
-
-		<section class="feature-block">
+ -->
+		<!-- <section class="feature-block">
 			<div class="container">
 				<div class="row super_sub_content">
 					<div class="col-lg-6 wow fadeInLeft">
@@ -282,8 +282,8 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<div class="grey_bg">
+		</section> -->
+		<!-- <div class="grey_bg">
 			<div class="container">
 				<div class="row sub_content">
 					<div class="col-lg-3 col-md-4 col-sm-6 text-center">
@@ -414,9 +414,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<section class="parallax parallax-1">
+		<!-- <section class="parallax parallax-1">
 			<div class="container">
 				<div class="row">
 					<div id="parallax-testimonial-carousel"
@@ -491,8 +491,8 @@
 				</div>
 			</div>
 		</section>
-
-		<section class="super_sub_content">
+ -->
+		<!-- <section class="super_sub_content">
 			<div class="dividerHeading text-center">
 				<h4>
 					<span>RECENT PORTFOLIO ITEMS</span>
@@ -524,7 +524,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item web-design graphic-design">
@@ -539,7 +539,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item graphic-design">
@@ -554,7 +554,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item mockups">
@@ -569,7 +569,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item flayers">
@@ -584,7 +584,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item flayers">
@@ -599,7 +599,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item graphic-design mockups">
@@ -614,7 +614,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item web-design mockups">
@@ -629,7 +629,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item web-design mockups">
@@ -644,7 +644,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 					<div class="portfolio-item web-design mockups">
@@ -660,16 +660,16 @@
 								</div>
 							</div>
 						</div>
-						<!-- box -->
+						box
 					</div>
 
 				</div>
-				<!-- portfolio -->
+				portfolio
 			</div>
-			<!-- portfolio container -->
-		</section>
+			portfolio container
+		</section> -->
 
-		<div class="grey-content">
+		<!-- <div class="grey-content">
 			<div class="container-fluid">
 				<div class="row">
 					<div
@@ -732,9 +732,9 @@
 						style="background: url('images/awesome.png') no-repeat;"></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="super_sub_content">
+		<!-- <div class="super_sub_content">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-7">
@@ -759,9 +759,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="grey-line-content">
+		<!-- <div class="grey-line-content">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6 col-sm-12 sub_content same-height">
@@ -811,8 +811,8 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="feature-block pdt-50">
+ -->
+		<!-- <div class="feature-block pdt-50">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7 text-center">
@@ -829,9 +829,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="container-fluid">
+		<!-- <div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="serviceBox_6 same-height">
@@ -874,9 +874,9 @@
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="super_sub_content grey_bg">
+		<!-- <div class="super_sub_content grey_bg">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 mrgt-70">
@@ -925,7 +925,7 @@
 				</div>
 			</div>
 		</div>
-
+ -->
 		<!--</div>-->
 
 		<div class="container">
@@ -1027,7 +1027,7 @@
 			</div>
 		</div>
 
-		<section class="promo_box wow bounceInUp" data-wow-offset="50">
+		<!-- <section class="promo_box wow bounceInUp" data-wow-offset="50">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-9 col-md-9 col-lg-9">
@@ -1048,7 +1048,7 @@
 				</div>
 			</div>
 		</section>
-	</section>
+	</section> -->
 
 	<!--start footer-->
 	<footer class="footer">

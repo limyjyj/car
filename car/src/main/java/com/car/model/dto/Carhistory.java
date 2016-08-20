@@ -8,8 +8,9 @@ public class Carhistory {
 	private String category;
 	private int carindex; 
 	private int deleted;
-	private List<Car> car;
-	
+	private Outcome outcome;
+	private Fuel fuel;
+	private List<Member>member;
 	
 	public int getHistoryNo() {
 		return historyNo;
@@ -35,12 +36,26 @@ public class Carhistory {
 	public void setDeleted(int deleted) {
 		this.deleted = deleted;
 	}
-	public List<Car> getCar() {
-		return car;
+	public Outcome getOutcome() {
+		return outcome;
 	}
-	public void setCar(List<Car> car) {
-		this.car = car;
+	public void setOutcome(Outcome outcome) {
+		this.outcome = outcome;
 	}
+	public Fuel getFuel() {
+		return fuel;
+	}
+	public void setFuel(Fuel fuel) {
+		this.fuel = fuel;
+	}
+	public List<Member> getMember() {
+		return member;
+	}
+	public void setMember(List<Member> member) {
+		this.member = member;
+	}
+	
+	
 	
 	
 	

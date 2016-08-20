@@ -79,6 +79,14 @@
 			
 	</aop:config>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/resources/**" />
+			<beans:bean class="com.car.interceptor.AuthInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
 
 

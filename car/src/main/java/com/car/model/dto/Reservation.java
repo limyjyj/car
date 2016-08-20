@@ -18,13 +18,15 @@ public class Reservation {
 	private String totalMember; // 인원
 	private String content; //기타내용
 	private int reservationCount;
-	public List<Member> getMember() {
+	private Member member;
+	
+	public Member getMember() {
 		return member;
 	}
-	public void setMember(List<Member> member) {
+	public void setMember(Member member) {
 		this.member = member;
 	}
-	private List<Member> member;
+	
 	
 	public int getReservationCount() {
 		return reservationCount;

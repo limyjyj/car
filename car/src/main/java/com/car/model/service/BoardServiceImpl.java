@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.car.model.dao.BoardDao;
 import com.car.model.dto.Board;
 import com.car.model.dto.BoardComent;
+import com.car.model.dto.BoardUpload;
 
 @Service("BoardService")
 public class BoardServiceImpl implements BoardService {
@@ -18,8 +19,8 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao BoardDao;
 
 	@Override
-	public void insertBoard(Board Board) {
-		 BoardDao.insertBoard(Board);
+	public int insertBoard(Board Board) {
+		return BoardDao.insertBoard(Board);
 	}
 			
 	@Override
@@ -102,6 +103,19 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteComent(int comentNo) {
 		BoardDao.deleteComent(comentNo);
 		
+	}
+	
+//--------------------------------Upload----------------------------//
+
+	@Override
+	public void insertBoardUpload(BoardUpload boardupload) {
+		BoardDao.insertBoardUpload(boardupload);
+		
+	}
+
+	@Override
+	public BoardUpload selectBoardUploadByBoardNo(int BoardNo) {
+		return BoardDao.selectBoardUploadByBoardNo(BoardNo);
 	}
 
 }

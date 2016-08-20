@@ -11,9 +11,9 @@ public class GroupSchedule {
 
 	Date startDate;
 	Date endDate;
-	int duration;
-	int term;
+	String departTime;
 
+	
 	public int getScheduleNo() {
 		return scheduleNo;
 	}
@@ -62,20 +62,12 @@ public class GroupSchedule {
 		this.endDate = endDate;
 	}
 
-	public int getDuration() {
-		return duration;
+	public String getDepartTime() {
+		return departTime;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-
-	public int getTerm() {
-		return term;
-	}
-
-	public void setTerm(int term) {
-		this.term = term;
+	public void setDepartTime(String departTime) {
+		this.departTime = departTime;
 	}
 
 }

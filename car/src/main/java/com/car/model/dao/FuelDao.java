@@ -8,11 +8,10 @@ import com.car.model.dto.Fuel;
 public interface FuelDao {
 
 	void insertFuel(Fuel fuel);
+			
+	List<Fuel> selectFuelByMemberNo(int memberNo);
 	
-	List<Fuel> selectFuelList();
-	
-	Fuel selectFuelByFuelNo(int fuelNo);
+	List<Fuel> selectFuelByCarindex(int carindex);
 	
 	void updateFuel(Fuel fuel);
-	
 }

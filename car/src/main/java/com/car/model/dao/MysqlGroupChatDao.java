@@ -55,6 +55,12 @@ public class MysqlGroupChatDao implements GroupChatDao {
 		groupChatMapper.deleteGroupChat(groupChatNo);
 		
 	}
+
+	@Override
+	public void insertGroupChat(int memberNo, int chatNo) {
+		groupChatMapper.insertGroupChat(memberNo);
+		
+	}
 	
 	
 	

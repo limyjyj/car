@@ -124,7 +124,7 @@ button, select {
 	text-transform: none
 }
 
-button, html input[type=button], input[type=reset], input[type=submit] {
+button, html input[type=reset] {
 	-webkit-appearance: button;
 	cursor: pointer
 }
@@ -1876,6 +1876,8 @@ pre code {
 	min-height: 1px;
 	padding-right: 15px;
 	padding-left: 15px
+	
+	
 }
 
 .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3,
@@ -2250,7 +2252,10 @@ pre code {
 @media ( min-width :992px) {
 	.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3,
 		.col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
-		float: left
+		float: left;
+		margin-left:480px; 
+		
+	
 	}
 	.col-md-12 {
 		width: 100%
@@ -3761,7 +3766,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	margin-top: 5px
 }
 
-input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block
+input[type=button].btn-block, input[type=reset].btn-block
 	{
 	width: 100%
 }
@@ -6421,6 +6426,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus,
 	border-radius: 4px;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05)
+	
 }
 
 .well blockquote {

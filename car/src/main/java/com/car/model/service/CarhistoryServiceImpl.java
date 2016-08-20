@@ -1,6 +1,7 @@
 package com.car.model.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -48,9 +49,14 @@ public class CarhistoryServiceImpl implements CarhistoryService {
 
 
 	@Override
-	public List<Carhistory> selectCarByCarindex(int memberNo) {
+	public List<Carhistory> selectCarhistoryByCarindex(int carindex) {
 		
-		return carhistoryDao.selectCarByCarindex(memberNo);
+		return carhistoryDao.selectCarhistoryByCarindex(carindex);
+	}
+
+	@Override
+	public List<Carhistory> selectCarhistoryByMemberNo(int memberNo) {
+		return carhistoryDao.selectCarhistoryByMemberNo(memberNo);
 	}
 
 
