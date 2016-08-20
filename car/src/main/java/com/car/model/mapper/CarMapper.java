@@ -1,5 +1,6 @@
 package com.car.model.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import com.car.model.dto.Car;
@@ -16,5 +17,8 @@ public interface CarMapper {
 	void deleteCar(Car car);
 	List<Car> selectCarByMemberno(int memberno);
 	List<Car> selectCarindexByMemberno(int memberNo);
+	int selectTotalOutcomeByCarindex(int carindex);
+	int selectCountFuelByRegdate(Date startDate, Date endDate);
+
 			  
 }
