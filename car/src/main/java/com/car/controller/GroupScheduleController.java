@@ -1,15 +1,12 @@
 package com.car.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,23 +54,9 @@ public class GroupScheduleController {
 	public String longtermReservationList(HttpSession session, HttpServletResponse resp, Model model) {
 
 		Member member = (Member) session.getAttribute("loginuser");
-		
-		/*Gson gson = new Gson();
-		PrintWriter writer;
-*/
+
 		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
 
-		/*if (reservationList != null) {
-			try {
-				writer = resp.getWriter();
-				String json = gson.toJson(reservationList);
-				writer.println(json);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-*/
 		model.addAttribute("reservations", reservationList);
 
 		return "groupchat/list";
@@ -91,39 +73,21 @@ public class GroupScheduleController {
 
 	
 	@RequestMapping(value = "insert.action", method = RequestMethod.POST)
-	public String insertGet(HttpServletRequest req, HttpServletResponse resp,
-			@Valid @ModelAttribute GroupSchedule groupSchedule, HttpSession session) {
+	public void insertGet(GroupSchedule groupSchedule, HttpSession session) {
 		
 		Member member = (Member)session.getAttribute("loginuser");
-		groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId());
-		
-		System.out.println("chat no : " + groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()).getChatNo());
-		
-		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) == null) 
-			return "";
-		
-		Gson gson = new Gson();
-		PrintWriter writer;
-
-		if (groupSchedule != null) {
-			try {
-				writer = resp.getWriter();
-
-				String json = gson.toJson(groupSchedule);
 				
-				// have to modify this part
-				groupSchedule.setChatNo(1);
+		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) != null) {
+			System.err.println("test1");
+		} else if (groupSchedule != null) {
 				
-				groupScheduleService.insertGroupSchedule(groupSchedule);
-				writer.println(json);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
+			System.err.println("test2");
+			
+			// have to modify this part
+			groupSchedule.setChatNo(1);
+			
+			groupScheduleService.insertGroupSchedule(groupSchedule);
 		}
-
-		return "success";
 
 	}
 

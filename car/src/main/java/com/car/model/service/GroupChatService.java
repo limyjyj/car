@@ -18,5 +18,7 @@ public interface GroupChatService {
 	void updateGroupChat(GroupChat groupChat);	
 	
 	void deleteGroupChat(int groupChatNo);
+	
+	void insertGroupChatStatement(int memberNo, int chatNo);
 
 }

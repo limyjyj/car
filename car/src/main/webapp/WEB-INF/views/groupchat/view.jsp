@@ -88,7 +88,7 @@
 				data : groupSchedule,
 				/* contentType: "application/json",  */
 				success : function(data, status, xhr) {
-
+					
 					alert("저장했습니다.");
 					//location.reload();
 
@@ -254,7 +254,7 @@
 																</div>
 																<div class="form-group">
 																	<label for="startDate">Start Date</label>
-																	<input type="date" class="form-control" 
+																	<input type="date" class="form-control" id="start-date1"
 																		name="startDate" placeholder="Start-date" />
 																</div>
 																<div class="form-group">

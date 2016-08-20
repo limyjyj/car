@@ -30,7 +30,6 @@ public class GroupChatController {
 	@Autowired
 	@Qualifier("groupChatService")
 	private GroupChatService groupChatService;
-
 	
 	@Autowired
 	@Qualifier("groupScheduleService")
@@ -65,7 +64,7 @@ public class GroupChatController {
 		return "groupchat/list";
 	}
 	
-	@RequestMapping(value = "create.action", method = RequestMethod.GET)
+	@RequestMapping(value = "insert.action", method = RequestMethod.GET)
 	public String createGet(HttpServletRequest req, HttpServletResponse resp, @Valid @ModelAttribute GroupChat groupChat) {
 		
 		Gson gson = new Gson();
@@ -77,6 +76,7 @@ public class GroupChatController {
 				String json = gson.toJson(groupChat);
 				
 				groupChatService.insertGroupChat(groupChat);
+				groupChatService.
 				writer.println(json);
 				
 			} catch (IOException e) {

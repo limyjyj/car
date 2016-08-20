@@ -19,4 +19,6 @@ public interface GroupChatDao {
 	
 	void deleteGroupChat(int groupChatNo);
 	
+	void insertGroupChatStatement(int memberNo, int chatNo);
+	
 }
