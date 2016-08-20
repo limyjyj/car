@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.car.model.dto.GroupChat;
 import com.car.model.dto.GroupSchedule;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
@@ -60,12 +59,12 @@ public class GroupScheduleController {
 
 		Member member = (Member) session.getAttribute("loginuser");
 		
-		Gson gson = new Gson();
+		/*Gson gson = new Gson();
 		PrintWriter writer;
-
+*/
 		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
 
-		if (reservationList != null) {
+		/*if (reservationList != null) {
 			try {
 				writer = resp.getWriter();
 				String json = gson.toJson(reservationList);
@@ -75,7 +74,7 @@ public class GroupScheduleController {
 				e.printStackTrace();
 			}
 		}
-
+*/
 		model.addAttribute("reservations", reservationList);
 
 		return "groupchat/list";
@@ -98,6 +97,8 @@ public class GroupScheduleController {
 		Member member = (Member)session.getAttribute("loginuser");
 		groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId());
 		
+		System.out.println("chat no : " + groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()).getChatNo());
+		
 		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) == null) 
 			return "";
 		
@@ -110,6 +111,7 @@ public class GroupScheduleController {
 
 				String json = gson.toJson(groupSchedule);
 				
+				// have to modify this part
 				groupSchedule.setChatNo(1);
 				
 				groupScheduleService.insertGroupSchedule(groupSchedule);
@@ -125,7 +127,7 @@ public class GroupScheduleController {
 
 	}
 
-	@ResponseBody
+	@ResponseBody	
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
 	public String viewSchedule(int scheduleNo) throws IOException {
 		
@@ -145,13 +147,4 @@ public class GroupScheduleController {
 		
 	}
 	
-	
-	/*@RequestMapping(value = "chat.action", method = RequestMethod.GET)
-	public String chat(GroupChat groupChat) throws IOException {
-		
-		//groupChatService.insertGroupChat(groupChat);
-		
-		return "redirect:../aaa";
-		
-	}*/
 }
