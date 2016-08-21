@@ -117,10 +117,16 @@ public class MysqlReservationDao implements ReservationDao {
 	}
 	
 	@Override
-	public List<Reservation> departureSearch(String departure) {
-	List<Reservation> departures = reservationMapper.departureSearch(departure);
-	
+	public List<Reservation> departureSearch(String departure, String frequency) {
+		
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("departure", departure);
+		map.put("frequency", frequency);
+		
+	List<Reservation> departures = reservationMapper.departureSearch(map);
 	return departures;
+	
 	}
 
 }

@@ -79,7 +79,7 @@
 				<div class="buttons" style="text-align: center">
 					<input class="btn btn-info" type="submit" value="수정"
 						style="height: 40px" /> 
-						 <input	class="btn btn-info" id="delete" type="button" value="탈퇴"
+						 <input	class="btn btn-danger" id="delete" type="button" value="탈퇴"
 							style="height: 40px" /> <input id="memberId" type="hidden" value="${ member.memberId }" />
 					
 				</div>

@@ -6,7 +6,6 @@
 
 <mapper namespace="com.car.model.mapper.ReservationMapper">
 
-
 	<resultMap type="Reservation" id="reservationMap">
 		<id property="reservationNo" column="reservationno" />
 		<result property="memberNo" column="memberno" />
@@ -56,14 +55,11 @@
 	</resultMap>
 
 	<update id="updateMemberByReservationNo" parameterType="Member">
-		UPDATE Member
+		UPDATE
+		Member
 		SET reservationno = #{reservationNo}
 		WHERE memberno = #{memberNo}
 	</update>
-
-
-
-
 
 	<select id="selectMemberByMemeberNo" parameterType="int"
 		resultType="Member">
@@ -74,7 +70,8 @@
 	</select>
 
 	<insert id="insertReservationNoToMember" parameterType="Member">
-		INSERT INTO Member
+		INSERT
+		INTO Member
 		reservationNo
 		VALUES
 		#{reservationNo}
@@ -102,8 +99,10 @@
 		select distinct Member.*
 		from Confirm
 		join Member
-		on Member.memberno = Confirm.memberno
-		WHERE Confirm.reservationno=#{reservationNo}
+		on
+		Member.memberno = Confirm.memberno
+		WHERE
+		Confirm.reservationno=#{reservationNo}
 
 
 	</select>
@@ -149,9 +148,11 @@
 	</select>
 
 	<update id="ReservationReadCount" parameterType="int">
-		UPDATE Reservation
+		UPDATE
+		Reservation
 		SET resersvationCount = resersvationCount + 1
-		WHERE reservationNo = #{reservationNo}
+		WHERE
+		reservationNo = #{reservationNo}
 	</update>
 
 	<select id="selectReservationSearchType" parameterType="hashMap"
@@ -162,15 +163,18 @@
 	</select>
 
 	<update id="deleteReservation" parameterType="int">
-		UPDATE Reservation SET deleted
+		UPDATE Reservation
+		SET deleted
 		= '1' WHERE reservationno = #{reservationNo}
 	</update>
 
 	<update id="updateReservation" parameterType="Reservation">
 		UPDATE Reservation
-		SET departure = #{departure}, arrival = #{arrival}, content = #{content},
+		SET departure = #{departure}, arrival = #{arrival}, content =
+		#{content},
 		startDate=#{startDate}, endDate=#{endDate}
-		WHERE reservationno = #{reservationNo}
+		WHERE
+		reservationno = #{reservationNo}
 	</update>
 
 	<select id="selectReservationByMemberNo" parameterType="int"
@@ -179,14 +183,16 @@
 		r.*
 		FROM Reservation r
 		JOIN Member m
-		ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND
+		ON (r.reservationno
+		= m.reservationno OR r.memberno = m.memberno) AND
 		r.frequency = '정기'
 		WHERE m.memberno = #{memberNo} AND m.deleted = '0'
 	</select>
 
-	<select id="departureSearch" parameterType="String" resultType="Reservation">
+	<select id="departureSearch" parameterType="hashMap" resultType="Reservation">
 		SELECT *
 		FROM Reservation
-		WHERE departure like #{departure}
+		WHERE departure like #{departure} AND
+		frequency =#{frequency}
 	</select>
 </mapper>

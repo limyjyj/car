@@ -118,8 +118,8 @@ public class ReservationServiceImpl implements ReservationService {
 	
 
 	@Override
-	public List<Reservation> departureSearch(String departure) {
-		return reservationDao.departureSearch(departure);
+	public List<Reservation> departureSearch(String departure, String frequency) {
+		return reservationDao.departureSearch(departure, frequency);
 	}
 	
 
