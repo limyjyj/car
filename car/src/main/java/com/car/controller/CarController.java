@@ -1,6 +1,8 @@
 package com.car.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +51,7 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "list.action", method = RequestMethod.GET)
-	public ModelAndView carList(HttpServletRequest req, HttpSession session ) {
+	public ModelAndView carList(HttpServletRequest req, HttpSession session) {
 				
 		ModelAndView mav = new ModelAndView();
 		//로그인 상태가 아닌 경우 로그인 페이지로 이동
@@ -62,9 +64,10 @@ public class CarController {
 		List<Car> cars = carService.selectAllCarByCarno(member.getMemberNo());
 		
 		
+		
 		mav.setViewName("car/list");
 		mav.addObject("cars", cars);
-	
+		
 		
 		return mav;
 				
@@ -76,7 +79,8 @@ public class CarController {
 		ModelAndView mav = new ModelAndView();
 
 		Member member = (Member)session.getAttribute("loginuser");
-	
+		int total = carService.selectTotalOutcomeByCarindex(carindex);
+		
 		List<Car> cars = null;
 		
 		if(carindex == 0){
@@ -88,6 +92,21 @@ public class CarController {
 		}
 		
 		mav.addObject("cars", cars);
+		mav.addObject("total", total);
+		return mav;
+
+	}
+	
+	@RequestMapping(value = "searchview.action", method = RequestMethod.GET)
+	public ModelAndView searchViewList(Date startDate, Date endDate, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+
+
+		int count = carService.selectCountFuelByRegdate(startDate, endDate);
+	
+		
+		mav.addObject("count", count);
 		return mav;
 
 	}

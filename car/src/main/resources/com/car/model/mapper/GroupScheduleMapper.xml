@@ -29,7 +29,7 @@
 	
 	<select id="selectGroupScheduleByMemberId" 
 		parameterType="string" resultType="GroupSchedule">			
-		SELECT gs.scheduleno, gs.chatno, gs.title, gs.content, gs.startdate, gs.enddate, gs.departtime
+		SELECT gs.*
 		FROM GroupSchedule gs
         INNER JOIN GroupChat gc
         ON gs.chatno = gc.chatno
@@ -44,6 +44,12 @@
 		parameterType="int" resultType="GroupSchedule">			
 		<include refid="selectDefault" />
 		WHERE scheduleno = #{scheduleNo}
+	</select>
+	
+	<select id="selectGroupScheduleByChatNo" 
+		parameterType="int" resultType="GroupSchedule">			
+		<include refid="selectDefault" />
+		WHERE chatno = #{chatNo}
 	</select>
 	
 	<update id="updateGroupSchedule" parameterType="GroupSchedule">	
