@@ -108,16 +108,15 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		
 		List<Reservation> frequencys = reservationService.selectReservationSearchType(frequency);
 	
-	
-		if(frequency == null){
-			Member member = (Member)session.getAttribute("loginuser");
-			reservationService.selectReservationList();
-		
-			 
-		}else{
-			List<Reservation> frequencys1 = reservationService.selectReservationSearchType(frequency);
-			
-		}
+//	
+//		if(frequency == null){
+//			reservationService.selectReservationList();
+//		
+//			 
+//		}else{
+//			//List<Reservation> frequencys1 = reservationService.selectReservationSearchType(frequency);
+//			
+//		}
 		
 		mav.setViewName("reservation/list");
 		mav.addObject("reservations", frequencys);
@@ -335,7 +334,24 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 			return "redirect:/reservation/list.action";
 		
+		
 		}
+		
+		@RequestMapping(value = "departureSearch.action", method = RequestMethod.GET)
+	    public ModelAndView departureSearch(HttpServletRequest request, String departure) {
+	       
+	       ModelAndView mav = new ModelAndView();
+	       
+	       List<Reservation> departures = reservationService.departureSearch(departure);
+	    
+	    
+	       mav.setViewName("reservation/list");
+	       mav.addObject("reservations", departures);
+	    
+	       
+	       return mav;
+
+	    }
 		
 	
 

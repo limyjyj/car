@@ -38,4 +38,6 @@ public interface ReservationDao {
 
 	List<Reservation> selectReservationByMemberNo(int memberNo);
 
+	List<Reservation> departureSearch(String departure);
+
 }

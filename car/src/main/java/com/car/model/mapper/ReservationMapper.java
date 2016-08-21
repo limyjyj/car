@@ -37,4 +37,7 @@ public interface ReservationMapper {
 	void updateMemberByReservationNo(Member member);
 
 	List<Reservation> selectReservationByMemberNo(int memberNo);
+	
+	List<Reservation> departureSearch(String departure);
+
 }

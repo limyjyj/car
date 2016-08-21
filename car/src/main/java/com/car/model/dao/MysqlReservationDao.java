@@ -115,5 +115,12 @@ public class MysqlReservationDao implements ReservationDao {
 	public List<Reservation> selectReservationByMemberNo(int memberNo) {
 		return reservationMapper.selectReservationByMemberNo(memberNo);
 	}
+	
+	@Override
+	public List<Reservation> departureSearch(String departure) {
+	List<Reservation> departures = reservationMapper.departureSearch(departure);
+	
+	return departures;
+	}
 
 }

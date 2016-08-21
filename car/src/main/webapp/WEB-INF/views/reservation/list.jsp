@@ -67,6 +67,19 @@ $(document).ready(function (){
 	
 })
 
+
+$(document).ready(function (){
+	$("#departureSearch2").on('click',
+			function (event) {
+		
+		location.href="/car/reservation/departureSearch.action?departure="+$("#departureSearch").val();
+		
+	});
+
+	
+	
+})
+
 </script>
 
 
@@ -89,12 +102,19 @@ $(document).ready(function (){
 							<input type="hidden" name="reservationkind" value=${ b.reservationKind } />
 						<select	id="reservationsearch" name="reservationsearch">
 							<option >선택</option>
-							<option value="실시간">실시간</option>					
+            <!-- 		<option value="전체보기">전체보기</option> -->	
+						<option value="실시간">실시간</option>					
 							<option value="정기">정기</option>
 							
 						</select>
+						
+						
+              <input type="text" name="departure" id="departureSearch" style="width : 70px"/>
+                <input type="button" id="departureSearch2" value="출발지검색"  style="height: 25px"/>
+               
 					</td>				
 				</tr>
+			
 			</table>
 <form id="reservationform" action="list.action" method="post">		
 		<table class="btable">
