@@ -135,9 +135,7 @@ public class GroupChatController {
 	@RequestMapping(value = "insertgroupschedule.action", method = RequestMethod.POST)
 	public void insertGroupSchedulePost(GroupSchedule groupSchedule, HttpSession session, int chatNo) {
 		
-		Member member = (Member)session.getAttribute("loginuser");
-				
-		if(groupScheduleService.selectGroupScheduleByMemberId(member.getMemberId()) != null) {
+		if(groupScheduleService.selectGroupScheduleByChatNo(chatNo) != null) {
 			int i = 10/0;
 			System.out.println(i);
 			
@@ -150,8 +148,7 @@ public class GroupChatController {
 				int i = 10/0;
 				System.out.println(i);
 			}
-				
-			// have to modify this part
+			
 			groupSchedule.setChatNo(chatNo);			
 			groupScheduleService.insertGroupSchedule(groupSchedule);
 		}
