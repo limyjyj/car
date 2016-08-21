@@ -76,9 +76,7 @@ public class GroupChatController {
 				String json = gson.toJson(groupChat);
 				
 				groupChatService.insertGroupChat(groupChat);
-				groupChatService.
-				writer.println(json);
-				
+			
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

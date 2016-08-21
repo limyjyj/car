@@ -58,7 +58,7 @@ public class GroupChatServiceImpl implements GroupChatService {
 
 	@Override
 	public void insertGroupChatStatement(int memberNo, int chatNo) {
-		mysqlGroupChatDao.insertGroupChatStatement
+		
 		
 	}
 

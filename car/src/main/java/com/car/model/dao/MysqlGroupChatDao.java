@@ -56,9 +56,14 @@ public class MysqlGroupChatDao implements GroupChatDao {
 		
 	}
 
-	@Override
 	public void insertGroupChat(int memberNo, int chatNo) {
-		groupChatMapper.insertGroupChat(memberNo);
+	
+		
+	}
+
+	@Override
+	public void insertGroupChatStatement(int memberNo, int chatNo) {
+		// TODO Auto-generated method stub
 		
 	}
 	
