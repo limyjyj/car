@@ -143,7 +143,13 @@ public class GroupChatController {
 			
 		} else if (groupSchedule != null) {
 			
-			
+			if (groupSchedule.getStartDate().compareTo(groupSchedule.getEndDate()) > 0) {
+				int i = 10/0;
+				System.out.println(i);
+			} else if (groupSchedule.getStartDate().compareTo(groupSchedule.getEndDate()) == 0) {
+				int i = 10/0;
+				System.out.println(i);
+			}
 				
 			// have to modify this part
 			groupSchedule.setChatNo(chatNo);			
