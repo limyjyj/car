@@ -60,6 +60,7 @@ public class GroupChatController {
 		Member member = (Member) session.getAttribute("loginuser");
 		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
 		model.addAttribute("reservations", reservationList);
+		model.addAttribute("loginuser", member);
 
 		return "groupchat/list";
 	}
@@ -141,6 +142,8 @@ public class GroupChatController {
 			System.out.println(i);
 			
 		} else if (groupSchedule != null) {
+			
+			
 				
 			// have to modify this part
 			groupSchedule.setChatNo(chatNo);			

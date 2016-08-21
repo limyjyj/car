@@ -103,7 +103,7 @@
 				},
 
 				error : function(request, status, error) {
-					alert("스케줄은 이미 존재하니 존재하는 걸로 사용해 주세요.");
+					alert("스케줄이 이미 존재하거나 입력을 정확히 하지 않았습니다.");
 				}
 
 			});
