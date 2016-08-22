@@ -42,18 +42,21 @@ $(function () {
 <body>
 	<div style="padding-left: 100px"> 주유 입력</div>
 		<br/><br/>
-					<form action="write.action" method="post">
+					<form action="fuelwrite.action" method="post">
 						<table class="swell" style="width: 70%; border: 2px solid white;">
 							<tr class="bfile">
-								<th style="width: 200px">주유 형태</th>
-								<td style="width: 900px">
-									<select class="form-control" id="type" name="Type" 
-										style="height: 40px; width:230px; font-size: medium;">
-										<option value="가솔린">가솔린</option>
-										<option value="디젤">디젤</option>
-										<option value="엘피지">엘피지</option>
-									</select>
+								<th style="width: 200px"></th>
+								<td>
+									<input class="form-control" type="hidden" value="주유비" name="category"/>
 								</td>
+<!-- 								<td style="width: 900px"> -->
+<!-- 									<select class="form-control" id="category" name="category"  -->
+<!-- 										style="height: 40px; width:230px; font-size: medium;"> -->
+<!-- 										<option value="가솔린">가솔린</option> -->
+<!-- 										<option value="디젤">디젤</option> -->
+<!-- 										<option value="엘피지">엘피지</option> -->
+<!-- 									</select> -->
+<!-- 								</td> -->
 							</tr>
 
 							<tr>
@@ -92,7 +95,7 @@ $(function () {
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td>
+								<td><input type="hidden" name="carindex" value="${ carindex }" />
 									<textarea class="form-control" name="content" cols="35" rows="15" style="font-size: small;"></textarea>
 								</td>
 							</tr>

@@ -2,20 +2,14 @@ package com.car.async.config;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.thymeleaf.spring3.SpringTemplateEngine;
-import org.thymeleaf.spring3.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @ComponentScan(basePackages = { "com.car.async" })
@@ -32,7 +26,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	}
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/aaa").setViewName("groupchat/groupchat");
+		registry.addViewController("/").setViewName("groupchat/groupchat");
 	}
 
 	@Override

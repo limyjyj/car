@@ -38,38 +38,36 @@
 	
 		<jsp:include page="/WEB-INF/views/include/head.jsp" />
 		<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<div class="bdiv">세부정보</div>
-
-		<br/><br/>
+	<div class="bdiv" align="center" style=" width: 1000px">세부정보</div>
 
 </head>
 <body>
 
-
-<body>
 		<br/><br/>
-		<div >
+		<div  id="pageContainer" class="panel panel-heading"
+		style="padding-top: 25px; margin: auto;  width: 300px">
 	
 			
 			<form id="detailform" action="detail.action" method="post">	
-			<table class="dtable">
-				<tr>
+			<table  class="table table-striped" align="center" margin="auto">
+				<tr >
 		     		<th>작성자</th>
 					<td >
 					${ reservation.member.memberId }
-</td>
+                    
+                    </td>
 				</tr>
 				
 					<tr>
 					<th>출발지</th>
 					<td>${ reservation.departure}</td>
 					</tr>
-					
+				
 					<tr>
 					<th>도착지</th>
 					<td>${ reservation.arrival}</td>
 					</tr>
-					
+				
 				<tr>
 					<th>시작날짜</th>
 					<td>${ reservation.startDate }</td>
@@ -106,12 +104,12 @@
 	
 			</div> --%>
 			
-			<div class="buttons">
+			<div class="buttons" align="center">
 						<c:choose>
 							<c:when test="${ loginuser.memberNo eq reservation.memberNo  }">
 							
 							
-							<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
+						<a href='javascript:doDelete(${ reservation.reservationNo })' id="delete">삭제</a>&nbsp;&nbsp;
 						<a href='edit.action?reservationno=${ reservation.reservationNo }&pageno=${ pageno }'>수정</a>&nbsp;&nbsp;
 						<a href='list.action?pageno=${ pageno }'>뒤로가기</a>						
 								

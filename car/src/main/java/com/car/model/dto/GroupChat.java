@@ -6,7 +6,16 @@ public class GroupChat {
 	int totalNumber;
 	char deleted;
 	String title;
+	int reservationNo;
+
 	
+	public int getReservationNo() {
+		return reservationNo;
+	}
+
+	public void setReservationNo(int reservationNo) {
+		this.reservationNo = reservationNo;
+	}
 
 	public String getTitle() {
 		return title;

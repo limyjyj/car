@@ -73,6 +73,12 @@
 					}
 
 				});
+			$('#ok').on('click', 
+					function(event){  
+				var reservationNo = $('input#okok').val();
+			alert(reservationNo + 'dd');
+				
+			});
 
 	});
 </script>
@@ -113,16 +119,17 @@
 
 				<td>
 				
-			<%--  <c:choose> 
+			<c:choose> 
 			 	<c:when test="${ c.member.reservationNo eq c.reservationNo}">	
-			 		<input type="button"  value="수락됨"style="height: 25px" />
+			 		<input type="button"  value="수락됨"style="height: 25px" id ="ok" />
+			 		<input type="hidden" id="okok" value="${ c.member.reservationNo}"/>
 			 	</c:when>
-			<c:otherwise> --%>
+			<c:otherwise> 
 				<input type="button"  id="accept"  value="수락"  style="height: 25px" />
-		<%-- 		 <input id="reservationno" type="hidden" value="${ c.reservationNo }" />
+		 <input id="reservationno" type="hidden" value="${ c.reservationNo }" />
 				 <input id="memberno" type="hidden" value="${ loginuser.memberNo }" />
 			</c:otherwise>
-			 </c:choose> --%>
+			 </c:choose> 
 				
 				
 					<!-- <input type="button" id="accept" value="수락"style="height: 25px" />  -->
@@ -133,14 +140,11 @@
 
 				</td>
 
-
-
-
 			</tr>
 		</c:forEach> 
 	
 		    <td>
-					<input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" align="center"/> 
+			     <input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" align="center"/> 
 					
      		</td>
 		

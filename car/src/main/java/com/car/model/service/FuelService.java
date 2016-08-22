@@ -8,10 +8,11 @@ public interface FuelService {
 
 	public void insertFuel(Fuel fuel);
 
-	List<Fuel> selectFuelList();
-
-	Fuel selectFuelByFuelNo(int fuelNo);
-
+	List<Fuel> selectFuelByMemberNo(int memberNo);
+	
+	List<Fuel> selectFuelByCarindex(int carindex);
+	
 	public void updateFuel(Fuel fuel);
+
 
 }

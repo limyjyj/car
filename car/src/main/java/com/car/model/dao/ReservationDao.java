@@ -8,8 +8,6 @@ import com.car.model.dto.Confirm;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
-
-
 public interface ReservationDao {
 
 	void insertReservation(Reservation reservation);
@@ -45,4 +43,9 @@ public interface ReservationDao {
 	 void deleteConfirm(Confirm confirm);
 	 
 	 void deleteGroup(int reservationNo);
+	 
+	 List<Reservation> selectReservationByMemberNo(int memberNo);
+
+	List<Reservation> departureSearch(String departure, String frequency);
+	 
 }

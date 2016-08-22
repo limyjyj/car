@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.car.model.dto.Confirm;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
-
 import com.car.model.mapper.ReservationMapper;
 
 
@@ -131,6 +130,24 @@ public class MysqlReservationDao implements ReservationDao {
 	public void deleteGroup(int reservationNo) {
 		reservationMapper.deleteGroup(reservationNo);
 		
+	}
+	
+	@Override
+	public List<Reservation> selectReservationByMemberNo(int memberNo) {
+		return reservationMapper.selectReservationByMemberNo(memberNo);
+	}
+	
+	@Override
+	public List<Reservation> departureSearch(String departure, String frequency) {
+		
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("departure", departure);
+		map.put("frequency", frequency);
+		
+	List<Reservation> departures = reservationMapper.departureSearch(map);
+	return departures;
+	
 	}
 
 	

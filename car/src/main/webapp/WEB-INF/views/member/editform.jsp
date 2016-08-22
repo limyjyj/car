@@ -10,7 +10,10 @@
 <html>
 <head>
 <meta charset="utf-8" />
-
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+	rel="stylesheet" type="text/css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -76,7 +79,7 @@
 				<div class="buttons" style="text-align: center">
 					<input class="btn btn-info" type="submit" value="수정"
 						style="height: 40px" /> 
-						 <input	 id="delete" type="button" value="탈퇴"
+						 <input	class="btn btn-danger" id="delete" type="button" value="탈퇴"
 							style="height: 40px" /> <input id="memberId" type="hidden" value="${ member.memberId }" />
 					
 				</div>

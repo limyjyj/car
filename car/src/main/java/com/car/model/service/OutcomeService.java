@@ -7,11 +7,12 @@ import com.car.model.dto.Outcome;
 public interface OutcomeService {
 
 	public void insertOutcome(Outcome outcome);
-
-	List<Outcome> selectOutcomeList();
 	
-	Outcome selectOutcomeByOutcomeNo(int outcomeNo);
+	List<Outcome> selectOutcomeByMemberNo(int memberNo);
+
+	List<Outcome> selectOutcomeByCarindex(int carindex);
 	
 	public void updateOutcome(Outcome outcome);
+	
 	
 }

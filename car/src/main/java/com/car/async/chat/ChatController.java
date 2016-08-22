@@ -31,7 +31,9 @@ public class ChatController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
-	public DeferredResult<List<String>> getMessages(@RequestParam int messageIndex) {
+	public DeferredResult<List<String>> getMessages(@RequestParam int messageIndex, @RequestParam int reservationNo) {
+		
+		System.out.println("reservation no : " + reservationNo);
 
 		final DeferredResult<List<String>> deferredResult = new DeferredResult<List<String>>(null, Collections.emptyList());
 		this.chatRequests.put(deferredResult, messageIndex);
@@ -40,12 +42,14 @@ public class ChatController {
 			@Override
 			public void run() {
 				chatRequests.remove(deferredResult);
+				System.out.println("test4");
 			}
 		});
 
 		List<String> messages = this.chatRepository.getMessages(messageIndex);
 		if (!messages.isEmpty()) {
 			deferredResult.setResult(messages);
+			System.out.println("test3");
 		}
 
 		return deferredResult;
@@ -54,7 +58,9 @@ public class ChatController {
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
 	public void postMessage(@RequestParam String message) {
-
+		
+		System.out.println("test1");
+		
 		this.chatRepository.addMessage(message);
 
 		// Update all chat requests as part of the POST request
@@ -63,6 +69,7 @@ public class ChatController {
 		for (Entry<DeferredResult<List<String>>, Integer> entry : this.chatRequests.entrySet()) {
 			List<String> messages = this.chatRepository.getMessages(entry.getValue());
 			entry.getKey().setResult(messages);
+			System.out.println("test2");
 		}
 	}
 

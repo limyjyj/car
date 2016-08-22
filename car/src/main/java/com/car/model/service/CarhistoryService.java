@@ -2,7 +2,6 @@ package com.car.model.service;
 
 import java.util.List;
 
-import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
 
 public interface CarhistoryService {
@@ -12,7 +11,8 @@ public interface CarhistoryService {
 	
 	Carhistory selectCarhistoryByCarno(int carno);
 	Carhistory selectCarhistoryByHistoryno(int historyno);
-	List<Carhistory> selectCarByCarindex(int memberNo);
+	List<Carhistory> selectCarhistoryByCarindex(int carindex);
 	void updateCarhistory(Carhistory carhistory);
 
+	List<Carhistory> selectCarhistoryByMemberNo(int memberNo);
 }

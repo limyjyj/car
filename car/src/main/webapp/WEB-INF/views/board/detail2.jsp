@@ -122,6 +122,12 @@
 					<td><fmt:formatDate value="${ board.regDate }"
 							pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 				</tr>
+				<tr>
+		            <th style="text-align: center; vertical-align:middle" scope="cols">첨부파일</th>
+		            <td style="height: 300px; width: 400px; vertical-align: middle"> 
+		            <img style="height: 300px; width: 400px; vertical-align: middle" src="/car/resources/Upload/${ boardupload.savedFileName }">		                	
+		            </td>
+		        </tr>
 
 				<tr>
 					<th style="text-align: center; vertical-align:middle" scope="cols">내용</th>
@@ -142,8 +148,7 @@
 					<input value="수정"  class="button"
 						onclick="location.href='edit2.action?boardNo=${ board.boardNo }';" />
 				
-					<input value="목록" class="button"
-						onclick="location.href='list2.action';" />
+					<input value="목록" class="button" onclick="location.href='list2.action';" />
 				</div>
 			</div>
 		</div>

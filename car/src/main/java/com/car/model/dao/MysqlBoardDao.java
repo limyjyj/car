@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.car.model.dto.Board;
 import com.car.model.dto.BoardComent;
+import com.car.model.dto.BoardUpload;
 import com.car.model.mapper.BoardMapper;
 
 @Repository("mysqlBoardDao")
@@ -114,6 +115,17 @@ public class MysqlBoardDao implements BoardDao {
 	public void deleteComent(int comentNo) {
 		BoardMapper.deleteComent(comentNo);
 
+	}
+
+	@Override
+	public void insertBoardUpload(BoardUpload boardupload) {
+		BoardMapper.insertBoardUpload(boardupload);
+		
+	}
+
+	@Override
+	public BoardUpload selectBoardUploadByBoardNo(int BoardNo) {
+		return BoardMapper.selectBoardUploadByBoardNo(BoardNo);
 	}
 
 }

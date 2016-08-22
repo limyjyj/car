@@ -8,14 +8,11 @@
 	
 	<resultMap type="Carhistory" id="carhistoryMap">
 		<id property="historyNo" column="historyno" />
+		<result property="carindex" column="carindex" />
 		<result property="category" column="category" />
-		<result property="regDate" column="regdate" />
-		<result property="fee" column="fee" />
-		<result property="liter" column="liter" />
 		<result property="deleted" column="deleted" />
 				
-		<collection property="carNo" column="carno"
-			select="selectCarByCarindex"  />
+		<association property="memberNo" column="memberno" select="selectCarhistoryByMemberNo" />		
 	</resultMap>
 	
 	<resultMap type="Car" id="carMap">
@@ -26,6 +23,9 @@
 		<result property="totaldistance" column="totaldistance" />
 		<result property="totaloutcome" column="totaloutcome" />
 		<result property="deleted" column="deleted" />
+
+		<collection property="memberNo" column="memberNo"
+			select="selectCarhistoryByCarindex" />
 	</resultMap>
 	
 	<sql id="selectDefault">
@@ -33,8 +33,8 @@
 		FROM Carhistory
 	</sql>
 
-	<insert id="insertCarhistory" parameterType="String" useGeneratedKeys="true"
-		keyProperty="historyno" keyColumn="historyno">
+	<insert id="insertCarhistory" parameterType="Carhistory" 
+		useGeneratedKeys="true" keyColumn="historyno" keyProperty="historyNo">
 		INSERT INTO Carhistory
 		(category, carindex)
 		VALUES
@@ -51,21 +51,14 @@
 		SELECT *
 		FROM Carhistory
 	</select>
-	<select id="selectCarhistoryByHistoryno" 
-		parameterType="string" resultType="Carhistory">			
-		<include refid="selectDefault" />
-		
-		WHERE historyno = #{historyno}
-	</select>
-	<select id="selectCarByCarindex"
+	
+	<select id="selectCarhistoryByCarindex"
 		parameterType="int" resultMap="carhistoryMap">
 		select Carhistory.*
-		from Car
-		join Member
-		on Car.memberNo = #{memberNo}
-		join Carhistory
-		on Car.carindex = Carhistory.carindex;
+		from Carhistory
+		where carindex = #{carindex};
 	</select>
+	
 	
 	
 	

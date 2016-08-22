@@ -39,6 +39,12 @@ public interface ReservationService {
 	int insertReservationNoToMember(int reservationNo);
 	
 	void updateMemberByReservationNo(Member member);
+	
+	List<Reservation> selectReservationByMemberNo(int memberNo);
+	
+
+	List<Reservation> departureSearch(String departure, String frequency);
+	
 
 	void deleteConfirm(Confirm confirm);
 	

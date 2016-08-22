@@ -9,7 +9,7 @@
 <mapper namespace="com.car.model.mapper.GroupChatMapper">
 
 	<sql id="selectDefault">
-		SELECT chatno, totalnumber, deleted, title
+		SELECT chatno, totalnumber, deleted, title, reservationno
 		FROM GroupChat
 	</sql>
 	
@@ -17,9 +17,9 @@
 	<!-- make physical method -->
 	<insert id="insertGroupChat">
 		INSERT INTO GroupChat
-		(totalnumber, deleted, title)
+		(totalnumber, deleted, title, reservationno)
 		VALUES
-		(1, 0, #{title});
+		(1, 0, #{title}, #{reservationNo})
 	</insert>
 	
 	<select id="selectAllGroupChat" resultType="GroupChat">
@@ -29,8 +29,13 @@
 	
 	<select id="selectGroupChatByMemberId" 
 		parameterType="string" resultType="GroupChat">			
-		<include refid="selectDefault" />
-		WHERE memberid = #{memberId}
+		SELECT gc.*
+		FROM GroupChat gc
+        JOIN GroupChatStatement gcs
+        ON gc.chatno = gcs.chatno
+        JOIN Member m
+        ON gcs.memberno = m.memberno
+        WHERE m.memberid = #{memberId}		
 	</select>
 	
 	<select id="selectGroupChatByGroupChatNo" 
@@ -39,16 +44,41 @@
 		WHERE chatno = #{chatNo}
 	</select>
 	
-	<select id="updateGroupChat" parameterType="GroupChat">	
+	<select id="selectGroupChatByReservationNo" 
+		parameterType="int" resultType="GroupChat">			
+		<include refid="selectDefault" />
+		WHERE reservationno = #{reservationNo}
+	</select>
+	
+	<update id="updateGroupChat" parameterType="GroupChat">	
 		UPDATE GroupChat
 		SET totalnumber = #{totalNumber} 
 		WHERE chatno = #{chatNo}
-	</select>
+	</update>
 	
-	<select id="deleteGroupChat" parameterType="int">
+	<delete id="deleteGroupChat" parameterType="int">
 		DELETE 
 		FROM GroupChat
 		WHERE chatno = #{chatNo}
+	</delete>
+	
+	
+	
+	<!-- Group Chat Statement part -->
+	
+	<insert id="insertGroupChatStatement">
+		INSERT INTO GroupChatStatement
+		(memberno, chatno)
+		VALUES
+		(#{memberNo}, #{chatNo})
+	</insert>
+	
+	<select id="selectGroupChatStatementByMemberNo"
+		parameterType="int" resultType="GroupChatStatement">
+		SELECT gcs.*
+		FROM GroupChatStatement gcs
+		JOIN Member m
+		WHERE m.memberno = gcs.memberno AND m.memberno = #{memberNo}
 	</select>
 	
 </mapper>

@@ -313,10 +313,16 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		List<Confirm> confirmedMembersList = reservationService.selectConfirmListByReservationNo(reservationNo);
 		
+
+		for (Confirm confirm : confirmedMembersList) {
+			// confirm.setMember(confirm.getMemberNo());
+			System.out.println(confirm.getMemberNo());
+		}
 		
 		
 	/*	for (Confirm confirm : count) {
 		
+
 					confirm.setMember(reservationService.selectMemberByMemeberNo(confirm.getMemberNo()));
 			
 			
@@ -384,6 +390,18 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	     }     
 		
 		
-	
+		@RequestMapping(value = "departureSearch.action", method = RequestMethod.GET)
+	public ModelAndView departureSearch(HttpServletRequest request, String departure, String frequency) {
+
+		ModelAndView mav = new ModelAndView();
+
+		List<Reservation> departures = reservationService.departureSearch(departure, frequency);
+
+		mav.setViewName("reservation/list");
+		mav.addObject("reservations", departures);
+
+		return mav;
+
+	}
 
 }
