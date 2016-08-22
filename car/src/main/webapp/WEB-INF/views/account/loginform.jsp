@@ -29,8 +29,8 @@
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<div class="container">
-		<div class="row">
+	<div class="container" align="center" >
+		<div class="row"align="center">
 			<div class="page-header">
 			
 			</div>

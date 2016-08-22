@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.car.model.dao.MysqlGroupChatDao;
 import com.car.model.dao.MysqlGroupScheduleDao;
-import com.car.model.dto.GroupChat;
 import com.car.model.dto.GroupSchedule;
 
 
@@ -56,6 +54,12 @@ public class GroupScheduleServiceImpl implements GroupScheduleService {
 		
 		mysqlGroupScheduleDao.deleteGroupSchedule(groupScheduleNo);
 		
+	}
+
+	@Override
+	public GroupSchedule selectGroupScheduleByChatNo(int chatNo) {
+		
+		return mysqlGroupScheduleDao.selectGroupScheduleByChatNo(chatNo);
 	}
 	
 

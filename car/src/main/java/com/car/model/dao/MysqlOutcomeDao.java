@@ -37,7 +37,7 @@ public class MysqlOutcomeDao implements OutcomeDao {
 	}
 
 	@Override
-	public List<Outcome> selectOutcomeByHistoryNo(int historyNo) {
+	public Outcome selectOutcomeByHistoryNo(int historyNo) {
 		return outcomeMapper.selectOutcomeByHistoryNo(historyNo);
 	}
 }

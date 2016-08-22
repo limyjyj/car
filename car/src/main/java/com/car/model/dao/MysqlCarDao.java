@@ -1,5 +1,6 @@
 package com.car.model.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -54,6 +55,14 @@ public class MysqlCarDao implements CarDao {
 	
 	public List<Car> selectCarindexByMemberno(int memberNo) {
 		return carMapper.selectCarindexByMemberno(memberNo);
+	}
+	@Override
+	public int selectTotalOutcomeByCarindex(int carindex){
+		return carMapper.selectTotalOutcomeByCarindex(carindex);
+	}
+	@Override
+	public int selectCountFuelByRegdate(Date startDate, Date endDate){
+		return carMapper.selectCountFuelByRegdate(startDate, endDate);
 	}
 	
 

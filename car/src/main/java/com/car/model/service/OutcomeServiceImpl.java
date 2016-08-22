@@ -37,7 +37,7 @@ public class OutcomeServiceImpl implements OutcomeService {
 	}
 
 	@Override
-	public List<Outcome> selectOutcomeByHistoryNo(int historyNo) {
+	public Outcome selectOutcomeByHistoryNo(int historyNo) {
 		return outcomeDao.selectOutcomeByHistoryNo(historyNo);
 	}
 	

@@ -27,11 +27,9 @@
 $(function() {
 	$('input#enter-groupchatroom').on('click',
 			function(event) {
-		
-				//var chatroom = $(this).attr("chatroom-no");
-				//alert(chatroom)
 				
-				location.href = ('/car/groupschedule/longtermreservationchat.action');
+				var reservationNo = $(this).attr('data-rno');
+				location.href = ('/car/groupchat/longtermreservationchat.action?reservationNo=' + reservationNo);
 				
 				}
 			);
@@ -51,8 +49,8 @@ $(function() {
         	<table align="center">
 			<thead>
 				<tr>
-					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원번호</th>					
-					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp타태워</th>
+					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp유저번호</th>					
+					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp타태워</th>
 					<th style="width: 150px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp출발지</th>
 					<th style="width: 150px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp도착지</th>
 					<th style="width: 120px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp시작날짜</th>
@@ -62,10 +60,11 @@ $(function() {
 				</tr>
 				
 			</thead>
-			<tbody>					
+			<tbody>	
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
-						<td>${ b.memberNo } </td>
+						
+						<td>${ b.memberNo }</td>
 						
 						<td>${ b.type } </td>
 						
@@ -78,10 +77,9 @@ $(function() {
 						<td>${ b.endDate }</td>
 						
 						<td>${ b.totalMember}</td>
-						
 						<td>
 						<input type="button" id="enter-groupchatroom" 
-						value="채팅방" style="height: 25px"/>
+						value="채팅방" style="height: 25px" data-rno="${ b.reservationNo }"/>
 						</td>
 						
 					</tr>

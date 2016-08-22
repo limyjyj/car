@@ -60,8 +60,8 @@
 		WHERE ch.carindex = #{carindex};
 	</select>
 
-	<select id="selectOutcomeByCarhistory" parameterType="int" resultMap="outcomeMap">
-	    SELECT o.* 
+	<select id="selectOutcomeByHistoryNo" parameterType="int" resultMap="outcomeMap">
+		SELECT o.* 
 		FROM Member m
 		JOIN Car c
 		ON m.memberno = c.memberno
@@ -72,16 +72,15 @@
 		WHERE ch.historyno = #{historyno};
 	</select>
 
+
 	<select id="updateOutcome" parameterType="Outcome">
 		UPDATE Outcome
 		SET
 		category = #{category}, payment = #{payment}, regDate = #{regDate},
 		location = #{location}, content = #{content}
-		WHERE outcomeNo =
-		#{outcomeNo}
+		WHERE historyNo = #{historyNo}
 	</select>
-	
-	
+
 
 
 </mapper>

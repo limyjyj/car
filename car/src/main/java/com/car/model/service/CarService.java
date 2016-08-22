@@ -1,5 +1,6 @@
 package com.car.model.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.car.model.dto.Car;
@@ -14,6 +15,7 @@ public interface CarService {
 	Car selectCarByCarindex(int carindex);
 	void updateCar(Car car);
 	void deleteCar(Car car);
-	
+	int selectTotalOutcomeByCarindex(int carindex);
 	List<Car> selectCarindexByMemberno(int memberNo);
+	int selectCountFuelByRegdate(Date startDate, Date endDate);
 }

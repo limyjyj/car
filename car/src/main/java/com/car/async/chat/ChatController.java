@@ -31,7 +31,9 @@ public class ChatController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
-	public DeferredResult<List<String>> getMessages(@RequestParam int messageIndex) {
+	public DeferredResult<List<String>> getMessages(@RequestParam int messageIndex, @RequestParam int reservationNo) {
+		
+		System.out.println("reservation no : " + reservationNo);
 
 		final DeferredResult<List<String>> deferredResult = new DeferredResult<List<String>>(null, Collections.emptyList());
 		this.chatRequests.put(deferredResult, messageIndex);

@@ -6,10 +6,11 @@ import java.util.List;
 import com.car.model.dto.Board;
 //import com.mysbl.model.dto.BoardComment;
 import com.car.model.dto.BoardComent;
+import com.car.model.dto.BoardUpload;
 
 public interface BoardMapper {
 
-	void insertBoard(Board Board);
+	int insertBoard(Board Board);
 
 	List<Board> selectBoardList(HashMap<String, Object> map);
 
@@ -46,5 +47,11 @@ public interface BoardMapper {
 	void updateComent(BoardComent coment);
 	
 	void deleteComent(int comentNo);
+	
+	//---------------------------Upload----------------------------------//
+	
+	void insertBoardUpload(BoardUpload boardupload);
+
+	BoardUpload selectBoardUploadByBoardNo(int BoardNo);
 
 }

@@ -20,10 +20,12 @@
 		<typeAlias type="com.car.model.dto.GroupChat" alias="GroupChat" />
 		<typeAlias type="com.car.model.dto.Carhistory" alias="Carhistory" />
 		<typeAlias type="com.car.model.dto.GroupChat" alias="GroupChat" />
+		<typeAlias type="com.car.model.dto.GroupChatStatement" alias="GroupChatStatement" />
 		<typeAlias type="com.car.model.dto.GroupSchedule" alias="GroupSchedule" />
 		<typeAlias type="com.car.model.dto.Outcome" alias="Outcome" />
 		<typeAlias type="com.car.model.dto.Fuel" alias="Fuel" />
 		<typeAlias type="com.car.model.dto.Board" alias="Board" />
+		<typeAlias type="com.car.model.dto.BoardUpload" alias="BoardUpload" />
 		<typeAlias type="com.car.model.dto.BoardComent" alias="Boardcoment"/>			
 		<typeAlias type="com.car.model.dto.Confirm" alias="Confirm" />
 
