@@ -82,9 +82,9 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		// mav.addObject("reservations", reservations);
 
 		List<Reservation> reservations = reservationService.selectReservationList2(startRow, startRow + pageSize);
-		for(Reservation r : reservations){
+		for (Reservation r : reservations) {
 			r.setMember(reservationService.selectMemberByMemeberNo(r.getMemberNo()));
-			
+
 		}
 		dataCount = reservationService.selectReservationCount();
 
@@ -97,36 +97,8 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		mav.addObject("pageno", currentPage);
 		mav.addObject("pager", pager3);
 
-		
 		return mav;
 	}
-	
-	@RequestMapping(value = "frequencylist.action", method = RequestMethod.GET)
-	public ModelAndView selectReservationSearchType(HttpServletRequest request, String frequency, HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		List<Reservation> frequencys = reservationService.selectReservationSearchType(frequency);
-	
-	
-		if(frequency == null){
-			Member member = (Member)session.getAttribute("loginuser");
-			reservationService.selectReservationList();
-		
-			 
-		}else{
-			List<Reservation> frequencys1 = reservationService.selectReservationSearchType(frequency);
-			
-		}
-		
-		mav.setViewName("reservation/list");
-		mav.addObject("reservations", frequencys);
-	
-		
-		return mav;
-
-	}
-	
 
 	// 작성
 	@RequestMapping(value = "writeform.action", method = RequestMethod.GET)
@@ -136,7 +108,7 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 	@RequestMapping(value = "write.action", method = RequestMethod.POST)
 	public String writeReservation(Reservation reservation, HttpSession session) {
-		
+
 		Member member = (Member) session.getAttribute("loginuser");
 		reservation.setMemberNo(member.getMemberNo());
 
@@ -160,8 +132,6 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		int no = Integer.parseInt(reservationNo);
 		// 데이터베이스에서 데이터 조회
 		Reservation reservation = reservationService.selectReservationByReservationNo(no);
-		
-	
 
 		// 조회 실패하면 목록으로 이동
 		if (reservation == null) {
@@ -187,73 +157,63 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 		return mav;
 
 	}
-	
-	
-	
 
-    //수정
-     @RequestMapping(value = "edit.action", method = RequestMethod.GET)
-     public ModelAndView showBoardEditForm(HttpServletRequest request) {
-    
-     ModelAndView mav = new ModelAndView();
-    
-     String reservationNo = request.getParameter("reservationno");
+	// 수정
+	@RequestMapping(value = "edit.action", method = RequestMethod.GET)
+	public ModelAndView showBoardEditForm(HttpServletRequest request) {
 
-     if (reservationNo == null || reservationNo.length() == 0) {
-     mav.setViewName("redirect:/reservation/list.action");
-     return mav;
-     }
-    
-     Reservation reservation =
-     reservationService.selectReservationByReservationNo(Integer.parseInt(reservationNo));
-    
-     if (reservation == null) {
-     mav.setViewName("redirect:/reservation/detail.action");
-     return mav;
-     }
-    
-     String pageNo = "1";
-     if (request.getParameter("pageno") != null) {
-     pageNo = request.getParameter("pageno");
-     }
-    
-     mav.addObject("reservation",reservation);
-     mav.addObject("pageno", pageNo);
-     mav.setViewName("reservation/editform");
-     return mav;
-     }
-     
-    //수정
-     @RequestMapping(value = "update.action", method = RequestMethod.POST)
-     public String updateBoard(HttpServletRequest req, Reservation reservation) {
-     
-     // 2. 데이터베이스에 변경된 내용 적용
-     reservationService.updateReservation(reservation);
-    
-     // 3. 목록 페이지로 이동
-     return "redirect:/reservation/detail.action" + "?reservationno=" + reservation.getReservationNo()
-     + "&pageno="
-     + req.getParameter("pageno");
-     }
-     
-     
-    //삭제
-     @RequestMapping(value = "delete.action", method = RequestMethod.GET)
-     public String deleteReservation(HttpServletRequest req, int reservationno) {
-     // 1. 요청 데이터 읽기 (글번호)
-    
-    
-     // 2. 데이터 처리 (db에서 데이터 변경)
-     reservationService.deleteReservation(reservationno);
-     
-    
-     return "redirect:/reservation/list.action";
-     }
-     
+		ModelAndView mav = new ModelAndView();
 
+		String reservationNo = request.getParameter("reservationno");
+
+		if (reservationNo == null || reservationNo.length() == 0) {
+			mav.setViewName("redirect:/reservation/list.action");
+			return mav;
+		}
+
+		Reservation reservation = reservationService.selectReservationByReservationNo(Integer.parseInt(reservationNo));
+
+		if (reservation == null) {
+			mav.setViewName("redirect:/reservation/detail.action");
+			return mav;
+		}
+
+		String pageNo = "1";
+		if (request.getParameter("pageno") != null) {
+			pageNo = request.getParameter("pageno");
+		}
+
+		mav.addObject("reservation", reservation);
+		mav.addObject("pageno", pageNo);
+		mav.setViewName("reservation/editform");
+		return mav;
+	}
+
+	// 수정
+	@RequestMapping(value = "update.action", method = RequestMethod.POST)
+	public String updateBoard(HttpServletRequest req, Reservation reservation) {
+
+		// 2. 데이터베이스에 변경된 내용 적용
+		reservationService.updateReservation(reservation);
+
+		// 3. 목록 페이지로 이동
+		return "redirect:/reservation/detail.action" + "?reservationno=" + reservation.getReservationNo() + "&pageno="
+				+ req.getParameter("pageno");
+	}
+
+	// 삭제
+	@RequestMapping(value = "delete.action", method = RequestMethod.GET)
+	public String deleteReservation(HttpServletRequest req, int reservationno) {
+		// 1. 요청 데이터 읽기 (글번호)
+
+		// 2. 데이터 처리 (db에서 데이터 변경)
+		reservationService.deleteReservation(reservationno);
+
+		return "redirect:/reservation/list.action";
+	}
 
 	// 그룹 리스트 보기
-	
+
 	@RequestMapping(value = "confirm.action", method = RequestMethod.GET)
 	public String showConfirmList(HttpServletRequest request, HttpServletResponse response, Confirm confirm) {
 
@@ -297,46 +257,78 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	 * return mav; }
 	 */
 
-	
 	@RequestMapping(value = "confirmlist.action", method = RequestMethod.GET)
-	public String showConfirmList(Model model,HttpServletRequest request, HttpServletResponse response, int reservationNo) {
+	public String showConfirmList(Model model, HttpServletRequest request, HttpServletResponse response,
+			int reservationNo) {
 
 		List<Confirm> confirmedMembersList = reservationService.selectConfirmListByReservationNo(reservationNo);
-		
+
 		for (Confirm confirm : confirmedMembersList) {
-		//	confirm.setMember(confirm.getMemberNo());
+			// confirm.setMember(confirm.getMemberNo());
 			System.out.println(confirm.getMemberNo());
 		}
-		
-		
-		
+
 		System.out.println(reservationNo);
 		model.addAttribute("confirms", confirmedMembersList);
-		model.addAttribute("reservationNo",reservationNo );
-		
+		model.addAttribute("reservationNo", reservationNo);
+
 		return "reservation/confirm";
 
 	}
-	// 작성
-		@RequestMapping(value = "insertno.action", method = RequestMethod.GET)
-		public void insertReservationNoToMember(int reservationNo) {
-			reservationService.insertReservationNoToMember(reservationNo);
-			
-		}
-		
-		
-		@RequestMapping(value = "confirmAjax.action", method = RequestMethod.GET)
-		public String confirmAjaxPost(Member member) {
-			System.out.println(member.getReservationNo());
-			System.out.println(member.getMemberNo());
-	
-		
-			reservationService.updateMemberByReservationNo(member);
 
-			return "redirect:/reservation/list.action";
-		
+	// 작성
+	@RequestMapping(value = "insertno.action", method = RequestMethod.GET)
+	public void insertReservationNoToMember(int reservationNo) {
+		reservationService.insertReservationNoToMember(reservationNo);
+
+	}
+
+	@RequestMapping(value = "confirmAjax.action", method = RequestMethod.GET)
+	public String confirmAjaxPost(Member member) {
+		System.out.println(member.getReservationNo());
+		System.out.println(member.getMemberNo());
+
+		reservationService.updateMemberByReservationNo(member);
+
+		return "redirect:/reservation/list.action";
+
+	}
+
+	@RequestMapping(value = "frequencylist.action", method = RequestMethod.GET)
+	public ModelAndView selectReservationSearchType(HttpServletRequest request, String frequency, String departure) {
+
+		ModelAndView mav = new ModelAndView();
+
+		//
+
+		//
+		if (departure == null) {
+			List<Reservation> frequencys = reservationService.selectReservationSearchType(frequency);
+			mav.addObject("reservations", frequencys);
+
+		} else {
+			List<Reservation> departures = reservationService.departureSearch(departure, frequency);
+			mav.addObject("reservations", departures);
 		}
-		
-	
+
+		mav.setViewName("reservation/list");
+
+		return mav;
+
+	}
+
+	@RequestMapping(value = "departureSearch.action", method = RequestMethod.GET)
+	public ModelAndView departureSearch(HttpServletRequest request, String departure, String frequency) {
+
+		ModelAndView mav = new ModelAndView();
+
+		List<Reservation> departures = reservationService.departureSearch(departure, frequency);
+
+		mav.setViewName("reservation/list");
+		mav.addObject("reservations", departures);
+
+		return mav;
+
+	}
 
 }

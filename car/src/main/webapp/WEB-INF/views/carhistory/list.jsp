@@ -72,8 +72,8 @@ function reverseDisplay() {
 	$(function() {
 		//내역 작성 이벤트
 	$('#inputOutcome').on('click', function(event) {
-		alert($('#index').val());			
 		$.ajax("/car/carhistory/outcomewrite.action?carindex=" + $('#index').val(), {
+
 		});
 	});
 	//insert	
@@ -96,7 +96,7 @@ function reverseDisplay() {
 				//location.reload();
 			},
 			error : function(request, status, error) {
-				alert("선택된 차량 번호가 없습니다. 차량 번호를 선택해 주세요.");
+				alert("저장에 실패 했습니다. 다시 시도해 주세요.");
 			}
 		});
 	});		
@@ -105,7 +105,6 @@ function reverseDisplay() {
 			$('tr#viewOutcome').on('click',
 				function(event) {												
 				var historyno = $(this).attr('data-hno');
-				alert(historyno);
 					$.ajax("/car/carhistory/outcomeview.action?historyNo=" + historyno + "&carindex=" + $('#carindex').val()
 							,{						
 						success : function(data) {								
@@ -128,7 +127,6 @@ function reverseDisplay() {
 	// modify  	
 	$('button#modify').on('click', function(event) {			
 		var historyno = $(this).attr('data-hhno');
-		alert(historyno);			
 		var outcome;						
 		outcome = {
 			"category" : $('#category2').val(),
@@ -262,7 +260,7 @@ $(function() {
 				//location.reload();
 			},
 			error : function(request, status, error) {
-				alert("선택된 차량 번호가 없습니다. 차량 번호를 선택해 주세요.");
+				alert("저장에 실패 했습니다. 다시 시도해 주세요.");
 			}
 		});
 	});		

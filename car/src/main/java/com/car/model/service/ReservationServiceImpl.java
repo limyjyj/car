@@ -115,6 +115,19 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> selectReservationByMemberNo(int memberNo) {		
 		return reservationDao.selectReservationByMemberNo(memberNo);
 	}
+	
+
+	@Override
+	public List<Reservation> departureSearch(String departure, String frequency) {
+		return reservationDao.departureSearch(departure, frequency);
+	}
+
+	@Override
+	public List<Member> selectReservationUserListByReservationNo(int reservationNo) {
+		
+		return reservationDao.selectReservationUserListByReservationNo(reservationNo);
+	}
+	
 
 	
 

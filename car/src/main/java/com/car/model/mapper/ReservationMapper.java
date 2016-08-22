@@ -1,5 +1,6 @@
 package com.car.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.car.model.dto.Confirm;
@@ -37,4 +38,9 @@ public interface ReservationMapper {
 	void updateMemberByReservationNo(Member member);
 
 	List<Reservation> selectReservationByMemberNo(int memberNo);
+	
+	List<Reservation> departureSearch(HashMap<String, Object> map);
+	
+	List<Member> selectReservationUserListByReservationNo(int reservationNo);
+
 }

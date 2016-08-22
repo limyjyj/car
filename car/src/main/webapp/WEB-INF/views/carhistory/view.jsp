@@ -22,7 +22,6 @@
 			<td>금액</td>
 			<td>리터</td>
 			<td></td>
-			<td></td>
 		</tr>
 		
 		<c:forEach var="f" items="${ fuels }">
@@ -33,7 +32,6 @@
 						var="regDate" /> ${ regDate }</td>
 				<td>${ f.payment }</td>
 				<td>${ f.liter }</td>
-				<td><a href="update.action?carindex=${ o.historyNo }">수정</a></td>
 				<td><a href="delete.action?carindex=${ o.historyNo }">삭제</a></td>
 				
 			</tr>
@@ -47,7 +45,6 @@
 						var="regDate" /> ${ regDate }</td>
 				<td>${ o.payment }</td>
 				<td></td>
-				<td><a href="update.action?carindex=${ o.historyNo }">수정</a></td>
 				<td><a href="delete.action?carindex=${ o.historyNo }">삭제</a></td>
 			</tr>
 		</c:forEach>
