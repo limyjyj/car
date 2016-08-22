@@ -16,15 +16,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <script type="text/javascript">
+	
 	$(function() {
-		$('#status').on('change', function(event) {
+	 	$('#status').on('change', function(event) {	 	
+	 		alert($('#status').val());
 			var url = "/car/car/view.action?carindex=" + $('#status').val();
 			$("#carlist").load(url);
 
-		});
+		}),
+
+		 $('#search').on('click', function(event) {
+			var url = "/car/car/searchview.action?startDate=" + $('#startDate').val() + "&endDate=" + $('#endDate').val();
+			$("#searchlist").load(url);
+
 	});
+});
+/* 	
 	$(function() {
-		$("#but").on('click', function(event) {
+		$("#search").on('click', function(event) {
 			var startDate = $('#startDate').val();
 			var endDate = $('#endDate').val();
 			var carNo = $("#status option:selected").text();
@@ -35,13 +44,14 @@
 				data : {
 					startDate : startDate,
 					endDate : endDate,
-					carNo : carNo
+					
 				},
 				success : function(data) {
 
 				}
 			})
-		})
+		}) */
+		$(function() {
 		$("#inputOutcome").on('click', function(event){
  				//alert($("#status").val());
  				var carindex = $('#status').val();
@@ -52,9 +62,9 @@
  				var carindex = $('#status').val();
  				location.href="/car/carhistory/fuelwriteform.action?carindex=" + $('#status').val();
 			})
+	
+	
 	});
-	
-	
 </script>
 </head>
 <body>
@@ -72,7 +82,7 @@
 				<select id="status" name="status">
 					<option value="/car/car/list.action">선택하세요</option>
 					<c:forEach var="car" items="${ cars }" varStatus="Status">
-						<option value="${ car.carindex }">${ car.carno }</option>
+						<option id="carindex" value="${ car.carindex }">${ car.carno }</option>
 					</c:forEach>
 				</select> <a href="register.action">차량등록</a> 
 				
@@ -94,7 +104,7 @@
 					<td>차량번호</td>
 					<td>기록시작일</td>
 					<td>총주행거리</td>
-					<td>총지출금액</td>
+					
 				</tr>
 				<c:forEach var="car" items="${ cars }">
 					<tr style="height: 30px" align="center">
@@ -106,7 +116,7 @@
 						<td><fmt:formatDate value="${ car.regdate }"
 								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 						<td>${ car.totaldistance }</td>
-						<td>${ car.totaloutcome }</td>
+						
 
 					</tr>
 
@@ -117,23 +127,29 @@
 
 
 
-			<table class="table table-striped" align="center" width="700px">
+			<table class="table table-striped" align="center" width="700px" id="searchlist">
 
-				<tr style="height: 30px">
+				<tr style="height: 30px" align="center">
 
-					<td>기간별 조회</td>
+					<td>기간별 조회</td><td></td>
 					<td class="form-group"><label for="inputRegdate">기록시작일</label>
 						<input type="date" path="regdate" class="form-control"
 						placeholder="기록시작일" id="startDate" /></td>
 					<td class="form-group"><label for="inputRegdate">기록종료일</label>
 						<input type="date" path="regdate" class="form-control"
 						placeholder="기록종료일" id="endDate" /></td>
+					<td></td>
 
 				</tr>
-				<button type="button" id="but">조회</button>
-
+				<tr style="height: 30px; text-align: center;" align="center" >
+					<td>주유횟수</td>
+					<td>주유비용</td>
+					<td>정비비용</td>
+					<td>유지비용</td>
+				</tr>
+			
 			</table>
-
+			<button type="button" id="search" >조회</button>
 
 		</div>
 	</div>

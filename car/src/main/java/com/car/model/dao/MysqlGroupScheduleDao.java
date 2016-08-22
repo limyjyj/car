@@ -55,5 +55,11 @@ public class MysqlGroupScheduleDao implements GroupScheduleDao {
 		groupScheduleMapper.deleteGroupSchedule(groupScheduleNo);
 		
 	}
+
+	@Override
+	public GroupSchedule selectGroupScheduleByChatNo(int chatNo) {
+		
+		return groupScheduleMapper.selectGroupScheduleByChatNo(chatNo);
+	}
 	
 }

@@ -22,6 +22,7 @@ $(function() {
 	});
 });
 
+
 </script>
 
 
@@ -40,6 +41,7 @@ $(function() {
         			<td>총지출금액</td>
         			<td></td>
         			<td></td>
+        			
         		</tr>        	
         	
         		<tr style="height:30px"align="center">
@@ -51,7 +53,7 @@ $(function() {
         			<td><fmt:formatDate value="${ car.regdate }" pattern="yyyy-MM-dd" var="regDate"/>
                       ${ regDate }</td>
         			<td>${ car.totaldistance }</td>
-        			<td>${ car.totaloutcome }</td>
+        			<td>${ total }</td>
    					<td><a href="update.action?carindex=${ car.carindex }">수정</a></td>
 		    
 		        	<td> 

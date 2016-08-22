@@ -21,9 +21,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 		if (url.contains("/member/")) {
 			if (member != null) {
-
+				
 			} else {
-				redirect = true;
+				if(url.contains("/member/register.action")) {
+					
+				} else
+					redirect = true;
 			}
 		} else if (url.contains("/board/") || url.contains("/car/car/") || url.contains("/carhistory/")
 				|| url.contains("/fuel/") || url.contains("/groupchat/") || url.contains("/groupschedule/")

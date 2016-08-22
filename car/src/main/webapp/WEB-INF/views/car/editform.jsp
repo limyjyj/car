@@ -50,8 +50,9 @@
 			        
 			        <div class="form-group">
      		     	  <label for="inputRegdate">기록시작일</label>
-		              <form:input type="date" path="regdate" class="form-control" placeholder="${ car.regdate }"/>
-
+     		     	  <fmt:formatDate value="${ car.regdate }" pattern="yyyy-MM-dd" var="regdate"/>
+		              <input type="date" name="regdate" class="form-control" value="${ regdate }"/> 
+						
 			        </div>	       
 	       
 		     	<div class="buttons" style="text-align: center">
