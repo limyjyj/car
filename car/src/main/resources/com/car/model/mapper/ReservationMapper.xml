@@ -118,11 +118,13 @@
 	</insert>
 	
 	<select id="selectReservationList" resultType="Reservation">
+		
 		SELECT *
 		FROM
 		Reservation
 		WHERE deleted ='0'
-	</select>
+	
+</select>
 	
 	<select id="selectReservationByReservationNo" parameterType="int" resultType="Reservation">
 		SELECT
@@ -161,11 +163,11 @@
 	</update>
 	
 	<select id="selectReservationByMemberNo" parameterType="int" resultType="Reservation">   
-    SELECT r.*
-    FROM Reservation r   
-    JOIN Member m
-    ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기' AND r.deleted = '0'
-    WHERE m.memberno = #{memberNo} AND m.deleted = '0'
-    </select>
+   SELECT r.*
+   FROM Reservation r   
+   JOIN Member m
+   ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기' AND r.deleted = '0'
+   WHERE m.memberno = #{memberNo} AND m.deleted = '0'
+  </select>
 	
 </mapper>

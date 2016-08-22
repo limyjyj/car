@@ -8,10 +8,23 @@
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <!-- <html class="no-js" lang="en"> -->
-<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html ng-app="mwl.calendar.docs" class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
-<head>	
-
+  <head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdn.rawgit.com/jkbrzt/rrule/v2.1.0/lib/rrule.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="//mattlewis92.github.io/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <script src="/car/resources/js/example.js"></script>
+    <script src="/car/resources/js/helpers.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/css/colorpicker.min.css" rel="stylesheet">
+    <link href="//mattlewis92.github.io/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+  
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -67,12 +80,7 @@
 	//forAjax
 	$(function() {
 		
-		//check for the existent schedule
-		$('#writeSchedule').on('click', function(event) {
-			$.ajax("/car/groupchat/insertgroupschedule.action", {
-				
-			});
-		});
+		//check for the existent schedule		
 
 		//insert schedule  	
 		$('#save').on('click', function(event) {
@@ -91,7 +99,7 @@
 			/* groupSchedule = JSON.stringify(groupSchedule); */
 
 			$.ajax({
-				url : "/car/groupchat/insertgroupschedule.action",
+				url : "/car/groupchat/insertgroupschedule.action?chatNo=" + $('#chatNo').val(),
 				type : "post",
 				data : groupSchedule,
 				/* contentType: "application/json",  */
@@ -172,12 +180,13 @@
 
 	});
 </script>
-
+ <jsp:include page="/WEB-INF/views/include/head.jsp" />
 </head>
-	<jsp:include page="/WEB-INF/views/include/head.jsp" />
-<body class="home">
 	
-	<header id="header">
+<body class="home">
+
+
+<header id="header">
         <div id="top-bar">
             <div class="container">
                 <div class="row">
@@ -226,7 +235,7 @@
                                     
                                     <li>&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
-                                    
+                             
                                     <c:choose>
 					<c:when test="${empty loginuser}">
 						
@@ -380,6 +389,8 @@
    </script>
    <![endif]-->
 
+
+
 	<div id="pageContainer" class="panel panel-heading"
 		style="padding-top: 25px; text-align: center; margin: auto; width: 800px">
 
@@ -394,7 +405,7 @@
 						<tr>
 							<td>
 								<table class="table table-borderd"
-									style="align: center; width: 500px">
+									style="align: center; width: 700px">
 									<th style="text-align: center">채팅</th>
 									<tr>
 										<td>
@@ -430,148 +441,199 @@
 										</td>
 									</tr>
 								</table>
-							</td>
+								</td>
+								</tr>							
+							<tr>								
 							<td>
-								<table class="table table-borderd"
-									style="align: center; width: 200px">
-									<th style="text-align: center" colspan="2">스케줄</th>
-									<tr>
-										<td>
-											<div class="buttons">
-												<button type="button" data-toggle="modal" id="writeSchedule"
-													data-target="#myModal3">작성</button>													
+							<table class="table table-borderd"
+									style="align: center">
 
-											</div> <!-- Modal -->
-											<div class="modal fade" id="myModal3" role="dialog">
-												<div class="modal-dialog modal-md">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-															<h4 class="modal-title">input </h4>
-														</div>
-														<div class="modal-body">
+<div ng-controller="KitchenSinkCtrl as vm">
+  <h2 class="text-center">{{ vm.calendarTitle }}</h2>
 
+  <div class="row">
 
-															<form role="form" id="save-schedule">
+    <!-- <div class="col-md-6 text-center"> --> 
+      <div class="btn-group">
 
-																<div class="form-group">
-																	<label for="title">Title</label> <input type="text"
-																		class="form-control" id="title1" name="title"
-																		placeholder="Enter title" />
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          decrement="vm.calendarView">
+          Previous
+        </button>
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="vm.viewDate"
+          set-to-today>
+          Today
+        </button>
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          increment="vm.calendarView">
+          Next
+        </button>
+      </div>
+    <!-- </div> -->
+	<br>
+    <br class="visible-xs visible-sm">
 
-																</div>
-																<div class="form-group">
-																	<label for="startDate">Start Date</label>
-																	<input type="date" class="form-control" id="start-date1"
-																		name="startDate" placeholder="Start-date" />
-																</div>
-																<div class="form-group">
-																	<label for="endDate">End Date</label> 
-																	<input type="date" class="form-control" id="end-date1"
-																		name="endDate" placeholder="end-date" />
-																</div>
-																<div class="form-group">
-																	<label for="duration">Depart Time</label> <input
-																		type="time" class="form-control" id="depart-time1"
-																		name="departTime" placeholder="depart-time" />
-																</div>
-																<div class="form-group">
-																	<label for="content">Content</label> <input type="text"
-																		class="form-control" id="content1" name="content"
-																		placeholder="content" />
-																</div>
-																<button type="button" id="save" class="btn btn-default" data-dismiss="modal">저장</button>
-															</form>
+    <!-- <div class="col-md-6 text-center"> -->
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Year</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Month</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Week</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Day</label>
+      </div>
+    <!-- </div> -->
 
+  </div>
 
-														</div>
+  <br>
 
-														<!-- Modal Footer -->
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">취소</button>
-														</div>
+  <mwl-calendar
+    events="vm.events"
+    view="vm.calendarView"
+    view-title="vm.calendarTitle"
+    view-date="vm.viewDate"
+    on-event-click="vm.eventClicked(calendarEvent)"
+    on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    cell-is-open="vm.isCellOpen"
+    day-view-start="06:00"
+    day-view-end="22:59"
+    day-view-split="30"
+    cell-modifier="vm.modifyCell(calendarCell)">
+  </mwl-calendar>
 
-													</div>
-												</div>
-											</div>
-										</td>
+  <br><br><br>
 
-										<td>
-											<div class="buttons">
-												<button type="button" data-toggle="modal" id="view-schedule"
-													data-target="#myModal4">확인</button>
-												<input type="hidden" value="${ chatno }" id="chatNo">
-											</div> 
-											
-											<!-- Modal -->
-											<div class="modal fade" id="myModal4" role="dialog">
-												<div class="modal-dialog modal-md">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-															<h4 class="modal-title">Modify Schedule</h4>
-														</div>
-														<div class="modal-body">
+  <h3 id="event-editor">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEdit events
+    <button
+      class="btn btn-primary pull-right"
+      ng-click="vm.addEvent()">
+      Add new
+    </button>
+    <div class="clearfix"></div>
+  </h3>
+  </td>
+  </tr>
+  <tr>
+  <td>
 
-															<form role="form">
+  <table class="table table-bordered">
 
-																<div class="form-group">
-																	<label for="title">Title</label> <input type="text"
-																		class="form-control" id="title2" readonly></input>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Primary color</th>
+        <th>Secondary color</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
 
-																</div>
-																<div class="form-group">
-																	<label for="startDate">Start Date</label> <input
-																		type="text" class="form-control" id="start-date2" readonly></input>
-																</div>
-																<div class="form-group">
-																	<label for="endDate">End Date</label> <input type="text"
-																		class="form-control" id="end-date2" readonly></input>
-																</div>
-																<div class="form-group">
-																	<label for="departTime">Depart Time</label> <input type="text"
-																		class="form-control" id="depart-time2" readonly></input>
-																</div>
-																<div class="form-group">
-																	<label for="content">Content</label> <input type="text"
-																		class="form-control" id="content2" readonly></input>
-																</div>
-																
-																<button type="button" class="btn btn-default" id="intro-modify" onClick="changeReadOnlyAttribute()">수정</button>
-																<button type="button" class="btn btn-default" id="modify" style="display:none" onClick="reverseDisplay()">완료</button>
-																
-																</form>
-																
-														</div>
-																												<!-- Modal Footer -->
-														<div class="modal-footer">
-															<button id="return" type="button" class="btn btn-default"
-																data-dismiss="modal" onClick="reverseDisplay()">확인</button>
-															<button id="cancle" type="button" class="btn btn-default"
-																data-dismiss="modal" style="display:none" onClick="reverseDisplay()">취소</button>
-														</div>
+    <tbody>
+      <tr ng-repeat="event in vm.events track by $index">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            ng-model="event.title">
+        </td>
+        <td>
+          <input class="form-control" colorpicker type="text" ng-model="event.color.primary">
+        </td>
+        <td>
+          <input class="form-control" colorpicker type="text" ng-model="event.color.secondary">
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              uib-datepicker-popup="dd MMMM yyyy"
+              ng-model="event.startsAt"
+              is-open="event.startOpen"
+              close-text="Close" >
+            <span class="input-group-btn">
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="vm.toggle($event, 'startOpen', event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+          <div
+            uib-timepicker
+            ng-model="event.startsAt"
+            hour-step="1"
+            minute-step="15"
+            show-meridian="true">
+          </div>
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              uib-datepicker-popup="dd MMMM yyyy"
+              ng-model="event.endsAt"
+              is-open="event.endOpen"
+              close-text="Close">
+            <span class="input-group-btn">
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="vm.toggle($event, 'endOpen', event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+          <div
+            uib-timepicker
+            ng-model="event.endsAt"
+            hour-step="1"
+            minute-step="15"
+            show-meridian="true">
+          </div>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            ng-click="vm.events.splice($index, 1)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
 
-													</div>
-												</div>
-											</div>
-										</td>
+  </table>
+  </td>
+  </tr>
+  </div>
+  </table>
+  </td>
+  </tr>
+  </table>
+  </div>
+  </div>
+  </div>
+</div>
 
-									</tr>
-								</table>
-							<td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-</body>
-
+  </body>
+  
 <script type="text/javascript" src="/car/resources/js/jquery-1.7.2.min.js" th:src="@{/car/resources/js/jquery-1.7.2.min.js}"></script>
 <script type="text/javascript" src="/car/resources/js/knockout-2.0.0.js" th:src="@{/car/resources/js/knockout-2.0.0.js}"></script>
 <script type="text/javascript" src="/car/resources/js/chat.js" th:src="@{/car/resources/js/chat.js}"></script>
-
+  
+  
 </html>
