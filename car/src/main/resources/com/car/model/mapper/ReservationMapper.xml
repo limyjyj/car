@@ -163,11 +163,10 @@
 	</update>
 	
 	<select id="selectReservationByMemberNo" parameterType="int" resultType="Reservation">   
-   SELECT
-   r.*
+   SELECT r.*
    FROM Reservation r   
    JOIN Member m
-   ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기'
+   ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기' AND r.deleted = '0'
    WHERE m.memberno = #{memberNo} AND m.deleted = '0'
   </select>
 	

@@ -8,8 +8,8 @@
 <html class="no-js" lang="en">
 <!--<![endif]-->
 <head>
-</head>
 <jsp:include page="/WEB-INF/views/include/head.jsp" />
+</head>
 <body class="home">
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<section class="wrapper">
