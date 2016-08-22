@@ -1,6 +1,8 @@
 package com.car.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,17 +19,22 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
 import com.car.model.dto.Fuel;
+import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupSchedule;
 import com.car.model.dto.Member;
 import com.car.model.dto.Outcome;
 import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
 import com.car.model.service.FuelService;
 import com.car.model.service.OutcomeService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/carhistory/")
@@ -112,21 +119,14 @@ public class CarhistoryController {
 	
 	// Outcome
 	@RequestMapping(value = "outcomewriteform.action", method = RequestMethod.GET)
-	public String getOutcomeWriteForm(Model model, int carindex) {
+	public String getOutcomeWriteForm(Model model) {
 
-		model.addAttribute("carindex", carindex);
 		return "outcome/writeform";
 	}
 
 	@RequestMapping(value = "outcomewrite.action", method = RequestMethod.POST)
 	public String writeOutcome(HttpServletRequest req, Carhistory carhistory, Outcome outcome, String category,
 			int carindex,HttpSession session) {
-		
-//		carhistory.setCarindex(carindex);
-//		session.setAttribute("carhistory", carhistory);
-
-		carhistory.setCarindex(carindex);
-		carhistory.setCategory(category);
 		
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
@@ -137,6 +137,34 @@ public class CarhistoryController {
 		return "redirect:/carhistory/list.action";
 
 	}
+	@ResponseBody
+	@RequestMapping(value = "outcomeview.action", method = RequestMethod.GET)
+	public String outcomeViewList(int carindex, int historyNo, HttpSession session) {
+		System.out.println("asdasdasdasdasda");
+	
+		Outcome outcome = outcomeService.selectOutcomeByHistoryNo(historyNo);		
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		String json = null;
+		
+	
+			json = gson.toJson(outcome);
+			return json;
+			
+	}
+	
+	@RequestMapping(value = "outcomeupdate.action", method = RequestMethod.POST)
+	public void outcomeUpdate(Outcome outcome) {		
+		System.out.println("나오니안나오니"); 
+		outcomeService.updateOutcome(outcome);
+		
+
+		System.out.println(outcome.getHistoryNo());
+		System.out.println(outcome.getCategory());
+
+	}
+	
 
 	// Fuel
 	@RequestMapping(value = "fuelwriteform.action", method = RequestMethod.GET)
