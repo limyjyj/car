@@ -63,8 +63,12 @@
  			$('#status').on(
  					'change',
  					function(event) {
+ 						
+ 						var status=$("#status option:selected").val();
+ 				 		alert(status);
+ 						
  						var url = "/car/carhistory/view.action?carindex="
- 								+ $('#carindex').val();
+ 								+ status;
  						$("#carlist").load(url);
 
  					});
@@ -133,7 +137,7 @@
 			/* groupSchedule = JSON.stringify(groupSchedule); */
 
 			$.ajax({
-				url : "/car/carhistory/outcomewrite.action?carindex=" + $('#carindex').val(),
+				url : "/car/carhistory/outcomewrite.action?carindex=" + $("#status option:selected").val(),
 				type : "post",
 				data : outcome,
 				/* contentType: "application/json",  */

@@ -16,21 +16,22 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <script type="text/javascript">
+	
 	$(function() {
-		$('#status').on('change', function(event) {
+	 	$('#status').on('change', function(event) {
+	 		
 			var url = "/car/car/view.action?carindex=" + $('#status').val();
 			$("#carlist").load(url);
 
-		});
-	});
- 	$(function() {
-	$('#search').on('click', function(event) {
-		var url = "/car/car/searchview.action?startDate=" + $('#startDate').val() "&endDate=" + $('#endDate').val();
-		$("#searchlist").load(url);
+		}),
+
+		 $('#search').on('click', function(event) {
+			var url = "/car/car/searchview.action?startDate=" + $('#startDate').val() + "&endDate=" + $('#endDate').val()
+					+ "&carindex="+$('#status').val();
+			$("#searchlist").load(url);
 
 	});
-
-	}); 
+});
 /* 	
 	$(function() {
 		$("#search").on('click', function(event) {
@@ -51,20 +52,6 @@
 				}
 			})
 		}) */
-		$(function() {
-		$("#inputOutcome").on('click', function(event){
- 				//alert($("#status").val());
- 				var carindex = $('#status').val();
- 				location.href="/car/carhistory/outcomewriteform.action?carindex=" + $('#status').val();
-			})
-		$("#inputFuel").on('click', function(event){
- 				//alert($("#status").val());
- 				var carindex = $('#status').val();
- 				location.href="/car/carhistory/fuelwriteform.action?carindex=" + $('#status').val();
-			})
-	});
-	
-	
 </script>
 </head>
 <body>
@@ -82,20 +69,15 @@
 				<select id="status" name="status">
 					<option value="/car/car/list.action">선택하세요</option>
 					<c:forEach var="car" items="${ cars }" varStatus="Status">
-						<option value="${ car.carindex }">${ car.carno }</option>
+						<option id="carindex" value="${ car.carindex }">${ car.carno }</option>
 					</c:forEach>
 				</select> <a href="register.action">차량등록</a> 
 				
-				<input class="btn btn-danger" type="button" id="inputOutcome" 
-					value="지출입력" style="height: 30px" />
-				<input class="btn btn-danger" type="button" id="inputFuel"
-					value="주유입력" style="height: 30px" />
 
 			</div>
 			<br>
 			<br>
-			<table id="carlist" class="table table-striped" align="center"
-				width="700px">
+			<table id="carlist" class="table table-striped" align="center" width="700px">
 
 				<tr style="height: 30px" align="center">
 					<td><input type="hidden" value="멤버" /></td>
