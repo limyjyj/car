@@ -185,7 +185,7 @@ img {
 
 		<div id="inputmain">
 			<!-- <div class="inputsubtitle">게시판 글 내용</div> -->
-
+			
 			<table style="text-align: center; margin: auto;" class="type11">
 				<tr>
 					<th style="text-align: center;" scope="cols">제목</th>
@@ -293,22 +293,21 @@ img {
 			}
 		}
 	</script>
+	
 	<table style="width: 600px; border: solid 1px; margin: 0 auto">
 		<c:forEach var="coment" items="${ coments }">
 			<tr>
 				<td style="text-align: left; margin: 5px; border-bottom: solid 1px">
 
-					<div id='comentview${ coment.comentNo }'>
+					<div class="panel-body"id='comentview${ coment.comentNo }'>
 						${ coment.writer } &nbsp;&nbsp;
 						<fmt:formatDate value="${ coment.regDate }" pattern="yyyy-MM-dd"
 							var="regDate" />
 						${ regDate } <br /> <br /> <span> ${ coment.content } </span> <br />
 						<br />
 						<div>
-							<a
-								href="javascript:toggleComentStatus(${ coment.comentNo }, true);">편집</a>
-							&nbsp; <a
-								href="javascript:deleteComent(${ coment.comentNo }, ${ board.boardNo }, ${ pageno })">삭제</a>
+							<a href="javascript:toggleComentStatus(${ coment.comentNo }, true);">편집</a>  
+							&nbsp; <a href="javascript:deleteComent(${ coment.comentNo }, ${ board.boardNo }, ${ pageno })">삭제</a>
 						</div>
 
 					</div>
