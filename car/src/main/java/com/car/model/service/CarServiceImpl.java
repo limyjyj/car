@@ -1,5 +1,6 @@
 package com.car.model.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,15 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<Car> selectCarindexByMemberno(int memberNo) {
 		return carDao.selectCarindexByMemberno(memberNo);
+	}
+	
+	@Override
+	public int selectTotalOutcomeByCarindex(int carindex){
+		return carDao.selectTotalOutcomeByCarindex(carindex);
+	}
+	@Override
+	public int selectCountFuelByRegdate(Date startDate, Date endDate){
+		return carDao.selectCountFuelByRegdate(startDate, endDate);
 	}
 
 	

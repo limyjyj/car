@@ -10,80 +10,76 @@
 <!-- <html class="no-js" lang="en"> -->
 <html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
-<head>
+<head>	
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <link rel="stylesheet"
-	href="/car/resources/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
- --><script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript"
-	src="/car/resources/bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript"
-	src="/car/resources/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> -->
- 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
 
-function changeReadOnlyAttribute() {
-	
-	document.getElementById("title2").readOnly = false;
-	document.getElementById("start-date2").readOnly = false;
-	document.getElementById("end-date2").readOnly = false;
-	document.getElementById("depart-time2").readOnly = false;
-	document.getElementById("content2").readOnly = false;
-	
-	changeDisplay();
-	
-	document.getElementById("start-date2").type = 'date';
-	document.getElementById("end-date2").type = 'date';
-	document.getElementById("depart-time2").type = 'time';
-}
+	function changeReadOnlyAttribute() {
 
-function changeDateAndTimeType() {
-	
-	document.getElementById("start-date2").type = 'text';
-	document.getElementById("end-date2").type = 'text';
-	document.getElementById("depart-time2").type = 'text';
-	
-}
+		document.getElementById("title2").readOnly = false;
+		document.getElementById("start-date2").readOnly = false;
+		document.getElementById("end-date2").readOnly = false;
+		document.getElementById("depart-time2").readOnly = false;
+		document.getElementById("content2").readOnly = false;
 
-function changeDisplay() {
-	
-	changeDateAndTimeType();
-	
-	document.getElementById("intro-modify").style.display = "none";
-	document.getElementById("modify").style.display = "";
-	document.getElementById("return").style.display = "none";
-	document.getElementById("cancle").style.display = "";
-}
+		changeDisplay();
 
-function reverseDisplay() {
-	
-	changeDateAndTimeType();
-	
-	document.getElementById("intro-modify").style.display = "";
-	document.getElementById("modify").style.display = "none";
-	document.getElementById("return").style.display = "";
-	document.getElementById("cancle").style.display = "none";
-}
+		document.getElementById("start-date2").type = 'date';
+		document.getElementById("end-date2").type = 'date';
+		document.getElementById("depart-time2").type = 'time';
+	}
 
+	function changeDateAndTimeType() {
+
+		document.getElementById("start-date2").type = 'text';
+		document.getElementById("end-date2").type = 'text';
+		document.getElementById("depart-time2").type = 'text';
+
+	}
+
+	function changeDisplay() {
+
+		changeDateAndTimeType();
+
+		document.getElementById("intro-modify").style.display = "none";
+		document.getElementById("modify").style.display = "";
+		document.getElementById("return").style.display = "none";
+		document.getElementById("cancle").style.display = "";
+	}
+
+	function reverseDisplay() {
+
+		changeDateAndTimeType();
+
+		document.getElementById("intro-modify").style.display = "";
+		document.getElementById("modify").style.display = "none";
+		document.getElementById("return").style.display = "";
+		document.getElementById("cancle").style.display = "none";
+	}
 
 	//forAjax
 	$(function() {
+		
+		//check for the existent schedule
+		$('#writeSchedule').on('click', function(event) {
+			$.ajax("/car/groupchat/insertgroupschedule.action", {
+				
+			});
+		});
 
 		//insert schedule  	
 		$('#save').on('click', function(event) {
-
+			
+			
 			var groupSchedule;
-
+			
 			groupSchedule = {
 				"title" : $('#title1').val(),
 				"startDate" : $('#start-date1').val(),
@@ -91,23 +87,23 @@ function reverseDisplay() {
 				"departTime" : $('#depart-time1').val(),
 				"content" : $('#content1').val()
 			};
-			
+
 			/* groupSchedule = JSON.stringify(groupSchedule); */
 
 			$.ajax({
-				url : "/car/groupschedule/insert.action",
+				url : "/car/groupchat/insertgroupschedule.action",
 				type : "post",
 				data : groupSchedule,
 				/* contentType: "application/json",  */
 				success : function(data, status, xhr) {
-
+					
 					alert("저장했습니다.");
 					//location.reload();
 
 				},
 
 				error : function(request, status, error) {
-					alert("스케줄은 이미 존재하니 존재하는 걸로 사용해 주세요.");
+					alert("스케줄이 이미 존재하거나 입력을 정확히 하지 않았습니다.");
 				}
 
 			});
@@ -115,33 +111,34 @@ function reverseDisplay() {
 		});
 
 		// view schedule 	
-		$('#view-schedule').on('click', function(event) {
+		$('#view-schedule').on('click',
+			function(event) {
 
-			$.ajax("/car/groupschedule/view.action?scheduleNo=17", {
-
-				success : function(data) {
-
-					eval("var groupSchedule = " + data);
-					
-					document.getElementById("title2").value = groupSchedule.title;
-					document.getElementById("start-date2").value = groupSchedule.startDate;
-					document.getElementById("end-date2").value = groupSchedule.endDate;
-					document.getElementById("depart-time2").value = groupSchedule.departTime;
-					document.getElementById("content2").value = groupSchedule.content;
+				$.ajax("/car/groupchat/view.action?chatNo=" + $('#chatNo').val(),{
 				
-					//location.reload();
+					success : function(data) {
+						
+						eval("var groupSchedule = " + data);
 
-				},
+						document.getElementById("title2").value = groupSchedule.title;
+						document.getElementById("start-date2").value = groupSchedule.startDate;
+						document.getElementById("end-date2").value = groupSchedule.endDate;
+						document.getElementById("depart-time2").value = groupSchedule.departTime;
+						document.getElementById("content2").value = groupSchedule.content;
+						
+						//location.reload();
 
-				error : function(request, status, error) {
-					alert("failed to load the file.");
-				}
+					},
+
+					error : function(request,
+							status, error) {
+						alert("작성된 스케줄이 없습니다. 작성하고 싶으시면 작성 버튼을 클릭해 주세요.");
+					}
+
+				});
 
 			});
 
-		});
-		
-		
 		// modify schedule  	
 		$('#modify').on('click', function(event) {
 
@@ -154,12 +151,12 @@ function reverseDisplay() {
 				"departTime" : $('#depart-time2').val(),
 				"content" : $('#content2').val()
 			};
-			
+
 			$.ajax({
-				url : "/car/groupschedule/update.action",
+				url : "/car/groupchat/update.action",
 				type : "post",
 				data : groupSchedule,
-				
+
 				success : function(data, status, xhr) {
 					alert("수정 하였습니다.");
 
@@ -177,10 +174,10 @@ function reverseDisplay() {
 </script>
 
 </head>
-
+	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 <body class="home">
 
-	<jsp:include page="/WEB-INF/views/include/head.jsp" />
+
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 	<div id="pageContainer" class="panel panel-heading"
@@ -201,17 +198,13 @@ function reverseDisplay() {
 									<th style="text-align: center">채팅</th>
 									<tr>
 										<td>
-											<!-- <div class="buttons">
-												<input type="button" value="시작" style="height: 25px"
-													onclick="location.href='chat.action';" />
-											</div> -->
 											
 	<form id="joinChatForm" action="/car/mvc/chat" th:action="@{/mvc/chat}" data-bind="visible: activePollingXhr() == null">
 		<p>
-			<label for="user">User Name : </label>
+			<label for="user">User: </label>
 			<input id="user" name="user" type="text" data-bind="value: userName"/>
-			<input id="reservationNo" name="reservationNo" type="hidden" value='${ reservationno }'/>
 			<input name="messageIndex" type="hidden" data-bind="value: messageIndex"/>
+			<input id="reservationNo" name="reservationNo" type="hidden" value='${ reservationno }'/>
 			<button id="start" type="submit" data-bind="click: joinChat">Join Chat</button>
 		</p>
 	</form>
@@ -245,7 +238,7 @@ function reverseDisplay() {
 									<tr>
 										<td>
 											<div class="buttons">
-												<button type="button" data-toggle="modal"
+												<button type="button" data-toggle="modal" id="writeSchedule"
 													data-target="#myModal3">작성</button>													
 
 											</div> <!-- Modal -->
@@ -269,7 +262,7 @@ function reverseDisplay() {
 																</div>
 																<div class="form-group">
 																	<label for="startDate">Start Date</label>
-																	<input type="date" class="form-control" 
+																	<input type="date" class="form-control" id="start-date1"
 																		name="startDate" placeholder="Start-date" />
 																</div>
 																<div class="form-group">
@@ -308,6 +301,7 @@ function reverseDisplay() {
 											<div class="buttons">
 												<button type="button" data-toggle="modal" id="view-schedule"
 													data-target="#myModal4">확인</button>
+												<input type="hidden" value="${ chatno }" id="chatNo">
 											</div> 
 											
 											<!-- Modal -->

@@ -15,7 +15,7 @@
 		<div class="page-header">
 			<h1>회원가입</h1>
 		</div>
-		<form class="form-horizontal" action="register.action" method="post">
+		<form class="form-horizontal"  style="margin: auot;" action="register.action" method="post">
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail">아이디</label>
 				<div class="col-sm-6">

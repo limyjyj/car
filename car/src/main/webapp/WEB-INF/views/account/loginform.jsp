@@ -34,11 +34,10 @@
 			<div class="page-header">
 			
 			</div>
-
-			<div class="col-md-3" align="center">
-				<div class="login-box well" align="center">
-					<form accept-charset="UTF-8" role="form" method="post" action="login.action">
-					<legend>로그인</legend>
+			<div class="col-md-3" style="text-align: center;" >
+				<div class="login-box well">
+					<form accept-charset="UTF-8" role="form" method="post" action="login.action" >
+						<legend>로그인</legend>
 						<div class="form-group">
 							<label for="username-email"> 아이디</label> 
 							<input name="memberId" value='' id="memberId" placeholder="UserId" type="text"
@@ -67,7 +66,8 @@
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 

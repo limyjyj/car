@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.car.model.dao.MysqlGroupChatDao;
 import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 
 
 @Service("groupChatService")
@@ -54,6 +55,24 @@ public class GroupChatServiceImpl implements GroupChatService {
 		
 		mysqlGroupChatDao.deleteGroupChat(groupChatNo);
 		
+	}
+
+	@Override
+	public void insertGroupChatStatement(GroupChatStatement groupChatStatement) {
+		mysqlGroupChatDao.insertGroupChatStatement(groupChatStatement);
+		
+	}
+
+	@Override
+	public GroupChatStatement selectGroupChatStatementByMemberNo(int memberNo) {
+		
+		return mysqlGroupChatDao.selectGroupChatStatementByMemberNo(memberNo);
+	}
+
+	@Override
+	public GroupChat selectGroupChatByReservationNo(int reservationNo) {
+		
+		return mysqlGroupChatDao.selectGroupChatByReservationNo(reservationNo);
 	}
 
 }

@@ -27,9 +27,9 @@
 $(function() {
 	$('input#enter-groupchatroom').on('click',
 			function(event) {
-		
+				
 				var reservationNo = $(this).attr('data-rno');
-				location.href = ('/car/groupschedule/longtermreservationchat.action?reservationNo=' + reservationNo);
+				location.href = ('/car/groupchat/longtermreservationchat.action?reservationNo=' + reservationNo);
 				
 				}
 			);
@@ -49,8 +49,8 @@ $(function() {
         	<table align="center">
 			<thead>
 				<tr>
-					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원번호</th>					
-					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp타태워</th>
+					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp유저번호</th>					
+					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp타태워</th>
 					<th style="width: 150px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp출발지</th>
 					<th style="width: 150px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp도착지</th>
 					<th style="width: 120px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp시작날짜</th>
@@ -64,7 +64,7 @@ $(function() {
 				<c:forEach var="b" items="${ reservations }">		
 					<tr>
 						
-						<td>${ b.memberNo } </td>
+						<td>${ b.memberNo }</td>
 						
 						<td>${ b.type } </td>
 						
