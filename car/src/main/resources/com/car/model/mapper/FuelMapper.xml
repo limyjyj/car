@@ -85,11 +85,11 @@
 
 	<select id="updateFuel" parameterType="Fuel">
 		UPDATE Fuel
-		SET type =
-		#{type}, perLiter = #{perLiter}, payment = #{payment}, liter =
-		#{liter}, regDate = #{regDate}, location = #{location}, content =
-		#{content}
-		WHERE fuelNo = #{fuelNo}
+		SET
+		category = #{category}, regDate = #{regDate}, perLiter = #{perLiter}, 
+		liter = #{liter}, payment = #{payment}, location = #{location}, 
+		content = #{content}
+		WHERE historyNo = #{historyNo}
 	</select>
 
 </mapper>

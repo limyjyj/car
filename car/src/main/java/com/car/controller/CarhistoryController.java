@@ -1,8 +1,6 @@
 package com.car.controller;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,8 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
 import com.car.model.dto.Fuel;
-import com.car.model.dto.GroupChat;
-import com.car.model.dto.GroupSchedule;
 import com.car.model.dto.Member;
 import com.car.model.dto.Outcome;
 import com.car.model.service.CarService;
@@ -125,8 +120,10 @@ public class CarhistoryController {
 	}
 
 	@RequestMapping(value = "outcomewrite.action", method = RequestMethod.POST)
-	public String writeOutcome(HttpServletRequest req, Carhistory carhistory, Outcome outcome, String category,
-			int carindex,HttpSession session) {
+	public String writeOutcome(HttpServletRequest req, Carhistory carhistory, Outcome outcome, String category, HttpSession session,
+			int carindex) {
+				
+		System.out.println(carindex);
 		
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
@@ -137,10 +134,11 @@ public class CarhistoryController {
 		return "redirect:/carhistory/list.action";
 
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "outcomeview.action", method = RequestMethod.GET)
 	public String outcomeViewList(int carindex, int historyNo, HttpSession session) {
-		System.out.println("asdasdasdasdasda");
+		
 	
 		Outcome outcome = outcomeService.selectOutcomeByHistoryNo(historyNo);		
 		
@@ -154,50 +152,74 @@ public class CarhistoryController {
 			
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "outcomeupdate.action", method = RequestMethod.POST)
-	public void outcomeUpdate(Outcome outcome) {		
-		System.out.println("나오니안나오니"); 
+	public String outcomeUpdate(Outcome outcome) {		
+		
+		
 		outcomeService.updateOutcome(outcome);
 		
-
-		System.out.println(outcome.getHistoryNo());
-		System.out.println(outcome.getCategory());
-
+		return "";
+		
 	}
 	
 
 	// Fuel
 	@RequestMapping(value = "fuelwriteform.action", method = RequestMethod.GET)
-	public String getFuelWriteForm(Model model, int carindex) {
-		model.addAttribute("carindex", carindex);
+	public String getFuelWriteForm(Model model) {
 		return "fuel/writeform";
 	}
 
 	@RequestMapping(value = "fuelwrite.action", method = RequestMethod.POST)
-	public String writeFuel(HttpServletRequest req, Carhistory carhistory, Fuel fuel, String category,
-			int carindex,HttpSession session) {
-
-		carhistory.setCarindex(carindex);
-		carhistory.setCategory(category);
+	public String writeFuel(HttpServletRequest req, Carhistory carhistory, Fuel fuel, String category, HttpSession session,
+			int carindex) {
 		
+		System.out.println(carindex);
+						
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
 		fuel.setHistoryNo(historyno);
+		
+//		int perliter = fuel.getPerLiter();
+//		int liter = fuel.getLiter();
+//		System.out.println(perliter*liter);
+//		
+//		fuel.setPayment(liter*perliter);
 		
 		fuelService.insertFuel(fuel);
 
 		return "redirect:/carhistory/list.action";
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "fuelview.action", method = RequestMethod.GET)
+	public String fuelViewList(int carindex, int historyNo, HttpSession session) {
+		
+		Fuel fuel = fuelService.selectFuelByHistoryNo(historyNo);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public String matching(
-			// 스프링 태그 라이브러리를 사용하기 위해 구성한 전달인자
-			@ModelAttribute Carhistory history) {
-
-		carhistoryService.updateCarhistory(history);
-		return "redirect:/carhistory/list.action";
-
+		String json = null;
+		
+			json = gson.toJson(fuel);
+			return json;
+			
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "fuelupdate.action", method = RequestMethod.POST)
+	public String fuelUpdate(Fuel fuel) {		
+		
+		int perliter = fuel.getPerLiter();
+		int liter = fuel.getLiter();
+		
+		fuel.setPayment(perliter*liter);
+		
+		fuelService.updateFuel(fuel);
+		
+		return "";
+		
 	}
 
 }

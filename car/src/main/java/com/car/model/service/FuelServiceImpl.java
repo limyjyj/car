@@ -31,10 +31,17 @@ public class FuelServiceImpl implements FuelService {
 	public List<Fuel> selectFuelByCarindex(int carindex) {
 		return fuelDao.selectFuelByCarindex(carindex);
 	}
-
+	
+	@Override
+	public Fuel selectFuelByHistoryNo(int historyNo) {
+		return fuelDao.selectFuelByHistoryNo(historyNo);
+	}
+	
 	@Override
 	public void updateFuel(Fuel fuel) {
 		fuelDao.updateFuel(fuel);
 	}
+
+	
 
 }

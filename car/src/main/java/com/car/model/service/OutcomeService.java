@@ -16,6 +16,5 @@ public interface OutcomeService {
 	
 	public void updateOutcome(Outcome outcome);
 	
-	;
 	
 }
