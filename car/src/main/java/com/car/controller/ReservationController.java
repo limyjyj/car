@@ -112,30 +112,25 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	}
 	
 	@RequestMapping(value = "frequencylist.action", method = RequestMethod.GET)
-	public ModelAndView selectReservationSearchType(HttpServletRequest request, String frequency, HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		List<Reservation> frequencys = reservationService.selectReservationSearchType(frequency);
-	
-	
-		if(frequency == null){
-			Member member = (Member)session.getAttribute("loginuser");
-			reservationService.selectReservationList();
-		
-			 
-		}else{
-			List<Reservation> frequencys1 = reservationService.selectReservationSearchType(frequency);
-			
-		}
-		
-		mav.setViewName("reservation/list");
-		mav.addObject("reservations", frequencys);
-	
-		
-		return mav;
+	   public ModelAndView selectReservationSearchType(HttpServletRequest request, String frequency, String departure) {
 
-	}
+	      ModelAndView mav = new ModelAndView();
+
+	      if (departure == null) {
+	         List<Reservation> frequencys = reservationService.selectReservationSearchType(frequency);
+	         mav.addObject("reservations", frequencys);
+
+	      } else {
+	    	  departure = "%"+departure+"%";
+	         List<Reservation> departures = reservationService.departureSearch(departure, frequency);
+	         mav.addObject("reservations", departures);
+	      }
+
+	      mav.setViewName("reservation/list");
+
+	      return mav;
+
+	   }
 	
 
 	// 작성
@@ -394,6 +389,9 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 	public ModelAndView departureSearch(HttpServletRequest request, String departure, String frequency) {
 
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(departure);
+		System.out.println(frequency);
 
 		List<Reservation> departures = reservationService.departureSearch(departure, frequency);
 

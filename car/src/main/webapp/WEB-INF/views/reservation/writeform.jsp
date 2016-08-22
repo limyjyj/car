@@ -31,8 +31,17 @@
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	
 	
-		<div class="bdiv" align="center">예약 설정</div>
 		<br/><br/>
+
+</head>
+
+<body>
+
+	<div class="bdiv"  style="text-align:center; font-size: 20px">예약 설정</div>
+	<br/><br/>
+	<div id="map" style="width:1200px;height:300px;margin-top:10px; margin:auto"></div>
+
+
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=0b310b2f318c9e4b7fd52459eb35d927&libraries=services"></script>
@@ -140,11 +149,8 @@
         }).open();
     }
 </script>
-</head>
 
-<body>
-	<div id="map" style="width:300px;height:300px;margin-top:10px;"></div>
-
+	
 		<br/><br/>
 		
 					<form id="write" action="write.action" method="post" enctype="multipart/form-data" onSubmit="return chkval(this)">
@@ -180,7 +186,7 @@
 								<th>목적</th>
 								<td>
 									<input class="form-control" type="text" name="type"
-									style="height: 20px; width: 220px;" />
+									style="height: 20px; width: 200px;" />
 								</td>
 							</tr>
 							<tr>

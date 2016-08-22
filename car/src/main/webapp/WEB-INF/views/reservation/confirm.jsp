@@ -73,12 +73,12 @@
 					}
 
 				});
-			$('#ok').on('click', 
-					function(event){  
-				var reservationNo = $('input#okok').val();
-			alert(reservationNo + 'dd');
-				
-			});
+		$('#ok').on('click', 
+				function(event){  
+			var reservationNo = $('input#okok').val();
+		alert(reservationNo + 'dd');
+			
+		});
 
 	});
 </script>
@@ -120,15 +120,19 @@
 				<td>
 				
 			<c:choose> 
-			 	<c:when test="${ c.member.reservationNo eq c.reservationNo}">	
-			 		<input type="button"  value="수락됨"style="height: 25px" id ="ok" />
-			 		<input type="hidden" id="okok" value="${ c.member.reservationNo}"/>
-			 	</c:when>
-			<c:otherwise> 
-				<input type="button"  id="accept"  value="수락"  style="height: 25px" />
-		 <input id="reservationno" type="hidden" value="${ c.reservationNo }" />
-				 <input id="memberno" type="hidden" value="${ loginuser.memberNo }" />
-			</c:otherwise>
+				<%-- <c:when test="${ not empty c.member.reservationNo }"> --%>
+				 	<c:when test="${ c.member.reservationNo != 0 and c.member.reservationNo eq c.reservationNo }">	
+				 		<input type="button"  value="수락됨" style="height: 25px" id ="ok" />
+				 		<input type="hidden" id="okok" value="${ c.member.reservationNo}"/>
+				 	</c:when>
+				 	<%-- </c:when> --%>
+				 	<c:otherwise> 
+						<input type="button"  id="accept"  value="수락"  style="height: 25px" />
+						<input id="reservationno" type="hidden" value="${ c.reservationNo }" />
+						<input id="memberno" type="hidden" value="${ loginuser.memberNo }" />
+				</c:otherwise>
+				
+			
 			 </c:choose> 
 				
 				

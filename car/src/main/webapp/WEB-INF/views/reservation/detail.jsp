@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -38,16 +39,73 @@
 	
 		<jsp:include page="/WEB-INF/views/include/head.jsp" />
 		<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<div class="bdiv" align="center" style=" width: 1000px">세부정보</div>
+	
 
 </head>
 <body>
 
-		<br/><br/>
-		<div  id="pageContainer" class="panel panel-heading"
-		style="padding-top: 25px; margin: auto;  width: 300px">
+	<div id="map" style="width:1200px;height:300px;margin-top:10px; margin:auto"></div>
+
+
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="//apis.daum.net/maps/maps3.js?apikey=0b310b2f318c9e4b7fd52459eb35d927&libraries=services"></script>
+
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new daum.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addr2coord('대구 수성구 가창로221길 36 (파동, 드림팰리스)', function(status, result) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === daum.maps.services.Status.OK) {
+
+        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+       
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new daum.maps.Marker({
+            map: map,
+            position: coords
+        });
+        
+      
+      // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+		
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new daum.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">출발지</div>'
+        });
+        
+       
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+     
+    } 
+});    
+
+</script>
+
+
+
+	<div  id="pageContainer" class="panel panel-heading"
+		style="padding-top: 25px; margin: auto;  width: 400px">
 	
-			
+		
 			<form id="detailform" action="detail.action" method="post">	
 			<table  class="table table-striped" align="center" margin="auto">
 				<tr >
@@ -60,12 +118,16 @@
 				
 					<tr>
 					<th>출발지</th>
-					<td>${ reservation.departure}</td>
+					<td>${ reservation.departure}
+					<input type="hidden" id="departure" value="${ reservation.departure}">
+					</td>
 					</tr>
 				
 					<tr>
 					<th>도착지</th>
-					<td>${ reservation.arrival}</td>
+					<td>${ reservation.arrival}
+					<input type="hidden" id="arrival" value="${ reservation.arrival}">
+					</td>
 					</tr>
 				
 				<tr>

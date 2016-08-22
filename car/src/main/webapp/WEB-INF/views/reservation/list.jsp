@@ -93,7 +93,7 @@ $(document).ready(function (){
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br />
 
-	<div class="bdiv" align="center">실시간.정기 예약판</div>
+	<div class="bdiv" style="text-align:center; font-size: 20px" >실시간.정기 예약판</div>
 	<br />
 	<br />
 
