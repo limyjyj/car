@@ -81,7 +81,7 @@
 		where memberNo = #{memberNo}
 	</select>
 	<select id="selectTotalOutcomeByCarindex" parameterType="int" resultType="int">
-		select sum(payment)
+		select IFNULL(sum(payment), 0)
 	      from(
 	      select Outcome.historyno, sum(Outcome.payment) as `payment`
 	      from Outcome 
@@ -103,13 +103,31 @@
 	      ) `c`
 	</select>
 	
-	<select id="selectCountFuelByRegdate" parameterType="int" resultType="int">
+	<select id="selectCountFuelByRegdate" parameterType="hashMap" resultType="int">
 		 select count(Fuel.historyno)
-		from Fuel 
-		where regdate <![CDATA[  <  ]]>  #{endDate} and regdate <![CDATA[   >   ]]> #{startDate}
+		from Fuel
+		join Carhistory
+		on Fuel.historyno = Carhistory.historyno 
+		where regdate <![CDATA[  <  ]]>  #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} 
+		and Carhistory.carindex = #{carindex}
 	
 	
 	</select>
-
+	<select id="selectTotalRepairByCategory" parameterType="hashMap" resultType="int">
+		select ifnull(sum(Outcome.payment), 0)
+		from Outcome
+		join Carhistory
+		on Outcome.historyno = Carhistory.historyno
+		where regdate <![CDATA[  <  ]]> #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} and
+		Carhistory.carindex = #{carindex} and Carhistory.category like '정비비'
+	</select>
+	<select id="selectTotalMaintainByCategory" parameterType="hashMap" resultType="int">
+		select ifnull(sum(Outcome.payment), 0)
+		from Outcome
+		join Carhistory
+		on Outcome.historyno = Carhistory.historyno
+		where regdate <![CDATA[  <  ]]> #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} and
+		Carhistory.carindex = #{carindex} and Carhistory.category like '유지비'
+	</select>
 
 </mapper>

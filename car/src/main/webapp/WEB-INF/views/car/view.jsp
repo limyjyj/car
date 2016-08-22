@@ -11,7 +11,6 @@
 $(function() {
 	$('#delete').on('click', function(event) {
 		var carindex = $('#carindex').val();
-		alert(carindex);
 		var result = confirm('삭제 하시겠습니까?');
 		if (result) {
 			//yes
@@ -57,7 +56,7 @@ $(function() {
    					<td><a href="update.action?carindex=${ car.carindex }">수정</a></td>
 		    
 		        	<td> 
-		        	<a href='javascript:doDelete(${ car.carindex })' id="delete">삭제</a>
+		        	<a href='#' id="delete">삭제</a>
 		        	<input type="hidden" id="carindex" value="${ car.carindex }">
 		        	</td>
         		</tr>

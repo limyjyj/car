@@ -18,15 +18,16 @@
 <script type="text/javascript">
 	
 	$(function() {
-	 	$('#status').on('change', function(event) {	 	
-	 		alert($('#status').val());
+	 	$('#status').on('change', function(event) {
+	 		
 			var url = "/car/car/view.action?carindex=" + $('#status').val();
 			$("#carlist").load(url);
 
 		}),
 
 		 $('#search').on('click', function(event) {
-			var url = "/car/car/searchview.action?startDate=" + $('#startDate').val() + "&endDate=" + $('#endDate').val();
+			var url = "/car/car/searchview.action?startDate=" + $('#startDate').val() + "&endDate=" + $('#endDate').val()
+					+ "&carindex="+$('#status').val();
 			$("#searchlist").load(url);
 
 	});
@@ -51,20 +52,6 @@
 				}
 			})
 		}) */
-		$(function() {
-		$("#inputOutcome").on('click', function(event){
- 				//alert($("#status").val());
- 				var carindex = $('#status').val();
- 				location.href="/car/carhistory/outcomewriteform.action?carindex=" + $('#status').val();
-			})
-		$("#inputFuel").on('click', function(event){
- 				//alert($("#status").val());
- 				var carindex = $('#status').val();
- 				location.href="/car/carhistory/fuelwriteform.action?carindex=" + $('#status').val();
-			})
-	
-	
-	});
 </script>
 </head>
 <body>
@@ -86,16 +73,11 @@
 					</c:forEach>
 				</select> <a href="register.action">차량등록</a> 
 				
-				<input class="btn btn-danger" type="button" id="inputOutcome" 
-					value="지출입력" style="height: 30px" />
-				<input class="btn btn-danger" type="button" id="inputFuel"
-					value="주유입력" style="height: 30px" />
 
 			</div>
 			<br>
 			<br>
-			<table id="carlist" class="table table-striped" align="center"
-				width="700px">
+			<table id="carlist" class="table table-striped" align="center" width="700px">
 
 				<tr style="height: 30px" align="center">
 					<td><input type="hidden" value="멤버" /></td>

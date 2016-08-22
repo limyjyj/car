@@ -2,7 +2,7 @@ package com.car.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,6 +90,7 @@ public class CarController {
 		ModelAndView mav = new ModelAndView();
 
 		Member member = (Member)session.getAttribute("loginuser");
+		
 		int total = carService.selectTotalOutcomeByCarindex(carindex);
 		
 		List<Car> cars = null;
@@ -109,15 +110,27 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "searchview.action", method = RequestMethod.GET)
-	public ModelAndView searchViewList(Date startDate, Date endDate, HttpSession session) {
+	public ModelAndView searchViewList(Date startDate, Date endDate, int carindex) {
 		
 		ModelAndView mav = new ModelAndView();
 
-
-		int count = carService.selectCountFuelByRegdate(startDate, endDate);
-	
 		
+		System.out.println("시작"+startDate);
+		System.out.println("끝"+endDate);
+		System.out.println("이거"+carindex);
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd"); 
+		
+		int count = carService.selectCountFuelByRegdate(startDate, endDate, carindex);
+		int totalRepair = carService.selectTotalRepairByCategory(startDate, endDate, carindex);
+		int totalMaintain = carService.selectTotalMaintainByCategory(startDate, endDate, carindex);
+		
+		System.out.println(count);
+		System.out.println(totalRepair);
+		System.out.println(totalMaintain);
+//		
 		mav.addObject("count", count);
+		mav.addObject("totalRepair", totalRepair);
+		mav.addObject("totalMaintain", totalMaintain);
 		return mav;
 
 	}
