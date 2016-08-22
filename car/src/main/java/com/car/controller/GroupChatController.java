@@ -89,6 +89,7 @@ public class GroupChatController {
 			groupChat.setReservationNo(reservationNo);			
 			groupChatService.insertGroupChat(groupChat);
 			groupChat = groupChatService.selectGroupChatByReservationNo(reservationNo);
+			chatNo = groupChat.getChatNo();
 			
 		} else {
 			chatNo = groupChat.getChatNo();			
@@ -98,7 +99,7 @@ public class GroupChatController {
 		
 		if(groupChatStatement == null) {			
 			GroupChatStatement gcs = new GroupChatStatement();
-			gcs.setChatNo(groupChatService.selectGroupChatByMemberId(member.getMemberId()).getChatNo());
+			gcs.setChatNo(chatNo);
 			gcs.setMemberNo(member.getMemberNo());
 			groupChatService.insertGroupChatStatement(gcs);
 		}

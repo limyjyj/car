@@ -12,6 +12,8 @@ public interface OutcomeService {
 
 	List<Outcome> selectOutcomeByCarindex(int carindex);
 	
+	Outcome selectOutcomeByHistoryNo(int historyNo);
+	
 	public void updateOutcome(Outcome outcome);
 	
 	
