@@ -9,9 +9,9 @@
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<script
+<!-- <script
     src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
-</script>
+</script> -->
 
 
 
@@ -22,8 +22,6 @@
 
 <script type="text/javascript">
 
-
-
 $(function() {
 	$('input#enter-groupchatroom').on('click',
 			function(event) {
@@ -32,8 +30,40 @@ $(function() {
 				location.href = ('/car/groupchat/longtermreservationchat.action?reservationNo=' + reservationNo);
 				
 				}
-			);
-     });
+		);
+     
+     
+	$('tr#reservation-user-list').on('click',
+			function(event) {
+				
+				$.ajax("/car/groupchat/reservationuserlist.action?reservationNo=" + $(this).attr('data-rno2'),{
+				
+					success : function(data) {
+						
+						eval("list = " + data);
+						$("#maplist").append( "reservation No"+" "+" "+" "+" "+" "+"member No");
+						$("#maplist").css("padding-left:5em");
+						
+						$.each(list, function(index, element) {
+													
+							$("#mapform").append( "<p>reservation no : "+element.reservationNo + "member no : "+element.memberNo+"</p>");
+													
+						})  
+						//window.location.reload(true);
+						//location.reload(true);
+
+					},
+
+					error : function(request,
+							status, error) {
+						alert("작성된 스케줄이 없습니다. 작성하고 싶으시면 작성 버튼을 클릭해 주세요.");
+					}
+				}
+		);
+	});
+});
+	
+	 
 
 </script>
 	
@@ -49,7 +79,7 @@ $(function() {
         	<table align="center">
 			<thead>
 				<tr>
-					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp유저번호</th>					
+					<th style="width: 100px">&nbsp&nbsp&nbsp등록인 아이디</th>					
 					<th style="width: 100px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp타태워</th>
 					<th style="width: 150px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp출발지</th>
 					<th style="width: 150px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp도착지</th>
@@ -62,9 +92,40 @@ $(function() {
 			</thead>
 			<tbody>	
 				<c:forEach var="b" items="${ reservations }">		
-					<tr>
-						
-						<td>${ b.memberNo }</td>
+					<tr data-toggle="modal"  data-target="#reservationUsersModal" id="reservation-user-list" data-rno2="${ b.reservationNo }">
+					
+					<!-- Modal -->
+						<div class="modal fade" id="reservationUsersModal" role="dialog"  >
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">input</h4>
+									</div>
+									<div class="modal-body">
+										<form role="form" id="save-schedule">
+											<div class="form-group">
+												<label for="title">Title1</label>&nbsp&nbsp&nbsp
+												<label for="title">Title2</label>
+											</div>
+											<div id="maplist"></div>
+											<div id="mapform"></div>
+											<button type="button" id="save" class="btn btn-default" data-dismiss="modal">저장</button>
+										</form>
+
+									</div>
+
+									<!-- Modal Footer -->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">취소</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+												
+						<td>${ b.member.memberId }</td>
 						
 						<td>${ b.type } </td>
 						
@@ -95,4 +156,11 @@ $(function() {
     
 </body>
 </html>
+
+
+
+
+
+
+
 

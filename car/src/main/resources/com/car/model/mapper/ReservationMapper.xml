@@ -87,8 +87,7 @@
 		( #{memberNo}, #{reservationNo})
 	</insert>
 	
-	<select id="selectConfirmList" resultType="Confirm">
-		
+	<select id="selectConfirmList" resultType="Confirm">		
 		SELECT *
 		FROM
 		Confirm
@@ -96,18 +95,13 @@
     
     <select id="selectConfirmListByReservationNo" parameterType="int"
 	resultType="Member">
-
-	select distinct Member.*
-			from Confirm
-			join Member
-			on Member.memberno = Confirm.memberno
-            WHERE Confirm.reservationno=#{reservationNo}
-	
-	
+		select distinct Member.*
+		from Confirm
+		join Member
+		on Member.memberno = Confirm.memberno
+	    WHERE Confirm.reservationno=#{reservationNo}	
 	</select>
 	
-
-
 	<insert id="insertReservation" parameterType="Reservation" useGeneratedKeys="true"
 		keyProperty="reservationNo" keyColumn="reservationNo">
 		INSERT INTO Reservation
@@ -139,35 +133,44 @@
 	</select>
 	
 	<update id="ReservationReadCount" parameterType="int">
-	UPDATE Reservation
-	SET resersvationCount = resersvationCount + 1
-	WHERE reservationNo = #{reservationNo}
+		UPDATE Reservation
+		SET resersvationCount = resersvationCount + 1
+		WHERE reservationNo = #{reservationNo}
 	</update>
 	
 	<select id="selectReservationSearchType" parameterType="hashMap" resultMap="reservationMap2">
-	SELECT *
+		SELECT *
 		FROM Reservation 
 		WHERE frequency =#{frequency}
 	</select>
 	
 	<update id="deleteReservation" parameterType="int">
-	UPDATE Reservation SET deleted
-	= '1' WHERE reservationno = #{reservationNo}
+		UPDATE Reservation 
+		SET deleted = '1' 
+		WHERE reservationno = #{reservationNo}
 	</update>
 
 	<update id="updateReservation" parameterType="Reservation">
-	UPDATE Reservation
-	SET departure = #{departure}, arrival = #{arrival}, content = #{content},
-	startDate=#{startDate}, endDate=#{endDate}
-	WHERE reservationno = #{reservationNo}
+		UPDATE Reservation
+		SET departure = #{departure}, arrival = #{arrival}, content = #{content},
+		startDate=#{startDate}, endDate=#{endDate}
+		WHERE reservationno = #{reservationNo}
 	</update>
 	
 	<select id="selectReservationByMemberNo" parameterType="int" resultType="Reservation">   
-   SELECT r.*
-   FROM Reservation r   
-   JOIN Member m
-   ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기' AND r.deleted = '0'
-   WHERE m.memberno = #{memberNo} AND m.deleted = '0'
-  </select>
+	   SELECT r.*
+	   FROM Reservation r   
+	   JOIN Member m
+	   ON (r.reservationno = m.reservationno OR r.memberno = m.memberno) AND  r.frequency = '정기' AND r.deleted = '0'
+	   WHERE m.memberno = #{memberNo} AND m.deleted = '0'
+    </select>
+  
+  	<select id="selectReservationUserListByReservationNo" parameterType="int" resultType="Reservation">
+		select m.*
+		from Member m
+		join Reservation r
+		on (m.memberno = r.memberno or m.reservationno = r.reservationno) and m.deleted ='0' and r.deleted = '0'
+		where r.reservationno = #{reservationNo}
+	</select>
 	
 </mapper>

@@ -129,4 +129,10 @@ public class MysqlReservationDao implements ReservationDao {
 	
 	}
 
+	@Override
+	public List<Member> selectReservationUserListByReservationNo(int reservationNo) {
+		
+		return reservationMapper.selectReservationUserListByReservationNo(reservationNo);
+	}
+
 }
