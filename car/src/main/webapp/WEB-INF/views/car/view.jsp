@@ -5,12 +5,12 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
 $(function() {
 	$('#delete').on('click', function(event) {
-		var carindex = ${car.carindex}
+		var carindex = $('#carindex').val();
 		var result = confirm('삭제 하시겠습니까?');
 		if (result) {
 			//yes
@@ -28,7 +28,7 @@ $(function() {
 	 <div>
 	 <c:forEach var="car" items="${ cars }">
 	 
-		<table id="carlist" class="table table-striped"  align="center" width="700px">
+		<table id="carlist" class="table table-striped" align="center" width="700px">
         	
         		<tr style="height:30px" align="center">
         			
@@ -55,7 +55,10 @@ $(function() {
         			<td>${ total }</td>
    					<td><a href="update.action?carindex=${ car.carindex }">수정</a></td>
 		    
-		        	<td><a href='javascript:doDelete(${ car.carindex })' id="delete">삭제</a></td>
+		        	<td> 
+		        	<a href='#' id="delete">삭제</a>
+		        	<input type="hidden" id="carindex" value="${ car.carindex }">
+		        	</td>
         		</tr>
         		
 		        	

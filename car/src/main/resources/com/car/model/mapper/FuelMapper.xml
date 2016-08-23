@@ -16,10 +16,15 @@
 		<result property="location" column="location" />
 		<result property="content" column="content" />
 
-		<association property="memberNo" column="memberno" select="selectFuelByMemberNo" />
-		<association property="memberNo" column="memberno" select="selectFuelByCarindex" />
+		<association property="memberNo" column="memberno"
+			select="selectFuelByMemberNo" />
+		<association property="memberNo" column="memberno"
+			select="selectFuelByCarindex" />
+		<association property="memberNo" column="memberno"
+			select="selectFuelByHistoryNo" />
+
 	</resultMap>
-	
+
 	<sql id="selectDefault">
 		SELECT fuelNo, category, perLiter, payment, liter, regDate,
 		location, content, historyNo
@@ -31,7 +36,8 @@
 		(historyNo, category, perLiter, payment, liter, regDate, location,
 		content)
 		VALUES
-		(#{historyNo}, #{category}, #{perLiter}, #{payment}, #{liter}, #{regDate},
+		(#{historyNo}, #{category}, #{perLiter}, #{payment},
+		#{liter}, #{regDate},
 		#{location}, #{content});
 	</insert>
 
@@ -40,32 +46,50 @@
 		FROM Member m
 		JOIN Car c
 		ON m.memberno = c.memberno
-		JOIN Carhistory ch
+		JOIN
+		Carhistory ch
 		ON ch.carindex = c.carindex
 		JOIN Fuel f
-		ON ch.historyno = f.historyno
+		ON ch.historyno =
+		f.historyno
 		WHERE m.memberno = #{memberno}
 	</select>
-	
+
 	<select id="selectFuelByCarindex" parameterType="int" resultMap="fuelMap">
-		SELECT ch.*, f.* 
+		SELECT ch.*, f.*
 		FROM Member m
 		JOIN Car c
 		ON m.memberno = c.memberno
 		JOIN Carhistory ch
-		ON ch.carindex = c.carindex
+		ON
+		ch.carindex = c.carindex
 		JOIN Fuel f
 		ON ch.historyno = f.historyno
-		WHERE ch.carindex = #{carindex};
+		WHERE
+		ch.carindex = #{carindex};
 	</select>
-	
+
+	<select id="selectFuelByHistoryNo" parameterType="int" resultMap="fuelMap">
+		SELECT f.*
+		FROM Member m
+		JOIN Car c
+		ON m.memberno = c.memberno
+		JOIN Carhistory ch
+		ON
+		ch.carindex = c.carindex
+		JOIN Fuel f
+		ON ch.historyno = f.historyno
+		WHERE
+		ch.historyno = #{hitoryno};
+	</select>
+
 	<select id="updateFuel" parameterType="Fuel">
 		UPDATE Fuel
-		SET type =
-		#{type}, perLiter = #{perLiter}, payment = #{payment}, liter =
-		#{liter}, regDate = #{regDate}, location = #{location}, content =
-		#{content}
-		WHERE fuelNo = #{fuelNo}
+		SET
+		category = #{category}, regDate = #{regDate}, perLiter = #{perLiter}, 
+		liter = #{liter}, payment = #{payment}, location = #{location}, 
+		content = #{content}
+		WHERE historyNo = #{historyNo}
 	</select>
 
 </mapper>

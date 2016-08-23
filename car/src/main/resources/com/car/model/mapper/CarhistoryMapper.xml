@@ -56,7 +56,7 @@
 		parameterType="int" resultMap="carhistoryMap">
 		select Carhistory.*
 		from Carhistory
-		where carindex = #{carindex};
+		where carindex = #{carindex} AND deleted='0';
 	</select>
 	
 	

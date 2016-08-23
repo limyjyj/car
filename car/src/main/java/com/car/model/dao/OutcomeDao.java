@@ -17,4 +17,5 @@ public interface OutcomeDao {
 	
 	void updateOutcome(Outcome outcome);
 	
+	
 }

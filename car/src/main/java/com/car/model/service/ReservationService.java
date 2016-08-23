@@ -45,6 +45,7 @@ public interface ReservationService {
 
 	List<Reservation> departureSearch(String departure, String frequency);
 	
+	List<Member> selectReservationUserListByReservationNo(int reservationNo);
 
 
 }

@@ -8,11 +8,13 @@ import com.car.model.dto.Outcome;
 public interface FuelMapper {
 
 	void insertFuel(Fuel fuel);
-		
+
 	List<Fuel> selectFuelByMemberNo(int memberNo);
-	
+
 	List<Fuel> selectFuelByCarindex(int carindex);
 
-	void updateFuel(Fuel fuel);
-		
+	Fuel selectFuelByHistoryNo(int historyNo);
+
+	public void updateFuel(Fuel fuel);
+
 }

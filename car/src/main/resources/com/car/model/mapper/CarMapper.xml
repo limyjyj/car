@@ -26,13 +26,13 @@
 		FROM Car
 	</sql>
 
-	<insert id="insertCar" parameterType="Car">
+	<insert id="insertCar" parameterType="Car" useGeneratedKeys="true"
+		keyProperty="carindex" keyColumn="carindex">
 		INSERT INTO Car
 		(
 		model, carno, regdate, totaldistance, memberno)
 		VALUES
-		( #{model},
-		#{carno}, #{regdate}, #{totaldistance}, #{memberNo})
+		(#{model},	#{carno}, #{regdate}, #{totaldistance}, #{memberNo})
 	</insert>
 	<select id="selectCars" resultType="Car">
 		SELECT *
@@ -41,17 +41,17 @@
 
 	<select id="selectAllCarByCarno" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE memberNo = #{memberNo}
+		WHERE memberNo = #{memberNo} And deleted = '0'
 	</select>
 
 	<select id="selectCarByCarno" parameterType="String" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE carno = #{carno}
+		WHERE carno = #{carno} And deleted = '0'
 	</select>
 
 	<select id="selectCarByCarindex" parameterType="int" resultType="Car">
 		<include refid="selectDefault" />
-		WHERE carindex = #{carindex}
+		WHERE carindex = #{carindex} And deleted = '0'
 	</select>
 
 	<update id="updateCar" parameterType="Car">
@@ -81,7 +81,7 @@
 		where memberNo = #{memberNo}
 	</select>
 	<select id="selectTotalOutcomeByCarindex" parameterType="int" resultType="int">
-		select sum(payment)
+		select IFNULL(sum(payment), 0)
 	      from(
 	      select Outcome.historyno, sum(Outcome.payment) as `payment`
 	      from Outcome 
@@ -103,13 +103,31 @@
 	      ) `c`
 	</select>
 	
-	<select id="selectCountFuelByRegdate" parameterType="int" resultType="int">
+	<select id="selectCountFuelByRegdate" parameterType="hashMap" resultType="int">
 		 select count(Fuel.historyno)
-		from Fuel 
-		where regdate <![CDATA[  <  ]]>  #{endDate} and regdate <![CDATA[   >   ]]> #{startDate}
+		from Fuel
+		join Carhistory
+		on Fuel.historyno = Carhistory.historyno 
+		where regdate <![CDATA[  <  ]]>  #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} 
+		and Carhistory.carindex = #{carindex}
 	
 	
 	</select>
-
+	<select id="selectTotalRepairByCategory" parameterType="hashMap" resultType="int">
+		select ifnull(sum(Outcome.payment), 0)
+		from Outcome
+		join Carhistory
+		on Outcome.historyno = Carhistory.historyno
+		where regdate <![CDATA[  <  ]]> #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} and
+		Carhistory.carindex = #{carindex} and Carhistory.category like '정비비'
+	</select>
+	<select id="selectTotalMaintainByCategory" parameterType="hashMap" resultType="int">
+		select ifnull(sum(Outcome.payment), 0)
+		from Outcome
+		join Carhistory
+		on Outcome.historyno = Carhistory.historyno
+		where regdate <![CDATA[  <  ]]> #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} and
+		Carhistory.carindex = #{carindex} and Carhistory.category like '유지비'
+	</select>
 
 </mapper>

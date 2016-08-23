@@ -15,6 +15,7 @@ public interface OutcomeMapper {
 	Outcome selectOutcomeByHistoryNo(int historyNo);
 	
 	void updateOutcome(Outcome outcome);
+	
 		
 	
 }

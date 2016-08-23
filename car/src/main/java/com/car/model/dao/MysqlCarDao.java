@@ -1,6 +1,7 @@
 package com.car.model.dao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -61,8 +62,28 @@ public class MysqlCarDao implements CarDao {
 		return carMapper.selectTotalOutcomeByCarindex(carindex);
 	}
 	@Override
-	public int selectCountFuelByRegdate(Date startDate, Date endDate){
-		return carMapper.selectCountFuelByRegdate(startDate, endDate);
+	public int selectCountFuelByRegdate(Date startDate, Date endDate, int carindex){
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("carindex", carindex);
+		return carMapper.selectCountFuelByRegdate(param);
+	}
+	@Override
+	public int selectTotalRepairByCategory(Date startDate, Date endDate, int carindex){
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("carindex", carindex);
+		return carMapper.selectTotalRepairByCategory(param);
+	}
+	@Override
+	public int selectTotalMaintainByCategory(Date startDate, Date endDate, int carindex){
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("carindex", carindex);
+		return carMapper.selectTotalMaintainByCategory(param);
 	}
 	
 

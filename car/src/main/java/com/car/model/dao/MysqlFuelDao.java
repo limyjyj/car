@@ -26,15 +26,21 @@ public class MysqlFuelDao implements FuelDao {
 	public List<Fuel> selectFuelByMemberNo(int memberNo) {
 		return fuelMapper.selectFuelByMemberNo(memberNo);
 	}
+	
+	@Override
+	public List<Fuel> selectFuelByCarindex(int carindex) {
+		return fuelMapper.selectFuelByCarindex(carindex);
+	}
+	
+	@Override
+	public Fuel selectFuelByHistoryNo(int historyNo) {
+		return fuelMapper.selectFuelByHistoryNo(historyNo);
+	}
 
 	@Override
 	public void updateFuel(Fuel fuel) {
 		fuelMapper.updateFuel(fuel);
 	}
-
-	@Override
-	public List<Fuel> selectFuelByCarindex(int carindex) {
-		return fuelMapper.selectFuelByCarindex(carindex);
-	}
+	
 
 }
