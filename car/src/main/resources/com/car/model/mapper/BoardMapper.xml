@@ -41,7 +41,7 @@
 	</select>
 	
 	<select id="selectBoardCount" resultType="int">
-		SELECT COUNT(*) FROM Board
+		SELECT COUNT(*) FROM Board WHERE deleted='0' and type='Notice'
 	</select> 
 
 	<update id="deleteBoard" parameterType="int">
@@ -71,16 +71,9 @@
 		FROM Board
 		WHERE boardNo = #{boardNo}
 	</select>
-	
-<!-- 	<select id="selectBoardCommentsByBoardNo"
-		parameterType="int" resultType="BoardComment">
-		SELECT commentno, boardno, writer, content, regdate
-		FROM boardcomment
-		WHERE boardno = #{boardNo}
-	</select> -->
-	
+
 	<select id="selectReviewCount" resultType="int">
-		SELECT COUNT(*) FROM Board
+		SELECT COUNT(*) FROM Board WHERE deleted='0' and type='Review'
 	</select> 
 
 	<update id="deleteReview" parameterType="int">

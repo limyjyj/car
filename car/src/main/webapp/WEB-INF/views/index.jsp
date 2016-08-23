@@ -48,17 +48,16 @@
 					<img src="/car/resources/images/fraction-slider/base_2.jpg"
 						width="1920" height="auto" data-in="fade" data-out="fade" /> <img
 						src="/car/resources/images/fraction-slider/slider-girl.png"
-						width="600" height="545" data-position="20,400" data-in="right"
+						width="600" height="450" data-position="20,400" data-in="right"
 						data-0ut="bottom" data-delay="500" />
 
 					<p class="slide-2 " data-position="120,900" data-in="bottom"
-						data-out="top" data-delay="2000">Your-Business</p>
+						data-out="top" data-delay="2000">이제는 카풀 하세요!</p>
 					<p class="slide-2a " data-position="210,900" data-in="left"
-						data-out="right" data-delay="3000">A responsive multipurpose
-						Theme</p>
+						data-out="right" data-delay="3000">경제적 부담 Down!</p>
 					<p class="slide-2b " data-position="270,900" data-in="top"
-						data-out="bottom" data-delay="4000" data-ease-in="easeOutBounce">For
-						Your Prestigious World !</p>
+						data-out="bottom" data-delay="4000" data-ease-in="easeOutBounce">
+						안전하고 신뢰를 우선으로 생각하는 가치가!</p>
 				</div>
 
 				<div class="slide">
@@ -91,76 +90,42 @@
 				</div>
 			</div>
 		</div>
-
+</section>
 		<div class="container">
-			<div class="row super_sub_content">
-				<div class="col-md-3 col-sm-6">
-					<div class="serviceBox_2 green">
-						<div class="service-icon">
-							<i class="fa fa-globe"></i>
-						</div>
-						<div class="service-content">
-							<h3>Web Development</h3>
-							<p>sit amet, consec tetuer adipis elit, aliquam eget nibh
-								etlibura.</p>
-							<div class="read">
-								<a href="">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="serviceBox_2 purple">
-						<div class="service-icon">
-							<i class="fa fa-rocket"></i>
-						</div>
-						<div class="service-content">
-							<h3>Brand Building</h3>
-							<p>sit amet, consec tetuer adipis elit, aliquam eget nibh
-								etlibura.</p>
-							<div class="read">
-								<a href="">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="serviceBox_2 red">
-						<div class="service-icon">
-							<i class="fa fa-user-md"></i>
-						</div>
-						<div class="service-content">
-							<h3>Responsive Design</h3>
-							<p>sit amet, consec tetuer adipis elit, aliquam eget nibh
-								etlibura.</p>
-							<div class="read">
-								<a href="">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="serviceBox_2 blue">
-						<div class="service-icon">
-							<i class="fa fa-twitter"></i>
-						</div>
-						<div class="service-content">
-							<h3>Clean & Clear Design</h3>
-							<p>sit amet, consec tetuer adipis elit, aliquam eget nibh
-								etlibura.</p>
-							<div class="read">
-								<a href="">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div style="height: 600px; padding-top: 70px; padding-bottom: 30px; margin: auto;">
+		
+			<div style="width: 250px; float :left">		
+			<img src="/car/resources/images/돈.jpg" >		
+				<h1 style="text-align: center;">차량 제공 & 검색</h1>
+				<p style="text-align: center;">긴 출퇴근 시간이 지루하세요?</p>
+				<p style="text-align: center;">카풀 제공 시 운전자는 운전 경로,</p>
+				<p style="text-align: center;">날짜/시간 및 좌석 당 가격을 설정해 조건에 </p>
+				<p style="text-align: center;">해당되는 탑승자와 연결될 수 있습니다. </p>
 			</div>
+			<div style="width: 170px; float: left">&nbsp;</div>
+			<div style="width: 250px; float :left">
+			<img src="/car/resources/images/폰차.jpg" >		
+				<h1 style="text-align: center;">비용 부담</h1>
+				<p style="text-align: center;">주행 요금은 차량 이용 후 실제 주행거리에 </p>
+				<p style="text-align: center;">따라 부과됩니다. 가치가는 회원들의</p>
+				<p style="text-align: center;">금전적 기여가 영리적인 목적이 아닌 </p>
+				<p style="text-align: center;">벌충하는 데에 이용됩니다.</p>
+			</div>
+			<div style="width: 170px; float: left">&nbsp;</div>
+			<div style="width: 250px; float :left">
+			<img src="/car/resources/images/신뢰.jpg">		
+				<h1 style="text-align: center;">신뢰와 안전</h1>
+				<p style="text-align: center;">확실한 차량 공유가 가치가의 특징입니다. </p>
+				<p style="text-align: center;">가치가의 서비스 및 회원 운영은  </p>
+				<p style="text-align: center;">인증된 프로필로 안전을 보장합니다.</p>
+			</div>
+		</div>
 		</div>
 
 		<div class="grey_bg pdt-70">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-5 feature-block">
+					<div class="col-sm-5 feature-block" >
 						<img class="img-responsive center-block"
 							src="/car/resources/images/laptop.png" />
 					</div>
