@@ -23,7 +23,7 @@ public interface ReservationService {
 	
 	void updateReservation(Reservation reservation);
 	
-	void deleteReservation(int reservationNo);
+	void deleteReservation(Reservation reservation);
 
 	void insertConfirm(Confirm confirm);
 	

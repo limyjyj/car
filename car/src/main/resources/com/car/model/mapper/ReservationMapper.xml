@@ -171,8 +171,7 @@
 		FROM
 		Reservation
 	</select>
-<!-- 	
-	
+ <!-- 
 	<select id="selectCountComplete" resultType="int">
 	SELECT COUNT(*)
   FROM  Member m
