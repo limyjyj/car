@@ -9,47 +9,46 @@ import com.car.model.dto.Reservation;
 
 public interface ReservationService {
 
-		
-	void insertReservation(Reservation reservation);
+      
+   void insertReservation(Reservation reservation);
 
-	List<Reservation> selectReservationList();
-	
-	List<Reservation> selectReservationList2(int start, int last);
-	
-	
-	Reservation selectReservationByReservationNo(int reservationNo);
-	
+   List<Reservation> selectReservationList();
+   
+   List<Reservation> selectReservationList2(int start, int last);
+   
+   
+   Reservation selectReservationByReservationNo(int reservationNo);
+   
    int selectReservationCount();
-	
-	void updateReservation(Reservation reservation);
-	
-	void deleteReservation(Reservation reservation);
+   
+   void updateReservation(Reservation reservation);
+   
+   void deleteReservation(Reservation reservation);
 
-	void insertConfirm(Confirm confirm);
-	
-	List<Confirm> selectConfirmList();
-	
+   void insertConfirm(Confirm confirm);
+   
+   List<Confirm> selectConfirmList();
+   
 
-	List<Confirm> selectConfirmListByReservationNo(int reservationNo);
-	
-	Member selectMemberByMemeberNo(int memberNo);
-	
-	List<Reservation> selectReservationSearchType(String frequency);
-	
-	int insertReservationNoToMember(int reservationNo);
-	
-	void updateMemberByReservationNo(Member member);
-	
-	List<Reservation> selectReservationByMemberNo(int memberNo);
-	
+   List<Confirm> selectConfirmListByReservationNo(int reservationNo);
+   
+   Member selectMemberByMemeberNo(int memberNo);
+   
+   List<Reservation> selectReservationSearchType(String frequency);
+   
+   int insertReservationNoToMember(int reservationNo);
+   
+   void updateMemberByReservationNo(Member member);
+   
+   List<Reservation> selectReservationByMemberNo(int memberNo);
+   
 
-	List<Reservation> departureSearch(String departure, String frequency);
-	
-	List<Member> selectReservationUserListByReservationNo(int reservationNo);
+   List<Reservation> departureSearch(String departure, String frequency);
+   
 
-	void deleteConfirm(Confirm confirm);
-	
-	void deleteGroup(int reservationNo);
+   void deleteConfirm(Confirm confirm);
+   
+   void deleteGroup(int reservationNo);
 
-
+   List<Member> selectReservationUserListByReservationNo(int reservationNo);
 }
