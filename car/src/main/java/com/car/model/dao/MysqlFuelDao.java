@@ -41,6 +41,11 @@ public class MysqlFuelDao implements FuelDao {
 	public void updateFuel(Fuel fuel) {
 		fuelMapper.updateFuel(fuel);
 	}
+
+	@Override
+	public void deletedFuel(Fuel fuel) {
+		fuelMapper.deletedFuel(fuel);
+	}
 	
 
 }

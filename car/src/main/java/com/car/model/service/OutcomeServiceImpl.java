@@ -40,6 +40,11 @@ public class OutcomeServiceImpl implements OutcomeService {
 	public Outcome selectOutcomeByHistoryNo(int historyNo) {
 		return outcomeDao.selectOutcomeByHistoryNo(historyNo);
 	}
+
+	@Override
+	public void deletedOutcome(Outcome outcome) {
+		outcomeDao.deletedOutcome(outcome);
+	}
 	
 
 }
