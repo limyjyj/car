@@ -171,6 +171,16 @@
 		FROM
 		Reservation
 	</select>
+<!-- 	
+	
+	<select id="selectCountComplete" resultType="int">
+	SELECT COUNT(*)
+  FROM  Member m
+   JOIN Confirm c
+   ON m.memberno
+   WHERE m.memberno = c.memberno AND  m.reservationno = c.reservationno;
+	</select>
+	 -->
 
 	<update id="ReservationReadCount" parameterType="int">
 		UPDATE
