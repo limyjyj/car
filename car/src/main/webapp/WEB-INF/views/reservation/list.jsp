@@ -93,7 +93,7 @@ $(document).ready(function (){
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br />
 
-	<div class="bdiv" align="center">실시간.정기 예약판</div>
+	<div class="bdiv" style="text-align:center; font-size: 10px" >실시간.정기 예약판</div>
 	<br />
 	<br />
 
@@ -102,20 +102,21 @@ $(document).ready(function (){
 		<tr>
 			<td><input type="hidden" name="pageno2" value=${ pageno } /> <input
 				type="hidden" name="reservationkind" value=${ b.reservationKind } />
-				<select id="reservationsearch" name="reservationsearch">
-					<option>선택</option>
+				<select id="reservationsearch" name="reservationsearch" >
+					<option >선택</option>
 					<!-- 		<option value="전체보기">전체보기</option> -->
 					<option value="실시간">실시간</option>
 					<option value="정기">정기</option>
 
-			</select> <input type="text" name="departure" id="departureSearch"
-				style="width: 70px" /> <input type="button" id="departureSearch2"
-				value="출발지검색" style="height: 25px" /></td>
+		    	</select> 
+			   <input type="text" name="departure" id="departureSearch"
+			       style="width: 70px" /> <input type="button" id="departureSearch2"
+				   value="출발지검색" style="height: 25px" /></td>
 		</tr>
 
 	</table>
 	<form id="reservationform" action="list.action" method="post">
-		<table class="btable" align="center">
+		<table  class="table table-striped" align="center">
 			<thead>
 				<tr>
 					<th style="width: 100px">회원번호</th>
@@ -140,8 +141,7 @@ $(document).ready(function (){
 					<td>${ b.frequency }</td>
 
 					<td>${ b.type }</td>
-					<td><a
-						href='detail.action?reservationno=${ b.reservationNo }&pageno=${ pageno }'>
+					<td><a href='detail.action?reservationno=${ b.reservationNo }&pageno=${ pageno }'>
 							${b.departure } </a></td>
 
 					<td>${ b.arrival }</td>
@@ -156,27 +156,30 @@ $(document).ready(function (){
 								<div class="buttons">
 									<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
-									<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
-									<input type="button"
-										onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=500, height=500, scrollbars=1')"
-										value="목록보기">
-							</c:when>
-							<c:otherwise>
-
-
-								<input type="button" id="register" value="신청하기"
-									name="${ b.reservationNo }" style="height: 25px" />
-								<input id="reservationNo" type="hidden"
-									value="${ b.reservationNo }" />
-								<input id="memberNo" type="hidden"
-									value="${ loginuser.memberNo }" />
-
-
-							</c:otherwise>
-						</c:choose></td>
-
-				</tr>
-			</c:forEach>
+						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
+						<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=500, height=500, scrollbars=1')" value="목록보기">
+	
+					</c:when>
+						<c:when test="${ loginuser.memberNo eq confirm.memberNo}">	
+						<input type="button" value="신청완료"  style="height: 25px" />
+						</c:when>
+					<c:otherwise>
+					
+							 
+						 <input type="button" id="register" value="신청하기" name="${ b.reservationNo }" style="height: 25px" />
+						 					
+						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
+						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
+		
+						
+					</c:otherwise>
+				</c:choose>
+						
+						
+						</td>
+						
+					</tr>
+				</c:forEach>				
 		</table>
 
 		<br />

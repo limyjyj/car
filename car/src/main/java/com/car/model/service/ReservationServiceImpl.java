@@ -11,10 +11,6 @@ import com.car.model.dto.Confirm;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
-
-
-
-
 @Service("reservationService")
 
 public class ReservationServiceImpl implements ReservationService {
@@ -22,23 +18,18 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	@Qualifier("mysqlReservationDao")
 	private ReservationDao reservationDao;
-	
-
-	
 
 	@Override
 	public void insertReservation(Reservation reservation) {
 
-
 		reservationDao.insertReservation(reservation);
 
 	}
-	
+
 	@Override
 	public List<Reservation> selectReservationList() {
 		return reservationDao.selectReservationList();
 	}
-	
 
 	@Override
 	public List<Reservation> selectReservationList2(int start, int last) {
@@ -47,35 +38,33 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public Reservation selectReservationByReservationNo(int reservationNo) {
-		
+
 		return reservationDao.selectReservationByReservationNo(reservationNo);
 
-	  }
-	
-
+	}
 
 	@Override
 	public void updateReservation(Reservation reservation) {
 		reservationDao.updateReservation(reservation);
-		
+
 	}
 
 	@Override
 	public void deleteReservation(int reservationNo) {
 		reservationDao.deleteReservation(reservationNo);
-		
-	 }
+
+	}
 
 	@Override
 	public int selectReservationCount() {
-		
-		 return reservationDao.selectReservationCount();
+
+		return reservationDao.selectReservationCount();
 	}
 
 	@Override
 	public void insertConfirm(Confirm confirm) {
 		reservationDao.insertConfirm(confirm);
-		
+
 	}
 
 	@Override
@@ -86,12 +75,12 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public List<Confirm> selectConfirmListByReservationNo(int reservationNo) {
 		return reservationDao.selectConfirmListByReservationNo(reservationNo);
-		
+
 	}
 
 	@Override
 	public Member selectMemberByMemeberNo(int memberNo) {
-		
+
 		return reservationDao.selectMemberByMemeberNo(memberNo);
 	}
 
@@ -108,14 +97,23 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void updateMemberByReservationNo(Member member) {
 		reservationDao.updateMemberByReservationNo(member);
-		
+
 	}
 
 	@Override
-	public List<Reservation> selectReservationByMemberNo(int memberNo) {		
+	public void deleteConfirm(Confirm confirm) {
+		reservationDao.deleteConfirm(confirm);
+
+	}
+
+	@Override
+	public void deleteGroup(int reservationNo) {
+		reservationDao.deleteGroup(reservationNo);
+	}
+	@Override
+	public List<Reservation> selectReservationByMemberNo(int memberNo) {
 		return reservationDao.selectReservationByMemberNo(memberNo);
 	}
-	
 
 	@Override
 	public List<Reservation> departureSearch(String departure, String frequency) {
@@ -124,17 +122,8 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public List<Member> selectReservationUserListByReservationNo(int reservationNo) {
-		
+
 		return reservationDao.selectReservationUserListByReservationNo(reservationNo);
 	}
-	
 
-	
-
-
-
-	}
-
-
-
-
+}

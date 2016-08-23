@@ -38,9 +38,15 @@ public interface ReservationMapper {
 	void updateMemberByReservationNo(Member member);
 
 	List<Reservation> selectReservationByMemberNo(int memberNo);
-	
+
+	 void deleteConfirm(Confirm confirm);
+	 
+	 void deleteGroup(int reservationNo);
+
+
 	List<Reservation> departureSearch(HashMap<String, Object> map);
 	
 	List<Member> selectReservationUserListByReservationNo(int reservationNo);
 
 }
+

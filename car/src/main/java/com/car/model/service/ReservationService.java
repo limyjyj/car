@@ -47,5 +47,8 @@ public interface ReservationService {
 	
 	List<Member> selectReservationUserListByReservationNo(int reservationNo);
 
+	void deleteConfirm(Confirm confirm);
+	
+	void deleteGroup(int reservationNo);
 
 }

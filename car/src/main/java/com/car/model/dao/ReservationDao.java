@@ -35,11 +35,15 @@ public interface ReservationDao {
 	int insertReservationNoToMember(int reservationNo);
 
 	void updateMemberByReservationNo(Member member);
+	
+	 void deleteConfirm(Confirm confirm);
+	 
+	 void deleteGroup(int reservationNo);
 
 	List<Reservation> selectReservationByMemberNo(int memberNo);
 
 	List<Reservation> departureSearch(String departure, String frequency);
 	
 	List<Member> selectReservationUserListByReservationNo(int reservationNo);
-
+	 
 }

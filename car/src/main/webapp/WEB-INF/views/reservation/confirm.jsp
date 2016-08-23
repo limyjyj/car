@@ -22,60 +22,63 @@
 	})
 
 	$(function() {
-		$('input#accept')
-				.on(
-						'click',
+		$('input#accept').on('click',
 						function(event) {
 							var reservationNo = $('input#reservationno').val();
 							var memberNo = $('input#memberno').val();
 							var result = confirm('수락됨');
-
+		
 							if (result) {
-								location.href = "/car/reservation/confirmAjax.action?reservationNo="
+								location.href = "/car/reservation/confirmAjax.action?reservationno="
 										+ reservationNo
-										+ "&memberNo="
+										+ "&memberno="
 										+ memberNo;
 							} else {
-								alert('이건 아니에유');
+								alert('취소합니다');
 							}
 
 						});
 
-		$('input#refuse')
-				.on(
-						'click',
+		$('input#refuse').on('click',
 						function(event) {
 							var reservationNo = $('#reservationno').val();
 							var memberNo = $('#memberno').val();
 							var result = confirm('거절 하시겠습니까?');
-							var member = {
-								"memberNo" : memberNo,
-								"reservationNo" : reservationNo
+							
+							if (result) {
+								location.href = "/car/reservation/deleteConfirm.action?reservationNo="
+										+ reservationNo
+										+ "&memberNo="
+										+ memberNo;
+							 } else {
+								alert('취소합니다');
 							}
-
-							member = JSON.stringify(member);
-							$
-									.ajax({
-
-										url : "/car/reservation/confirmlist.action?reservationno=${reservationNo}",
-										data : member,
-										contentType : "application/json",
-										success : function(data) {
-											alert("지워짐")
-										}
-									})
-						});
-
-		/* 		$('input#refuse').on('click', function(event) {
-					var reservationno = ${reservation.reservationNo}
-					var result = confirm('거절 하시겠습니까?');
+   
+									});
+					
+		
+		$('#groupok').on('click',
+				function(event) {
+					var reservationNo = $('#reservationno').val();
+					var memberNo = $('#memberno').val();
+					var result = confirm('그룹생성이 완료되었습니까? 지워집니당');
+					
 					if (result) {
-						//yes
-						location.href = ('/car/reservation/confirmlist.action?reservationno=' + reservationno);
-					} else {
-						//no
+						location.href = "/car/reservation/deleteGroup.action?reservationNo="
+								+ reservationNo
+								+ "&memberNo="
+								+ memberNo;
+					 } else {
+						alert('못지움');
 					}
-				}); */
+
+				});
+		$('#ok').on('click', 
+				function(event){  
+			var reservationNo = $('input#okok').val();
+		alert(reservationNo + 'dd');
+			
+		});
 
 	});
 </script>
@@ -106,28 +109,49 @@
 			<tr>
 
 
-				<td>${ c.memberId }</td>
+				<td>${ c.member.memberId }</td>
 
-				<td>${ c.name}</td>
+				<td>${ c.member.name}</td>
 
-				<td>${ c.gender }</td>
+				<td>${ c.member.gender }</td>
 
-				<td>${ c.phone }</td>
+				<td>${ c.member.phone }</td>
 
-				<td><input type="button" id="accept" value="수락"
-					style="height: 25px" /> <input type="button" id="refuse"
-					value="거절" style="height: 25px" /> <input type="text"
-					id="memberno" style="height: 25px" hidden="hidden"
-					value='${ c.memberNo }' /> <input type="text" id="reservationno"
-					style="height: 25px" hidden="hidden" value='${ c.reservationNo }' />
+				<td>
+				
+			<c:choose> 
+				<%-- <c:when test="${ not empty c.member.reservationNo }"> --%>
+				 	<c:when test="${ c.member.reservationNo != 0 and c.member.reservationNo eq c.reservationNo }">	
+				 		<input type="button"  value="수락됨" style="height: 25px" id ="ok" />
+				 		<input type="hidden" id="okok" value="${ c.member.reservationNo}"/>
+				 	</c:when>
+				 	<%-- </c:when> --%>
+				 	<c:otherwise> 
+						<input type="button"  id="accept"  value="수락"  style="height: 25px" />
+						<input id="reservationno" type="hidden" value="${ c.reservationNo }" />
+						<input id="memberno" type="hidden" value="${ loginuser.memberNo }" />
+				</c:otherwise>
+				
+			
+			 </c:choose> 
+				
+				
+					<!-- <input type="button" id="accept" value="수락"style="height: 25px" />  -->
+					
+					<input type="button" id="refuse" value="거절" style="height: 25px" />
+					<input type="text" id="memberno" style="height: 25px" hidden="hidden" value='${ c.memberNo }' /> 
+					<input type="text" id="reservationno" style="height: 25px" hidden="hidden" value='${ reservationNo }' />
 
 				</td>
 
-
-
-
 			</tr>
-		</c:forEach>
+		</c:forEach> 
+	
+		    <td>
+			     <input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" align="center"/> 
+					
+     		</td>
+		
 	</table>
 
 	<br />
