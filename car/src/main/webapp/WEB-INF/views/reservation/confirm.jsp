@@ -122,7 +122,7 @@
 				 	<%-- </c:when> --%>
 				 	<c:otherwise> 
 						<input type="button"  id="accept"  value="수락"  style="height: 25px" />
-						<input id="reservationno" type="text" value="${ reservationNo }" />
+						<input id="reservationno" type="hidden" value="${ reservationNo }" />
 						<input id="memberno" type="hidden" value="${ c.member.memberNo }" />
 						<input type="button" id="refuse" value="거절" style="height: 25px" />
 					
