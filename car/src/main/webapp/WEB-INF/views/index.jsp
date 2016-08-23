@@ -52,13 +52,12 @@
 						data-0ut="bottom" data-delay="500" />
 
 					<p class="slide-2 " data-position="120,900" data-in="bottom"
-						data-out="top" data-delay="2000">Your-Business</p>
+						data-out="top" data-delay="2000">이제는 카풀 하세요!</p>
 					<p class="slide-2a " data-position="210,900" data-in="left"
-						data-out="right" data-delay="3000">A responsive multipurpose
-						Theme</p>
+						data-out="right" data-delay="3000">경제적 부담 Down!</p>
 					<p class="slide-2b " data-position="270,900" data-in="top"
-						data-out="bottom" data-delay="4000" data-ease-in="easeOutBounce">For
-						Your Prestigious World !</p>
+						data-out="bottom" data-delay="4000" data-ease-in="easeOutBounce">
+						안전하고 신뢰를 우선으로 생각하는 가치가!</p>
 				</div>
 
 				<div class="slide">
