@@ -32,7 +32,6 @@ $(function() {
 	$('#index').on(
 			'change',
 			function(event) {
-				alert($('#index').val());
 				var url = "/car/carhistory/view.action?carindex="
 						+ $('#index').val();
 				$("#carlist").load(url);
@@ -269,7 +268,7 @@ $(function() {
 			$('tr#viewFuel').on('click',
 				function(event) {												
 				var historyno = $(this).attr('data-fhno');
-				alert(historyno);
+				
 					$.ajax("/car/carhistory/fuelview.action?historyNo=" + historyno + "&carindex=" + $('#carindex').val()
 							,{						
 						success : function(data) {								
@@ -295,7 +294,7 @@ $(function() {
 	$('button#modify2').on('click', function(event) {
 
 		var historyno = $(this).attr('data-fhno2');
-		alert(historyno);			
+					
 		var fuel;	
 		
 		fuel = {
@@ -470,28 +469,30 @@ $(function() {
 			<br> <br>
 
 			
-			<table id="carlist" class="table table-striped" style="align:center; width:700px;">
+			<table id="carlist" class="table table-striped" style="vertical-align:middle; width:1000px;">
 				
-				<tr style="height: 30px" align="center">
+				<tr style="height: 30px;text-align: center;">
 					<td><input type="hidden" value="멤버" /></td>
 					<td>번호</td>
 					<td>항목</td>
 					<td>날짜</td>
 					<td>금액</td>
-					<td>리터</tr>		
+					<td>리터</td>
+					<td></td>
+				</tr>		
 					
-					<c:forEach var="o" items="${ outcomes }">
-						<tr style="height:30px" align="center" id="viewOutcome"
-							data-toggle="modal" data-target="#viewO" data-hno="${ o.historyNo }" >
-							<td><input type="hidden" value="${ o.historyNo }" id="historyNo" /></td>
-							<td>${ o.historyNo }</td>
-							<td>${ o.category }</td>
-							<td><fmt:formatDate value="${ o.regDate }"
-									pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
-							<td>${ o.payment }</td>
-							<td></td>
-						</tr>
-				
+				<c:forEach var="o" items="${ outcomes }">
+				<tr style="height:30px" align="center" id="viewOutcome"
+						data-toggle="modal" data-target="#viewO" data-hno="${ o.historyNo }" >
+						<td><input type="hidden" value="${ o.historyNo }" id="historyNo" /></td>
+						<td>${ o.historyNo }</td>
+						<td>${ o.category }</td>
+						<td><fmt:formatDate value="${ o.regDate }"
+								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
+						<td>${ o.payment }</td>
+						<td></td><td></td>
+				</tr>
+			
 						<div class="modal fade" id="viewO" role="dialog">
 							<div class="modal-dialog modal-md">
 								<div class="modal-content">
@@ -568,6 +569,7 @@ $(function() {
 								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 						<td><input type="hidden" value="${ f.payment }" id="fpayment"/>${ f.payment }</td>
 						<td>${ f.liter }</td>
+						<td></td>
 					</tr>
 					
 					<div class="modal fade" id="viewF" role="dialog">

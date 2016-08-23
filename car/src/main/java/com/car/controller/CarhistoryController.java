@@ -123,8 +123,6 @@ public class CarhistoryController {
 	public String writeOutcome(HttpServletRequest req, Carhistory carhistory, Outcome outcome, String category, HttpSession session,
 			int carindex) {
 				
-		System.out.println(carindex);
-		
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
 		outcome.setHistoryNo(historyno);
@@ -174,8 +172,6 @@ public class CarhistoryController {
 	public String writeFuel(HttpServletRequest req, Carhistory carhistory, Fuel fuel, String category, HttpSession session,
 			int carindex) {
 		
-		System.out.println(carindex);
-						
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
 		fuel.setHistoryNo(historyno);

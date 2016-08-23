@@ -32,6 +32,7 @@
 						var="regDate" /> ${ regDate }</td>
 				<td>${ f.payment }</td>
 				<td>${ f.liter }</td>
+				
 				<td><a href="delete.action?carindex=${ o.historyNo }">삭제</a></td>
 				
 			</tr>

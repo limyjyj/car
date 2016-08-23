@@ -39,7 +39,7 @@
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div id="pageContainer" class="panel panel-heading"
-		style="padding-top: 25px; margin: auto; width: 1000px">
+		style="padding-top: 25px; margin:auto; width:  1000px">
 
 		<div id="content">
 			<br />

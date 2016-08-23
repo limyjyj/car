@@ -86,18 +86,20 @@ $(function(){
 					<td class="form-group"><label for="inputRegdate">기록종료일</label>
 						<input type="date" path="regdate" class="form-control"
 						placeholder="기록종료일" id="endDate" /></td>
-					<td></td>
+					<td><button type="button" id="search" >조회</button></td>
 
 				</tr>
 				<tr style="height: 30px; text-align: center;" align="center" >
+					<td></td>
 					<td>주유횟수</td>
 					<td>주유비용</td>
 					<td>정비비용</td>
 					<td>유지비용</td>
+					<td></td>
 				</tr>
 			
 			</table>
-			<button type="button" id="search" >조회</button>
+			
        </div>
 
 
