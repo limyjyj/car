@@ -73,20 +73,7 @@ $(document).ready(function (){
 	
 })
 
-
-/* $(document).ready(function (){
-	$("#reservationsearch").change(function (event) {
-		
-		location.href="/car/reservation/frequencylist.action?frequency="+$("#reservationsearch").val();
-		
-	});
-
-	
-	
-}) */
-
 </script>
-
 
 </head>
 <body>
@@ -152,8 +139,8 @@ $(document).ready(function (){
 
 					<td>${ b.totalMember}</td>
 					<td><c:choose>
-							<c:when test="${ loginuser.memberNo eq b.memberNo }">
-								<div class="buttons">
+					<c:when test="${ loginuser.memberNo eq b.memberNo }">
+							<div class="buttons">
 									<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->

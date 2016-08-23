@@ -243,14 +243,13 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
      
     //삭제
      @RequestMapping(value = "delete.action", method = RequestMethod.GET)
-     public String deleteReservation(HttpServletRequest req, int reservationno) {
+     public String deleteReservation(HttpServletRequest req, Reservation reservation) {
      // 1. 요청 데이터 읽기 (글번호)
     
     
      // 2. 데이터 처리 (db에서 데이터 변경)
-     reservationService.deleteReservation(reservationno);
-     
-    
+     reservationService.deleteReservation(reservation);
+
      return "redirect:/reservation/list.action";
      }
      
@@ -310,18 +309,10 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		for (Confirm confirm : confirmedMembersList) {
 			// confirm.setMember(confirm.getMemberNo());
-			System.out.println(confirm.getMemberNo());
+			 
 		}
-		
-		
-	/*	for (Confirm confirm : count) {
-		
 
-					confirm.setMember(reservationService.selectMemberByMemeberNo(confirm.getMemberNo()));
-			
-			
-		}*/	
-		System.out.println(reservationNo);
+		
 		model.addAttribute("confirms", confirmedMembersList);
 		model.addAttribute("reservationNo",reservationNo );
 		

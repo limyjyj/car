@@ -26,8 +26,8 @@
 						function(event) {
 							var reservationNo = $('input#reservationno').val();
 							var memberNo = $('input#memberno').val();
-							var result = confirm('수락됨');
-		
+							var result = confirm('수락합니다');
+								alert(reservationNo);
 							if (result) {
 								location.href = "/car/reservation/confirmAjax.action?reservationno="
 										+ reservationNo
@@ -73,13 +73,6 @@
 					}
 
 				});
-		$('#ok').on('click', 
-				function(event){  
-			var reservationNo = $('input#okok').val();
-		alert(reservationNo + 'dd');
-			
-		});
-
 	});
 </script>
 </head>
@@ -118,30 +111,29 @@
 
 				<td>${ c.member.phone }</td>
 
+			
 				<td>
-				
 			<c:choose> 
 				<%-- <c:when test="${ not empty c.member.reservationNo }"> --%>
 				 	<c:when test="${ c.member.reservationNo != 0 and c.member.reservationNo eq c.reservationNo }">	
-				 		<input type="button"  value="수락됨" style="height: 25px" id ="ok" />
-				 		<input type="hidden" id="okok" value="${ c.member.reservationNo}"/>
+				 		<input type="button"  value="수락됨" style="height: 25px"  />
+				 		
 				 	</c:when>
 				 	<%-- </c:when> --%>
 				 	<c:otherwise> 
 						<input type="button"  id="accept"  value="수락"  style="height: 25px" />
-						<input id="reservationno" type="hidden" value="${ c.reservationNo }" />
-						<input id="memberno" type="hidden" value="${ loginuser.memberNo }" />
+						<input id="reservationno" type="text" value="${ reservationNo }" />
+						<input id="memberno" type="hidden" value="${ c.member.memberNo }" />
+						<input type="button" id="refuse" value="거절" style="height: 25px" />
+					
 				</c:otherwise>
 				
 			
 			 </c:choose> 
-				
-				
-					<!-- <input type="button" id="accept" value="수락"style="height: 25px" />  -->
+			
+			
 					
-					<input type="button" id="refuse" value="거절" style="height: 25px" />
-					<input type="text" id="memberno" style="height: 25px" hidden="hidden" value='${ c.memberNo }' /> 
-					<input type="text" id="reservationno" style="height: 25px" hidden="hidden" value='${ reservationNo }' />
+					
 
 				</td>
 
