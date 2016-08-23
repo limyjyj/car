@@ -20,8 +20,7 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
    $(function() {
-	   alert($('#departure').val());
-		console.log(departure);
+			console.log(departure);
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
