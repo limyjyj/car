@@ -163,6 +163,20 @@ public class CarhistoryController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "outcomedeleted.action", method = RequestMethod.POST)
+	public String outcomeDeleted(Outcome outcome) {		
+		
+		System.out.println(outcome.getHistoryNo());
+		
+		outcomeService.deletedOutcome(outcome);
+		
+		return "";
+		
+	}
+
+	
+	
 
 	// Fuel
 	@RequestMapping(value = "fuelwriteform.action", method = RequestMethod.GET)
@@ -217,6 +231,18 @@ public class CarhistoryController {
 		fuel.setPayment(perliter*liter);
 		
 		fuelService.updateFuel(fuel);
+		
+		return "";
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "fueldeleted.action", method = RequestMethod.POST)
+	public String fuelDeleted(Fuel fuel) {		
+		
+		System.out.println(fuel.getHistoryNo());
+		
+		fuelService.deletedFuel(fuel);
 		
 		return "";
 		

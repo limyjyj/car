@@ -2,6 +2,7 @@ package com.car.model.service;
 
 import java.util.List;
 
+import com.car.model.dto.Car;
 import com.car.model.dto.Outcome;
 
 public interface OutcomeService {
@@ -16,5 +17,7 @@ public interface OutcomeService {
 	
 	public void updateOutcome(Outcome outcome);
 	
+	void deletedOutcome(Outcome outcome);
+
 	
 }

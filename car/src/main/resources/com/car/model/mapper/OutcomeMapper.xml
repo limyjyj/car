@@ -19,14 +19,11 @@
 		<association property="memberNo" column="memberno" select="selectOutcomeByHistoryNo" />
 	</resultMap>
 	
-
-
 	<sql id="selectDefault">
 		SELECT outcomeNo, category, payment, regDate, location,
 		content, historyNo
 		FROM Outcome
 	</sql>
-
 
 	<insert id="insertOutcome" parameterType="Outcome">
 		INSERT INTO Outcome
@@ -45,7 +42,7 @@
 		ON ch.carindex = c.carindex
 		JOIN Outcome o
 		ON ch.historyno = o.historyno
-		WHERE m.memberno = #{memberno}
+		WHERE m.memberno = #{memberno} AND o.deleted = '0'
 	</select>
 	
 	<select id="selectOutcomeByCarindex" parameterType="int" resultMap="outcomeMap">
@@ -57,7 +54,7 @@
 		ON ch.carindex = c.carindex
 		JOIN Outcome o
 		ON ch.historyno = o.historyno
-		WHERE ch.carindex = #{carindex};
+		WHERE ch.carindex = #{carindex} AND o.deleted = '0';
 	</select>
 
 	<select id="selectOutcomeByHistoryNo" parameterType="int" resultMap="outcomeMap">
@@ -69,7 +66,7 @@
 		ON ch.carindex = c.carindex
 		JOIN Outcome o
 		ON ch.historyno = o.historyno
-		WHERE ch.historyno = #{historyno};
+		WHERE ch.historyno = #{historyno} AND o.deleted = '0';
 	</select>
 
 
@@ -80,6 +77,12 @@
 		location = #{location}, content = #{content}
 		WHERE historyNo = #{historyNo}
 	</select>
+	
+	<update id="deletedOutcome" parameterType="int">
+		UPDATE Outcome 
+		SET deleted = '1' 
+		WHERE historyNo = #{historyNo}
+	</update>
 
 
 

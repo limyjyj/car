@@ -12,6 +12,7 @@ public class Fuel {
 	private int payment;
 	private String location;
 	private String content;
+	private String deleted;
 	
 	
 
@@ -62,6 +63,12 @@ public class Fuel {
 	}
 	public void setHistoryNo(int historyNo) {
 		this.historyNo = historyNo;
+	}
+	public String getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(String deleted) {
+		this.deleted = deleted;
 	}
 		
 	
