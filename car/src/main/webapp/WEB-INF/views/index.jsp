@@ -17,31 +17,27 @@
 			<div class="slider">
 				<div class="fs_loader"></div>
 				<div class="slide">
-					<img src="/car/resources/images/fraction-slider/base.jpg"
+					<img src="/car/resources/images/fraction-slider/base_3.jpg"
 						width="1920" height="auto" data-in="fade" data-out="fade" /> <img
 						src="/car/resources/images/fraction-slider/slider-boy.png"
-						width="600" height="600" data-position="30,1100" data-in="left"
+						width="550" height="450" data-position="30,1100" data-in="left"
 						data-out="right" data-delay="700" />
 
 					<p class="slide-1" data-position="50,610" data-in="fade"
-						data-out="fade" data-delay="800">fully responsive</p>
-					<p class="slide-1" data-position="100,560" data-in="fade"
-						data-out="fade" data-delay="1200">Our latest designs</p>
-					<p class="slide-1" data-position="150,500" data-in="fade"
-						data-out="fade" data-delay="1600">Simply & Clear Design</p>
+						data-out="fade" data-delay="800">국내 1위 서비스 '가치가'</p>
+					<p class="slide-1" data-position="100,500" data-in="fade"
+						data-out="fade" data-delay="1200">즐거운 카풀! 행복한 카풀!</p>
+					<p class="slide-1" data-position="150,400" data-in="fade"
+						data-out="fade" data-delay="1600">부담도 덜고 편안하게 이동하세요.</p>
 
-					<p class="slide-1a" data-position="220,770" data-in="bottom"
-						data-out="bottom" data-delay="2000" data-ease-in="easeOutBounce">SEO
-						Friendly Website</p>
+					<p class="slide-1a" data-position="220,660" data-in="bottom"
+						data-out="bottom" data-delay="2000" data-ease-in="easeOutBounce">'가치가'는 언제 어디서나 이용가능합니다.</p>
 					<p class="slide-1a" data-position="267,698" data-in="bottom"
-						data-out="bottom" data-delay="3200" data-ease-in="easeOutBounce">7
-						combination color option</p>
+						data-out="bottom" data-delay="3200" data-ease-in="easeOutBounce">'가치가'에는 국내최대 카풀정보가 있습니다.</p>
 					<p class="slide-1a" data-position="314,760" data-in="bottom"
-						data-out="bottom" data-delay="4200" data-ease-in="easeOutBounce">Animated
-						layer slider</p>
-					<p class="slide-1a" data-position="361,753" data-in="bottom"
-						data-out="bottom" data-delay="5200" data-ease-in="easeOutBounce">Much
-						More Featured...</p>
+						data-out="bottom" data-delay="4200" data-ease-in="easeOutBounce">'가치가'는 믿을 수 있습니다.</p>
+					<!-- <p class="slide-1a" data-position="361,753" data-in="bottom"
+						data-out="bottom" data-delay="5200" data-ease-in="easeOutBounce"></p> -->
 				</div>
 
 				<div class="slide">
@@ -58,35 +54,6 @@
 					<p class="slide-2b " data-position="270,900" data-in="top"
 						data-out="bottom" data-delay="4000" data-ease-in="easeOutBounce">
 						안전하고 신뢰를 우선으로 생각하는 가치가!</p>
-				</div>
-
-				<div class="slide">
-					<img src="/car/resources/images/fraction-slider/base_3.jpg"
-						width="1920" height="auto" data-in="fade" data-out="fade" />
-
-					<p class="slide-heading" data-position="130,370" data-in="top"
-						data-out="top" data-ease-in="easeOutBounce" data-delay="1500">Electrify
-						theme</p>
-
-					<p class="sub-line" data-position="230,370" data-in="right"
-						data-out="left" data-delay="2500">grid system and responsive
-						design</p>
-
-					<img src="/car/resources/images/fraction-slider/gadgets/laptop.png"
-						width="456" height="272" data-position="115,1180" data-in="bottom"
-						data-out="bottom" data-delay="400"> <img
-						src="/car/resources/images/fraction-slider/gadgets/mack.png"
-						width="357" height="313" data-position="90,1040" data-in="top"
-						data-out="bottom" data-delay="200"> <img
-						src="/car/resources/images/fraction-slider/gadgets/ipad.png"
-						width="120" height="170" data-position="230,1030" data-in="left"
-						data-out="left" data-delay="300"> <img
-						src="/car/resources/images/fraction-slider/gadgets/smartphone.png"
-						width="70" height="140" data-position="270,1320" data-in="right"
-						data-out="right" data-delay="300"> <a href=""
-						class="btn btn-lg btn-default" data-position="320,370"
-						data-in="bottom" data-out="bottom" data-delay="3700"
-						data-ease-in="easeOutBounce">Free Download</a>
 				</div>
 			</div>
 		</div>
@@ -132,18 +99,17 @@
 
 					<div class="feature-block col-sm-7">
 						<h4>
-							Clean, Professional <span>and Modern Design</span>
+							가치가, 행복한 카풀 <span>함께 하는 카풀 서비스</span>
 						</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Aliquam earum enim est natus nulla odio perferendis totam. A
-							eaque, consectetur adipisicing elit. Aliquam earum enim est natus
-							nulla odio consectetur adipisicing elit. Aliquam earum enim est
-							natus nulla odio nesciunt. Autem cum distinctio eligendi impedit
-							mollitia officia perferendis praesentium tempore veniam voluptas.
-							Assumenda fuga laboriosam modi perspiciatis possimus rem
-							suscipit. Adipisci, eos exercitationem molestiae nesciunt quaerat
-							ullam veniam vitae voluptatum.</p>
-						<a class="btn btn-default mrgb-20" href="">Read More</a>
+						<p>'가치가'는 고객들로 하여금 빠르고 안전하게 카풀을 찾을 수 있도록 하는
+						도시 간 통근 차량 매칭 시스템 서비스를 제공하고 있습니다.
+						서비스 이용객은 목적지와 여행 경로뿐만 아니라 성별, 일정 및 환경 설정에 따라 매치됩니다.
+						'가치가'는 높은 연료 비용과 톨게이트 통행료 등에 따른 교통 비용을 절감하고 
+						또한 불필요한 차량 운행을 줄여 운전자들로 하여금 스트레스를 줄이고 환경 보호 측면에도 도움을 제공합니다.
+						'가치가' 이용 회원들은 통근 시간을 기록하고, 포인트를 쌓고, 콘테스트에 참여해 상을 받을 수 있습니다.
+						'가치가'에 등록하여 나에게 가장 적합한 옵션을 찾아 보세요. 누구나 쉽고 간단하게 시작할 수 있습니다.
+						회원 가입을 클릭하여 '가치가'에 지금 바로 등록하세요.</p>
+						<a class="btn btn-default mrgb-20" href="">회원 가입</a>
 					</div>
 				</div>
 			</div>
@@ -1019,87 +985,56 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-md-3 col-lg-3">
+				<div class="col-sm-6 col-md-3 col-lg-3" style="width: 390px; float :left">
 					<div class="widget_title">
 						<h4>
-							<span>About Us</span>
+							<span>가치가</span>
 						</h4>
 					</div>
 					<div class="widget_content">
-						<p>Donec earum rerum hic tenetur ans sapiente delectus, ut aut
-							reiciendise voluptat maiores alias consequaturs aut perferendis
-							doloribus asperiores.</p>
+						<p>대표이사 : 박주현 <br /> 
+						사업자 등록번호 : 12-345-890908 <br />
+						주소 : 서울 강남구 테헤란로 123 여삼빌딩 15층 <br />
+						개인정보관리책임자 : 이상묵 <br />
+						기술지원 : 권영규, 최영순 <br />
+						CS : 김경주, 임연주 <br />
+						업무시간 : 평일 오전 8시~오후 5시(주말,공휴일 휴무) <br />
+						Copyright © 2016-2016 가치가. All Rights Reserved.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3 col-lg-3" style="width: 390px; float :left">
+					<div class="widget_title">
+						<h4>
+							<span>고객 만족</span>
+						</h4>
+					</div>
+					<div class="widget_content">
+						<p>가치가는 소망합니다. 럭시의 서비스가 여러분의 일상을 <br />
+						조금이라도 더 행복하게 만들어 드릴 수 있기를..<br />
+						그러기 위해 가치가는 계속 고민하고, 움직이며, <br />
+						가치가만의 답을 만들어낼 것입니다.<br />
+						이것이 가치가의 가장 큰 행복이고 비전입니다.</p>
 						<ul class="contact-details-alt">
 							<li><i class="fa fa-map-marker"></i>
 								<p>
-									<strong>Address</strong>: #2021 Lorem Ipsum
+									<strong>Address</strong>: #2016 Yeosam
 								</p></li>
 							<li><i class="fa fa-user"></i>
 								<p>
-									<strong>Phone</strong>:(+91) 9000-12345
+									<strong>Phone</strong>:(+82) 1234-5678
 								</p></li>
 							<li><i class="fa fa-envelope"></i>
 								<p>
-									<strong>Email</strong>: <a href="#">mail@example.com</a>
+									<strong>Email</strong>: <a href="#">itwill@example.com</a>
 								</p></li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm-6 col-md-3 col-lg-3">
+			
+				<div class="col-sm-6 col-md-3 col-lg-3" style="width: 390px; float :left">
 					<div class="widget_title">
 						<h4>
-							<span>Recent Posts</span>
-						</h4>
-					</div>
-					<div class="widget_content">
-						<ul class="links">
-							<li><a href="#">Aenean commodo ligula eget dolor<span>November
-										07, 2015</span></a></li>
-							<li><a href="#">Temporibus autem quibusdam <span>November
-										05, 2015</span></a></li>
-							<li><a href="#">Debitis aut rerum saepe <span>November
-										03, 2015</span></a></li>
-							<li><a href="#">Et voluptates repudiandae <span>November
-										02, 2015</span></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3 col-lg-3">
-					<div class="widget_title">
-						<h4>
-							<span>Twitter</span>
-						</h4>
-					</div>
-					<div class="widget_content">
-						<ul class="tweet_list">
-							<li class="tweet_content item">
-								<p class="tweet_link">
-									<a href="#">@jquery_rain </a> Lorem ipsum dolor et, consectetur
-									adipiscing eli
-								</p> <span class="time">29 September 2015</span>
-							</li>
-							<li class="tweet_content item">
-								<p class="tweet_link">
-									<a href="#">@jquery_rain </a> Lorem ipsum dolor et, consectetur
-									adipiscing eli
-								</p> <span class="time">29 September 2015</span>
-							</li>
-							<li class="tweet_content item">
-								<p class="tweet_link">
-									<a href="#">@jquery_rain </a> Lorem ipsum dolor et, consectetur
-									adipiscing eli
-								</p> <span class="time">29 September 2015</span>
-							</li>
-						</ul>
-					</div>
-					<div class="widget_content">
-						<div class="tweet_go"></div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3 col-lg-3">
-					<div class="widget_title">
-						<h4>
-							<span>Flickr Gallery</span>
+							<span>Gallery</span>
 						</h4>
 					</div>
 					<div class="widget_content">
@@ -1109,7 +1044,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+			</div>
+		
 	</footer>
 	<!--end footer-->
 
@@ -1118,8 +1054,8 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<p class="copyright">
-						&copy; Copyright 2015 Electrify | Powered by <a
-							href="http://www.jqueryrain.com/">jQuery Rain</a>
+						&copy; Copyright 2016 Electrify | Powered by <a
+							href="http://www.jqueryrain.com/">Together</a>
 					</p>
 				</div>
 
