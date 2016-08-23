@@ -59,6 +59,10 @@ public class GroupChatController {
 
 		Member member = (Member) session.getAttribute("loginuser");
 		List<Reservation> reservationList = reservationService.selectReservationByMemberNo(member.getMemberNo());
+		for (Reservation r : reservationList) {
+			r.setMember(reservationService.selectMemberByMemeberNo(r.getMemberNo()));
+
+		}
 		model.addAttribute("reservations", reservationList);
 		model.addAttribute("loginuser", member);
 
@@ -75,6 +79,30 @@ public class GroupChatController {
 		return "groupchat/list";
 	}
 	
+	// reservation user list
+	@ResponseBody
+	@RequestMapping(value = "reservationuserlist.action", method = RequestMethod.GET)
+	public String getReservationUserList(int reservationNo, Model model) {
+		
+		Gson gson = new Gson();
+		
+		List<Member> reservationUserList = reservationService.selectReservationUserListByReservationNo(reservationNo);
+		
+		String json = null;
+		
+		if (reservationUserList == null) {
+			int i = 10/0;
+			System.out.println(i);
+			return json;
+			
+		} else {
+			json = gson.toJson(reservationUserList);
+			return json;
+		}
+		
+	}
+	
+	
 	@RequestMapping(value = "longtermreservationchat.action", method = RequestMethod.GET)
 	public String enterGroupChatPost(int reservationNo, Model model, HttpSession session) {
 		
@@ -89,6 +117,7 @@ public class GroupChatController {
 			groupChat.setReservationNo(reservationNo);			
 			groupChatService.insertGroupChat(groupChat);
 			groupChat = groupChatService.selectGroupChatByReservationNo(reservationNo);
+			chatNo = groupChat.getChatNo();
 			
 		} else {
 			chatNo = groupChat.getChatNo();			
@@ -98,7 +127,7 @@ public class GroupChatController {
 		
 		if(groupChatStatement == null) {			
 			GroupChatStatement gcs = new GroupChatStatement();
-			gcs.setChatNo(groupChatService.selectGroupChatByMemberId(member.getMemberId()).getChatNo());
+			gcs.setChatNo(chatNo);
 			gcs.setMemberNo(member.getMemberNo());
 			groupChatService.insertGroupChatStatement(gcs);
 		}

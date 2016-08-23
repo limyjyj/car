@@ -195,7 +195,7 @@ a:focus{
 ====================================*/
 
 #logo-bar {
-    padding: 35px 0;
+    padding: 20px 0;
     background: #fff;
 }
 #logo-bar.scroll-to-fixed-fixed{
@@ -607,12 +607,14 @@ ul.sm li *,ul.sm li *:before,ul.sm li *:after{-moz-box-sizing:content-box;-webki
     background:#292F38;
     padding:20px 0;
     color:#fff;
+
 }
 .footer{
     background:#323A45;
     padding:30px 0;
     position: relative;
     color:#fff;
+    
 }
 /* Footer Widgets
 ====================================*/
@@ -4057,7 +4059,7 @@ h5.circular-title{
     font-size: 18px;
     color: #868889;
     display: block;
-    margin: 15px 0 30px;
+    margin: auto;
 }
 
 .widget_title h4 {

@@ -114,7 +114,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardUpload selectBoardUploadByBoardNo(int BoardNo) {
+	public List<BoardUpload> selectBoardUploadByBoardNo(int BoardNo) {
 		return BoardDao.selectBoardUploadByBoardNo(BoardNo);
 	}
 

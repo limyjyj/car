@@ -51,6 +51,6 @@ import com.car.model.dto.BoardUpload;
 	
 	void insertBoardUpload(BoardUpload boardupload);
 
-	BoardUpload selectBoardUploadByBoardNo(int BoardNo);
+	List<BoardUpload> selectBoardUploadByBoardNo(int BoardNo);
 
 }

@@ -13,6 +13,9 @@ public interface OutcomeDao {
 	
 	List<Outcome> selectOutcomeByCarindex(int carindex);
 	
+	Outcome selectOutcomeByHistoryNo(int historyNo);
+	
 	void updateOutcome(Outcome outcome);
+	
 	
 }

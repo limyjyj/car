@@ -45,6 +45,10 @@ public interface ReservationMapper {
 
 
 	List<Reservation> departureSearch(HashMap<String, Object> map);
+	
+	List<Member> selectReservationUserListByReservationNo(int reservationNo);
+	
+	
 
 }
 

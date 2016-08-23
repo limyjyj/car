@@ -13,9 +13,12 @@ public interface CarDao {
 	List<Car> selectAllCarByCarno(int memberNo);
 	Car selectCarnoByCarindex(int carindex);
 	Car selectCarByCarindex(int carindex);
-	int selectCountFuelByRegdate(Date startDate, Date endDate);
 	void updateCar(Car car);
 	void deleteCar(Car car);
 	int selectTotalOutcomeByCarindex(int carindex);
 	List<Car> selectCarindexByMemberno(int memberNo);
+	int selectCountFuelByRegdate(Date startDate, Date endDate, int carindex);
+	int selectTotalFuelByRegdate(Date startDate, Date endDate, int carindex);
+	int selectTotalRepairByCategory(Date startDate, Date endDate, int carindex);
+	int selectTotalMaintainByCategory(Date startDate, Date endDate, int carindex);
 }

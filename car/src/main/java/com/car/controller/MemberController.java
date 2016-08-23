@@ -44,15 +44,14 @@ public class MemberController {
 		Member member = (Member) session.getAttribute("loginuser");
 		member = memberService.selectMemberByMemberId(member.getMemberId());
 		model.addAttribute("member", member);
-		System.out.println(member.getMemberId());
 		return "member/editform";
 	}
 
 	@RequestMapping(value = "edit.action", method = RequestMethod.POST)
-	public String edit(Member member) {
-
+	public String edit(Member member, HttpSession session) {
+		Member member1 = (Member)session.getAttribute("loginuser");
 		member.setPassWd(Util.getHashedString(member.getPassWd(), "SHA-256"));
-
+		member.setMemberId(member1.getMemberId());
 		memberService.updateMember(member);
 
 		return "redirect:../home.action";

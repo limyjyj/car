@@ -1,7 +1,8 @@
 package com.car.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,7 +12,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +33,13 @@ public class CarController {
 	@Qualifier("carService")
 	private CarService carService;
 
+	// 날짜개꿀
+		@InitBinder
+		public void binder(WebDataBinder binder) {
+			binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+		}
+
+	
 	@RequestMapping(value = "register.action", method = RequestMethod.GET)
 	public String registerForm(@ModelAttribute @Valid Car car) {
 		System.out.println("1번");
@@ -44,7 +55,7 @@ public class CarController {
 
 		System.out.println(car.getCarno());
 		Member member = (Member)session.getAttribute("loginuser");
-		member.setMemberNo(member.getMemberNo());
+		car.setMemberNo(member.getMemberNo());
 		carService.insertCar(car);
 		return "redirect:/car/list.action";
 
@@ -79,6 +90,7 @@ public class CarController {
 		ModelAndView mav = new ModelAndView();
 
 		Member member = (Member)session.getAttribute("loginuser");
+		
 		int total = carService.selectTotalOutcomeByCarindex(carindex);
 		
 		List<Car> cars = null;
@@ -86,11 +98,11 @@ public class CarController {
 		if(carindex == 0){
 			cars = carService.selectCarindexByMemberno(member.getMemberNo());
 		}else{
+			System.out.println(carindex);
 			Car car = carService.selectCarByCarindex(carindex);
 			cars = new ArrayList<>();
 			cars.add(car);
 		}
-		
 		mav.addObject("cars", cars);
 		mav.addObject("total", total);
 		return mav;
@@ -98,15 +110,23 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "searchview.action", method = RequestMethod.GET)
-	public ModelAndView searchViewList(Date startDate, Date endDate, HttpSession session) {
+	public ModelAndView searchViewList(Date startDate, Date endDate, int carindex) {
 		
 		ModelAndView mav = new ModelAndView();
 
-
-		int count = carService.selectCountFuelByRegdate(startDate, endDate);
-	
 		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd"); 
+		
+		int count = carService.selectCountFuelByRegdate(startDate, endDate, carindex);
+		int totalFuel = carService.selectTotalFuelByRegdate(startDate, endDate, carindex);
+		int totalRepair = carService.selectTotalRepairByCategory(startDate, endDate, carindex);
+		int totalMaintain = carService.selectTotalMaintainByCategory(startDate, endDate, carindex);
+		
+
 		mav.addObject("count", count);
+		mav.addObject("totalFuel", totalFuel);
+		mav.addObject("totalRepair", totalRepair);
+		mav.addObject("totalMaintain", totalMaintain);
 		return mav;
 
 	}
@@ -118,21 +138,18 @@ public class CarController {
 	    
 		Member member = (Member)session.getAttribute("loginuser");
 		
+	        
+	    Car car = carService.selectCarByCarindex(carindex);
 	    	    
-	     Car car = carService.selectCarByCarindex(carindex);
 	    
-	     
-	    
-	    
-	     mav.addObject("car", car);
-	     mav.setViewName("car/editform");
-	     return mav;
-		
+	    mav.addObject("car", car);
+	    mav.setViewName("car/editform");
+	    return mav;
 
 	}
 	
 	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public String update(HttpServletRequest req, Car car) {
+	public String update(Car car) {
 
 		
 		carService.updateCar(car);

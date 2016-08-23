@@ -70,7 +70,7 @@
 					<tr>
 						<th style="text-align: center;">전화번호</th>
 						<td> <form:input type="text" path="phone"
-								style="width:280px" />
+								style="width:280px" /> 
 						</td>
 					</tr>
 					

@@ -14,9 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.car.model.dto.Car;
@@ -28,6 +28,8 @@ import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
 import com.car.model.service.FuelService;
 import com.car.model.service.OutcomeService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 @RequestMapping(value = "/carhistory/")
@@ -112,22 +114,15 @@ public class CarhistoryController {
 	
 	// Outcome
 	@RequestMapping(value = "outcomewriteform.action", method = RequestMethod.GET)
-	public String getOutcomeWriteForm(Model model, int carindex) {
+	public String getOutcomeWriteForm(Model model) {
 
-		model.addAttribute("carindex", carindex);
 		return "outcome/writeform";
 	}
 
 	@RequestMapping(value = "outcomewrite.action", method = RequestMethod.POST)
-	public String writeOutcome(HttpServletRequest req, Carhistory carhistory, Outcome outcome, String category,
-			int carindex,HttpSession session) {
-		
-//		carhistory.setCarindex(carindex);
-//		session.setAttribute("carhistory", carhistory);
-
-		carhistory.setCarindex(carindex);
-		carhistory.setCategory(category);
-		
+	public String writeOutcome(HttpServletRequest req, Carhistory carhistory, Outcome outcome, String category, HttpSession session,
+			int carindex) {
+				
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
 		outcome.setHistoryNo(historyno);
@@ -137,39 +132,90 @@ public class CarhistoryController {
 		return "redirect:/carhistory/list.action";
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "outcomeview.action", method = RequestMethod.GET)
+	public String outcomeViewList(int carindex, int historyNo, HttpSession session) {
+		
+	
+		Outcome outcome = outcomeService.selectOutcomeByHistoryNo(historyNo);		
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		String json = null;
+		
+	
+			json = gson.toJson(outcome);
+			return json;
+			
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "outcomeupdate.action", method = RequestMethod.POST)
+	public String outcomeUpdate(Outcome outcome) {		
+		
+		
+		outcomeService.updateOutcome(outcome);
+		
+		return "";
+		
+	}
+	
 
 	// Fuel
 	@RequestMapping(value = "fuelwriteform.action", method = RequestMethod.GET)
-	public String getFuelWriteForm(Model model, int carindex) {
-		model.addAttribute("carindex", carindex);
+	public String getFuelWriteForm(Model model) {
 		return "fuel/writeform";
 	}
 
 	@RequestMapping(value = "fuelwrite.action", method = RequestMethod.POST)
-	public String writeFuel(HttpServletRequest req, Carhistory carhistory, Fuel fuel, String category,
-			int carindex,HttpSession session) {
-
-		carhistory.setCarindex(carindex);
-		carhistory.setCategory(category);
+	public String writeFuel(HttpServletRequest req, Carhistory carhistory, Fuel fuel, String category, HttpSession session,
+			int carindex) {
 		
 		int historyno = carhistoryService.insertCarhistory(carhistory);
 		
 		fuel.setHistoryNo(historyno);
+		
+//		int perliter = fuel.getPerLiter();
+//		int liter = fuel.getLiter();
+//		System.out.println(perliter*liter);
+//		
+//		fuel.setPayment(liter*perliter);
 		
 		fuelService.insertFuel(fuel);
 
 		return "redirect:/carhistory/list.action";
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "fuelview.action", method = RequestMethod.GET)
+	public String fuelViewList(int carindex, int historyNo, HttpSession session) {
+		
+		Fuel fuel = fuelService.selectFuelByHistoryNo(historyNo);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-	@RequestMapping(value = "update.action", method = RequestMethod.POST)
-	public String matching(
-			// 스프링 태그 라이브러리를 사용하기 위해 구성한 전달인자
-			@ModelAttribute Carhistory history) {
-
-		carhistoryService.updateCarhistory(history);
-		return "redirect:/carhistory/list.action";
-
+		String json = null;
+		
+			json = gson.toJson(fuel);
+			return json;
+			
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "fuelupdate.action", method = RequestMethod.POST)
+	public String fuelUpdate(Fuel fuel) {		
+		
+		int perliter = fuel.getPerLiter();
+		int liter = fuel.getLiter();
+		
+		fuel.setPayment(perliter*liter);
+		
+		fuelService.updateFuel(fuel);
+		
+		return "";
+		
 	}
 
 }

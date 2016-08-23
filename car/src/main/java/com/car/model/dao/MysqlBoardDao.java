@@ -124,7 +124,7 @@ public class MysqlBoardDao implements BoardDao {
 	}
 
 	@Override
-	public BoardUpload selectBoardUploadByBoardNo(int BoardNo) {
+	public List<BoardUpload> selectBoardUploadByBoardNo(int BoardNo) {
 		return BoardMapper.selectBoardUploadByBoardNo(BoardNo);
 	}
 

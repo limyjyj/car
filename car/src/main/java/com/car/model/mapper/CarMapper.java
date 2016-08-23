@@ -1,6 +1,7 @@
 package com.car.model.mapper;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.car.model.dto.Car;
@@ -18,7 +19,8 @@ public interface CarMapper {
 	List<Car> selectCarByMemberno(int memberno);
 	List<Car> selectCarindexByMemberno(int memberNo);
 	int selectTotalOutcomeByCarindex(int carindex);
-	int selectCountFuelByRegdate(Date startDate, Date endDate);
-
-			  
+	int selectCountFuelByRegdate(HashMap<String, Object> param);
+	int selectTotalFuelByRegdate(HashMap<String, Object> param);
+	int selectTotalRepairByCategory(HashMap<String, Object> param);
+	int selectTotalMaintainByCategory(HashMap<String, Object> param);
 }

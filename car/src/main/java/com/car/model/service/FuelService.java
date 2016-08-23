@@ -12,7 +12,8 @@ public interface FuelService {
 	
 	List<Fuel> selectFuelByCarindex(int carindex);
 	
+	Fuel selectFuelByHistoryNo(int historyNo);
+	
 	public void updateFuel(Fuel fuel);
-
 
 }

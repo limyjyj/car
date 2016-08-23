@@ -41,9 +41,9 @@ public class BoardController {
 		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
 
 		int currentPage = 1;
-		int pageSize = 3;
+		int pageSize = 5;
 		int dataCount = 0;
-		int pagerSize = 2;
+		int pagerSize = 3;
 		String url = "list.action";
 
 		//
@@ -118,57 +118,17 @@ public class BoardController {
 		return "board/writeform";
 	}
 
-	@RequestMapping(value = "write2.action", method = RequestMethod.POST)
-	public String writeBoard(@ModelAttribute("Board") Board board, HttpSession session, MultipartHttpServletRequest req) {
+	@RequestMapping(value = "write.action", method = RequestMethod.POST)
+	public String writeReview(@ModelAttribute("Board") Board board, HttpSession session) {
 
 		Member member = (Member) session.getAttribute("loginuser");
 		board.setMemberNo(member.getMemberNo());
 
-		// 1. 브라우저에 사용자가 입력한 데이터를 읽어서 변수에 저장 (요청 정보에서 데이터 읽기)
-		String path = req.getRealPath("/resources/Upload");// 실제 파일을 저장할 경로
+		BoardService.insertBoard(board);
 
-		try {
-			// UploadFile 테이블에 insert할 데이터를 저장할 객체
-			ArrayList<BoardUpload> files = new ArrayList<>();
-
-			MultipartFile file = req.getFile("attach");
-			
-			if (file != null && file.getSize() > 0) {
-
-				String fileName = file.getOriginalFilename();
-				// C:\\AAA\\BBB\\CCC.txt -> CCC.txt
-				if (fileName.contains("\\")) {
-					fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-				}
-
-				String uniqueFileName = Util.getUniqueFileName(path, fileName);
-
-				// 업로드된 파일을 지정된 경로에 저장
-				// (임시파일을 실제파일로 저장 or 메모리데이터를 파일로 저장)
-				file.transferTo(new File(path, uniqueFileName));
-
-				BoardUpload f = new BoardUpload();
-				f.setSavedFileName(uniqueFileName);
-				f.setUserFileName(fileName);
-				files.add(f);
-				System.out.println("sf : "+ uniqueFileName);
-				System.out.println("sd : "+ fileName);
-			}
-
-			// 데이터베이스에 데이터 insert
-			int newUploadNo = BoardService.insertBoard(board);// Upload
-											
-			for (BoardUpload uf : files) {
-				uf.setBoardNo(newUploadNo);
-				BoardService.insertBoardUpload(uf);// UploadFile insert
-			}
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		return "redirect:/board/list2.action";
+		return "redirect:/board/list.action";
 	}
+
 
 	@RequestMapping(value = "edit.action", method = RequestMethod.GET)
 	public ModelAndView showBoardEditForm(@ModelAttribute("Board") Board Board, HttpServletRequest request) {
@@ -239,9 +199,9 @@ public class BoardController {
 		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
 
 		int currentPage = 1;
-		int pageSize = 3;
+		int pageSize = 5;
 		int dataCount = 0;
-		int pagerSize = 2;
+		int pagerSize = 3;
 		String url = "list2.action";
 
 		//
@@ -294,7 +254,7 @@ public class BoardController {
 		if (request.getParameter("pageno") != null) {
 			pageNo = request.getParameter("pageno");
 		}
-		BoardUpload boardupload = BoardService.selectBoardUploadByBoardNo(no);
+		List<BoardUpload> boardupload = BoardService.selectBoardUploadByBoardNo(no);
 		
 		// 조회된 데이터를 jsp 처리할 수 있도록 request 객체에 저장
 		mav.setViewName("board/detail2");
@@ -310,16 +270,62 @@ public class BoardController {
 	public String getReviewWriteForm(@ModelAttribute("Board") Board Board) {
 		return "board/writeform2";
 	}
-
-	@RequestMapping(value = "write.action", method = RequestMethod.POST)
-	public String writeReview(@ModelAttribute("Board") Board board, HttpSession session) {
+	
+	@RequestMapping(value = "write2.action", method = RequestMethod.POST)
+	public String writeBoard(@ModelAttribute("Board") Board board, HttpSession session, MultipartHttpServletRequest req) {
 
 		Member member = (Member) session.getAttribute("loginuser");
 		board.setMemberNo(member.getMemberNo());
 
-		BoardService.insertBoard(board);
+		// 1. 브라우저에 사용자가 입력한 데이터를 읽어서 변수에 저장 (요청 정보에서 데이터 읽기)
+		String path = req.getRealPath("/resources/Upload");// 실제 파일을 저장할 경로
 
-		return "redirect:/board/list.action";
+		try {
+			// UploadFile 테이블에 insert할 데이터를 저장할 객체
+			ArrayList<BoardUpload> files = new ArrayList<>();
+
+			List<MultipartFile> file = req.getFiles("attach");
+			
+			if (file.size() == 1 && file.get(0).getOriginalFilename().equals("")) {
+            } else {
+               for (int i = 0; i < file.size(); i++) {
+
+            	String fileName = file.get(i).getOriginalFilename();
+				// C:\\AAA\\BBB\\CCC.txt -> CCC.txt
+				if (fileName.contains("\\")) {
+					fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+				}
+
+				String uniqueFileName = Util.getUniqueFileName(path, fileName);
+
+				// 업로드된 파일을 지정된 경로에 저장
+				// (임시파일을 실제파일로 저장 or 메모리데이터를 파일로 저장)
+				file.get(i).transferTo(new File(path, uniqueFileName));
+
+				BoardUpload f = new BoardUpload();
+				f.setSavedFileName(uniqueFileName);
+				f.setUserFileName(fileName);
+				files.add(f);
+				
+			
+
+			// 데이터베이스에 데이터 insert
+			int newUploadNo = 0;// Upload
+											
+			if (i == 0) {
+                newUploadNo = BoardService.insertBoard(board);// Upload
+             } else {
+                newUploadNo = board.getBoardNo();
+             }
+             files.get(i).setBoardNo(newUploadNo);
+             BoardService.insertBoardUpload(files.get(i));
+               }
+            }
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return "redirect:/board/list2.action";
 	}
 
 	@RequestMapping(value = "edit2.action", method = RequestMethod.GET)

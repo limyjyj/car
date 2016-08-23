@@ -13,5 +13,9 @@ public interface FuelDao {
 	
 	List<Fuel> selectFuelByCarindex(int carindex);
 	
+	Fuel selectFuelByHistoryNo(int historyNo);
+	
 	void updateFuel(Fuel fuel);
+	
+	
 }
