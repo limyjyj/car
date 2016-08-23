@@ -10,55 +10,59 @@
 <meta charset="utf-8" />
 <title>예약수정</title>
 
+      <jsp:include page="/WEB-INF/views/include/head.jsp" />
+      <jsp:include page="/WEB-INF/views/include/header.jsp" />
 </head>
 <body>
 
-	<div id="pageContainer">
+	<div id="pageContainer" class="panel panel-heading"
+		style="padding-top: 25px; margin: auto;  width: 400px">
 
 	
 		
 		<div style="padding-top: 25px; text-align: center">
 			<div id="inputcontent">
 				<div id="inputmain">
-					<div class="inputsubtitle">예약 수정하기</div>
+					<div class="inputsubtitle" style="text-align:center; font-size: 20px">예약 수정하기</div>
+					<br/><br/>
 					<form action="update.action" method="post">
 						
 						<input type='hidden' name="reservationNo"
 							value="${ reservation.reservationNo }" /> <input type='hidden'
 							name="pageno" value="${ pageno }" />
-						<table>
+						<table  class="table table-striped" align="center">
 							
 							<tr>
 								<th>작성자</th>
-								<td>	${ sessionScope.loginuser.memberId }
+								<td style="width: 220px; font-size: large;; padding-left:10px; "><font color="#EC0A7B">	${ sessionScope.loginuser.memberId }
 								</td>
 							</tr>
 							
 							<tr>
 								<th>출발지</th>
 								<td>	<input class="form-control" type="text" name="departure"
-										style="width: 100px" />
+										style="height: 30px; width:150px; font-size: medium;" />
 								</td>
 							</tr>
 							
 							<tr>
 								<th>도착지</th>
 								<td>	<input class="form-control" type="text" name="arrival"
-										style="width: 100px" />
+										style="height: 30px; width:150px; font-size: medium;"/>
 								</td>
 							</tr>
 							
 							<tr>
-					<th>시작날짜</th>
-					<td><input type="date" name="startDate"
-										style="width: 100px" /></td>
-				</tr>
+							<th>시작날짜</th>
+							<td><input type="date" name="startDate"
+												style="height: 30px; width:150px;" /></td>
+							</tr>
 					
-				<tr>
-					<th>끝날짜</th>
-					<td><input type="date" name="endDate"
-										style="width: 100px" /></td>
-				</tr>
+						<tr>
+							<th>끝날짜</th>
+							<td><input type="date" name="endDate"
+												style="height: 30px; width:150px;" /></td>
+				       </tr>
 							<tr>
 								<th>내용</th>
 								<td><textarea name="content" >

@@ -72,8 +72,8 @@ public class MysqlReservationDao implements ReservationDao {
 	}
 
 	@Override
-	public void deleteReservation(int reservationNo) {
-		reservationMapper.deleteReservation(reservationNo);
+	public void deleteReservation(Reservation reservation) {
+		reservationMapper.deleteReservation(reservation);
 		
 	}
 

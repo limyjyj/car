@@ -73,32 +73,19 @@ $(document).ready(function (){
 	
 })
 
-
-/* $(document).ready(function (){
-	$("#reservationsearch").change(function (event) {
-		
-		location.href="/car/reservation/frequencylist.action?frequency="+$("#reservationsearch").val();
-		
-	});
-
-	
-	
-}) */
-
 </script>
-
 
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br />
 
-	<div class="bdiv" style="text-align:center; font-size: 10px" >실시간.정기 예약판</div>
+	<div class="bdiv" style="text-align:center; font-size: 20px" >실시간.정기 예약판</div>
 	<br />
 	<br />
 
 
-	<table class="bsearch" align="center">
+	<table class="bsearch" >
 		<tr>
 			<td><input type="hidden" name="pageno2" value=${ pageno } /> <input
 				type="hidden" name="reservationkind" value=${ b.reservationKind } />
@@ -152,12 +139,12 @@ $(document).ready(function (){
 
 					<td>${ b.totalMember}</td>
 					<td><c:choose>
-							<c:when test="${ loginuser.memberNo eq b.memberNo }">
-								<div class="buttons">
+					<c:when test="${ loginuser.memberNo eq b.memberNo }">
+							<div class="buttons">
 									<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->
-						<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=500, height=500, scrollbars=1')" value="목록보기">
+					<input type="button" onclick="window.open('confirmlist.action?reservationNo=' + ${b.reservationNo}, 'popup', 'width=600, height=500, scrollbars=1')" value="목록보기">
 	
 					</c:when>
 						<c:when test="${ loginuser.memberNo eq confirm.memberNo}">	
@@ -171,8 +158,9 @@ $(document).ready(function (){
 						 <input id="reservationNo" type="hidden" value="${ b.reservationNo }" />
 						 <input id="memberNo" type="hidden" value="${ loginuser.memberNo }" />
 		
-						
 					</c:otherwise>
+					
+					
 				</c:choose>
 						
 						
