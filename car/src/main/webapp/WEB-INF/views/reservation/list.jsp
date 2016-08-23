@@ -73,27 +73,14 @@ $(document).ready(function (){
 	
 })
 
-
-/* $(document).ready(function (){
-	$("#reservationsearch").change(function (event) {
-		
-		location.href="/car/reservation/frequencylist.action?frequency="+$("#reservationsearch").val();
-		
-	});
-
-	
-	
-}) */
-
 </script>
-
 
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br />
 
-	<div class="bdiv" style="text-align:center; font-size: 20px" >실시간.정기 예약판</div>
+	<div class="bdiv" style="width: 10%; text-align:center; font-size: 20px" >실시간.정기 예약판</div>
 	<br />
 	<br />
 
@@ -152,8 +139,8 @@ $(document).ready(function (){
 
 					<td>${ b.totalMember}</td>
 					<td><c:choose>
-							<c:when test="${ loginuser.memberNo eq b.memberNo }">
-								<div class="buttons">
+					<c:when test="${ loginuser.memberNo eq b.memberNo }">
+							<div class="buttons">
 									<!-- <input id='submitbutton' type="submit" value="수락하기"
 						style="height: 25px" />   -->
 						<!-- <input type="button" id="accept" value="목록보기" style="height: 25px" /> -->

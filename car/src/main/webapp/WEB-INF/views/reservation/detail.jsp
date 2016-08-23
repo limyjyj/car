@@ -18,10 +18,25 @@
  
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+   <script type="text/javascript">
+   $(function() {
+      $('#delete').on('click', function(event) {
+         var reservationno = ${reservation.reservationNo}
+         var result = confirm('삭제 하시겠습니까?');
+         if (result) {
+            //yes
+            location.href = ('/car/reservation/delete.action?reservationno=' + reservationno);
+         } else {
+            //no
+         }
+      });
+   });
+</script>
+   
+   
 <script type="text/javascript">
    $(function() {
-	   alert($('#departure').val());
-		console.log(departure);
+			console.log(departure);
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
@@ -57,21 +72,10 @@
 	        });
 	        infowindow.open(map, marker);
 	    } 
-	});    
+	 });    
 		
-		
-		
-      $('#delete').on('click', function(event) {
-         var reservationno = ${reservation.reservationNo}
-         var result = confirm('삭제 하시겠습니까?');
-         if (result) {
-            //yes
-            location.href = ('/car/reservation/delete.action?reservationno=' + reservationno);
-         } else {
-            //no
-         }
-      });
    });
+
 </script>
 
 <meta charset="utf-8" />
@@ -87,17 +91,22 @@
    
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=0b310b2f318c9e4b7fd52459eb35d927&libraries=services"></script>
-   <table align="center">
-   <tr>
-   <td>
-   <div id="map" style="width:500px;height:300px;margin-top:10px; margin:auto"></div></td>
-   <td/>
-    <td><div id="map2" style="width:500px;height:300px;margin-top:10px; margin:auto"></div>
-    </td>
-    </tr>
-    </table>
-  
-<script>
+
+
+	<table align="center">
+		<tr>
+			<td>
+				<div id="map"
+					style="width: 500px; height: 300px; margin-top: 10px; margin: auto"></div>
+			</td>
+			<td />
+			<td><div id="map2"
+					style="width: 500px; height: 300px; margin-top: 10px; margin: auto"></div>
+			</td>
+		</tr>
+	</table>
+
+	<script>
 $(function(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
