@@ -70,6 +70,10 @@ public class CarServiceImpl implements CarService {
 		return carDao.selectCountFuelByRegdate(startDate, endDate, carindex);
 	}
 	@Override
+	public int selectTotalFuelByRegdate(Date startDate, Date endDate, int carindex){
+		return carDao.selectTotalFuelByRegdate(startDate, endDate, carindex);
+	}
+	@Override
 	public int selectTotalRepairByCategory(Date startDate, Date endDate, int carindex){
 		return carDao.selectTotalRepairByCategory(startDate, endDate, carindex);
 	}

@@ -1,6 +1,6 @@
 package com.car.model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Car {

@@ -113,6 +113,14 @@
 	
 	
 	</select>
+	<select id="selectTotalFuelByRegdate" parameterType="hashMap" resultType="int">
+		select ifnull(sum(Fuel.payment), 0)
+		from Fuel
+		join Carhistory
+		on Fuel.historyno = Carhistory.historyno
+		where regdate <![CDATA[  <  ]]> #{endDate} and regdate <![CDATA[   >   ]]> #{startDate} and
+		Carhistory.carindex = #{carindex} 
+	</select>
 	<select id="selectTotalRepairByCategory" parameterType="hashMap" resultType="int">
 		select ifnull(sum(Outcome.payment), 0)
 		from Outcome

@@ -70,6 +70,14 @@ public class MysqlCarDao implements CarDao {
 		return carMapper.selectCountFuelByRegdate(param);
 	}
 	@Override
+	public int selectTotalFuelByRegdate(Date startDate, Date endDate, int carindex){
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("carindex", carindex);
+		return carMapper.selectTotalFuelByRegdate(param);
+	}
+	@Override
 	public int selectTotalRepairByCategory(Date startDate, Date endDate, int carindex){
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("startDate", startDate);

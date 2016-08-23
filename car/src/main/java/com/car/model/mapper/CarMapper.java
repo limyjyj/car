@@ -20,6 +20,7 @@ public interface CarMapper {
 	List<Car> selectCarindexByMemberno(int memberNo);
 	int selectTotalOutcomeByCarindex(int carindex);
 	int selectCountFuelByRegdate(HashMap<String, Object> param);
+	int selectTotalFuelByRegdate(HashMap<String, Object> param);
 	int selectTotalRepairByCategory(HashMap<String, Object> param);
 	int selectTotalMaintainByCategory(HashMap<String, Object> param);
 }

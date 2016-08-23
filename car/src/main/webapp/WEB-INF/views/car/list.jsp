@@ -32,26 +32,7 @@
 
 	});
 });
-/* 	
-	$(function() {
-		$("#search").on('click', function(event) {
-			var startDate = $('#startDate').val();
-			var endDate = $('#endDate').val();
-			var carNo = $("#status option:selected").text();
 
-			$.ajax({
-				url : "/car/carhistory/list.action",
-				type : "post",
-				data : {
-					startDate : startDate,
-					endDate : endDate,
-					
-				},
-				success : function(data) {
-
-				}
-			})
-		}) */
 </script>
 </head>
 <body>
@@ -80,25 +61,25 @@
 			<table id="carlist" class="table table-striped" align="center" width="700px">
 
 				<tr style="height: 30px" align="center">
-					<td><input type="hidden" value="멤버" /></td>
-					<td>차량정보번호</td>
+					<td style="height:1px"><input type="hidden" value="멤버" /></td>
+					
 					<td>차종</td>
 					<td>차량번호</td>
 					<td>기록시작일</td>
 					<td>총주행거리</td>
-					
+					<td style="height:1px"><input type="hidden" value="차량정보번호" /></td>
 				</tr>
 				<c:forEach var="car" items="${ cars }">
 					<tr style="height: 30px" align="center">
 
 						<td><input type="hidden" ${ car.memberNo } /></td>
-						<td>${ car.carindex }</td>
+						
 						<td>${ car.model }</td>
 						<td>${ car.carno }</td>
 						<td><fmt:formatDate value="${ car.regdate }"
 								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 						<td>${ car.totaldistance }</td>
-						
+						<td><input type="hidden"${ car.carindex } /></td>
 
 					</tr>
 
@@ -109,29 +90,7 @@
 
 
 
-			<table class="table table-striped" align="center" width="700px" id="searchlist">
-
-				<tr style="height: 30px" align="center">
-
-					<td>기간별 조회</td><td></td>
-					<td class="form-group"><label for="inputRegdate">기록시작일</label>
-						<input type="date" path="regdate" class="form-control"
-						placeholder="기록시작일" id="startDate" /></td>
-					<td class="form-group"><label for="inputRegdate">기록종료일</label>
-						<input type="date" path="regdate" class="form-control"
-						placeholder="기록종료일" id="endDate" /></td>
-					<td></td>
-
-				</tr>
-				<tr style="height: 30px; text-align: center;" align="center" >
-					<td>주유횟수</td>
-					<td>주유비용</td>
-					<td>정비비용</td>
-					<td>유지비용</td>
-				</tr>
 			
-			</table>
-			<button type="button" id="search" >조회</button>
 
 		</div>
 	</div>

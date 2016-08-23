@@ -7,7 +7,14 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript">
-	
+$(function(){
+$('#search').on('click', function(event) {
+	var url = "/car/car/searchview.action?startDate=" + $('#startDate').val() + "&endDate=" + $('#endDate').val()
+			+ "&carindex="+$('#status').val();
+	$("#searchlist").load(url);
+
+});
+});
 </script>
 
 
@@ -37,14 +44,14 @@
 		</tr>
 	
 			<tr style="height: 30px; text-align: center;" align="center">
-				<td>${ count }</td>
-				<td>하이</td> 
+				<td>${ count }회</td>
+				<td>${ totalFuel }</td> 
 				<td>${ totalRepair }</td>
 				<td>${ totalMaintain }</td>
 			</tr>
+			
 	
 	</table>
-
 
 
 </div>

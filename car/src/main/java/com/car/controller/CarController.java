@@ -115,20 +115,16 @@ public class CarController {
 		ModelAndView mav = new ModelAndView();
 
 		
-		System.out.println("시작"+startDate);
-		System.out.println("끝"+endDate);
-		System.out.println("이거"+carindex);
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd"); 
 		
 		int count = carService.selectCountFuelByRegdate(startDate, endDate, carindex);
+		int totalFuel = carService.selectTotalFuelByRegdate(startDate, endDate, carindex);
 		int totalRepair = carService.selectTotalRepairByCategory(startDate, endDate, carindex);
 		int totalMaintain = carService.selectTotalMaintainByCategory(startDate, endDate, carindex);
 		
-		System.out.println(count);
-		System.out.println(totalRepair);
-		System.out.println(totalMaintain);
-//		
+
 		mav.addObject("count", count);
+		mav.addObject("totalFuel", totalFuel);
 		mav.addObject("totalRepair", totalRepair);
 		mav.addObject("totalMaintain", totalMaintain);
 		return mav;
@@ -142,16 +138,13 @@ public class CarController {
 	    
 		Member member = (Member)session.getAttribute("loginuser");
 		
+	        
+	    Car car = carService.selectCarByCarindex(carindex);
 	    	    
-	     Car car = carService.selectCarByCarindex(carindex);
 	    
-	     
-	    
-	    
-	     mav.addObject("car", car);
-	     mav.setViewName("car/editform");
-	     return mav;
-		
+	    mav.addObject("car", car);
+	    mav.setViewName("car/editform");
+	    return mav;
 
 	}
 	
