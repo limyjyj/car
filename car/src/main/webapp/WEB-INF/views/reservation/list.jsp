@@ -93,7 +93,7 @@ $(document).ready(function (){
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br />
 
-	<div class="bdiv" style="text-align:center; font-size: 20px" >실시간.정기 예약판</div>
+	<div class="bdiv" style="text-align:center; font-size: 10px" >실시간.정기 예약판</div>
 	<br />
 	<br />
 
@@ -102,20 +102,21 @@ $(document).ready(function (){
 		<tr>
 			<td><input type="hidden" name="pageno2" value=${ pageno } /> <input
 				type="hidden" name="reservationkind" value=${ b.reservationKind } />
-				<select id="reservationsearch" name="reservationsearch">
-					<option>선택</option>
+				<select id="reservationsearch" name="reservationsearch" >
+					<option >선택</option>
 					<!-- 		<option value="전체보기">전체보기</option> -->
 					<option value="실시간">실시간</option>
 					<option value="정기">정기</option>
 
-			</select> <input type="text" name="departure" id="departureSearch"
-				style="width: 70px" /> <input type="button" id="departureSearch2"
-				value="출발지검색" style="height: 25px" /></td>
+		    	</select> 
+			   <input type="text" name="departure" id="departureSearch"
+			       style="width: 70px" /> <input type="button" id="departureSearch2"
+				   value="출발지검색" style="height: 25px" /></td>
 		</tr>
 
 	</table>
 	<form id="reservationform" action="list.action" method="post">
-		<table class="btable" align="center">
+		<table  class="table table-striped" align="center">
 			<thead>
 				<tr>
 					<th style="width: 100px">회원번호</th>
