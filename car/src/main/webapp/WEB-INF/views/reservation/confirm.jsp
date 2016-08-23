@@ -84,15 +84,18 @@
 </script>
 </head>
 <body>
+<br />
+	<br />
 
 
-	<div class="bdiv">그룹확인</div>
+    
+	<div class="bdiv" style="text-align:center; font-size: 20px">그룹확인</div>
 	<br />
 	<br />
 
 
 
-	<table class="btable">
+	<table  class="table table-striped" >
 		<thead>
 			<tr>
 				<th style="width: 100px; text-align: center;">아이디</th>
@@ -100,9 +103,7 @@
 				<th style="width: 100px; text-align: center;">성별</th>
 				<th style="width: 100px; text-align: center;">핸드폰</th>
 				<th style="width: 100px; text-align: center;">수락.거절</th>
-
-
-			</tr>
+            </tr>
 		</thead>
 
 		<c:forEach var="c" items="${ confirms }">
@@ -147,9 +148,9 @@
 			</tr>
 		</c:forEach> 
 	
-		    <td>
-			     <input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" align="center"/> 
-					
+		    <td >
+			<input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" /> 
+				
      		</td>
 		
 	</table>

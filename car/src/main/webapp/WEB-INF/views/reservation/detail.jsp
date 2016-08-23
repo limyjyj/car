@@ -2,12 +2,12 @@
 <%@page import="com.car.model.dto.Member"%>
 <%@page import="com.car.model.dto.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" session="true"%>
-	
+   pageEncoding="utf-8" session="true"%>
+   
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+   
 
-<%	//치환변수선언
+<%   //치환변수선언
     pageContext.setAttribute("cr", "\r"); //Space
     pageContext.setAttribute("cn", "\n"); //Enter
     pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
@@ -17,141 +17,174 @@
 <head>
  
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$('#delete').on('click', function(event) {
-			var reservationno = ${reservation.reservationNo}
-			var result = confirm('삭제 하시겠습니까?');
-			if (result) {
-				//yes
-				location.href = ('/car/reservation/delete.action?reservationno=' + reservationno);
-			} else {
-				//no
-			}
-		});
-	});
+   $(function() {
+	   alert($('#departure').val());
+		console.log(departure);
+		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+
+		
+		
+	// 주소로 좌표를 검색합니다
+	geocoder.addr2coord(departure, function(status, result) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
+
+	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new daum.maps.InfoWindow({
+	            content: '<div style="padding:5px;">출발지</div>'
+	        });
+	        infowindow.open(map, marker);
+	    } 
+	});    
+		
+		
+		
+      $('#delete').on('click', function(event) {
+         var reservationno = ${reservation.reservationNo}
+         var result = confirm('삭제 하시겠습니까?');
+         if (result) {
+            //yes
+            location.href = ('/car/reservation/delete.action?reservationno=' + reservationno);
+         } else {
+            //no
+         }
+      });
+   });
 </script>
 
 <meta charset="utf-8" />
 <title>세부사항</title>
 
-	
-		<jsp:include page="/WEB-INF/views/include/head.jsp" />
-		<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	
+   
+      <jsp:include page="/WEB-INF/views/include/head.jsp" />
+      <jsp:include page="/WEB-INF/views/include/header.jsp" />
+
 
 </head>
 <body>
-
-	<div id="map" style="width:1200px;height:150px;margin-top:10px; margin:auto"></div>
-	<div id="map2" style="width:1200px;height:150px;margin-top:10px; margin:auto"></div>
-
-
-
+   
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=0b310b2f318c9e4b7fd52459eb35d927&libraries=services"></script>
-
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new daum.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new daum.maps.services.Geocoder();
-
-// 주소로 좌표를 검색합니다
-geocoder.addr2coord('대구 수성구 가창로221길 36 (파동, 드림팰리스)', function(status, result) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === daum.maps.services.Status.OK) {
-
-        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-       
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new daum.maps.Marker({
-            map: map,
-            position: coords
-        });
-        
-      
-      // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
-		
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new daum.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">출발지</div>'
-        });
-        
-       
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-     
-    } 
-});    
-
-var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
-mapOption = {
-    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-};  
-
-//지도를 생성합니다    
-var map2 = new daum.maps.Map(mapContainer, mapOption); 
-
-//주소-좌표 변환 객체를 생성합니다
-var geocoder = new daum.maps.services.Geocoder();
-
-//주소로 좌표를 검색합니다
-geocoder.addr2coord('서울 서초구 능안말길 20 (내곡동)', function(status, result) {
-
-// 정상적으로 검색이 완료됐으면 
- if (status === daum.maps.services.Status.OK) {
-
-    var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-   
-
-    // 결과값으로 받은 위치를 마커로 표시합니다
-    var marker = new daum.maps.Marker({
-        map: map,
-        position: coords
-    });
-    
+   <table align="center">
+   <tr>
+   <td>
+   <div id="map" style="width:500px;height:300px;margin-top:10px; margin:auto"></div></td>
+   <td/>
+    <td><div id="map2" style="width:500px;height:300px;margin-top:10px; margin:auto"></div>
+    </td>
+    </tr>
+    </table>
   
-  // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
+<script>
+$(function(){
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+	var departure = document.getElementById('departure').value;
 	
+	// 주소로 좌표를 검색합니다
+	geocoder.addr2coord(departure, function(status, result) {
 
-    // 인포윈도우로 장소에 대한 설명을 표시합니다
-    var infowindow = new daum.maps.InfoWindow({
-        content: '<div style="width:150px;text-align:center;padding:6px 0;">출발지</div>'
-    });
-    
-   
-    infowindow.open(map, marker);
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
 
-    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    map.setCenter(coords);
- 
-} 
-});    
+	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new daum.maps.InfoWindow({
+	            content: '<div style="padding:5px;">출발지</div>'
+	        });
+	        infowindow.open(map, marker);
+	    } 
+	});    
+	
+})
+
+$(function(){
+
+	var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+	var arrival = document.getElementById('arrival').value;
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addr2coord(arrival, function(status, result) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
+
+	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new daum.maps.InfoWindow({
+	            content: '<div style="padding:5px;">도착지</div>'
+	        });
+	        infowindow.open(map, marker);
+	    } else {
+	    	
+	    	alert(status);
+	    }
+	});    
+	
+})
 
 </script>
 
-
-
-	<div  id="pageContainer" class="panel panel-heading"
+<div  id="pageContainer" class="panel panel-heading"
 		style="padding-top: 25px; margin: auto;  width: 400px">
-	
+	<div class="bdiv" style="text-align:center; font-size: 20px" >세부사항</div>
+	<br />
+	<br />
 		
 			<form id="detailform" action="detail.action" method="post">	
 			<table  class="table table-striped" align="center" margin="auto">

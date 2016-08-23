@@ -87,9 +87,8 @@ public class ReservationController implements ApplicationContextAware, BeanNameA
 
 		}
 		dataCount = reservationService.selectReservationCount();
-
-		// ThePager pager = new ThePager(dataCount, currentPage, pageSize,
-		// pagerSize, url);
+		
+		
 		ThePager3 pager3 = new ThePager3(dataCount, currentPage, pageSize, pagerSize, url, queryString);
 
 		mav.setViewName("reservation/list");

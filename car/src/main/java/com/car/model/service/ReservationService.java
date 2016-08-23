@@ -51,4 +51,5 @@ public interface ReservationService {
 	
 	void deleteGroup(int reservationNo);
 
+
 }
