@@ -77,6 +77,11 @@
 										<li><a href="/car/board/list.action">공지사항</a></li>
 										<li><a href="/car/board/list2.action">후기</a></li>
 									</ul></li>
+									<li><a href="#">마이페이지</a>
+									<ul class="dropdown-menu">
+										<li><a href="/car/member/edit.action">회원정보수정</a></li>
+										<li><a href="#">카풀그룹페이지</a></li>
+									</ul></li>
 
 								<li><a href="#">고객센터</a>
 									<ul class="dropdown-menu">
@@ -96,6 +101,8 @@
 												<li><a href="portfolio_masonry_4.html">Masonry
 														portfolio 4</a></li>
 											</ul></li>
+											
+								
 
 										<li><a href="portfolio_single.html">Portfolio Single</a>
 											<ul class="dropdown-menu">
@@ -109,6 +116,7 @@
 									</ul></li>
 
 								<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
 
 
 								<c:choose>
