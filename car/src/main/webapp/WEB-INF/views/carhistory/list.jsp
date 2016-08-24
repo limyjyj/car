@@ -32,6 +32,7 @@ $(function() {
 	$('#index').on(
 			'change',
 			function(event) {
+				alert($('#index').val());
 				var url = "/car/carhistory/view.action?carindex="
 						+ $('#index').val();
 				$("#carlist").load(url);
@@ -109,6 +110,7 @@ function reverseDisplay() {
 						success : function(data) {								
 							eval("var outcome = " + data);
 							$("#modify").attr("data-hhno", historyno);
+							$("#deleted").attr("data-hhno", historyno);
 							$("#category2").val(outcome.category);
 							$("#regDate2").val(outcome.regDate);
 							$("#payment2").val(outcome.payment);
@@ -145,6 +147,18 @@ function reverseDisplay() {
 				alert("수정에 실패 하였습니다..");
 			}
 		});
+	});
+	
+	//delete
+	$('#deleted').on('click', function(event) {
+		
+		var historyno = $(this).attr('data-hhno');
+		
+		$.ajax({
+			url : "/car/carhistory/outcomedeleted.action?historyNo=" + historyno,
+			type : "post"
+		});
+		alert("삭제 되었습니다.");
 	});
 });	
 
@@ -268,12 +282,13 @@ $(function() {
 			$('tr#viewFuel').on('click',
 				function(event) {												
 				var historyno = $(this).attr('data-fhno');
-				
+				alert(historyno);
 					$.ajax("/car/carhistory/fuelview.action?historyNo=" + historyno + "&carindex=" + $('#carindex').val()
 							,{						
 						success : function(data) {								
 							eval("var fuel = " + data);
 							$("#modify2").attr("data-fhno2", historyno);
+							$("#deleted2").attr("data-fhno2", historyno);
 							$("#category4").val(fuel.category);
 							$("#regDate4").val(fuel.regDate);
 							$("#perLiter4").val(fuel.perLiter);
@@ -294,7 +309,7 @@ $(function() {
 	$('button#modify2').on('click', function(event) {
 
 		var historyno = $(this).attr('data-fhno2');
-					
+		alert(historyno);			
 		var fuel;	
 		
 		fuel = {
@@ -317,6 +332,18 @@ $(function() {
 				alert("수정에 실패 하였습니다..");
 			}
 		});
+	});
+	
+	//delete
+	$('#deleted2').on('click', function(event) {
+		
+		var historyno = $(this).attr('data-fhno2');
+		
+		$.ajax({
+			url : "/car/carhistory/fueldeleted.action?historyNo=" + historyno,
+			type : "post"
+		});
+		alert("삭제 되었습니다.");
 	});
 });		
 	
@@ -383,8 +410,7 @@ $(function() {
 												<input type="text" class="form-control" 
 												id="content1" name="content" placeholder="지출 메모 입력" />
 											</div>											
-											<button type="button" style="margin-left: 250px;" 
-											id="save" class="btn btn-default" data-dismiss="modal">저장</button>
+											<button type="button" id="save" class="btn btn-default" data-dismiss="modal">저장</button>
 									</div>
 			
 									<!-- Modal Footer -->
@@ -453,8 +479,7 @@ $(function() {
 												id="content3" name="content" placeholder="주유 메모 입력" />
 											</div>
 											
-											<button type="button" style="margin-left: 250px;" 
-											id="save2" class="btn btn-default" data-dismiss="modal">저장</button>
+											<button type="button" id="save2" class="btn btn-default" data-dismiss="modal">저장</button>
 									</div>
 			
 									<!-- Modal Footer -->
@@ -469,30 +494,28 @@ $(function() {
 			<br> <br>
 
 			
-			<table id="carlist" class="table table-striped" style="vertical-align:middle; width:1000px;">
+			<table id="carlist" class="table table-striped" style="align:center; width:700px;">
 				
-				<tr style="height: 30px;text-align: center;">
+				<tr style="height: 30px" align="center">
 					<td><input type="hidden" value="멤버" /></td>
 					<td>번호</td>
 					<td>항목</td>
 					<td>날짜</td>
 					<td>금액</td>
-					<td>리터</td>
-					<td></td>
-				</tr>		
+					<td>리터</tr>		
 					
-				<c:forEach var="o" items="${ outcomes }">
-				<tr style="height:30px" align="center" id="viewOutcome"
-						data-toggle="modal" data-target="#viewO" data-hno="${ o.historyNo }" >
-						<td><input type="hidden" value="${ o.historyNo }" id="historyNo" /></td>
-						<td>${ o.historyNo }</td>
-						<td>${ o.category }</td>
-						<td><fmt:formatDate value="${ o.regDate }"
-								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
-						<td>${ o.payment }</td>
-						<td></td><td></td>
-				</tr>
-			
+					<c:forEach var="o" items="${ outcomes }">
+						<tr style="height:30px" align="center" id="viewOutcome"
+							data-toggle="modal" data-target="#viewO" data-hno="${ o.historyNo }" >
+							<td><input type="hidden" value="${ o.historyNo }" id="historyNo" /></td>
+							<td>${ o.historyNo }</td>
+							<td>${ o.category }</td>
+							<td><fmt:formatDate value="${ o.regDate }"
+									pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
+							<td>${ o.payment }</td>
+							<td></td>
+						</tr>
+				
 						<div class="modal fade" id="viewO" role="dialog">
 							<div class="modal-dialog modal-md">
 								<div class="modal-content">
@@ -541,7 +564,10 @@ $(function() {
 																
 											<button type="button" class="btn btn-default" 
 											id="modify" style="display:none" onClick="changeReadonly()" 
-											data-hhno="${ o.historyNo }">완료</button>											
+											data-hhno="${ o.historyNo }">완료</button>
+											
+											<button type="button" class="btn btn-default" 
+											id="deleted" data-dismiss="modal">삭제</button>												
 										</form>	
 									</div>
 									
@@ -569,7 +595,6 @@ $(function() {
 								pattern="yyyy-MM-dd" var="regDate" /> ${ regDate }</td>
 						<td><input type="hidden" value="${ f.payment }" id="fpayment"/>${ f.payment }</td>
 						<td>${ f.liter }</td>
-						<td></td>
 					</tr>
 					
 					<div class="modal fade" id="viewF" role="dialog">
@@ -629,7 +654,11 @@ $(function() {
 															
 										<button type="button" class="btn btn-default" 
 										id="modify2" style="display:none" onClick="changeReadonly2()" 
-										data-fhno2="${ f.historyNo }">완료</button>											
+										data-fhno2="${ f.historyNo }">완료</button>					
+										
+										<button type="button" class="btn btn-default" 
+										id="deleted2" data-dismiss="modal">삭제</button>										
+																									
 									</form>	
 								</div>
 								

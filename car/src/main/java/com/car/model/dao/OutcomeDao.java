@@ -17,5 +17,8 @@ public interface OutcomeDao {
 	
 	void updateOutcome(Outcome outcome);
 	
+	void deletedOutcome(Outcome outcome);
+
+	
 	
 }

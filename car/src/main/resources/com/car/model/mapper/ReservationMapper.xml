@@ -1,239 +1,231 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper
-   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.car.model.mapper.ReservationMapper">
 
-   <resultMap type="Reservation" id="reservationMap">
-      <id property="reservationNo" column="reservationno" />
-      <result property="memberNo" column="memberno" />
-      <result property="type" column="type" />
-      <result property="purpose" column="purpose" />
-      <result property="departure" column="departure" />
-      <result property="arrival" column="arrival" />
-      <result property="frequency" column="frequency" />
-      <result property="startDate" column="startdate" />
-      <result property="endDate" column="enddate" />
-      <result property="totalMemeber" column="totalmemeber" />
-      <result property="endDate" column="enddate" />
-      <result property="content" column="content" />
+	<resultMap type="Reservation" id="reservationMap">
+		<id property="reservationNo" column="reservationno" />
+		<result property="memberNo" column="memberno" />
+		<result property="type" column="type" />
+		<result property="purpose" column="purpose" />
+		<result property="departure" column="departure" />
+		<result property="arrival" column="arrival" />
+		<result property="frequency" column="frequency" />
+		<result property="startDate" column="startdate" />
+		<result property="endDate" column="enddate" />
+		<result property="totalMemeber" column="totalmemeber" />
+		<result property="endDate" column="enddate" />
+		<result property="content" column="content" />
 
-      <collection property="memberNo" column="memberno"
-         select="selectMemberByMemeberNo" />
-   </resultMap>
+		<collection property="memberNo" column="memberno"
+			select="selectMemberByMemeberNo" />
+	</resultMap>
 
-   <resultMap type="Reservation" id="reservationMap2">
-      <id property="reservationNo" column="reservationno" />
-      <result property="type" column="type" />
-      <result property="memberNo" column="memberno" />
-      <result property="purpose" column="purpose" />
-      <result property="departure" column="departure" />
-      <result property="arrival" column="arrival" />
-      <result property="frequency" column="frequency" />
-      <result property="startDate" column="startdate" />
-      <result property="endDate" column="enddate" />
-      <result property="totalMember" column="totalmember" />
-      <result property="endDate" column="enddate" />
-      <result property="content" column="content" />
+	<resultMap type="Reservation" id="reservationMap2">
+		<id property="reservationNo" column="reservationno" />
+		<result property="type" column="type" />
+		<result property="memberNo" column="memberno" />
+		<result property="purpose" column="purpose" />
+		<result property="departure" column="departure" />
+		<result property="arrival" column="arrival" />
+		<result property="frequency" column="frequency" />
+		<result property="startDate" column="startdate" />
+		<result property="endDate" column="enddate" />
+		<result property="totalMember" column="totalmember" />
+		<result property="endDate" column="enddate" />
+		<result property="content" column="content" />
 
-   </resultMap>
-
-
-   <resultMap type="Member" id="memberMap">
-      <id property="memberNo" column="memberno" />
-      <result property="passWd" column="passwd" />
-      <result property="name" column="name" />
-      <result property="gender" column="gender" />
-      <result property="phone" column="phone" />
-      <result property="memberId" column="memberid" />
-      <result property="likes" column="likes" />
-      <result property="deleted" column="deleted" />
-      <result property="regDate" column="regdate" />
-
-   </resultMap>
-
-   
-   
-   <resultMap type="Confirm" id="confirmMap">
-      <result property="memberNo" column="memberno" />
-      <result property="reservationNo" column="reservationno" />
-      
-      
-      <collection property="member" column="memberno"
-         select="selectMemberByMemeberNo"  />
-   </resultMap>
-   
-
-   <update id="updateMemberByReservationNo" parameterType="Member">
-      UPDATE
-      Member
-      SET reservationno = #{reservationNo}
-      WHERE memberno = #{memberNo}
-   </update>
-
-   
-   
-      <delete id="deleteConfirm" parameterType="Confirm">
-   DELETE FROM Confirm WHERE reservationNo=#{reservationNo} AND memberNo =#{memberNo}
-   </delete>
-   
-      <delete id="deleteGroup" parameterType="int">
-   DELETE FROM Confirm WHERE reservationNo=#{reservationNo}
-   </delete>
-   
-   
-
-   <select id="selectMemberByMemeberNo" parameterType="int"
-      resultType="Member">
-
-      SELECT * FROM Member
-      WHERE memberNo = #{memberNo}
+	</resultMap>
 
 
-   </select>
+	<resultMap type="Member" id="memberMap">
+		<id property="memberNo" column="memberno" />
+		<result property="passWd" column="passwd" />
+		<result property="name" column="name" />
+		<result property="gender" column="gender" />
+		<result property="phone" column="phone" />
+		<result property="memberId" column="memberid" />
+		<result property="likes" column="likes" />
+		<result property="deleted" column="deleted" />
+		<result property="regDate" column="regdate" />
 
-   <insert id="insertReservationNoToMember" parameterType="Member">
-      INSERT
-      INTO Member
-      reservationNo
-      VALUES
-      #{reservationNo}
-   </insert>
+	</resultMap>
+
+	
+	
+	<resultMap type="Confirm" id="confirmMap">
+		<result property="memberNo" column="memberno" />
+		<result property="reservationNo" column="reservationno" />
+		
+		
+		<collection property="member" column="memberno"
+			select="selectMemberByMemeberNo"  />
+	</resultMap>
+	
+
+	<update id="updateMemberByReservationNo" parameterType="Member">
+		UPDATE
+		Member
+		SET reservationno = #{reservationNo}
+		WHERE memberno = #{memberNo}
+	</update>
+
+	
+	
+		<delete id="deleteConfirm" parameterType="Confirm">
+	DELETE FROM Confirm WHERE reservationNo=#{reservationNo} AND memberNo =#{memberNo}
+	</delete>
+	
+		<delete id="deleteGroup" parameterType="int">
+	DELETE FROM Confirm WHERE reservationNo=#{reservationNo}
+	</delete>
+	
+	
+
+	<select id="selectMemberByMemeberNo" parameterType="int"
+		resultType="Member">
+
+		SELECT * FROM Member
+		WHERE memberNo = #{memberNo}
 
 
-   <insert id="insertConfirm" parameterType="Member">
-      INSERT INTO
-      Confirm
-      (memberNo, reservationNo)
-      VALUES
-      ( #{memberNo}, #{reservationNo})
-   </insert>
+	</select>
 
-   <select id="selectConfirmList" resultType="Confirm">
+	<insert id="insertReservationNoToMember" parameterType="Member">
+		INSERT
+		INTO Member
+		reservationNo
+		VALUES
+		#{reservationNo}
+	</insert>
 
-      SELECT *
-      FROM
-      Confirm
+
+	<insert id="insertConfirm" parameterType="Member">
+		INSERT INTO
+		Confirm
+		(memberNo, reservationNo)
+		VALUES
+		( #{memberNo}, #{reservationNo})
+	</insert>
+
+	<select id="selectConfirmList" resultType="Confirm">
+
+		SELECT *
+		FROM
+		Confirm
 
     </select>
     
     <select id="selectConfirmListByReservationNo" parameterType="int"
-   resultMap="confirmMap">
+	resultMap="confirmMap">
 
-   select distinct Member.*, Confirm.*
-         from Confirm
-         join Member
-         on Member.memberno = Confirm.memberno
+	select distinct Member.*, Confirm.*
+			from Confirm
+			join Member
+			on Member.memberno = Confirm.memberno
             WHERE Confirm.reservationno=#{reservationNo}
-   
+	
 
-   </select>
-
-
+	</select>
 
 
-   <insert id="insertReservation" parameterType="Reservation"
-      useGeneratedKeys="true" keyProperty="reservationNo" keyColumn="reservationNo">
-      INSERT
-      INTO Reservation
-      ( memberNo, type, purpose,departure, arrival,
-      frequency, startDate,endDate, totalMember, content)
-      VALUES
-      (
-      #{memberNo}, #{type}, #{purpose}, #{departure}, #{arrival},
-      #{frequency}
-      ,#{startDate},#{endDate},#{totalMember},#{content})
-   </insert>
 
-   <select id="selectReservationList" resultType="Reservation">
 
-      SELECT *
-      FROM
-      Reservation
-      WHERE deleted ='0'
+	<insert id="insertReservation" parameterType="Reservation"
+		useGeneratedKeys="true" keyProperty="reservationNo" keyColumn="reservationNo">
+		INSERT
+		INTO Reservation
+		( memberNo, type, purpose,departure, arrival,
+		frequency, startDate,endDate, totalMember, content)
+		VALUES
+		(
+		#{memberNo}, #{type}, #{purpose}, #{departure}, #{arrival},
+		#{frequency}
+		,#{startDate},#{endDate},#{totalMember},#{content})
+	</insert>
 
-   </select>
+	<select id="selectReservationList" resultType="Reservation">
 
-   <select id="selectReservationByReservationNo" parameterType="int"
-      resultType="Reservation">
-      SELECT
-      reservationNo, memberNo, type, purpose,departure,
-      arrival, frequency, startDate,endDate, totalMember, content
-      FROM
-      Reservation
-      WHERE reservationNo = #{reservationNo} AND deleted = '0'
-   </select>
+		SELECT *
+		FROM
+		Reservation
+		WHERE deleted ='0'
 
-   <select id="selectReservationCount" resultType="int">
-      SELECT COUNT(*)
-      FROM
-      Reservation
-   </select>
+	</select>
+
+	<select id="selectReservationByReservationNo" parameterType="int"
+		resultType="Reservation">
+		SELECT
+		reservationNo, memberNo, type, purpose,departure,
+		arrival, frequency, startDate,endDate, totalMember, content
+		FROM
+		Reservation
+		WHERE reservationNo = #{reservationNo} AND deleted = '0'
+	</select>
+
+	<select id="selectReservationCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		Reservation
+	</select>
  <!-- 
-   <select id="selectCountComplete" resultType="int">
-   SELECT COUNT(*)
+	<select id="selectCountComplete" resultType="int">
+	SELECT COUNT(*)
   FROM  Member m
    JOIN Confirm c
    ON m.memberno
    WHERE m.memberno = c.memberno AND  m.reservationno = c.reservationno;
-   </select>
-    -->
+	</select>
+	 -->
 
-   <update id="ReservationReadCount" parameterType="int">
-      UPDATE
-      Reservation
-      SET resersvationCount = resersvationCount + 1
-      WHERE
-      reservationNo = #{reservationNo}
-   </update>
+	<update id="ReservationReadCount" parameterType="int">
+		UPDATE
+		Reservation
+		SET resersvationCount = resersvationCount + 1
+		WHERE
+		reservationNo = #{reservationNo}
+	</update>
 
-   <select id="selectReservationSearchType" parameterType="hashMap"
-      resultMap="reservationMap2">
-      SELECT *
-      FROM Reservation
-      WHERE frequency =#{frequency}
-   </select>
+	<select id="selectReservationSearchType" parameterType="hashMap"
+		resultMap="reservationMap2">
+		SELECT *
+		FROM Reservation
+		WHERE frequency =#{frequency}
+	</select>
 
-   <update id="deleteReservation" parameterType="int">
-      UPDATE Reservation
-      SET deleted
-      = '1' WHERE reservationno = #{reservationNo}
-   </update>
+	<update id="deleteReservation" parameterType="int">
+		UPDATE Reservation
+		SET deleted
+		= '1' WHERE reservationno = #{reservationNo}
+	</update>
 
-   <update id="updateReservation" parameterType="Reservation">
-      UPDATE Reservation
-      SET departure = #{departure}, arrival = #{arrival}, content = #{content},
-      startDate=#{startDate}, endDate=#{endDate}
-      WHERE
-      reservationno = #{reservationNo}
-   </update>
+	<update id="updateReservation" parameterType="Reservation">
+		UPDATE Reservation
+		SET departure = #{departure}, arrival = #{arrival}, content = #{content},
+		startDate=#{startDate}, endDate=#{endDate}
+		WHERE
+		reservationno = #{reservationNo}
+	</update>
 
-   <select id="selectReservationByMemberNo" parameterType="int"
-      resultType="Reservation">
-      SELECT
-      r.*
-      FROM Reservation r
-      JOIN Member m
-      ON (r.reservationno
-      = m.reservationno OR r.memberno = m.memberno) AND
-      r.frequency = '정기'
-      WHERE m.memberno = #{memberNo} AND m.deleted = '0'
-   </select>
+	<select id="selectReservationByMemberNo" parameterType="int"
+		resultType="Reservation">
+		SELECT
+		r.*
+		FROM Reservation r
+		JOIN Member m
+		ON (r.reservationno
+		= m.reservationno OR r.memberno = m.memberno) AND
+		r.frequency = '정기'
+		WHERE m.memberno = #{memberNo} AND m.deleted = '0'
+	</select>
 
-   <select id="departureSearch" parameterType="hashMap" resultType="Reservation">
-      SELECT *
-      FROM Reservation
-      WHERE departure like #{departure} AND
-      frequency =#{frequency}
-   </select>
-   
-    <select id="selectReservationUserListByReservationNo" parameterType="int" resultType="Member">
-      select m.*
-      from Member m
-      join Reservation r
-      on (m.memberno = r.memberno or m.reservationno = r.reservationno) and m.deleted ='0' and r.deleted = '0'
-      where r.reservationno = #{reservationNo}
-   </select>
+	<select id="departureSearch" parameterType="hashMap" resultType="Reservation">
+		SELECT *
+		FROM Reservation
+		WHERE departure like #{departure} AND
+		frequency =#{frequency}
+	</select>
 </mapper>

@@ -3,6 +3,7 @@ package com.car.model.service;
 import java.util.List;
 
 import com.car.model.dto.Fuel;
+import com.car.model.dto.Outcome;
 
 public interface FuelService {
 
@@ -16,4 +17,7 @@ public interface FuelService {
 	
 	public void updateFuel(Fuel fuel);
 
+	void deletedFuel(Fuel fuel);
+
+	
 }
