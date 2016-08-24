@@ -158,12 +158,7 @@ public List<Member> selectReservationUserListByReservationNo(int reservationNo) 
 	return reservationMapper.selectReservationUserListByReservationNo(reservationNo);
 }
 
-@Override
-public List<GroupChat> selectConfirmChatInfo(int reservationNo) {
-	
-	return reservationMapper.selectConfirmChatInfo(reservationNo);
-	
-}
+
 
    
 

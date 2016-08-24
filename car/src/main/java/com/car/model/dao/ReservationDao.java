@@ -13,9 +13,10 @@ import com.car.model.dto.Reservation;
 
 public interface ReservationDao {
 
-	List<GroupChat> selectConfirmChatInfo(int reservationNo);
+
 	
 	int insertReservation(Reservation reservation);
+
 
 	List<Reservation> selectReservationList();
 

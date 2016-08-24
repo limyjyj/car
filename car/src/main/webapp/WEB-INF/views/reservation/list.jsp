@@ -80,14 +80,14 @@ $(document).ready(function (){
 	<jsp:include page="/WEB-INF/views/include/head.jsp" />
 	<jsp:include page="/WEB-INF/views/include/header.jsp" /><br />
 
-	<div class="bdiv" style="width: 10%; text-align:center; font-size: 20px" >실시간.정기 예약판</div>
+  <div class="bdiv" style="width: 100%; text-align:center; font-size: 20px; vertical-align: middle;"  >실시간.정기 예약판</div>
 	<br />
 	<br />
 
 
 	<table class="bsearch" >
 		<tr>
-			<td><input type="hidden" name="pageno2" value=${ pageno } /> <input
+			<td style="vertical-align: m"><input type="hidden" name="pageno2" value=${ pageno } /> <input
 				type="hidden" name="reservationkind" value=${ b.reservationKind } />
 				<select id="reservationsearch" name="reservationsearch" >
 					<option >선택</option>
@@ -97,13 +97,13 @@ $(document).ready(function (){
 
 		    	</select> 
 			   <input type="text" name="departure" id="departureSearch"
-			       style="width: 70px" /> <input type="button" id="departureSearch2"
+			       style="width: 70px" align="left" /> <input type="button" id="departureSearch2"
 				   value="출발지검색" style="height: 25px" /></td>
 		</tr>
 
 	</table>
 	<form id="reservationform" action="list.action" method="post">
-		<table  class="table table-striped" align="center">
+		<table  class="table table-striped" style="width:1000px" align="center">
 			<thead>
 				<tr>
 					<th style="width: 100px">회원번호</th>

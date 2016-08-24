@@ -17,6 +17,8 @@
 		<association property="memberNo" column="memberno" select="selectOutcomeByMemberNo" />
 		<association property="memberNo" column="memberno" select="selectOutcomeByCarindex" />
 		<association property="memberNo" column="memberno" select="selectOutcomeByHistoryNo" />
+		<association property="memberNo" column="memberno" select="selectOutcomeSearchType" />
+		
 	</resultMap>
 	
 	<sql id="selectDefault">
@@ -84,6 +86,17 @@
 		WHERE historyNo = #{historyNo}
 	</update>
 
+	<select id="selectOutcomeSearchType" parameterType="string" resultMap="outcomeMap">
+		SELECT o.* 
+		FROM Member m
+		JOIN Car c
+		ON m.memberno = c.memberno
+		JOIN Carhistory ch
+		ON ch.carindex = c.carindex
+		JOIN Outcome o
+		ON ch.historyno = o.historyno
+		WHERE ch.category = #{category} AND o.deleted = '0';
+	</select>
 
 
 </mapper>

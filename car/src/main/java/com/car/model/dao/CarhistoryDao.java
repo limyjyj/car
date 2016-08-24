@@ -18,4 +18,6 @@ public interface CarhistoryDao {
 	
 
 	List<Carhistory> selectCarhistoryByMemberNo(int memberNo);
+	
+	List<Carhistory> selectCarhistorySearchType(String category);
 }

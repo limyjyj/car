@@ -57,4 +57,9 @@ public class MysqlCarhistoryDao implements CarhistoryDao {
 		return historyMapper.selectCarhistoryByMemberNo(memberNo);
 	}
 
+	@Override
+	public List<Carhistory> selectCarhistorySearchType(String category) {
+		return historyMapper.selectCarhistorySearchType(category);
+	}
+
 }

@@ -12,9 +12,7 @@ import com.car.model.dto.Reservation;
 
 public interface ReservationService {
 
-	List<GroupChat> selectConfirmChatInfo(int reservationNo);
-
-      
+	
    int insertReservation(Reservation reservation);
 
    List<Reservation> selectReservationList();

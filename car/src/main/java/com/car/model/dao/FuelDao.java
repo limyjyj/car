@@ -19,6 +19,7 @@ public interface FuelDao {
 	
 	void deletedFuel(Fuel fuel);
 
-	
+	List<Fuel> selectFuelSearchType(String category);
+
 	
 }

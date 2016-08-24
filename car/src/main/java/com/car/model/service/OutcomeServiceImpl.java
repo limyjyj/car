@@ -45,6 +45,12 @@ public class OutcomeServiceImpl implements OutcomeService {
 	public void deletedOutcome(Outcome outcome) {
 		outcomeDao.deletedOutcome(outcome);
 	}
+
+	@Override
+	public List<Outcome> selectOutcomeSearchType(String category) {
+		return outcomeDao.selectOutcomeSearchType(category);
+
+	}
 	
 
 }

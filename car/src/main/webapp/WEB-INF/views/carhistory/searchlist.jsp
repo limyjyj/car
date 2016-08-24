@@ -419,170 +419,15 @@ $(document).ready(function (){
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/head.jsp" />
-	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	
-	<div id="pageContainer" class="panel panel-heading"
-		style="padding-top: 25px; margin: auto; width: 1000px">
+<body>
+<jsp:include page="/WEB-INF/views/include/head.jsp" />
+
+	<div>
 
 		<div id="content">
-			<br /> <br />
-				<div id="selectCar">
-				
-				<select id="index" name="index" style="margin-left: 95px">
-					<option value="/car/carhistory/list.action">선택하세요</option>
-					<c:forEach var="car" items="${ cars }" varStatus="index">
-						<option id="carindex" value="${ car.carindex }">${ car.carno }</option>
-					</c:forEach>
-				</select> 
-								
-				<!-- Outcome -->
-				<input class="btn btn-danger" type="button" value="지출입력" style="height: 30px" 
-					data-toggle="modal" id="inputOutcome" data-target="#outcomeWrite"/> 
-						
-						<div class="modal fade" id="outcomeWrite" role="dialog">
-							<div class="modal-dialog modal-md">
-								<div class="modal-content">
-									
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">지출 내역 작성 </h4>
-									</div>
-							
-										<div class="modal-body">										
-											<div class="form-group">
-												<label for="category">지출 항목</label> 
-												<select class="form-control" id="category1" name="category" 
-													style="height:50px; width:230px; font-size: medium;">
-												<option value="정비비">정비비</option>
-												<option value="유지비">유지비</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="regDate">지출 날짜</label>
-												<input type="Date" class="form-control" 
-												id="regDate1" name="regDate" placeholder="지출 날짜 입력" />
-											</div>											
-											<div class="form-group">
-												<label for="payment">지출 금액</label> 
-												<input type="text" class="form-control" 
-												id="payment1" name="payment" placeholder="지출 금액 입력" />
-											</div>											
-											<div class="form-group">
-												<label for="location">지출 장소</label> 
-												<input type="text" class="form-control"
-												id="location1" name="location" placeholder="지출 장소 입력" />
-											</div>											
-											<div class="form-group">
-												<label for="content">지출 메모</label> 
-												<input type="text" class="form-control" 
-												id="content1" name="content" placeholder="지출 메모 입력" />
-											</div>											
-											<button type="button" id="save" class="btn btn-default" data-dismiss="modal">저장</button>
-									</div>
-			
-									<!-- Modal Footer -->
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-				<!-- Fuel -->
-				<input class="btn btn-danger" type="button"  value="주유입력" style="height: 30px" 
-					data-toggle="modal" id="inputFuel" data-target="#fuelWrite"/>
-					
-						<div class="modal fade" id="fuelWrite" role="dialog">
-							<div class="modal-dialog modal-md">
-								<div class="modal-content">
-									
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">주유 내역 작성 </h4>
-									</div>
-							
-										<div class="modal-body">										
-											<div class="form-group">
-												<label for="category">주유 항목</label> 
-												<select class="form-control" id="category3" name="category" 
-													style="height:50px; width:230px; font-size: medium;">
-												<option value="주유비">주유비</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="regDate">주유 날짜</label>
-												<input type="Date" class="form-control" 
-												id="regDate3" name="regDate" placeholder="주유 날짜 입력" />
-											</div>
-								
-											<div class="form-group">
-												<label for="perLiter">리터당 금액<span id="e">*</span></label> 
-												<input type="text" class="form-control" 
-												id="perLiter3" name="perLiter" placeholder="리터당 금액" value="0" />
-											</div>
-											
-											<div class="form-group">
-												<label for="liter">리터</label> 
-												<input type="text" class="form-control" 
-												id="liter3" name="liter" placeholder="리터" value="0" />
-											</div>
-											
-											<div class="form-group">
-												<label for="payment">총 금액</label> 
-												<input type="text" class="form-control" 
-												id="payment3" name="payment" placeholder="총 금액" 
-												disabled="disabled" />
-											</div>
-											
-											<div class="form-group">
-												<label for="location">주유 장소</label> 
-												<input type="text" class="form-control"
-												id="location3" name="location" placeholder="주유 장소 입력" />
-											</div>
-											
-											<div class="form-group">
-												<label for="content">주유 메모</label> 
-												<input type="text" class="form-control" 
-												id="content3" name="content" placeholder="주유 메모 입력" />
-											</div>
-											
-											<button type="button" id="save2" class="btn btn-default" data-dismiss="modal">저장</button>
-									</div>
-			
-									<!-- Modal Footer -->
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-									</div>
-			
-								</div>
-							</div>
-						</div>				
-				</div>
-			<br> <br>
-				
+		
 		<!-- 항목별 검색 -->
-		<form id="searchform" action="searchlist.action" method="post">		
-			<div align="right" style="margin-right: 95px">
-					<table>					
-						<tr>		
-							<td>					
-								<select id="chfind" name="chfind">
-									<option>항목</option>
-								</select>							
-									<input type="hidden" name="chCategory" value=${ carhistory.category } />
-								<select	id="chsearch" name="chsearch">
-									<option>선택</option>
-									<option>전체</option>					
-									<option>유지비</option>
-									<option>정비비</option>
-									<option>주유비</option>
-								</select>
-							</td>				
-						</tr>
-					</table>
-			</div>
-			<br />
+			
 			<table style="margin: auto;" class="type11" id="carlist">
 				<tr>
 					<th style="text-align: center;" scope="cols"><input type="hidden" value="멤버" />번호</th>
@@ -765,17 +610,10 @@ $(document).ready(function (){
 				</c:forEach>
 
 			</table>
-		</form>		
 
 		</div>
 	</div>
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> branch 'master' of https://github.com/limyjyj/car.git
 </body>
 </html>
 

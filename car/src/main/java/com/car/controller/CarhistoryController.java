@@ -24,6 +24,7 @@ import com.car.model.dto.Carhistory;
 import com.car.model.dto.Fuel;
 import com.car.model.dto.Member;
 import com.car.model.dto.Outcome;
+import com.car.model.dto.Reservation;
 import com.car.model.service.CarService;
 import com.car.model.service.CarhistoryService;
 import com.car.model.service.FuelService;
@@ -60,7 +61,6 @@ public class CarhistoryController {
 		ModelAndView mav = new ModelAndView();
 		// 로그인 상태가 아닌 경우 로그인 페이지로 이동
 
-		String url = "list.action";
 		Member member = (Member)session.getAttribute("loginuser");
 				
 		//데이터베이스에서 데이터 조회
@@ -81,6 +81,40 @@ public class CarhistoryController {
 		return mav;
 	
 	}
+	@ResponseBody
+	@RequestMapping(value = "searchlist.action", method = RequestMethod.GET)
+	   public ModelAndView selectCarHistorySearchType(HttpServletRequest request, String category, HttpSession session) {
+		  System.out.println("1번");
+	      ModelAndView mav = new ModelAndView();
+
+	      Member member = (Member)session.getAttribute("loginuser");
+			
+			//데이터베이스에서 데이터 조회
+			List<Car> cars = carService.selectAllCarByCarno(member.getMemberNo());
+			
+			for (Car car : cars) {
+				System.out.println(car.getMemberNo());
+			}
+
+	      if (category.equals("전체")) {
+	    	List<Outcome> outcomes = outcomeService.selectOutcomeByMemberNo(member.getMemberNo());
+	  		List<Fuel> fuels = fuelService.selectFuelByMemberNo(member.getMemberNo());
+	         mav.addObject("outcomes", outcomes);
+	         mav.addObject("fuels", fuels);
+
+	      } else {
+	    	List<Outcome> outcomes = outcomeService.selectOutcomeSearchType(category);
+	    	List<Fuel> fuels = fuelService.selectFuelSearchType(category);
+	    	mav.addObject("outcomes", outcomes);
+	    	mav.addObject("fuels", fuels);
+	 
+	      }
+
+	      mav.setViewName("carhistory/searchlist");
+
+	      return mav;
+
+	   }
 
 	@RequestMapping(value = "view.action", method = RequestMethod.GET)
 	public ModelAndView viewList(int carindex, HttpSession session) {
@@ -108,9 +142,12 @@ public class CarhistoryController {
 		
 		mav.addObject("outcomes", outcomes);
 		mav.addObject("fuels", fuels);
+	    mav.setViewName("carhistory/view");
+
 		return mav;
 
 	}
+
 	
 	// Outcome
 	@RequestMapping(value = "outcomewriteform.action", method = RequestMethod.GET)

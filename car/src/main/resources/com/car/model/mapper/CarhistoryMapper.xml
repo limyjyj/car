@@ -54,11 +54,12 @@
 	
 	<select id="selectCarhistoryByCarindex"
 		parameterType="int" resultMap="carhistoryMap">
-		select Carhistory.*
-		from Carhistory
-		where carindex = #{carindex} AND deleted='0';
+		SELECT Carhistory.*
+		FROM Carhistory
+		WHERE carindex = #{carindex} AND deleted='0';
 	</select>
 	
+
 	
 	
 	

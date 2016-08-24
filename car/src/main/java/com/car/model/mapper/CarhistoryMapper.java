@@ -1,7 +1,6 @@
 package com.car.model.mapper;
 
-import java.util.List;
-
+import java.util.List;import com.car.model.dto.Car;
 import com.car.model.dto.Carhistory;
 
 public interface CarhistoryMapper {
@@ -17,4 +16,6 @@ public interface CarhistoryMapper {
 	List<Carhistory> selectCarhistoryByMemberNo(int memberNo);
 	
 	void updateCarhistory(Carhistory carhistory);
+	
+	List<Carhistory> selectCarhistorySearchType(String category);
 }

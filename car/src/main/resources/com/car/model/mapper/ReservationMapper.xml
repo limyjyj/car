@@ -141,9 +141,12 @@
 
 	<select id="selectConfirmList" resultType="Confirm">
 
-		SELECT *
-		FROM
-		Confirm
+	select distinct Member.*, Confirm.*
+			from Confirm
+			join Member
+			on Member.memberno = Confirm.memberno
+            WHERE Confirm.reservationno=#{reservationNo}
+	
 
 	</select>
 
