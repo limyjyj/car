@@ -22,6 +22,8 @@
 			select="selectFuelByCarindex" />
 		<association property="memberNo" column="memberno"
 			select="selectFuelByHistoryNo" />
+		<association property="memberNo" column="memberno"
+			select="selectFuelSearchType" />
 
 	</resultMap>
 
@@ -97,5 +99,18 @@
 		SET deleted = '1' 
 		WHERE historyNo = #{historyNo}
 	</update>
+	
+		<select id="selectFuelSearchType" parameterType="string" resultMap="fuelMap">
+		SELECT f.* 
+		FROM Member m
+		JOIN Car c
+		ON m.memberno = c.memberno
+		JOIN Carhistory ch
+		ON ch.carindex = c.carindex
+		JOIN Fuel f
+		ON ch.historyno = f.historyno
+		WHERE ch.category = #{category} AND f.deleted = '0';
+	</select>
+	
 	
 </mapper>

@@ -18,7 +18,7 @@ public interface OutcomeMapper {
 	
 	void deletedOutcome(Outcome outcome);
 
-	
+	List<Outcome> selectOutcomeSearchType(String category);
 		
 	
 }

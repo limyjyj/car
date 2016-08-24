@@ -19,6 +19,7 @@ public interface OutcomeDao {
 	
 	void deletedOutcome(Outcome outcome);
 
+	List<Outcome> selectOutcomeSearchType(String category);
 	
 	
 }

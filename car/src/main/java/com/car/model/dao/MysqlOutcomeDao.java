@@ -45,4 +45,9 @@ public class MysqlOutcomeDao implements OutcomeDao {
 	public void deletedOutcome(Outcome outcome) {
 		outcomeMapper.deletedOutcome(outcome);
 	}
+
+	@Override
+	public List<Outcome> selectOutcomeSearchType(String category) {
+		return outcomeMapper.selectOutcomeSearchType(category);
+	}
 }

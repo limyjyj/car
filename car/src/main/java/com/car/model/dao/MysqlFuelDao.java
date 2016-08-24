@@ -46,6 +46,11 @@ public class MysqlFuelDao implements FuelDao {
 	public void deletedFuel(Fuel fuel) {
 		fuelMapper.deletedFuel(fuel);
 	}
+
+	@Override
+	public List<Fuel> selectFuelSearchType(String category) {
+		return fuelMapper.selectFuelSearchType(category);
+	}
 	
 
 }

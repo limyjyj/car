@@ -19,5 +19,7 @@ public interface OutcomeService {
 	
 	void deletedOutcome(Outcome outcome);
 
+	List<Outcome> selectOutcomeSearchType(String category);
+
 	
 }

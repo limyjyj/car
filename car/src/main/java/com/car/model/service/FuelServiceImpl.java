@@ -47,6 +47,11 @@ public class FuelServiceImpl implements FuelService {
 		fuelDao.deletedFuel(fuel);
 	}
 
+	@Override
+	public List<Fuel> selectFuelSearchType(String category) {
+		return fuelDao.selectFuelSearchType(category);
+	}
+
 	
 
 }

@@ -15,4 +15,5 @@ public interface CarhistoryService {
 	void updateCarhistory(Carhistory carhistory);
 
 	List<Carhistory> selectCarhistoryByMemberNo(int memberNo);
+	List<Carhistory> selectCarhistorySearchType(String category);
 }
