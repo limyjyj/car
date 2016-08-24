@@ -22,12 +22,14 @@
 	})
 
 	$(function() {
-		$('input#accept').on('click',
+		$('input#accept')
+				.on(
+						'click',
 						function(event) {
 							var reservationNo = $('input#reservationno').val();
 							var memberNo = $('input#memberno').val();
 							var result = confirm('수락합니다');
-								alert(reservationNo);
+							alert(reservationNo);
 							if (result) {
 								location.href = "/car/reservation/confirmAjax.action?reservationno="
 										+ reservationNo
@@ -39,56 +41,59 @@
 
 						});
 
-		$('input#refuse').on('click',
+		$('input#refuse')
+				.on(
+						'click',
 						function(event) {
 							var reservationNo = $('#reservationno').val();
 							var memberNo = $('#memberno').val();
 							var result = confirm('거절 하시겠습니까?');
-							
+
 							if (result) {
 								location.href = "/car/reservation/deleteConfirm.action?reservationNo="
 										+ reservationNo
 										+ "&memberNo="
 										+ memberNo;
-							 } else {
+							} else {
 								alert('취소합니다');
 							}
-   
-									});
-					
-		
-		$('#groupok').on('click',
-				function(event) {
-					var reservationNo = $('#reservationno').val();
-					var memberNo = $('#memberno').val();
-					var result = confirm('그룹생성이 완료되었습니까? 지워집니당');
-					
-					if (result) {
-						location.href = "/car/reservation/deleteGroup.action?reservationNo="
-								+ reservationNo
-								+ "&memberNo="
-								+ memberNo;
-					 } else {
-						alert('못지움');
-					}
 
-				});
+						});
+
+		$('#groupok')
+				.on(
+						'click',
+						function(event) {
+							var reservationNo = $('#reservationno').val();
+							var memberNo = $('#memberno').val();
+							var result = confirm('그룹생성이 완료되었습니까? 지워집니당');
+
+							if (result) {
+								location.href = "/car/reservation/deleteGroup.action?reservationNo="
+										+ reservationNo
+										+ "&memberNo="
+										+ memberNo;
+							} else {
+								alert('못지움');
+							}
+
+						});
 	});
 </script>
 </head>
 <body>
-<br />
-	<br />
-
-
-    
-	<div class="bdiv" style="text-align:center; font-size: 20px">그룹확인</div>
 	<br />
 	<br />
 
 
 
-	<table  class="table table-striped" >
+	<div class="bdiv" style="text-align: center; font-size: 20px">그룹확인</div>
+	<br />
+	<br />
+
+
+
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th style="width: 100px; text-align: center;">아이디</th>
@@ -96,12 +101,13 @@
 				<th style="width: 100px; text-align: center;">성별</th>
 				<th style="width: 100px; text-align: center;">핸드폰</th>
 				<th style="width: 100px; text-align: center;">수락.거절</th>
-            </tr>
+			</tr>
 		</thead>
 
 		<c:forEach var="c" items="${ confirms }">
+		
 			<tr>
-
+	
 
 				<td>${ c.member.memberId }</td>
 
@@ -110,37 +116,35 @@
 				<td>${ c.member.gender }</td>
 
 				<td>${ c.member.phone }</td>
+				
 
-			
+				
 				<td>
-			<c:choose> 
-				<%-- <c:when test="${ not empty c.member.reservationNo }"> --%>
-				 	<c:when test="${ c.member.reservationNo != 0 and c.member.reservationNo eq c.reservationNo }">	
-				 		<input type="button"  value="수락됨" style="height: 25px"  />
-				 		
-				 	</c:when>
-				 	<%-- </c:when> --%>
-				 	<c:otherwise> 
-						<input type="button"  id="accept"  value="수락"  style="height: 25px" />
-						<input id="reservationno" type="hidden" value="${ reservationNo }" />
-						<input id="memberno" type="hidden" value="${ c.member.memberNo }" />
-						<input type="button" id="refuse" value="거절" style="height: 25px" />
-					
-				</c:otherwise>
-				
-			
-			 </c:choose> 
-			
-				</td>
+					<c:choose>					
+						 <c:when test="${ c.accept eq 1 }">
+							<input type="button" value="수락됨" style="height: 25px" />									
+						 </c:when> 
+						<c:otherwise>
+							<input type="button" id="accept" value="수락" style="height: 25px" />
+							<input id="reservationno" type="hidden"
+								value="${ reservationNo }" />
+							<input id="memberno" type="hidden"
+								value="${ c.member.memberNo }" />
+							<input type="button" id="refuse" value="거절" style="height: 25px" />
 
+						</c:otherwise>
+					</c:choose>
+					
+				</td>
 			</tr>
-		</c:forEach> 
-	
-		    <td >
-			<input type="button" id="groupok" value="그룹 생성 완료"style="height: 25px" /> 
-				
-     		</td>
-		
+		</c:forEach>
+			
+		<tr>
+			<td>
+				<input type="button" id="groupok" value="그룹 생성 완료" style="height: 25px" />
+			</td>
+		</tr>
+
 	</table>
 
 	<br />

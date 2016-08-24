@@ -17,5 +17,8 @@ public interface FuelDao {
 	
 	void updateFuel(Fuel fuel);
 	
+	void deletedFuel(Fuel fuel);
+
+	
 	
 }

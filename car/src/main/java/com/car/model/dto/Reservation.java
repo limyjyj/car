@@ -19,7 +19,7 @@ public class Reservation {
 	private String content; //기타내용
 	private int reservationCount;
 	private Member member;
-	
+
 	public Member getMember() {
 		return member;
 	}

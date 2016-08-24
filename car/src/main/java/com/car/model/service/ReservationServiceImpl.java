@@ -1,5 +1,6 @@
 package com.car.model.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.car.model.dao.ReservationDao;
 import com.car.model.dto.Confirm;
+import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
@@ -27,10 +30,9 @@ public class ReservationServiceImpl implements ReservationService {
    
 
    @Override
-   public void insertReservation(Reservation reservation) {
+   public int insertReservation(Reservation reservation) {
 
-
-      reservationDao.insertReservation(reservation);
+	   return reservationDao.insertReservation(reservation);
 
    }
    
@@ -106,8 +108,8 @@ public class ReservationServiceImpl implements ReservationService {
    }
 
    @Override
-   public void updateMemberByReservationNo(Member member) {
-      reservationDao.updateMemberByReservationNo(member);
+   public void acceptReservation(Hashtable<String, Integer> params) {
+      reservationDao.updateConfirm(params);
       
    }
 
@@ -138,9 +140,18 @@ public class ReservationServiceImpl implements ReservationService {
 public List<Member> selectReservationUserListByReservationNo(int reservationNo) {
 	return reservationDao.selectReservationUserListByReservationNo(reservationNo);
 }
+
+@Override
+public List<GroupChat> selectConfirmChatInfo(int reservationNo) {
+	
+	return reservationDao.selectConfirmChatInfo(reservationNo);
+}
    
 
 
+
+	
+	
 
    }
 

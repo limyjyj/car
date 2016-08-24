@@ -16,6 +16,9 @@ public interface OutcomeMapper {
 	
 	void updateOutcome(Outcome outcome);
 	
+	void deletedOutcome(Outcome outcome);
+
+	
 		
 	
 }

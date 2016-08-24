@@ -1,15 +1,20 @@
 package com.car.model.mapper;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
 import com.car.model.dto.Confirm;
+import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
 public interface ReservationMapper {
+	
+	List<GroupChat> selectConfirmChatInfo(int reservationNo);
 
-	void insertReservation(Reservation reservation);
+	int insertReservation(Reservation reservation);
 
 	List<Reservation> selectReservationList();
 
@@ -35,7 +40,7 @@ public interface ReservationMapper {
 
 	int insertReservationNoToMember(int reservationNo);
 
-	void updateMemberByReservationNo(Member member);
+	void updateConfirm(Hashtable<String, Integer> params);
 
 	List<Reservation> selectReservationByMemberNo(int memberNo);
 

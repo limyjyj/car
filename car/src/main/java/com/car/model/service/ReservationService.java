@@ -1,16 +1,21 @@
 package com.car.model.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import com.car.model.dto.Confirm;
+import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 
 
 public interface ReservationService {
 
+	List<GroupChat> selectConfirmChatInfo(int reservationNo);
+
       
-   void insertReservation(Reservation reservation);
+   int insertReservation(Reservation reservation);
 
    List<Reservation> selectReservationList();
    
@@ -38,7 +43,7 @@ public interface ReservationService {
    
    int insertReservationNoToMember(int reservationNo);
    
-   void updateMemberByReservationNo(Member member);
+   void acceptReservation(Hashtable<String, Integer> params);
    
    List<Reservation> selectReservationByMemberNo(int memberNo);
    
@@ -51,4 +56,7 @@ public interface ReservationService {
    void deleteGroup(int reservationNo);
 
    List<Member> selectReservationUserListByReservationNo(int reservationNo);
+
+
+
 }

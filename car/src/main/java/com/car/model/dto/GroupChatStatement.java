@@ -4,6 +4,26 @@ public class GroupChatStatement {
 
 	int memberNo;
 	int chatNo;
+	GroupChat groupChat;
+	Member member;
+	
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public GroupChat getGroupChat() {
+		return groupChat;
+	}
+
+	public void setGroupChat(GroupChat groupChat) {
+		this.groupChat = groupChat;
+	}
+
+
 
 	public int getMemberNo() {
 		return memberNo;

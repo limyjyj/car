@@ -3,7 +3,6 @@ package com.car.model.mapper;
 import java.util.List;
 
 import com.car.model.dto.Fuel;
-import com.car.model.dto.Outcome;
 
 public interface FuelMapper {
 
@@ -17,4 +16,7 @@ public interface FuelMapper {
 
 	public void updateFuel(Fuel fuel);
 
+	void deletedFuel(Fuel fuel);
+
+	
 }

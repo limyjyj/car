@@ -17,9 +17,9 @@
 	<!-- make physical method -->
 	<insert id="insertGroupChat">
 		INSERT INTO GroupChat
-		(totalnumber, deleted, title, reservationno)
+		(totalnumber, deleted,  reservationno)
 		VALUES
-		(1, 0, #{title}, #{reservationNo})
+		(1, 0, #{reservationNo})
 	</insert>
 	
 	<select id="selectAllGroupChat" resultType="GroupChat">

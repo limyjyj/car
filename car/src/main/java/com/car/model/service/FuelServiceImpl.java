@@ -42,6 +42,11 @@ public class FuelServiceImpl implements FuelService {
 		fuelDao.updateFuel(fuel);
 	}
 
+	@Override
+	public void deletedFuel(Fuel fuel) {
+		fuelDao.deletedFuel(fuel);
+	}
+
 	
 
 }

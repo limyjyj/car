@@ -40,4 +40,9 @@ public class MysqlOutcomeDao implements OutcomeDao {
 	public Outcome selectOutcomeByHistoryNo(int historyNo) {
 		return outcomeMapper.selectOutcomeByHistoryNo(historyNo);
 	}
+
+	@Override
+	public void deletedOutcome(Outcome outcome) {
+		outcomeMapper.deletedOutcome(outcome);
+	}
 }

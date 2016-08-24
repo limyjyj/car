@@ -1,6 +1,7 @@
 package com.car.model.dao;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.car.model.dto.Confirm;
+import com.car.model.dto.GroupChat;
+import com.car.model.dto.GroupChatStatement;
 import com.car.model.dto.Member;
 import com.car.model.dto.Reservation;
 import com.car.model.mapper.ReservationMapper;
@@ -25,10 +28,10 @@ public class MysqlReservationDao implements ReservationDao {
    private ReservationMapper reservationMapper;
 
    @Override
-   public void insertReservation(Reservation reservation) {
-      
-      reservationMapper.insertReservation(reservation);
-      
+   public int insertReservation(Reservation reservation) {
+	   reservationMapper.insertReservation(reservation);
+		return reservation.getReservationNo();
+	
    }
 
    @Override
@@ -115,8 +118,8 @@ public class MysqlReservationDao implements ReservationDao {
    }
 
    @Override
-   public void updateMemberByReservationNo(Member member) {
-      reservationMapper.updateMemberByReservationNo(member);
+   public void updateConfirm(Hashtable<String, Integer> params) {
+      reservationMapper.updateConfirm(params);
       
    }
 
@@ -153,6 +156,13 @@ public class MysqlReservationDao implements ReservationDao {
 @Override
 public List<Member> selectReservationUserListByReservationNo(int reservationNo) {
 	return reservationMapper.selectReservationUserListByReservationNo(reservationNo);
+}
+
+@Override
+public List<GroupChat> selectConfirmChatInfo(int reservationNo) {
+	
+	return reservationMapper.selectConfirmChatInfo(reservationNo);
+	
 }
 
    

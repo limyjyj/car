@@ -7,8 +7,16 @@ public class GroupChat {
 	char deleted;
 	String title;
 	int reservationNo;
-
+	GroupChatStatement groupChatStatement;
 	
+	public GroupChatStatement getGroupChatStatement() {
+		return groupChatStatement;
+	}
+
+	public void setGroupChatStatement(GroupChatStatement groupChatStatement) {
+		this.groupChatStatement = groupChatStatement;
+	}
+
 	public int getReservationNo() {
 		return reservationNo;
 	}
